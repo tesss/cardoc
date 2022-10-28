@@ -1,0 +1,7 @@
+C:\Users\BB\source\repos\CARDOC\CARDOC\obj\Debug\net5.0-windows\CARDOC.csproj.AssemblyReference.cache
+C:\Users\BB\source\repos\CARDOC\CARDOC\obj\Debug\net5.0-windows\CARDOC.MainForm.resources
+C:\Users\BB\source\repos\CARDOC\CARDOC\obj\Debug\net5.0-windows\CARDOC.csproj.GenerateResource.cache
+C:\Users\BB\source\repos\CARDOC\CARDOC\obj\Debug\net5.0-windows\CARDOC.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\BB\source\repos\CARDOC\CARDOC\obj\Debug\net5.0-windows\CARDOC.AssemblyInfoInputs.cache
+C:\Users\BB\source\repos\CARDOC\CARDOC\obj\Debug\net5.0-windows\CARDOC.AssemblyInfo.cs
+C:\Users\BB\source\repos\CARDOC\CARDOC\obj\Debug\net5.0-windows\CARDOC.csproj.CoreCompileInputs.cache
