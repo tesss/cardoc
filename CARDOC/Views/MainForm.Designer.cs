@@ -73,7 +73,7 @@ namespace CARDOC
             // 
             this.boxFilterDate.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.boxFilterDate.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            this.boxFilterDate.Format = System.Windows.Forms.DateTimePickerFormat.Short;
+            this.boxFilterDate.Format = System.Windows.Forms.DateTimePickerFormat.Custom;
             this.boxFilterDate.Location = new System.Drawing.Point(1138, 15);
             this.boxFilterDate.Name = "boxFilterDate";
             this.boxFilterDate.Size = new System.Drawing.Size(138, 39);
@@ -132,6 +132,7 @@ namespace CARDOC
             // 
             this.boxVin.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
+            this.boxVin.CharacterCasing = System.Windows.Forms.CharacterCasing.Upper;
             this.boxVin.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
             this.boxVin.Location = new System.Drawing.Point(14, 527);
             this.boxVin.Name = "boxVin";
@@ -144,7 +145,7 @@ namespace CARDOC
             // 
             this.boxDate.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.boxDate.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            this.boxDate.Format = System.Windows.Forms.DateTimePickerFormat.Short;
+            this.boxDate.Format = System.Windows.Forms.DateTimePickerFormat.Custom;
             this.boxDate.Location = new System.Drawing.Point(984, 474);
             this.boxDate.Name = "boxDate";
             this.boxDate.Size = new System.Drawing.Size(134, 39);

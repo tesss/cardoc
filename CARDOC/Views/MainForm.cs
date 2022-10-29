@@ -37,12 +37,14 @@ namespace CARDOC
                 lvi.SubItems.Add(new ListViewItem.ListViewSubItem(lvi, "Пробіг") { Text = vehicle.Mileage + vehicle.MileageUnits });
                 listHistory.Items.Add(lvi);
             }
-            if(first)
-                for (var i = 0; i < 100; i++)
-                    AddPart();
             if (first)
             {
-                if (listHistory.Items.Count > 0)
+                boxFilterDate.CustomFormat = boxDate.CustomFormat = "dd.MM.yy";
+                var start = 1970;
+                boxYear.AddSuggestions(Enumerable.Range(start, DateTime.Now.Year - start + 1).Select(x => x.ToString()).ToArray());
+                for (var i = 0; i < 100; i++)
+                    AddPart();
+                    if (listHistory.Items.Count > 0)
                 {
                     listHistory.Items[0].Selected = true;
                     listHistory.Select();
@@ -63,7 +65,6 @@ namespace CARDOC
 
         private void InitVehicleUI(Vehicle vehicle)
         {
-            boxType.Text = vehicle.Type;
             boxManufacturer.Text = vehicle.Manufacturer;
             boxModel.Text = vehicle.Model;
             boxDate.Value = vehicle.Date;
@@ -123,26 +124,26 @@ namespace CARDOC
                     Name = ""
                 };
             part.AutoSizeMode = AutoSizeMode.GrowAndShrink;
-            part.AllowDrop = true;
-            part.DragOver += (object sender, DragEventArgs e) =>
-            {
-                base.OnDragOver(e);
-                var from = e.Data.GetData(typeof(Part)) as Part;
-                var to = sender as Part;
-                if (from != null && !from.IsLast && !to.IsLast)
-                {
-                    FlowLayoutPanel p = (FlowLayoutPanel)(sender as Part).Parent;
-                    p.Controls.SetChildIndex(from, p.Controls.GetChildIndex(to));
-                    var t = from.Index;
-                    from.Index = to.Index;
-                    to.Index = t;
-                }
-            };
-            part.MouseDown += (object sender, MouseEventArgs e) =>
-            {
-                base.OnMouseDown(e);
-                DoDragDrop(sender, DragDropEffects.All);
-            };
+            //part.AllowDrop = true;
+            //part.DragOver += (object sender, DragEventArgs e) =>
+            //{
+            //    base.OnDragOver(e);
+            //    var from = e.Data.GetData(typeof(Part)) as Part;
+            //    var to = sender as Part;
+            //    if (from != null && !from.IsLast && !to.IsLast)
+            //    {
+            //        FlowLayoutPanel p = (FlowLayoutPanel)(sender as Part).Parent;
+            //        p.Controls.SetChildIndex(from, p.Controls.GetChildIndex(to));
+            //        var t = from.Index;
+            //        from.Index = to.Index;
+            //        to.Index = t;
+            //    }
+            //};
+            //part.MouseDown += (object sender, MouseEventArgs e) =>
+            //{
+            //    base.OnMouseDown(e);
+            //    DoDragDrop(sender, DragDropEffects.All);
+            //};
             panelParts.Controls.Add(part);
         }
 
@@ -213,7 +214,7 @@ namespace CARDOC
 
         private void boxYear_Validating(object sender, System.ComponentModel.CancelEventArgs e)
         {
-            btnSave.Enabled = boxYear.Validate(!int.TryParse(boxYear.Text, out int year) || year < 1900 || year > DateTime.Now.Year);
+            btnSave.Enabled = boxYear.Validate(!int.TryParse(boxYear.Text, out int year) || year < 1900 || year > DateTime.Now.Year, true);
         }
 
         private void boxColor_Validating(object sender, System.ComponentModel.CancelEventArgs e)
@@ -280,7 +281,7 @@ namespace CARDOC
             var empty = string.IsNullOrEmpty(boxMileageK.Text) && string.IsNullOrEmpty(boxMileageM.Text) ||
                 (!int.TryParse(boxMileageK.Text, out int m1) || m1 <= 0) &&
                 (!int.TryParse(boxMileageM.Text, out int m2) || m2 <= 0);
-            btnSave.Enabled = boxMileageK.Validate(empty) && boxMileageK.Validate(empty);
+            btnSave.Enabled = boxMileageK.Validate(empty, true) && boxMileageK.Validate(empty, true);
         }
 
         private void boxMileageM_Validating(object sender, System.ComponentModel.CancelEventArgs e)
@@ -290,7 +291,7 @@ namespace CARDOC
 
         private void boxMileageH_Validating(object sender, System.ComponentModel.CancelEventArgs e)
         {
-            btnSave.Enabled = boxMileageH.Validate(!string.IsNullOrEmpty(boxMileageH.Text) && (!int.TryParse(boxMileageH.Text, out int m) || m <= 0));
+            btnSave.Enabled = boxMileageH.Validate(!string.IsNullOrEmpty(boxMileageH.Text) && (!int.TryParse(boxMileageH.Text, out int m) || m <= 0), true);
         }
 
         private void boxMileageK_KeyPress(object sender, KeyPressEventArgs e)
@@ -312,20 +313,24 @@ namespace CARDOC
         {
             DataProvider.Remove(GetCurrentVehicle());
             InitUI(false);
+            InitVehicleUI(Vehicle.Empty);
         }
 
         private void btnDuplicate_Click(object sender, EventArgs e)
         {
             if (DataProvider.Vehicles.Any()) {
                 var vehicle = GetCurrentVehicle();
+                IdleHandlerSet = true;
                 if (vehicle.IsEmpty)
                     vehicle = DataProvider.Vehicles.OrderByDescending(x => x.Updated).FirstOrDefault();
+                else
+                    listHistory.SelectedItems.Clear();
                 vehicle = vehicle.Clone();
                 vehicle.Vin = "";
                 vehicle.Date = DateTime.Now.Date;
                 vehicle.Updated = DateTime.Now;
                 InitVehicleUI(vehicle);
-                listHistory.SelectedItems.Clear();
+                IdleHandlerSet = false;
             }
         }
 

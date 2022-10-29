@@ -1,0 +1,6 @@
+C:\Users\BB\source\repos\CARDOC\CARDOC\bin\Release\net6.0-windows\publish\CARDOC.exe
+C:\Users\BB\source\repos\CARDOC\CARDOC\bin\Release\net6.0-windows\publish\CARDOC.dll
+C:\Users\BB\source\repos\CARDOC\CARDOC\bin\Release\net6.0-windows\publish\CARDOC.deps.json
+C:\Users\BB\source\repos\CARDOC\CARDOC\bin\Release\net6.0-windows\publish\CARDOC.runtimeconfig.json
+C:\Users\BB\source\repos\CARDOC\CARDOC\bin\Release\net6.0-windows\publish\CARDOC.pdb
+C:\Users\BB\source\repos\CARDOC\CARDOC\bin\Release\net6.0-windows\publish\Newtonsoft.Json.dll
