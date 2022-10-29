@@ -1,10 +1,12 @@
-﻿using CARDOC.Utils;
+﻿using CARDOC.Models;
+using CARDOC.Utils;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
 using System.Drawing;
 using System.Linq;
+using System.Runtime.CompilerServices;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
@@ -109,13 +111,26 @@ namespace CARDOC.Views
                 if (Index == 1)
                     return null;
                 foreach (Part part in Parent.Controls)
-                    if (part.Index == Index - 1)
+                    if (part.Index == Index - 1 && part.Visible)
                         return part;
                 return null;
             }
         }
 
         public Part Next
+        {
+            get
+            {
+                if (Index == Parent.Controls.Count)
+                    return null;
+                foreach (Part part in Parent.Controls)
+                    if (part.Index == Index + 1 && part.Visible)
+                        return part;
+                return null;
+            }
+        }
+
+        public Part NextActual
         {
             get
             {
@@ -137,20 +152,20 @@ namespace CARDOC.Views
         {
             get
             {
-                return Parent.Controls.IndexOf(this) == Parent.Controls.Count - 1;
+                return Next == null || !Next.Visible;
             }
         }
 
         private void btnRemove_Click(object sender, EventArgs e)
         {
-            if(Parent.Controls.IndexOf(this) < Parent.Controls.Count - 1)
+            if(!IsLast)
             {
                 Previous?.Focus();
                 this.RemoveValidation();
                 foreach (Part part in Parent.Controls)
                     if (part.Index > Index)
                         part.Index--;
-                Parent.Controls.Remove(this);
+                this.Clear();
             }
         }
 
@@ -187,8 +202,9 @@ namespace CARDOC.Views
 
         private void boxName_KeyPress(object sender, KeyPressEventArgs e)
         {
-            if (IsLast && boxName.Validate(string.IsNullOrEmpty(boxName.Text)))
-                GetMainForm().AddPart();
+            if (IsLast && !char.IsControl(e.KeyChar) && NextActual != null) {
+                NextActual.Visible = true;
+            }
             if (e.KeyChar == (char)Keys.Back && boxName.Text == "")
                 btnRemove_Click(sender, e);
         }
@@ -223,7 +239,28 @@ namespace CARDOC.Views
 
         private void boxType_TextChanged(object sender, EventArgs e)
         {
-            BackColor = boxType.Text == Const.PartTypeZip ? Color.LightYellow : SystemColors.Window;
+            switch (boxType.Text)
+            {
+                case Const.PartTypeGeneral:
+                case Const.PartTypeTire:
+                case Const.PartTypeBattery:
+                    BackColor = Color.LightYellow;
+                    break;
+                default:
+                    BackColor = SystemColors.Window;
+                    break;
+            }
+        }
+
+        public void Clear()
+        {
+            Quantity = 1;
+            Units = Const.DefaultPartUnits;
+            Type = Const.PartTypeZip;
+            Dock = DockStyle.Fill;
+            Name = "";
+            if(Visible)
+                Visible = false;
         }
     }
 }

@@ -15,11 +15,11 @@ namespace CARDOC
             /* init folders */
             if (!Directory.Exists(Const.DataFolder))
                 Directory.CreateDirectory(Const.DataFolder);
-            //var vehicles = Dummy.GetVehicles();
-            //for (int i = 0; i < 5; i++)
-            //    foreach(var vehicle in vehicles)
-            //        DataProvider.Write(vehicle, new DateTime(2022, 1, 1).AddDays(i));
+            if (!Directory.Exists(Const.TemplateFolder))
+                Directory.CreateDirectory(Const.TemplateFolder);
             DataProvider.ReadAll();
+            DataProvider.ReadAllTemplates();
+            DataProvider.FillCache();
 
             // To customize application configuration such as set high DPI settings or default font,
             // see https://aka.ms/applicationconfiguration.

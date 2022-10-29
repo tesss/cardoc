@@ -26,6 +26,7 @@ namespace CARDOC.Models
         public string Notes { get; set; }
         public List<Part> Parts { get; set; }
 
+
         public static Vehicle Empty 
         { 
             get 
@@ -52,6 +53,13 @@ namespace CARDOC.Models
             {
                 return string.IsNullOrEmpty(Vin);
             }
+        }
+
+        public string GetTemplateName()
+        {
+            if (string.IsNullOrEmpty(Manufacturer) || string.IsNullOrEmpty(Model))
+                return null;
+            return Manufacturer + " " + Model;
         }
     }
 }

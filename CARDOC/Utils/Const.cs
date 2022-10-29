@@ -3,6 +3,7 @@
     public class Const
     {
         public const string DataFolder = "Data";
+        public const string TemplateFolder = "Templates";
         public const string DateFormat = "dd.MM.yyyy";
 
         public const string UnitsKm = "км";

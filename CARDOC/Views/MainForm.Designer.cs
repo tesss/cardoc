@@ -50,6 +50,7 @@ namespace CARDOC
             this.line1 = new System.Windows.Forms.Label();
             this.btnSave = new System.Windows.Forms.Button();
             this.boxType = new CARDOC.Views.CustomComboBox();
+            this.btnTemplate = new System.Windows.Forms.Button();
             this.SuspendLayout();
             // 
             // listHistory
@@ -66,7 +67,6 @@ namespace CARDOC
             this.listHistory.TabIndex = 0;
             this.listHistory.UseCompatibleStateImageBehavior = false;
             this.listHistory.View = System.Windows.Forms.View.Details;
-            this.listHistory.ItemSelectionChanged += new System.Windows.Forms.ListViewItemSelectionChangedEventHandler(this.listHistory_ItemSelectionChanged);
             this.listHistory.SelectedIndexChanged += new System.EventHandler(this.listHistory_SelectedIndexChanged);
             // 
             // boxFilterDate
@@ -83,48 +83,48 @@ namespace CARDOC
             // btnAdd
             // 
             this.btnAdd.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.btnAdd.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            this.btnAdd.Location = new System.Drawing.Point(1138, 414);
+            this.btnAdd.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
+            this.btnAdd.Location = new System.Drawing.Point(1137, 171);
             this.btnAdd.Name = "btnAdd";
             this.btnAdd.Size = new System.Drawing.Size(138, 50);
             this.btnAdd.TabIndex = 101;
-            this.btnAdd.Text = "Додати";
+            this.btnAdd.Text = "➕ Додати";
             this.btnAdd.UseVisualStyleBackColor = true;
             this.btnAdd.Click += new System.EventHandler(this.btnAdd_Click);
             // 
             // btnDuplicate
             // 
             this.btnDuplicate.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.btnDuplicate.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            this.btnDuplicate.Location = new System.Drawing.Point(1137, 483);
+            this.btnDuplicate.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
+            this.btnDuplicate.Location = new System.Drawing.Point(1138, 241);
             this.btnDuplicate.Name = "btnDuplicate";
-            this.btnDuplicate.Size = new System.Drawing.Size(138, 50);
+            this.btnDuplicate.Size = new System.Drawing.Size(137, 50);
             this.btnDuplicate.TabIndex = 102;
-            this.btnDuplicate.Text = "Копія";
+            this.btnDuplicate.Text = "⧉ Копіювати";
             this.btnDuplicate.UseVisualStyleBackColor = true;
             this.btnDuplicate.Click += new System.EventHandler(this.btnDuplicate_Click);
             // 
             // btnRemove
             // 
             this.btnRemove.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.btnRemove.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            this.btnRemove.Location = new System.Drawing.Point(1139, 552);
+            this.btnRemove.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
+            this.btnRemove.Location = new System.Drawing.Point(1138, 311);
             this.btnRemove.Name = "btnRemove";
-            this.btnRemove.Size = new System.Drawing.Size(138, 50);
+            this.btnRemove.Size = new System.Drawing.Size(137, 50);
             this.btnRemove.TabIndex = 103;
-            this.btnRemove.Text = "Видалити";
+            this.btnRemove.Text = "➖ Видалити";
             this.btnRemove.UseVisualStyleBackColor = true;
             this.btnRemove.Click += new System.EventHandler(this.btnRemove_Click);
             // 
             // btnToday
             // 
             this.btnToday.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.btnToday.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
+            this.btnToday.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
             this.btnToday.Location = new System.Drawing.Point(1138, 81);
             this.btnToday.Name = "btnToday";
             this.btnToday.Size = new System.Drawing.Size(138, 50);
             this.btnToday.TabIndex = 105;
-            this.btnToday.Text = "Сьогодні";
+            this.btnToday.Text = "🗓 Сьогодні";
             this.btnToday.UseVisualStyleBackColor = true;
             this.btnToday.Click += new System.EventHandler(this.btnToday_Click);
             // 
@@ -235,6 +235,7 @@ namespace CARDOC
             this.boxModel.Name = "boxModel";
             this.boxModel.Size = new System.Drawing.Size(858, 40);
             this.boxModel.TabIndex = 2;
+            this.boxModel.SelectedIndexChanged += new System.EventHandler(this.boxModel_SelectedIndexChanged);
             this.boxModel.Validating += new System.ComponentModel.CancelEventHandler(this.boxModel_Validating);
             // 
             // boxYear
@@ -305,12 +306,12 @@ namespace CARDOC
             // btnSave
             // 
             this.btnSave.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.btnSave.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            this.btnSave.Location = new System.Drawing.Point(1139, 621);
+            this.btnSave.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
+            this.btnSave.Location = new System.Drawing.Point(1139, 474);
             this.btnSave.Name = "btnSave";
-            this.btnSave.Size = new System.Drawing.Size(138, 50);
+            this.btnSave.Size = new System.Drawing.Size(137, 191);
             this.btnSave.TabIndex = 100;
-            this.btnSave.Text = "Зберегти";
+            this.btnSave.Text = "🖬 Зберегти";
             this.btnSave.UseVisualStyleBackColor = true;
             this.btnSave.Click += new System.EventHandler(this.btnSave_Click);
             // 
@@ -334,11 +335,24 @@ namespace CARDOC
             this.boxType.TabIndex = 3;
             this.boxType.Validating += new System.ComponentModel.CancelEventHandler(this.boxType_Validating);
             // 
+            // btnTemplate
+            // 
+            this.btnTemplate.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.btnTemplate.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
+            this.btnTemplate.Location = new System.Drawing.Point(1138, 420);
+            this.btnTemplate.Name = "btnTemplate";
+            this.btnTemplate.Size = new System.Drawing.Size(138, 40);
+            this.btnTemplate.TabIndex = 106;
+            this.btnTemplate.Text = "★ Шаблон";
+            this.btnTemplate.UseVisualStyleBackColor = true;
+            this.btnTemplate.Click += new System.EventHandler(this.btnTemplate_Click);
+            // 
             // MainForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(10F, 25F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1288, 1006);
+            this.Controls.Add(this.btnTemplate);
             this.Controls.Add(this.boxType);
             this.Controls.Add(this.btnSave);
             this.Controls.Add(this.line1);
@@ -391,5 +405,6 @@ namespace CARDOC
         private Label line1;
         public Button btnSave;
         private CustomComboBox boxType;
+        private Button btnTemplate;
     }
 }

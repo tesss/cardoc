@@ -16,7 +16,7 @@ namespace CARDOC
             InitializeComponent();
         }
 
-        private void InitUI()
+        private void InitUI(bool first)
         {
             listHistory.Clear();
             listHistory.Columns.Add("✔", 50);
@@ -37,18 +37,28 @@ namespace CARDOC
                 lvi.SubItems.Add(new ListViewItem.ListViewSubItem(lvi, "Пробіг") { Text = vehicle.Mileage + vehicle.MileageUnits });
                 listHistory.Items.Add(lvi);
             }
-            //listHistory.AutoResizeColumns(ColumnHeaderAutoResizeStyle.ColumnContent);
-            if (listHistory.Items.Count > 0)
+            if(first)
+                for (var i = 0; i < 100; i++)
+                    AddPart();
+            if (first)
             {
-                listHistory.Items[0].Selected = true;
-                listHistory.Select();
+                if (listHistory.Items.Count > 0)
+                {
+                    listHistory.Items[0].Selected = true;
+                    listHistory.Select();
+                }
+                else
+                    InitVehicleUI(Vehicle.Empty);
             }
-            else
-                InitVehicleUI(Vehicle.Empty);
             boxDate.MaxDate = boxFilterDate.MaxDate = DateTime.Today.Date.AddDays(1);
             boxType.AddSuggestions(DataProvider.Types);
             boxManufacturer.AddSuggestions(DataProvider.Models);
             boxColor.AddSuggestions(DataProvider.Colors);
+        }
+
+        private Part GetPartView(int index)
+        {
+            return panelParts.Controls[index] as Part;
         }
 
         private void InitVehicleUI(Vehicle vehicle)
@@ -73,33 +83,27 @@ namespace CARDOC
                 boxMileageH.Text = vehicle.MileageH.ToString();
             else
                 boxMileageH.Text = "";
-            boxNotes.Text = vehicle.Notes;
-            panelParts.Controls.Clear();
+
+            int i = 0;
             if (vehicle.Parts != null && vehicle.Parts.Any())
             {
-                foreach (var part in vehicle.Parts)
-                    AddPart(new Views.Part
-                    {
-                        Name = part.Name,
-                        Quantity = part.Quantity,
-                        Units = part.Units,
-                        Type = part.Type,
-                        Notes = part.Notes
-                    });
+                for (i = 0; i < vehicle.Parts.Count; i++)
+                {
+                    var part = vehicle.Parts[i];
+                    Part partView = GetPartView(i);
+                    partView.Name = part.Name;
+                    partView.Quantity = part.Quantity;
+                    partView.Units = part.Units;
+                    partView.Type = part.Type;
+                    partView.Notes = part.Notes;
+                    if(!partView.Visible)
+                        partView.Visible = true;
+                }
             }
-            else
-            {
-                AddPart(new Views.Part { Name = "Кузов", Quantity = 1, Units = Const.DefaultPartUnits, Type = Const.PartTypeGeneral });
-                AddPart(new Views.Part { Name = "Двигун (дизельний)", Quantity = 1, Units = Const.DefaultPartUnits, Type = Const.PartTypeGeneral });
-                AddPart(new Views.Part { Name = "Передній міст", Quantity = 1, Units = Const.DefaultPartUnits, Type = Const.PartTypeGeneral });
-                AddPart(new Views.Part { Name = "Коробка передач", Quantity = 1, Units = Const.DefaultPartUnits, Type = Const.PartTypeGeneral });
-                AddPart(new Views.Part { Name = "Задній міст", Quantity = 1, Units = Const.DefaultPartUnits, Type = Const.PartTypeGeneral });
-                AddPart(new Views.Part { Name = "Роздавальна коробка", Quantity = 1, Units = Const.DefaultPartUnits, Type = Const.PartTypeGeneral });
-                AddPart(new Views.Part { Name = "Кермовий механізм", Quantity = 1, Units = Const.DefaultPartUnits, Type = Const.PartTypeGeneral });
-                AddPart(new Views.Part { Name = "Автомобільні шини", Quantity = 5, Units = Const.DefaultPartUnits, Type = Const.PartTypeTire });
-                AddPart(new Views.Part { Name = "Акумулятрні батареї 12В 6СТ Ah", Quantity = 1, Units = Const.DefaultPartUnits, Type = Const.PartTypeBattery });
-            }
-            AddPart();
+            GetPartView(i).Clear();
+            GetPartView(i).Visible = true;
+            for (i = i + 1; i < panelParts.Controls.Count; i++)
+                GetPartView(i).Clear();
             ValidateChildren();
             ActiveControl = boxManufacturer;
         }
@@ -144,7 +148,7 @@ namespace CARDOC
 
         private void MainForm_Load(object sender, EventArgs e)
         {
-            InitUI();
+            InitUI(true);
         }
 
         private void panelParts_Paint(object sender, PaintEventArgs e)
@@ -158,15 +162,22 @@ namespace CARDOC
             InitVehicleUI(Vehicle.Empty);
         }
 
+        private bool IdleHandlerSet { get; set; }
         private void listHistory_SelectedIndexChanged(object sender, EventArgs e)
         {
-            listHistory.RemoveValidation();
-            InitVehicleUI(GetCurrentVehicle());
+            if (!IdleHandlerSet)
+            {
+                IdleHandlerSet = true;
+                Application.Idle += listHistory_ItemSelectionChanged;
+            }
         }
 
-        private void listHistory_ItemSelectionChanged(object sender, ListViewItemSelectionChangedEventArgs e)
+        private void listHistory_ItemSelectionChanged(object sender, EventArgs e)
         {
-
+            IdleHandlerSet = false;
+            Application.Idle -= listHistory_ItemSelectionChanged;
+            listHistory.RemoveValidation();
+            InitVehicleUI(GetCurrentVehicle());
         }
 
         private void boxType_Validating(object sender, System.ComponentModel.CancelEventArgs e)
@@ -210,7 +221,7 @@ namespace CARDOC
             btnSave.Enabled = boxColor.Validate(string.IsNullOrEmpty(boxColor.Text));
         }
 
-        private void btnSave_Click(object sender, EventArgs e)
+        private Vehicle GetVehicleFromView()
         {
             var vehicle = new Vehicle()
             {
@@ -221,14 +232,17 @@ namespace CARDOC
                 Model = boxModel.Text.Trim(),
                 Notes = boxNotes.Text.Trim(),
                 Type = boxType.Text.Trim(),
-                Year = int.Parse(boxYear.Text),
+                Year = 0,
                 Parts = new List<Models.Part>()
             };
-            if(!string.IsNullOrEmpty(boxMileageK.Text))
+            if (int.TryParse(boxYear.Text, out var year))
+                vehicle.Year = year;
+            if (!string.IsNullOrEmpty(boxMileageK.Text))
             {
                 vehicle.Mileage = int.Parse(boxMileageK.Text);
                 vehicle.MileageUnits = Const.UnitsKm;
-            } else if (!string.IsNullOrEmpty(boxMileageM.Text))
+            }
+            else if (!string.IsNullOrEmpty(boxMileageM.Text))
             {
                 vehicle.Mileage = int.Parse(boxMileageM.Text);
                 vehicle.MileageUnits = Const.UnitsMiles;
@@ -237,10 +251,10 @@ namespace CARDOC
             {
                 vehicle.MileageH = int.Parse(boxMileageH.Text);
             }
-            foreach(Part part in panelParts.Controls)
+            foreach (Part part in panelParts.Controls)
             {
-                if (string.IsNullOrEmpty(part.Name))
-                    break;
+                if (string.IsNullOrEmpty(part.Name) || !part.Visible)
+                    continue;
                 vehicle.Parts.Add(new Models.Part
                 {
                     Name = part.Name,
@@ -250,8 +264,14 @@ namespace CARDOC
                     Units = part.Units
                 });
             }
+            return vehicle;
+        }
+
+        private void btnSave_Click(object sender, EventArgs e)
+        {
+            var vehicle = GetVehicleFromView();
             DataProvider.Write(vehicle, vehicle.Date);
-            InitUI();
+            InitUI(false);
             InitVehicleUI(Vehicle.Empty);
         }
 
@@ -291,7 +311,7 @@ namespace CARDOC
         private void btnRemove_Click(object sender, EventArgs e)
         {
             DataProvider.Remove(GetCurrentVehicle());
-            InitUI();
+            InitUI(false);
         }
 
         private void btnDuplicate_Click(object sender, EventArgs e)
@@ -330,6 +350,18 @@ namespace CARDOC
         private void boxManufacturer_TextChanged(object sender, EventArgs e)
         {
             
+        }
+
+        private void btnTemplate_Click(object sender, EventArgs e)
+        {
+            DataProvider.WriteTemplate(GetVehicleFromView());
+        }
+
+        private void boxModel_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            var templateName = GetVehicleFromView().GetTemplateName();
+            if(templateName != null && DataProvider.Templates.TryGetValue(GetVehicleFromView().GetTemplateName(), out Vehicle vehicle))
+                InitVehicleUI(vehicle);
         }
     }
 }

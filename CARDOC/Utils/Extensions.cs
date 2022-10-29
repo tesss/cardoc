@@ -160,5 +160,10 @@ namespace CARDOC.Utils
             comboBox.AutoCompleteCustomSource = res;
             comboBox.Items.AddRange(data);
         }
+
+        public static string RemoveInvalidChars(this string filename)
+        {
+            return string.Concat(filename.Split(Path.GetInvalidFileNameChars()));
+        }
     }
 }
