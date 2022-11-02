@@ -1,6 +1,4 @@
-**/bin/**
-**/obj/**
-**/.git/**
-**/.vs/**
-**/DesignTimeBuild/**
-**/FileContentIndex/**
+/.vs
+/.git
+CARDOC/bin
+CARDOC/obj
