@@ -2,3 +2,6 @@
 **/obj
 **/.git
 **/.vs
+**/.vs
+**/bin
+**/obj
