@@ -28,11 +28,6 @@ namespace CARDOC.Views
             boxUnits.AddSuggestions(DataProvider.PartUnits);
         }
 
-        private void boxName_SelectedIndexChanged(object sender, EventArgs e)
-        {
-
-        }
-
         public string Name
         {
             get
@@ -202,12 +197,18 @@ namespace CARDOC.Views
 
         private void boxName_KeyPress(object sender, KeyPressEventArgs e)
         {
-            if (IsLast && !char.IsControl(e.KeyChar) && NextActual != null) {
+            if (IsLast && !char.IsControl(e.KeyChar) && NextActual != null)
                 NextActual.Visible = true;
-            }
             if (e.KeyChar == (char)Keys.Back && boxName.Text == "")
                 btnRemove_Click(sender, e);
         }
+
+        private void boxName_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            if (IsLast && NextActual != null)
+                NextActual.Visible = true;
+        }
+
         protected override bool ProcessCmdKey(ref Message msg, Keys keyData)
         {
             if (keyData == Keys.Up)

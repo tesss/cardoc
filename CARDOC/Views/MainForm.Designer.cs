@@ -285,7 +285,6 @@ namespace CARDOC
             | System.Windows.Forms.AnchorStyles.Right)));
             this.panelParts.AutoScroll = true;
             this.panelParts.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
-            this.panelParts.Cursor = System.Windows.Forms.Cursors.SizeAll;
             this.panelParts.FlowDirection = System.Windows.Forms.FlowDirection.TopDown;
             this.panelParts.Location = new System.Drawing.Point(13, 709);
             this.panelParts.Name = "panelParts";

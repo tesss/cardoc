@@ -26,7 +26,6 @@ namespace CARDOC.Models
         public string Notes { get; set; }
         public List<Part> Parts { get; set; }
 
-
         public static Vehicle Empty 
         { 
             get 
@@ -60,6 +59,11 @@ namespace CARDOC.Models
             if (string.IsNullOrEmpty(Manufacturer) || string.IsNullOrEmpty(Model))
                 return null;
             return Manufacturer + " " + Model;
+        }
+
+        public bool Equals(Vehicle? other)
+        {
+            return JsonHelper.SerialiseAlphabeticaly(this) == JsonHelper.SerialiseAlphabeticaly(other);
         }
     }
 }

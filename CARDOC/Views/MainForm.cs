@@ -16,6 +16,8 @@ namespace CARDOC
             InitializeComponent();
         }
 
+        private Vehicle _currentVehicle;
+
         private void InitUI(bool first)
         {
             listHistory.Clear();
@@ -63,14 +65,19 @@ namespace CARDOC
             return panelParts.Controls[index] as Part;
         }
 
-        private void InitVehicleUI(Vehicle vehicle)
+        private void InitVehicleUI(Vehicle vehicle, bool fromTemplate = false)
         {
+            _vehicleUpdate = true;
+            if(!fromTemplate)
+                _currentVehicle = vehicle;
             boxManufacturer.Text = vehicle.Manufacturer;
             boxModel.Text = vehicle.Model;
+            boxType.Text = vehicle.Type;
             boxDate.Value = vehicle.Date;
             boxVin.Text = vehicle.Vin; 
             boxYear.Text = vehicle.Year > 0 ? vehicle.Year.ToString() : "";
             boxColor.Text = vehicle.Color;
+            boxNotes.Text = vehicle.Notes;
             if (vehicle.MileageUnits?.ToLower() == "км" && vehicle.Mileage > 0)
                 boxMileageK.Text = vehicle.Mileage.ToString();
             else if (vehicle.MileageUnits?.ToLower() == "миль" && vehicle.Mileage > 0)
@@ -107,6 +114,7 @@ namespace CARDOC
                 GetPartView(i).Clear();
             ValidateChildren();
             ActiveControl = boxManufacturer;
+            _vehicleUpdate = false;
         }
         private Vehicle GetCurrentVehicle()
         {
@@ -124,26 +132,26 @@ namespace CARDOC
                     Name = ""
                 };
             part.AutoSizeMode = AutoSizeMode.GrowAndShrink;
-            //part.AllowDrop = true;
-            //part.DragOver += (object sender, DragEventArgs e) =>
-            //{
-            //    base.OnDragOver(e);
-            //    var from = e.Data.GetData(typeof(Part)) as Part;
-            //    var to = sender as Part;
-            //    if (from != null && !from.IsLast && !to.IsLast)
-            //    {
-            //        FlowLayoutPanel p = (FlowLayoutPanel)(sender as Part).Parent;
-            //        p.Controls.SetChildIndex(from, p.Controls.GetChildIndex(to));
-            //        var t = from.Index;
-            //        from.Index = to.Index;
-            //        to.Index = t;
-            //    }
-            //};
-            //part.MouseDown += (object sender, MouseEventArgs e) =>
-            //{
-            //    base.OnMouseDown(e);
-            //    DoDragDrop(sender, DragDropEffects.All);
-            //};
+            part.AllowDrop = true;
+            part.DragOver += (object sender, DragEventArgs e) =>
+            {
+                base.OnDragOver(e);
+                var from = e.Data.GetData(typeof(Part)) as Part;
+                var to = sender as Part;
+                if (from != null && !from.IsLast && !to.IsLast)
+                {
+                    FlowLayoutPanel p = (FlowLayoutPanel)(sender as Part).Parent;
+                    p.Controls.SetChildIndex(from, p.Controls.GetChildIndex(to));
+                    var t = from.Index;
+                    from.Index = to.Index;
+                    to.Index = t;
+                }
+            };
+            part.MouseDown += (object sender, MouseEventArgs e) =>
+            {
+                base.OnMouseDown(e);
+                DoDragDrop(sender, DragDropEffects.All);
+            };
             panelParts.Controls.Add(part);
         }
 
@@ -175,6 +183,25 @@ namespace CARDOC
 
         private void listHistory_ItemSelectionChanged(object sender, EventArgs e)
         {
+            var vin = listHistory.SelectedItems.Count > 0 ? listHistory.SelectedItems[0].SubItems[3].Text : null;
+            var viewVehicle = GetVehicleFromView();
+            var showConfirm = !viewVehicle.IsEmpty && !viewVehicle.Equals(Vehicle.Empty) && !viewVehicle.Equals(_currentVehicle);
+            if (showConfirm)
+            {
+                var confirmResult = MessageBox.Show("Є незбережені зміни. Зберегти?",
+                                     "",
+                                     MessageBoxButtons.YesNo);
+                if (confirmResult == DialogResult.Yes)
+                {
+                    var vehicle = GetVehicleFromView();
+                    DataProvider.Write(vehicle, vehicle.Date);
+                    InitUI(false);
+                    if (vin != null)
+                        foreach (ListViewItem item in listHistory.Items)
+                            if (item.SubItems[3].Text == vin)
+                                item.Selected = true;
+                }
+            }
             IdleHandlerSet = false;
             Application.Idle -= listHistory_ItemSelectionChanged;
             listHistory.RemoveValidation();
@@ -362,11 +389,17 @@ namespace CARDOC
             DataProvider.WriteTemplate(GetVehicleFromView());
         }
 
+        private bool _vehicleUpdate;
         private void boxModel_SelectedIndexChanged(object sender, EventArgs e)
         {
+            if (_vehicleUpdate)
+            {
+                _vehicleUpdate = false;
+                return;
+            }
             var templateName = GetVehicleFromView().GetTemplateName();
             if(templateName != null && DataProvider.Templates.TryGetValue(GetVehicleFromView().GetTemplateName(), out Vehicle vehicle))
-                InitVehicleUI(vehicle);
+                InitVehicleUI(vehicle, true);
         }
     }
 }

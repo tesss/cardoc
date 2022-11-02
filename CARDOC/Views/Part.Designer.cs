@@ -32,11 +32,12 @@ namespace CARDOC.Views
         {
             this.boxName = new CARDOC.Views.CustomComboBox();
             this.btnRemove = new System.Windows.Forms.Button();
-            this.boxQuantity = new System.Windows.Forms.TextBox();
             this.boxUnits = new CARDOC.Views.CustomComboBox();
             this.boxType = new CARDOC.Views.CustomComboBox();
             this.boxNotes = new System.Windows.Forms.TextBox();
             this.lblIndex = new System.Windows.Forms.Label();
+            this.boxQuantity = new System.Windows.Forms.NumericUpDown();
+            ((System.ComponentModel.ISupportInitialize)(this.boxQuantity)).BeginInit();
             this.SuspendLayout();
             // 
             // boxName
@@ -67,17 +68,6 @@ namespace CARDOC.Views
             this.btnRemove.UseVisualStyleBackColor = true;
             this.btnRemove.Click += new System.EventHandler(this.btnRemove_Click);
             // 
-            // boxQuantity
-            // 
-            this.boxQuantity.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            this.boxQuantity.Location = new System.Drawing.Point(525, 5);
-            this.boxQuantity.Name = "boxQuantity";
-            this.boxQuantity.PlaceholderText = "К-ТЬ";
-            this.boxQuantity.Size = new System.Drawing.Size(65, 39);
-            this.boxQuantity.TabIndex = 21;
-            this.boxQuantity.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.boxQuantity_KeyPress);
-            this.boxQuantity.Validating += new System.ComponentModel.CancelEventHandler(this.boxQuantity_Validating);
-            // 
             // boxUnits
             // 
             this.boxUnits.AutoCompleteMode = System.Windows.Forms.AutoCompleteMode.SuggestAppend;
@@ -104,8 +94,8 @@ namespace CARDOC.Views
             this.boxType.Name = "boxType";
             this.boxType.Size = new System.Drawing.Size(119, 40);
             this.boxType.TabIndex = 23;
-            this.boxType.Validating += new System.ComponentModel.CancelEventHandler(this.boxType_Validating);
             this.boxType.TextChanged += new System.EventHandler(this.boxType_TextChanged);
+            this.boxType.Validating += new System.ComponentModel.CancelEventHandler(this.boxType_Validating);
             // 
             // boxNotes
             // 
@@ -127,6 +117,31 @@ namespace CARDOC.Views
             this.lblIndex.Name = "lblIndex";
             this.lblIndex.Size = new System.Drawing.Size(0, 32);
             this.lblIndex.TabIndex = 26;
+            this.lblIndex.DragDrop += new System.Windows.Forms.DragEventHandler(this.PopulateDragDrop);
+            this.lblIndex.MouseDown += new System.Windows.Forms.MouseEventHandler(this.PopulateMouseDown);
+            // 
+            // boxQuantity
+            // 
+            this.boxQuantity.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
+            this.boxQuantity.Location = new System.Drawing.Point(525, 6);
+            this.boxQuantity.Maximum = new decimal(new int[] {
+            1000,
+            0,
+            0,
+            0});
+            this.boxQuantity.Minimum = new decimal(new int[] {
+            1,
+            0,
+            0,
+            0});
+            this.boxQuantity.Name = "boxQuantity";
+            this.boxQuantity.Size = new System.Drawing.Size(65, 39);
+            this.boxQuantity.TabIndex = 21;
+            this.boxQuantity.Value = new decimal(new int[] {
+            1,
+            0,
+            0,
+            0});
             // 
             // Part
             // 
@@ -134,20 +149,17 @@ namespace CARDOC.Views
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.AutoSize = true;
             this.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
+            this.Controls.Add(this.boxQuantity);
             this.Controls.Add(this.lblIndex);
             this.Controls.Add(this.boxNotes);
             this.Controls.Add(this.boxType);
             this.Controls.Add(this.boxUnits);
             this.Controls.Add(this.boxName);
             this.Controls.Add(this.btnRemove);
-            this.Controls.Add(this.boxQuantity);
             this.Name = "Part";
             this.Size = new System.Drawing.Size(1214, 48);
             this.Load += new System.EventHandler(this.Part_Load);
-
-            this.lblIndex.DragDrop += new System.Windows.Forms.DragEventHandler(this.PopulateDragDrop);
-            this.lblIndex.MouseDown += new System.Windows.Forms.MouseEventHandler(this.PopulateMouseDown);
-
+            ((System.ComponentModel.ISupportInitialize)(this.boxQuantity)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -157,10 +169,10 @@ namespace CARDOC.Views
 
         private CustomComboBox boxName;
         private Button btnRemove;
-        private TextBox boxQuantity;
         private CustomComboBox boxUnits;
         private CustomComboBox boxType;
         private TextBox boxNotes;
         private Label lblIndex;
+        private NumericUpDown boxQuantity;
     }
 }
