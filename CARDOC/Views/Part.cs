@@ -180,11 +180,6 @@ namespace CARDOC.Views
             boxQuantity.HandleNumeric(e);
         }
 
-        private void boxQuantity_Validating(object sender, CancelEventArgs e)
-        {
-            GetMainForm().btnSave.Enabled = boxQuantity.Validate(!int.TryParse(boxQuantity.Text, out int quantity) || quantity <= 0 || quantity > 1000);
-        }
-
         private void boxUnits_Validating(object sender, CancelEventArgs e)
         {
             GetMainForm().btnSave.Enabled = boxUnits.Validate(string.IsNullOrEmpty(boxUnits.Text));

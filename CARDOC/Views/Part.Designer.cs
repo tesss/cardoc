@@ -81,7 +81,6 @@ namespace CARDOC.Views
             this.boxUnits.Size = new System.Drawing.Size(62, 40);
             this.boxUnits.TabIndex = 22;
             this.boxUnits.Validating += new System.ComponentModel.CancelEventHandler(this.boxUnits_Validating);
-            // 
             // boxType
             // 
             this.boxType.AutoCompleteMode = System.Windows.Forms.AutoCompleteMode.SuggestAppend;

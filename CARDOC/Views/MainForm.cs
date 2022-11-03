@@ -54,7 +54,7 @@ namespace CARDOC
                 else
                     InitVehicleUI(Vehicle.Empty);
             }
-            boxDate.MaxDate = boxFilterDate.MaxDate = DateTime.Today.Date.AddDays(1);
+            boxDate.MaxDate = boxFilterDate.MaxDate = DateTime.Today.Date.AddMonths(1);
             boxType.AddSuggestions(DataProvider.Types);
             boxManufacturer.AddSuggestions(DataProvider.Models);
             boxColor.AddSuggestions(DataProvider.Colors);
@@ -400,6 +400,20 @@ namespace CARDOC
             var templateName = GetVehicleFromView().GetTemplateName();
             if(templateName != null && DataProvider.Templates.TryGetValue(GetVehicleFromView().GetTemplateName(), out Vehicle vehicle))
                 InitVehicleUI(vehicle, true);
+        }
+
+        private int panelPartsHeight = 0;
+        private void panelParts_Leave(object sender, EventArgs e)
+        {
+            panelParts.Top = 709;
+            panelParts.Height = panelPartsHeight;
+        }
+
+        private void panelParts_Enter(object sender, EventArgs e)
+        {
+            panelParts.Top = 0;
+            panelPartsHeight = panelParts.Height;
+            panelParts.Height = 400;
         }
     }
 }
