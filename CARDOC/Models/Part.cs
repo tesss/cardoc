@@ -11,7 +11,7 @@ namespace CARDOC.Models
         public string Name { get; set; }
         public string Type { get; set; }
         public string Units { get; set; }
-        //public string Number { get; set; }
+        public string Number { get; set; }
         public int Quantity { get; set; }
         public string Notes { get; set; }
     }

@@ -22,7 +22,6 @@ namespace CARDOC.Views
 
         private void Part_Load(object sender, EventArgs e)
         {
-            Index = Parent.Controls.IndexOf(this) + 1;
             boxName.AddSuggestions(DataProvider.PartNames);
             boxType.AddSuggestions(DataProvider.PartTypes);
             boxUnits.AddSuggestions(DataProvider.PartUnits);
@@ -32,12 +31,12 @@ namespace CARDOC.Views
         {
             get
             {
-                return this.boxName.Text;
+                return boxName.Text;
             }
 
             set
             {
-                this.boxName.Text = value;
+                boxName.Text = value;
             }
         }
 
@@ -45,12 +44,12 @@ namespace CARDOC.Views
         {
             get
             {
-                return int.Parse(this.boxQuantity.Text);
+                return int.Parse(boxQuantity.Text);
             }
 
             set
             {
-                this.boxQuantity.Text = value.ToString();
+                boxQuantity.Text = value.ToString();
             }
         }
 
@@ -58,12 +57,12 @@ namespace CARDOC.Views
         {
             get
             {
-                return this.boxUnits.Text;
+                return boxUnits.Text;
             }
 
             set
             {
-                this.boxUnits.Text = value;
+                boxUnits.Text = value;
             }
         }
 
@@ -71,12 +70,25 @@ namespace CARDOC.Views
         {
             get
             {
-                return this.boxType.Text;
+                return boxType.Text;
             }
 
             set
             {
-                this.boxType.Text = value;
+                boxType.Text = value;
+            }
+        }
+
+        public string Number
+        {
+            get
+            {
+                return boxNumber.Text;
+            }
+
+            set
+            {
+                boxNumber.Text = value;
             }
         }
 
@@ -84,12 +96,12 @@ namespace CARDOC.Views
         {
             get
             {
-                return this.boxNotes.Text;
+                return boxNotes.Text;
             }
 
             set
             {
-                this.boxNotes.Text = value;
+                boxNotes.Text = value;
             }
         }
 
@@ -190,18 +202,30 @@ namespace CARDOC.Views
             GetMainForm().btnSave.Enabled = boxType.Validate(string.IsNullOrEmpty(boxType.Text));
         }
 
+        private void AddNewPart(int index)
+        {
+            if (NextActual != null)
+                NextActual.Visible = true;
+            else
+            {
+                var part = GetMainForm().AddPart();
+                part.Visible = true;
+                part.Index = index;
+            }
+        }
+
         private void boxName_KeyPress(object sender, KeyPressEventArgs e)
         {
-            if (IsLast && !char.IsControl(e.KeyChar) && NextActual != null)
-                NextActual.Visible = true;
+            if (IsLast && !char.IsControl(e.KeyChar))
+                AddNewPart(Index + 1);
             if (e.KeyChar == (char)Keys.Back && boxName.Text == "")
                 btnRemove_Click(sender, e);
         }
 
         private void boxName_SelectedIndexChanged(object sender, EventArgs e)
         {
-            if (IsLast && NextActual != null)
-                NextActual.Visible = true;
+            if (IsLast)
+                AddNewPart(Index + 1);
         }
 
         protected override bool ProcessCmdKey(ref Message msg, Keys keyData)

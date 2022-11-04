@@ -292,8 +292,8 @@ namespace CARDOC
             this.panelParts.TabIndex = 33;
             this.panelParts.WrapContents = false;
             this.panelParts.Paint += new System.Windows.Forms.PaintEventHandler(this.panelParts_Paint);
-            this.panelParts.Enter += new System.EventHandler(this.panelParts_Enter);
-            this.panelParts.Leave += new System.EventHandler(this.panelParts_Leave);
+            //this.panelParts.Enter += new System.EventHandler(this.panelParts_Enter);
+            //this.panelParts.Leave += new System.EventHandler(this.panelParts_Leave);
             // 
             // line1
             // 

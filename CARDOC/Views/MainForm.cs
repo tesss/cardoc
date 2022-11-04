@@ -44,7 +44,7 @@ namespace CARDOC
                 boxFilterDate.CustomFormat = boxDate.CustomFormat = "dd.MM.yy";
                 var start = 1970;
                 boxYear.AddSuggestions(Enumerable.Range(start, DateTime.Now.Year - start + 1).Select(x => x.ToString()).ToArray());
-                for (var i = 0; i < 100; i++)
+                for (var i = 0; i < 40; i++)
                     AddPart();
                     if (listHistory.Items.Count > 0)
                 {
@@ -53,6 +53,7 @@ namespace CARDOC
                 }
                 else
                     InitVehicleUI(Vehicle.Empty);
+                this.WindowState = FormWindowState.Maximized;
             }
             boxDate.MaxDate = boxFilterDate.MaxDate = DateTime.Today.Date.AddMonths(1);
             boxType.AddSuggestions(DataProvider.Types);
@@ -62,6 +63,8 @@ namespace CARDOC
 
         private Part GetPartView(int index)
         {
+            if (panelParts.Controls.Count == index)
+                AddPart();
             return panelParts.Controls[index] as Part;
         }
 
@@ -103,6 +106,7 @@ namespace CARDOC
                     partView.Quantity = part.Quantity;
                     partView.Units = part.Units;
                     partView.Type = part.Type;
+                    partView.Number = part.Number;
                     partView.Notes = part.Notes;
                     if(!partView.Visible)
                         partView.Visible = true;
@@ -121,7 +125,7 @@ namespace CARDOC
             return listHistory.SelectedIndices.Count > 0 ? DataProvider.Vehicles[listHistory.SelectedIndices[0]] : Vehicle.Empty;
         }
 
-        public void AddPart(Part part = null)
+        public Part AddPart(Part part = null)
         {
             part ??= new Views.Part
                 {
@@ -129,7 +133,8 @@ namespace CARDOC
                     Units = Const.DefaultPartUnits,
                     Type = Const.PartTypeZip,
                     Dock = DockStyle.Fill,
-                    Name = ""
+                    Name = "",
+                    Visible = false
                 };
             part.AutoSizeMode = AutoSizeMode.GrowAndShrink;
             part.AllowDrop = true;
@@ -152,7 +157,9 @@ namespace CARDOC
                 base.OnMouseDown(e);
                 DoDragDrop(sender, DragDropEffects.All);
             };
+            part.Index = panelParts.Controls.Count + 1;
             panelParts.Controls.Add(part);
+            return part;
         }
 
         private void MainForm_Load(object sender, EventArgs e)
@@ -288,6 +295,7 @@ namespace CARDOC
                     Name = part.Name,
                     Type = part.Type,
                     Quantity = part.Quantity,
+                    Number = part.Number,
                     Notes = part.Notes,
                     Units = part.Units
                 });
@@ -407,10 +415,12 @@ namespace CARDOC
         {
             panelParts.Top = 709;
             panelParts.Height = panelPartsHeight;
+            panelParts.Anchor = AnchorStyles.Top | AnchorStyles.Bottom | AnchorStyles.Left | AnchorStyles.Right;
         }
 
         private void panelParts_Enter(object sender, EventArgs e)
         {
+            panelParts.Anchor = AnchorStyles.Top | AnchorStyles.Left | AnchorStyles.Right;
             panelParts.Top = 0;
             panelPartsHeight = panelParts.Height;
             panelParts.Height = 400;

@@ -37,6 +37,7 @@ namespace CARDOC.Views
             this.boxNotes = new System.Windows.Forms.TextBox();
             this.lblIndex = new System.Windows.Forms.Label();
             this.boxQuantity = new System.Windows.Forms.NumericUpDown();
+            this.boxNumber = new System.Windows.Forms.TextBox();
             ((System.ComponentModel.ISupportInitialize)(this.boxQuantity)).BeginInit();
             this.SuspendLayout();
             // 
@@ -48,7 +49,7 @@ namespace CARDOC.Views
             this.boxName.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
             this.boxName.FormattingEnabled = true;
             this.boxName.Hint = "ОБЛАДНАННЯ";
-            this.boxName.Location = new System.Drawing.Point(45, 5);
+            this.boxName.Location = new System.Drawing.Point(45, 4);
             this.boxName.Name = "boxName";
             this.boxName.Size = new System.Drawing.Size(454, 40);
             this.boxName.TabIndex = 20;
@@ -62,7 +63,7 @@ namespace CARDOC.Views
             this.btnRemove.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
             this.btnRemove.Location = new System.Drawing.Point(1144, 0);
             this.btnRemove.Name = "btnRemove";
-            this.btnRemove.Size = new System.Drawing.Size(70, 48);
+            this.btnRemove.Size = new System.Drawing.Size(70, 47);
             this.btnRemove.TabIndex = 25;
             this.btnRemove.Text = "⨯";
             this.btnRemove.UseVisualStyleBackColor = true;
@@ -76,11 +77,12 @@ namespace CARDOC.Views
             this.boxUnits.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
             this.boxUnits.FormattingEnabled = true;
             this.boxUnits.Hint = "ОД";
-            this.boxUnits.Location = new System.Drawing.Point(616, 5);
+            this.boxUnits.Location = new System.Drawing.Point(614, 4);
             this.boxUnits.Name = "boxUnits";
             this.boxUnits.Size = new System.Drawing.Size(62, 40);
             this.boxUnits.TabIndex = 22;
             this.boxUnits.Validating += new System.ComponentModel.CancelEventHandler(this.boxUnits_Validating);
+            // 
             // boxType
             // 
             this.boxType.AutoCompleteMode = System.Windows.Forms.AutoCompleteMode.SuggestAppend;
@@ -89,7 +91,7 @@ namespace CARDOC.Views
             this.boxType.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
             this.boxType.FormattingEnabled = true;
             this.boxType.Hint = "ТИП";
-            this.boxType.Location = new System.Drawing.Point(704, 5);
+            this.boxType.Location = new System.Drawing.Point(701, 4);
             this.boxType.Name = "boxType";
             this.boxType.Size = new System.Drawing.Size(119, 40);
             this.boxType.TabIndex = 23;
@@ -101,11 +103,11 @@ namespace CARDOC.Views
             this.boxNotes.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.boxNotes.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            this.boxNotes.Location = new System.Drawing.Point(849, 6);
+            this.boxNotes.Location = new System.Drawing.Point(989, 5);
             this.boxNotes.Name = "boxNotes";
             this.boxNotes.PlaceholderText = "ПРИМІТКИ";
-            this.boxNotes.Size = new System.Drawing.Size(261, 39);
-            this.boxNotes.TabIndex = 24;
+            this.boxNotes.Size = new System.Drawing.Size(133, 39);
+            this.boxNotes.TabIndex = 25;
             // 
             // lblIndex
             // 
@@ -122,7 +124,7 @@ namespace CARDOC.Views
             // boxQuantity
             // 
             this.boxQuantity.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            this.boxQuantity.Location = new System.Drawing.Point(525, 6);
+            this.boxQuantity.Location = new System.Drawing.Point(524, 5);
             this.boxQuantity.Maximum = new decimal(new int[] {
             1000,
             0,
@@ -142,12 +144,22 @@ namespace CARDOC.Views
             0,
             0});
             // 
+            // boxNumber
+            // 
+            this.boxNumber.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
+            this.boxNumber.Location = new System.Drawing.Point(845, 5);
+            this.boxNumber.Name = "boxNumber";
+            this.boxNumber.PlaceholderText = "НОМЕР";
+            this.boxNumber.Size = new System.Drawing.Size(119, 39);
+            this.boxNumber.TabIndex = 24;
+            // 
             // Part
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(10F, 25F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.AutoSize = true;
             this.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
+            this.Controls.Add(this.boxNumber);
             this.Controls.Add(this.boxQuantity);
             this.Controls.Add(this.lblIndex);
             this.Controls.Add(this.boxNotes);
@@ -156,7 +168,7 @@ namespace CARDOC.Views
             this.Controls.Add(this.boxName);
             this.Controls.Add(this.btnRemove);
             this.Name = "Part";
-            this.Size = new System.Drawing.Size(1214, 48);
+            this.Size = new System.Drawing.Size(1214, 47);
             this.Load += new System.EventHandler(this.Part_Load);
             ((System.ComponentModel.ISupportInitialize)(this.boxQuantity)).EndInit();
             this.ResumeLayout(false);
@@ -173,5 +185,6 @@ namespace CARDOC.Views
         private TextBox boxNotes;
         private Label lblIndex;
         private NumericUpDown boxQuantity;
+        private TextBox boxNumber;
     }
 }
