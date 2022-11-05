@@ -212,6 +212,7 @@ namespace CARDOC
             this.boxManufacturer.SelectedIndexChanged += new System.EventHandler(this.boxManufacturer_SelectedIndexChanged);
             this.boxManufacturer.TextChanged += new System.EventHandler(this.boxManufacturer_TextChanged);
             this.boxManufacturer.Enter += new System.EventHandler(this.boxManufacturer_Enter);
+            this.boxManufacturer.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.Upper);
             this.boxManufacturer.Validating += new System.ComponentModel.CancelEventHandler(this.boxManufacturer_Validating);
             // 
             // boxModel
@@ -235,6 +236,7 @@ namespace CARDOC
             this.boxModel.SelectedIndexChanged += new System.EventHandler(this.boxModel_SelectedIndexChanged);
             this.boxModel.Enter += new System.EventHandler(this.boxModel_Enter);
             this.boxModel.Validating += new System.ComponentModel.CancelEventHandler(this.boxModel_Validating);
+            this.boxModel.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.Upper);
             // 
             // boxYear
             // 

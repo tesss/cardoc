@@ -7,6 +7,9 @@
     <Compile Update="Views\CustomComboBox.cs">
       <SubType>Component</SubType>
     </Compile>
+    <Compile Update="Views\DocForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
     <Compile Update="Views\MainForm.cs">
       <SubType>Form</SubType>
     </Compile>

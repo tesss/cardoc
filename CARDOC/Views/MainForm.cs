@@ -117,6 +117,7 @@ namespace CARDOC
                     partView.Type = part.Type;
                     partView.Number = part.Number;
                     partView.Notes = part.Notes;
+                    partView.UpdateColor();
                     if(!partView.Visible)
                         partView.Visible = true;
                 }
@@ -140,7 +141,7 @@ namespace CARDOC
                 {
                     Quantity = 1,
                     Units = Const.DefaultPartUnits,
-                    Type = Const.PartTypeZip,
+                    Type = PartType.Zip.GetDescription(),
                     Dock = DockStyle.Fill,
                     Name = "",
                     Visible = false
@@ -309,9 +310,11 @@ namespace CARDOC
                     Quantity = part.Quantity,
                     Number = part.Number.ToUpper(),
                     Notes = part.Notes.ToFirstUpperCase(),
-                    Units = part.Units.ToLower()
+                    Units = part.Units.ToLower(),
+                    Index = part.Index
                 });
             }
+            vehicle.Parts = vehicle.Parts.OrderBy(x => x.PartType).ThenBy(x => x.Index).ToList();
             return vehicle;
         }
 
@@ -486,6 +489,17 @@ namespace CARDOC
         private void boxNotes_Enter(object sender, EventArgs e)
         {
             SwitchLanguage(false);
+        }
+
+        public void Upper(object sender, KeyPressEventArgs e)
+        {
+            if (char.IsLetter(e.KeyChar))
+                e.KeyChar = char.ToUpper(e.KeyChar);
+        }
+
+        public void Lower(object sender, KeyPressEventArgs e)
+        {
+            
         }
     }
 }

@@ -12,11 +12,6 @@
 
         public const string DefaultColor = "Зелений";
 
-        public const string PartTypeZip = "ЗІП";
-        public const string PartTypeGeneral = "Агрегат";
-        public const string PartTypeTire = "Шина";
-        public const string PartTypeBattery = "Батарея";
-
         public const string DefaultPartUnits = "шт";
     }
 }

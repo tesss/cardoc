@@ -83,6 +83,7 @@ namespace CARDOC.Views
             this.boxUnits.Name = "boxUnits";
             this.boxUnits.Size = new System.Drawing.Size(98, 40);
             this.boxUnits.TabIndex = 22;
+            this.boxUnits.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.boxUnits_KeyPress);
             this.boxUnits.Validating += new System.ComponentModel.CancelEventHandler(this.boxUnits_Validating);
             // 
             // boxType
@@ -157,6 +158,7 @@ namespace CARDOC.Views
             this.boxNumber.Size = new System.Drawing.Size(137, 39);
             this.boxNumber.TabIndex = 24;
             this.boxNumber.Enter += new System.EventHandler(this.boxNumber_Enter);
+            this.boxNumber.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.boxNumber_KeyPress);
             // 
             // Part
             // 

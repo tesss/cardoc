@@ -257,26 +257,30 @@ namespace CARDOC.Views
             OnMouseDown(e);
         }
 
+        public void UpdateColor()
+        {
+            if (boxType.Text == PartType.Aggregate.GetDescription())
+                BackColor = Color.LightGray;
+            else if (boxType.Text == PartType.Tire.GetDescription() || boxType.Text == PartType.Battery.GetDescription())
+                BackColor = Color.FromArgb(179, 179, 179);
+            else if (boxType.Text == PartType.Equipment.GetDescription())
+                BackColor = Color.FromArgb(255, 255, 179);
+            else if (boxType.Text == PartType.Zip.GetDescription())
+                BackColor = Color.LightYellow;
+            else
+                BackColor = SystemColors.Window;
+        }
+
         private void boxType_TextChanged(object sender, EventArgs e)
         {
-            switch (boxType.Text)
-            {
-                case Const.PartTypeGeneral:
-                case Const.PartTypeTire:
-                case Const.PartTypeBattery:
-                    BackColor = Color.LightYellow;
-                    break;
-                default:
-                    BackColor = SystemColors.Window;
-                    break;
-            }
+            UpdateColor();
         }
 
         public void Clear()
         {
             Quantity = 1;
             Units = Const.DefaultPartUnits;
-            Type = Const.PartTypeZip;
+            Type = PartType.Zip.GetDescription();
             Dock = DockStyle.Fill;
             Name = "";
             if(Visible)
@@ -301,6 +305,18 @@ namespace CARDOC.Views
         private void boxNotes_Enter(object sender, EventArgs e)
         {
             GetMainForm().SwitchLanguage(false);
+        }
+
+        private void boxUnits_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            if (char.IsLetter(e.KeyChar))
+                e.KeyChar = char.ToLower(e.KeyChar);
+        }
+
+        private void boxNumber_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            if (char.IsLetter(e.KeyChar))
+                e.KeyChar = char.ToUpper(e.KeyChar);
         }
     }
 }

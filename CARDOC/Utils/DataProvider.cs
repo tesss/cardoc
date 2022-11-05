@@ -20,8 +20,8 @@ namespace CARDOC.Utils
         public static Dictionary<string, HashSet<string>> Models { get; private set; }
         public static string[] Colors { get { return new string[] { "Чорний", "Коричневий", "Сірий", "Білий", "Синій", "Зелений", "Жовтий", "Червоний" }; } }
         public static HashSet<string> PartNames { get; private set; }
-        public static string[] PartTypes { get { return new string[] { "ЗІП", "Агрегат", "Обладнання", "Шина", "Батарея" }; } }
-        public static string[] PartUnits { get { return new string[] { "шт", "к-т", "пар" }; } }
+        public static string[] PartTypes { get { return new string[] { PartType.Zip.GetDescription(), PartType.Equipment.GetDescription(), PartType.Aggregate.GetDescription(), PartType.Tire.GetDescription(), PartType.Battery.GetDescription() }; } }
+        public static string[] PartUnits { get { return new string[] { Const.DefaultPartUnits, "к-т", "пар" }; } }
         public static List<Vehicle> ReadAll()
         {
             var vehicles = new List<Vehicle>();

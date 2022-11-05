@@ -1,4 +1,6 @@
-﻿using System;
+﻿using CARDOC.Utils;
+using Newtonsoft.Json;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -14,5 +16,19 @@ namespace CARDOC.Models
         public string Number { get; set; }
         public int Quantity { get; set; }
         public string Notes { get; set; }
+
+        [JsonIgnore]
+        public int Index { get; set; }
+        public PartType PartType 
+        {
+            get
+            {
+                return Type.GetValueFromDescription<PartType>();
+            }
+            set
+            {
+                Type = value.GetDescription();
+            }
+        }
     }
 }

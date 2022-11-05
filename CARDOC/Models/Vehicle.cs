@@ -5,6 +5,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Xml.Linq;
 
 namespace CARDOC.Models
 {
@@ -39,7 +40,19 @@ namespace CARDOC.Models
                     Date = DateTime.Now.Date,
                     Color = Const.DefaultColor,
                     MileageUnits = Const.UnitsKm,
-                    Parts = new List<Part>()
+                    Parts = new List<Part>
+                    {
+                        new Part { Name = "", Quantity = 4, Units = Const.DefaultPartUnits, Type = PartType.Tire.GetDescription() },
+                        new Part { Name = "6СТ-", Quantity = 1, Units = Const.DefaultPartUnits, Type = PartType.Battery.GetDescription() },
+                        new Part { Name = "Кузов", Quantity = 1, Units = Const.DefaultPartUnits, Type = PartType.Aggregate.GetDescription() },
+                        new Part { Name = "Двигун", Quantity = 1, Units = Const.DefaultPartUnits, Type = PartType.Aggregate.GetDescription() },
+                        new Part { Name = "Передній міст", Quantity = 1, Units = Const.DefaultPartUnits, Type = PartType.Aggregate.GetDescription() },
+                        new Part { Name = "Коробка передач", Quantity = 1, Units = Const.DefaultPartUnits, Type = PartType.Aggregate.GetDescription() },
+                        new Part { Name = "Задній міст", Quantity = 1, Units = Const.DefaultPartUnits, Type = PartType.Aggregate.GetDescription() },
+                        new Part { Name = "Роздавальна коробка", Quantity = 1, Units = Const.DefaultPartUnits, Type = PartType.Aggregate.GetDescription() },
+                        new Part { Name = "Кермовий механізм", Quantity = 1, Units = Const.DefaultPartUnits, Type = PartType.Aggregate.GetDescription() },
+                        new Part { Name = "Тягово-зчипний пристрій", Quantity = 1, Units = Const.DefaultPartUnits, Type = PartType.Zip.GetDescription() }
+                    }
                 };
             } 
         }
