@@ -62,11 +62,12 @@ namespace CARDOC.Views
             // 
             this.btnRemove.Dock = System.Windows.Forms.DockStyle.Right;
             this.btnRemove.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            this.btnRemove.Location = new System.Drawing.Point(1144, 0);
+            this.btnRemove.ForeColor = System.Drawing.SystemColors.ControlText;
+            this.btnRemove.Location = new System.Drawing.Point(1058, 0);
             this.btnRemove.Name = "btnRemove";
             this.btnRemove.Size = new System.Drawing.Size(70, 47);
             this.btnRemove.TabIndex = 25;
-            this.btnRemove.Text = "⨯";
+            this.btnRemove.Text = "―";
             this.btnRemove.UseVisualStyleBackColor = true;
             this.btnRemove.Click += new System.EventHandler(this.btnRemove_Click);
             // 
@@ -94,7 +95,7 @@ namespace CARDOC.Views
             this.boxType.Hint = "Тип";
             this.boxType.Location = new System.Drawing.Point(698, 4);
             this.boxType.Name = "boxType";
-            this.boxType.Size = new System.Drawing.Size(137, 40);
+            this.boxType.Size = new System.Drawing.Size(116, 40);
             this.boxType.TabIndex = 23;
             this.boxType.TextChanged += new System.EventHandler(this.boxType_TextChanged);
             this.boxType.Enter += new System.EventHandler(this.boxType_Enter);
@@ -105,10 +106,10 @@ namespace CARDOC.Views
             this.boxNotes.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.boxNotes.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            this.boxNotes.Location = new System.Drawing.Point(984, 5);
+            this.boxNotes.Location = new System.Drawing.Point(963, 5);
             this.boxNotes.Name = "boxNotes";
             this.boxNotes.PlaceholderText = "Примітки";
-            this.boxNotes.Size = new System.Drawing.Size(154, 39);
+            this.boxNotes.Size = new System.Drawing.Size(89, 39);
             this.boxNotes.TabIndex = 25;
             this.boxNotes.Enter += new System.EventHandler(this.boxNotes_Enter);
             // 
@@ -150,7 +151,7 @@ namespace CARDOC.Views
             // boxNumber
             // 
             this.boxNumber.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            this.boxNumber.Location = new System.Drawing.Point(841, 5);
+            this.boxNumber.Location = new System.Drawing.Point(820, 5);
             this.boxNumber.Name = "boxNumber";
             this.boxNumber.PlaceholderText = "Номер";
             this.boxNumber.Size = new System.Drawing.Size(137, 39);
@@ -172,7 +173,7 @@ namespace CARDOC.Views
             this.Controls.Add(this.boxName);
             this.Controls.Add(this.btnRemove);
             this.Name = "Part";
-            this.Size = new System.Drawing.Size(1214, 47);
+            this.Size = new System.Drawing.Size(1128, 47);
             this.Load += new System.EventHandler(this.Part_Load);
             ((System.ComponentModel.ISupportInitialize)(this.boxQuantity)).EndInit();
             this.ResumeLayout(false);

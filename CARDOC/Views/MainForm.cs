@@ -384,7 +384,7 @@ namespace CARDOC
         private void MainForm_Resize(object sender, EventArgs e)
         {
             foreach (Part control in panelParts.Controls)
-                control.Width = Width - 100;
+                control.Width = Width - 203;
         }
 
         private void boxFilterDate_ValueChanged(object sender, EventArgs e)
