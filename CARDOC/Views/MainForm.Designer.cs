@@ -35,7 +35,6 @@ namespace CARDOC
             this.btnAdd = new System.Windows.Forms.Button();
             this.btnDuplicate = new System.Windows.Forms.Button();
             this.btnRemove = new System.Windows.Forms.Button();
-            this.btnToday = new System.Windows.Forms.Button();
             this.boxVin = new System.Windows.Forms.TextBox();
             this.boxDate = new System.Windows.Forms.DateTimePicker();
             this.boxMileageK = new System.Windows.Forms.TextBox();
@@ -51,6 +50,10 @@ namespace CARDOC
             this.btnSave = new System.Windows.Forms.Button();
             this.boxType = new CARDOC.Views.CustomComboBox();
             this.btnTemplate = new System.Windows.Forms.Button();
+            this.btnDoc = new System.Windows.Forms.Button();
+            this.boxMedical = new System.Windows.Forms.CheckBox();
+            this.boxRao = new System.Windows.Forms.CheckBox();
+            this.boxCommunication = new System.Windows.Forms.CheckBox();
             this.SuspendLayout();
             // 
             // listHistory
@@ -63,10 +66,11 @@ namespace CARDOC
             this.listHistory.Location = new System.Drawing.Point(12, 12);
             this.listHistory.MultiSelect = false;
             this.listHistory.Name = "listHistory";
-            this.listHistory.Size = new System.Drawing.Size(1107, 384);
+            this.listHistory.Size = new System.Drawing.Size(1031, 384);
             this.listHistory.TabIndex = 0;
             this.listHistory.UseCompatibleStateImageBehavior = false;
             this.listHistory.View = System.Windows.Forms.View.Details;
+            this.listHistory.ItemChecked += new System.Windows.Forms.ItemCheckedEventHandler(this.listHistory_ItemChecked);
             this.listHistory.SelectedIndexChanged += new System.EventHandler(this.listHistory_SelectedIndexChanged);
             // 
             // boxFilterDate
@@ -74,9 +78,9 @@ namespace CARDOC
             this.boxFilterDate.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.boxFilterDate.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
             this.boxFilterDate.Format = System.Windows.Forms.DateTimePickerFormat.Custom;
-            this.boxFilterDate.Location = new System.Drawing.Point(1138, 15);
+            this.boxFilterDate.Location = new System.Drawing.Point(1049, 12);
             this.boxFilterDate.Name = "boxFilterDate";
-            this.boxFilterDate.Size = new System.Drawing.Size(138, 39);
+            this.boxFilterDate.Size = new System.Drawing.Size(99, 39);
             this.boxFilterDate.TabIndex = 104;
             this.boxFilterDate.ValueChanged += new System.EventHandler(this.boxFilterDate_ValueChanged);
             // 
@@ -84,9 +88,9 @@ namespace CARDOC
             // 
             this.btnAdd.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.btnAdd.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            this.btnAdd.Location = new System.Drawing.Point(1137, 206);
+            this.btnAdd.Location = new System.Drawing.Point(1049, 147);
             this.btnAdd.Name = "btnAdd";
-            this.btnAdd.Size = new System.Drawing.Size(138, 50);
+            this.btnAdd.Size = new System.Drawing.Size(101, 59);
             this.btnAdd.TabIndex = 101;
             this.btnAdd.Text = "➕ Додати";
             this.btnAdd.UseVisualStyleBackColor = true;
@@ -96,11 +100,11 @@ namespace CARDOC
             // 
             this.btnDuplicate.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.btnDuplicate.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            this.btnDuplicate.Location = new System.Drawing.Point(1138, 276);
+            this.btnDuplicate.Location = new System.Drawing.Point(1049, 212);
             this.btnDuplicate.Name = "btnDuplicate";
-            this.btnDuplicate.Size = new System.Drawing.Size(137, 50);
+            this.btnDuplicate.Size = new System.Drawing.Size(100, 59);
             this.btnDuplicate.TabIndex = 102;
-            this.btnDuplicate.Text = "⧉ Копіювати";
+            this.btnDuplicate.Text = "⧉ Копія";
             this.btnDuplicate.UseVisualStyleBackColor = true;
             this.btnDuplicate.Click += new System.EventHandler(this.btnDuplicate_Click);
             // 
@@ -108,25 +112,13 @@ namespace CARDOC
             // 
             this.btnRemove.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.btnRemove.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            this.btnRemove.Location = new System.Drawing.Point(1138, 346);
+            this.btnRemove.Location = new System.Drawing.Point(1049, 301);
             this.btnRemove.Name = "btnRemove";
-            this.btnRemove.Size = new System.Drawing.Size(137, 50);
+            this.btnRemove.Size = new System.Drawing.Size(100, 59);
             this.btnRemove.TabIndex = 103;
             this.btnRemove.Text = "➖ Видалити";
             this.btnRemove.UseVisualStyleBackColor = true;
             this.btnRemove.Click += new System.EventHandler(this.btnRemove_Click);
-            // 
-            // btnToday
-            // 
-            this.btnToday.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.btnToday.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            this.btnToday.Location = new System.Drawing.Point(1138, 68);
-            this.btnToday.Name = "btnToday";
-            this.btnToday.Size = new System.Drawing.Size(138, 50);
-            this.btnToday.TabIndex = 105;
-            this.btnToday.Text = "🗓 Сьогодні";
-            this.btnToday.UseVisualStyleBackColor = true;
-            this.btnToday.Click += new System.EventHandler(this.btnToday_Click);
             // 
             // boxVin
             // 
@@ -137,8 +129,9 @@ namespace CARDOC
             this.boxVin.Location = new System.Drawing.Point(14, 522);
             this.boxVin.Name = "boxVin";
             this.boxVin.PlaceholderText = "VIN";
-            this.boxVin.Size = new System.Drawing.Size(952, 39);
+            this.boxVin.Size = new System.Drawing.Size(899, 39);
             this.boxVin.TabIndex = 5;
+            this.boxVin.Enter += new System.EventHandler(this.boxVin_Enter);
             this.boxVin.Validating += new System.ComponentModel.CancelEventHandler(this.boxVin_Validating);
             // 
             // boxDate
@@ -146,19 +139,19 @@ namespace CARDOC
             this.boxDate.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.boxDate.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
             this.boxDate.Format = System.Windows.Forms.DateTimePickerFormat.Custom;
-            this.boxDate.Location = new System.Drawing.Point(985, 471);
+            this.boxDate.Location = new System.Drawing.Point(920, 472);
             this.boxDate.Name = "boxDate";
-            this.boxDate.Size = new System.Drawing.Size(134, 39);
+            this.boxDate.Size = new System.Drawing.Size(123, 39);
             this.boxDate.TabIndex = 4;
             // 
             // boxMileageK
             // 
             this.boxMileageK.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.boxMileageK.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            this.boxMileageK.Location = new System.Drawing.Point(677, 572);
+            this.boxMileageK.Location = new System.Drawing.Point(658, 573);
             this.boxMileageK.Name = "boxMileageK";
-            this.boxMileageK.PlaceholderText = "Пробіг км";
-            this.boxMileageK.Size = new System.Drawing.Size(133, 39);
+            this.boxMileageK.PlaceholderText = "Кілометри";
+            this.boxMileageK.Size = new System.Drawing.Size(126, 39);
             this.boxMileageK.TabIndex = 8;
             this.boxMileageK.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.boxMileageK_KeyPress);
             this.boxMileageK.Validating += new System.ComponentModel.CancelEventHandler(this.boxMileageK_Validating);
@@ -167,10 +160,10 @@ namespace CARDOC
             // 
             this.boxMileageM.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.boxMileageM.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            this.boxMileageM.Location = new System.Drawing.Point(831, 572);
+            this.boxMileageM.Location = new System.Drawing.Point(790, 573);
             this.boxMileageM.Name = "boxMileageM";
-            this.boxMileageM.PlaceholderText = "Пробіг м";
-            this.boxMileageM.Size = new System.Drawing.Size(133, 39);
+            this.boxMileageM.PlaceholderText = "Милі";
+            this.boxMileageM.Size = new System.Drawing.Size(123, 39);
             this.boxMileageM.TabIndex = 9;
             this.boxMileageM.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.boxMileageM_KeyPress);
             this.boxMileageM.Validating += new System.ComponentModel.CancelEventHandler(this.boxMileageM_Validating);
@@ -179,10 +172,10 @@ namespace CARDOC
             // 
             this.boxMileageH.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.boxMileageH.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            this.boxMileageH.Location = new System.Drawing.Point(986, 572);
+            this.boxMileageH.Location = new System.Drawing.Point(920, 573);
             this.boxMileageH.Name = "boxMileageH";
-            this.boxMileageH.PlaceholderText = "Пробіг год";
-            this.boxMileageH.Size = new System.Drawing.Size(133, 39);
+            this.boxMileageH.PlaceholderText = "Мото/год";
+            this.boxMileageH.Size = new System.Drawing.Size(122, 39);
             this.boxMileageH.TabIndex = 10;
             this.boxMileageH.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.boxMileageH_KeyPress);
             this.boxMileageH.Validating += new System.ComponentModel.CancelEventHandler(this.boxMileageH_Validating);
@@ -195,8 +188,9 @@ namespace CARDOC
             this.boxNotes.Location = new System.Drawing.Point(13, 623);
             this.boxNotes.Name = "boxNotes";
             this.boxNotes.PlaceholderText = "Примітки";
-            this.boxNotes.Size = new System.Drawing.Size(1107, 39);
+            this.boxNotes.Size = new System.Drawing.Size(639, 39);
             this.boxNotes.TabIndex = 11;
+            this.boxNotes.Enter += new System.EventHandler(this.boxNotes_Enter);
             // 
             // boxManufacturer
             // 
@@ -212,10 +206,11 @@ namespace CARDOC
             this.boxManufacturer.Hint = "Виробник";
             this.boxManufacturer.Location = new System.Drawing.Point(14, 420);
             this.boxManufacturer.Name = "boxManufacturer";
-            this.boxManufacturer.Size = new System.Drawing.Size(226, 40);
+            this.boxManufacturer.Size = new System.Drawing.Size(242, 40);
             this.boxManufacturer.TabIndex = 1;
             this.boxManufacturer.SelectedIndexChanged += new System.EventHandler(this.boxManufacturer_SelectedIndexChanged);
             this.boxManufacturer.TextChanged += new System.EventHandler(this.boxManufacturer_TextChanged);
+            this.boxManufacturer.Enter += new System.EventHandler(this.boxManufacturer_Enter);
             this.boxManufacturer.Validating += new System.ComponentModel.CancelEventHandler(this.boxManufacturer_Validating);
             // 
             // boxModel
@@ -234,9 +229,10 @@ namespace CARDOC
             this.boxModel.Hint = "Модель";
             this.boxModel.Location = new System.Drawing.Point(262, 420);
             this.boxModel.Name = "boxModel";
-            this.boxModel.Size = new System.Drawing.Size(858, 40);
+            this.boxModel.Size = new System.Drawing.Size(781, 40);
             this.boxModel.TabIndex = 2;
             this.boxModel.SelectedIndexChanged += new System.EventHandler(this.boxModel_SelectedIndexChanged);
+            this.boxModel.Enter += new System.EventHandler(this.boxModel_Enter);
             this.boxModel.Validating += new System.ComponentModel.CancelEventHandler(this.boxModel_Validating);
             // 
             // boxYear
@@ -251,9 +247,9 @@ namespace CARDOC
             this.boxYear.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
             this.boxYear.FormattingEnabled = true;
             this.boxYear.Hint = "Рік";
-            this.boxYear.Location = new System.Drawing.Point(985, 521);
+            this.boxYear.Location = new System.Drawing.Point(919, 521);
             this.boxYear.Name = "boxYear";
-            this.boxYear.Size = new System.Drawing.Size(135, 40);
+            this.boxYear.Size = new System.Drawing.Size(124, 40);
             this.boxYear.TabIndex = 6;
             this.boxYear.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.boxYear_KeyPress);
             this.boxYear.Validating += new System.ComponentModel.CancelEventHandler(this.boxYear_Validating);
@@ -274,8 +270,9 @@ namespace CARDOC
             this.boxColor.Hint = "Колір";
             this.boxColor.Location = new System.Drawing.Point(13, 572);
             this.boxColor.Name = "boxColor";
-            this.boxColor.Size = new System.Drawing.Size(642, 40);
+            this.boxColor.Size = new System.Drawing.Size(639, 40);
             this.boxColor.TabIndex = 7;
+            this.boxColor.Enter += new System.EventHandler(this.boxColor_Enter);
             this.boxColor.Validating += new System.ComponentModel.CancelEventHandler(this.boxColor_Validating);
             // 
             // panelParts
@@ -288,12 +285,10 @@ namespace CARDOC
             this.panelParts.FlowDirection = System.Windows.Forms.FlowDirection.TopDown;
             this.panelParts.Location = new System.Drawing.Point(13, 709);
             this.panelParts.Name = "panelParts";
-            this.panelParts.Size = new System.Drawing.Size(1263, 285);
+            this.panelParts.Size = new System.Drawing.Size(1261, 285);
             this.panelParts.TabIndex = 33;
             this.panelParts.WrapContents = false;
             this.panelParts.Paint += new System.Windows.Forms.PaintEventHandler(this.panelParts_Paint);
-            //this.panelParts.Enter += new System.EventHandler(this.panelParts_Enter);
-            //this.panelParts.Leave += new System.EventHandler(this.panelParts_Leave);
             // 
             // line1
             // 
@@ -302,16 +297,16 @@ namespace CARDOC
             this.line1.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
             this.line1.Location = new System.Drawing.Point(14, 688);
             this.line1.Name = "line1";
-            this.line1.Size = new System.Drawing.Size(1264, 2);
+            this.line1.Size = new System.Drawing.Size(1262, 2);
             this.line1.TabIndex = 0;
             // 
             // btnSave
             // 
             this.btnSave.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.btnSave.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            this.btnSave.Location = new System.Drawing.Point(1139, 474);
+            this.btnSave.Location = new System.Drawing.Point(1049, 518);
             this.btnSave.Name = "btnSave";
-            this.btnSave.Size = new System.Drawing.Size(137, 191);
+            this.btnSave.Size = new System.Drawing.Size(100, 144);
             this.btnSave.TabIndex = 100;
             this.btnSave.Text = "🖬 Зберегти";
             this.btnSave.UseVisualStyleBackColor = true;
@@ -333,27 +328,80 @@ namespace CARDOC
             this.boxType.Hint = "Тип транспорту";
             this.boxType.Location = new System.Drawing.Point(14, 471);
             this.boxType.Name = "boxType";
-            this.boxType.Size = new System.Drawing.Size(952, 40);
+            this.boxType.Size = new System.Drawing.Size(900, 40);
             this.boxType.TabIndex = 3;
+            this.boxType.Enter += new System.EventHandler(this.boxType_Enter);
             this.boxType.Validating += new System.ComponentModel.CancelEventHandler(this.boxType_Validating);
             // 
             // btnTemplate
             // 
             this.btnTemplate.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.btnTemplate.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            this.btnTemplate.Location = new System.Drawing.Point(1138, 420);
+            this.btnTemplate.Location = new System.Drawing.Point(1049, 420);
             this.btnTemplate.Name = "btnTemplate";
-            this.btnTemplate.Size = new System.Drawing.Size(138, 40);
+            this.btnTemplate.Size = new System.Drawing.Size(100, 65);
             this.btnTemplate.TabIndex = 106;
             this.btnTemplate.Text = "★ Шаблон";
             this.btnTemplate.UseVisualStyleBackColor = true;
             this.btnTemplate.Click += new System.EventHandler(this.btnTemplate_Click);
+            // 
+            // btnDoc
+            // 
+            this.btnDoc.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.btnDoc.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
+            this.btnDoc.Location = new System.Drawing.Point(1049, 57);
+            this.btnDoc.Name = "btnDoc";
+            this.btnDoc.Size = new System.Drawing.Size(100, 59);
+            this.btnDoc.TabIndex = 107;
+            this.btnDoc.Text = "🖻  Документ";
+            this.btnDoc.UseVisualStyleBackColor = true;
+            this.btnDoc.Click += new System.EventHandler(this.btnDoc_Click);
+            // 
+            // boxMedical
+            // 
+            this.boxMedical.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.boxMedical.AutoSize = true;
+            this.boxMedical.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
+            this.boxMedical.Location = new System.Drawing.Point(673, 626);
+            this.boxMedical.Name = "boxMedical";
+            this.boxMedical.Size = new System.Drawing.Size(142, 36);
+            this.boxMedical.TabIndex = 108;
+            this.boxMedical.Text = "Медична";
+            this.boxMedical.UseVisualStyleBackColor = true;
+            // 
+            // boxRao
+            // 
+            this.boxRao.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.boxRao.AutoSize = true;
+            this.boxRao.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
+            this.boxRao.Location = new System.Drawing.Point(948, 626);
+            this.boxRao.Name = "boxRao";
+            this.boxRao.Size = new System.Drawing.Size(86, 36);
+            this.boxRao.TabIndex = 109;
+            this.boxRao.Text = "РАО";
+            this.boxRao.UseVisualStyleBackColor = true;
+            // 
+            // boxCommunication
+            // 
+            this.boxCommunication.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.boxCommunication.AutoSize = true;
+            this.boxCommunication.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
+            this.boxCommunication.Location = new System.Drawing.Point(821, 626);
+            this.boxCommunication.Name = "boxCommunication";
+            this.boxCommunication.Size = new System.Drawing.Size(121, 36);
+            this.boxCommunication.TabIndex = 110;
+            this.boxCommunication.Text = "Зв\'язок";
+            this.boxCommunication.UseVisualStyleBackColor = true;
             // 
             // MainForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(10F, 25F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1288, 1006);
+            this.Controls.Add(this.boxCommunication);
+            this.Controls.Add(this.boxRao);
+            this.Controls.Add(this.boxMedical);
+            this.Controls.Add(this.btnDoc);
             this.Controls.Add(this.btnTemplate);
             this.Controls.Add(this.boxType);
             this.Controls.Add(this.btnSave);
@@ -369,7 +417,6 @@ namespace CARDOC
             this.Controls.Add(this.boxMileageK);
             this.Controls.Add(this.boxDate);
             this.Controls.Add(this.boxVin);
-            this.Controls.Add(this.btnToday);
             this.Controls.Add(this.btnRemove);
             this.Controls.Add(this.btnDuplicate);
             this.Controls.Add(this.btnAdd);
@@ -392,7 +439,6 @@ namespace CARDOC
         private Button btnAdd;
         private Button btnDuplicate;
         private Button btnRemove;
-        private Button btnToday;
         private TextBox boxVin;
         private DateTimePicker boxDate;
         private TextBox boxMileageK;
@@ -408,5 +454,9 @@ namespace CARDOC
         public Button btnSave;
         private CustomComboBox boxType;
         private Button btnTemplate;
+        private Button btnDoc;
+        private CheckBox boxMedical;
+        private CheckBox boxRao;
+        private CheckBox boxCommunication;
     }
 }

@@ -282,5 +282,25 @@ namespace CARDOC.Views
             if(Visible)
                 Visible = false;
         }
+
+        private void boxType_Enter(object sender, EventArgs e)
+        {
+            GetMainForm().SwitchLanguage(false);
+        }
+
+        public void boxName_Enter(object sender, EventArgs e)
+        {
+            GetMainForm().SwitchLanguage(false);
+        }
+
+        private void boxNumber_Enter(object sender, EventArgs e)
+        {
+            GetMainForm().SwitchLanguage(true);
+        }
+
+        private void boxNotes_Enter(object sender, EventArgs e)
+        {
+            GetMainForm().SwitchLanguage(false);
+        }
     }
 }

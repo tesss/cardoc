@@ -24,6 +24,9 @@ namespace CARDOC.Models
         public int MileageH { get; set; }
         public string Color { get; set; }
         public string Notes { get; set; }
+        public bool Medical { get; set; }
+        public bool Rao { get; set; }
+        public bool Сommunication { get; set; }
         public List<Part> Parts { get; set; }
 
         public static Vehicle Empty 
@@ -58,7 +61,7 @@ namespace CARDOC.Models
         {
             if (string.IsNullOrEmpty(Manufacturer) || string.IsNullOrEmpty(Model))
                 return null;
-            return Manufacturer + " " + Model;
+            return Manufacturer.ToUpper() + " " + Model.ToUpper();
         }
 
         public bool Equals(Vehicle? other)

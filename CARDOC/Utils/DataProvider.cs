@@ -175,6 +175,7 @@ namespace CARDOC.Utils
                 Templates[templateName] = vehicle;
             else
                 Templates.Add(templateName, vehicle);
+            FillCache();
         }
     }
 }

@@ -48,12 +48,13 @@ namespace CARDOC.Views
             this.boxName.DrawMode = System.Windows.Forms.DrawMode.OwnerDrawFixed;
             this.boxName.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
             this.boxName.FormattingEnabled = true;
-            this.boxName.Hint = "ОБЛАДНАННЯ";
+            this.boxName.Hint = "Обладнання";
             this.boxName.Location = new System.Drawing.Point(45, 4);
             this.boxName.Name = "boxName";
-            this.boxName.Size = new System.Drawing.Size(454, 40);
+            this.boxName.Size = new System.Drawing.Size(472, 40);
             this.boxName.TabIndex = 20;
             this.boxName.SelectedIndexChanged += new System.EventHandler(this.boxName_SelectedIndexChanged);
+            this.boxName.Enter += new System.EventHandler(this.boxName_Enter);
             this.boxName.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.boxName_KeyPress);
             this.boxName.Validating += new System.ComponentModel.CancelEventHandler(this.boxName_Validating);
             // 
@@ -76,10 +77,10 @@ namespace CARDOC.Views
             this.boxUnits.DrawMode = System.Windows.Forms.DrawMode.OwnerDrawFixed;
             this.boxUnits.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
             this.boxUnits.FormattingEnabled = true;
-            this.boxUnits.Hint = "ОД";
-            this.boxUnits.Location = new System.Drawing.Point(614, 4);
+            this.boxUnits.Hint = "Од";
+            this.boxUnits.Location = new System.Drawing.Point(594, 4);
             this.boxUnits.Name = "boxUnits";
-            this.boxUnits.Size = new System.Drawing.Size(62, 40);
+            this.boxUnits.Size = new System.Drawing.Size(98, 40);
             this.boxUnits.TabIndex = 22;
             this.boxUnits.Validating += new System.ComponentModel.CancelEventHandler(this.boxUnits_Validating);
             // 
@@ -90,12 +91,13 @@ namespace CARDOC.Views
             this.boxType.DrawMode = System.Windows.Forms.DrawMode.OwnerDrawFixed;
             this.boxType.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
             this.boxType.FormattingEnabled = true;
-            this.boxType.Hint = "ТИП";
-            this.boxType.Location = new System.Drawing.Point(701, 4);
+            this.boxType.Hint = "Тип";
+            this.boxType.Location = new System.Drawing.Point(698, 4);
             this.boxType.Name = "boxType";
-            this.boxType.Size = new System.Drawing.Size(119, 40);
+            this.boxType.Size = new System.Drawing.Size(137, 40);
             this.boxType.TabIndex = 23;
             this.boxType.TextChanged += new System.EventHandler(this.boxType_TextChanged);
+            this.boxType.Enter += new System.EventHandler(this.boxType_Enter);
             this.boxType.Validating += new System.ComponentModel.CancelEventHandler(this.boxType_Validating);
             // 
             // boxNotes
@@ -103,11 +105,12 @@ namespace CARDOC.Views
             this.boxNotes.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.boxNotes.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            this.boxNotes.Location = new System.Drawing.Point(989, 5);
+            this.boxNotes.Location = new System.Drawing.Point(984, 5);
             this.boxNotes.Name = "boxNotes";
-            this.boxNotes.PlaceholderText = "ПРИМІТКИ";
-            this.boxNotes.Size = new System.Drawing.Size(133, 39);
+            this.boxNotes.PlaceholderText = "Примітки";
+            this.boxNotes.Size = new System.Drawing.Size(154, 39);
             this.boxNotes.TabIndex = 25;
+            this.boxNotes.Enter += new System.EventHandler(this.boxNotes_Enter);
             // 
             // lblIndex
             // 
@@ -124,7 +127,7 @@ namespace CARDOC.Views
             // boxQuantity
             // 
             this.boxQuantity.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            this.boxQuantity.Location = new System.Drawing.Point(524, 5);
+            this.boxQuantity.Location = new System.Drawing.Point(523, 5);
             this.boxQuantity.Maximum = new decimal(new int[] {
             1000,
             0,
@@ -147,11 +150,12 @@ namespace CARDOC.Views
             // boxNumber
             // 
             this.boxNumber.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            this.boxNumber.Location = new System.Drawing.Point(845, 5);
+            this.boxNumber.Location = new System.Drawing.Point(841, 5);
             this.boxNumber.Name = "boxNumber";
-            this.boxNumber.PlaceholderText = "НОМЕР";
-            this.boxNumber.Size = new System.Drawing.Size(119, 39);
+            this.boxNumber.PlaceholderText = "Номер";
+            this.boxNumber.Size = new System.Drawing.Size(137, 39);
             this.boxNumber.TabIndex = 24;
+            this.boxNumber.Enter += new System.EventHandler(this.boxNumber_Enter);
             // 
             // Part
             // 

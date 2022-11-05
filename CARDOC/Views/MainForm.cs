@@ -4,6 +4,7 @@ using CARDOC.Views;
 using Microsoft.VisualBasic;
 using System.Globalization;
 using System.Windows.Forms;
+using static System.Windows.Forms.DataFormats;
 using static System.Windows.Forms.VisualStyles.VisualStyleElement;
 using Part = CARDOC.Views.Part;
 
@@ -41,7 +42,7 @@ namespace CARDOC
             }
             if (first)
             {
-                boxFilterDate.CustomFormat = boxDate.CustomFormat = "dd.MM.yy";
+                boxFilterDate.CustomFormat = boxDate.CustomFormat = Const.DateShortFormat;
                 var start = 1970;
                 boxYear.AddSuggestions(Enumerable.Range(start, DateTime.Now.Year - start + 1).Select(x => x.ToString()).ToArray());
                 for (var i = 0; i < 40; i++)
@@ -56,6 +57,11 @@ namespace CARDOC
                 this.WindowState = FormWindowState.Maximized;
             }
             boxDate.MaxDate = boxFilterDate.MaxDate = DateTime.Today.Date.AddMonths(1);
+            AddSuggesions();
+        }
+
+        private void AddSuggesions()
+        {
             boxType.AddSuggestions(DataProvider.Types);
             boxManufacturer.AddSuggestions(DataProvider.Models);
             boxColor.AddSuggestions(DataProvider.Colors);
@@ -81,6 +87,9 @@ namespace CARDOC
             boxYear.Text = vehicle.Year > 0 ? vehicle.Year.ToString() : "";
             boxColor.Text = vehicle.Color;
             boxNotes.Text = vehicle.Notes;
+            boxMedical.Checked = vehicle.Medical;
+            boxRao.Checked = vehicle.Rao;
+            boxCommunication.Checked = vehicle.Сommunication;
             if (vehicle.MileageUnits?.ToLower() == "км" && vehicle.Mileage > 0)
                 boxMileageK.Text = vehicle.Mileage.ToString();
             else if (vehicle.MileageUnits?.ToLower() == "миль" && vehicle.Mileage > 0)
@@ -261,12 +270,15 @@ namespace CARDOC
             var vehicle = new Vehicle()
             {
                 Vin = boxVin.Text.Trim().ToUpper(),
-                Color = boxColor.Text.Trim(),
+                Color = boxColor.Text.Trim().ToFirstUpperCase(),
                 Date = boxDate.Value,
-                Manufacturer = boxManufacturer.Text.Trim(),
-                Model = boxModel.Text.Trim(),
-                Notes = boxNotes.Text.Trim(),
-                Type = boxType.Text.Trim(),
+                Manufacturer = boxManufacturer.Text.Trim().ToUpper(),
+                Model = boxModel.Text.Trim().ToTitleCase().ToUpper(),
+                Notes = boxNotes.Text.Trim().ToFirstUpperCase(),
+                Medical = boxMedical.Checked,
+                Сommunication = boxCommunication.Checked,
+                Rao = boxRao.Checked,
+                Type = boxType.Text.Trim().ToFirstUpperCase(),
                 Year = 0,
                 Parts = new List<Models.Part>()
             };
@@ -292,12 +304,12 @@ namespace CARDOC
                     continue;
                 vehicle.Parts.Add(new Models.Part
                 {
-                    Name = part.Name,
-                    Type = part.Type,
+                    Name = part.Name.ToFirstUpperCase(),
+                    Type = part.Type.ToFirstUpperCase(),
                     Quantity = part.Quantity,
-                    Number = part.Number,
-                    Notes = part.Notes,
-                    Units = part.Units
+                    Number = part.Number.ToUpper(),
+                    Notes = part.Notes.ToFirstUpperCase(),
+                    Units = part.Units.ToLower()
                 });
             }
             return vehicle;
@@ -381,12 +393,6 @@ namespace CARDOC
                 item.Checked = DateTime.ParseExact(item.SubItems[1].Text, Const.DateFormat, CultureInfo.InvariantCulture).Date == boxFilterDate.Value.Date;
         }
 
-        private void btnToday_Click(object sender, EventArgs e)
-        {
-            boxFilterDate.Value = DateTime.Today;
-            boxFilterDate_ValueChanged(sender, e);
-        }
-
         private void boxManufacturer_TextChanged(object sender, EventArgs e)
         {
             
@@ -395,6 +401,7 @@ namespace CARDOC
         private void btnTemplate_Click(object sender, EventArgs e)
         {
             DataProvider.WriteTemplate(GetVehicleFromView());
+            AddSuggesions();
         }
 
         private bool _vehicleUpdate;
@@ -424,6 +431,61 @@ namespace CARDOC
             panelParts.Top = 0;
             panelPartsHeight = panelParts.Height;
             panelParts.Height = 400;
+        }
+
+        private void btnDoc_Click(object sender, EventArgs e)
+        {
+            var docDialog = new DocForm();
+            var vehicles = new List<Vehicle>();
+            foreach (int index in listHistory.CheckedIndices)
+                vehicles.Add(DataProvider.Vehicles[index]);
+            docDialog.Vehicles = vehicles;
+            docDialog.ShowDialog(this);
+            docDialog.Dispose();
+        }
+
+        private void listHistory_ItemChecked(object sender, ItemCheckedEventArgs e)
+        {
+            btnDoc.Enabled = listHistory.CheckedIndices.Count > 0;
+        }
+
+        public void SwitchLanguage(bool en)
+        {
+            try
+            {
+                InputLanguage.CurrentInputLanguage = InputLanguage.FromCulture(CultureInfo.GetCultureInfo(en ? "en-US" : "uk-UA"));
+            }
+            catch { }
+        }
+
+        private void boxManufacturer_Enter(object sender, EventArgs e)
+        {
+            SwitchLanguage(true);
+        }
+
+        private void boxModel_Enter(object sender, EventArgs e)
+        {
+            SwitchLanguage(true);
+        }
+
+        private void boxType_Enter(object sender, EventArgs e)
+        {
+            SwitchLanguage(false);
+        }
+
+        private void boxVin_Enter(object sender, EventArgs e)
+        {
+            SwitchLanguage(true);
+        }
+
+        private void boxColor_Enter(object sender, EventArgs e)
+        {
+            SwitchLanguage(false);
+        }
+
+        private void boxNotes_Enter(object sender, EventArgs e)
+        {
+            SwitchLanguage(false);
         }
     }
 }

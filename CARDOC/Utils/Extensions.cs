@@ -1,6 +1,7 @@
 ﻿using CARDOC.Views;
 using System;
 using System.Collections.Generic;
+using System.Globalization;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -164,6 +165,18 @@ namespace CARDOC.Utils
         public static string RemoveInvalidChars(this string filename)
         {
             return string.Concat(filename.Split(Path.GetInvalidFileNameChars()));
+        }
+
+        public static string ToFirstUpperCase(this string str)
+        {
+            if (string.IsNullOrEmpty(str))
+                return str;
+            return char.ToUpper(str.First()) + str.Substring(1);
+        }
+
+        public static string ToTitleCase(this string str)
+        {
+            return CultureInfo.CurrentCulture.TextInfo.ToTitleCase(str.ToLower());
         }
     }
 }
