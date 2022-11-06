@@ -22,9 +22,6 @@ namespace CARDOC.Views
 
         private void Part_Load(object sender, EventArgs e)
         {
-            boxName.AddSuggestions(DataProvider.PartNames);
-            boxType.AddSuggestions(DataProvider.PartTypes);
-            boxUnits.AddSuggestions(DataProvider.PartUnits);
         }
 
         public string Name
@@ -276,6 +273,13 @@ namespace CARDOC.Views
             UpdateColor();
         }
 
+        public void AddSuggestions()
+        {
+            boxName.AddSuggestions(DataProvider.PartNames);
+            boxType.AddSuggestions(DataProvider.PartTypes);
+            boxUnits.AddSuggestions(DataProvider.PartUnits);
+        }
+
         public void Clear()
         {
             Quantity = 1;
@@ -283,7 +287,7 @@ namespace CARDOC.Views
             Type = PartType.Zip.GetDescription();
             Dock = DockStyle.Fill;
             Name = "";
-            if(Visible)
+            if (Visible)
                 Visible = false;
         }
 

@@ -1,5 +1,6 @@
 ﻿using CARDOC.Models;
 using Newtonsoft.Json;
+using System.Collections.Immutable;
 using System.IO;
 using System.Linq;
 using System.Reflection;
@@ -16,10 +17,10 @@ namespace CARDOC.Utils
         }
         public static List<Vehicle> Vehicles { get; private set; }
         public static Dictionary<string, Vehicle> Templates { get; private set; }
-        public static HashSet<string> Types { get; private set; }
-        public static Dictionary<string, HashSet<string>> Models { get; private set; }
+        public static SortedSet<string> Types { get; private set; }
+        public static Dictionary<string, SortedSet<string>> Models { get; private set; }
         public static string[] Colors { get { return new string[] { "Чорний", "Коричневий", "Сірий", "Білий", "Синій", "Зелений", "Жовтий", "Червоний" }; } }
-        public static HashSet<string> PartNames { get; private set; }
+        public static SortedSet<string> PartNames { get; private set; }
         public static string[] PartTypes { get { return new string[] { PartType.Zip.GetDescription(), PartType.Equipment.GetDescription(), PartType.Aggregate.GetDescription(), PartType.Tire.GetDescription(), PartType.Battery.GetDescription() }; } }
         public static string[] PartUnits { get { return new string[] { Const.DefaultPartUnits, "к-т", "пар" }; } }
         public static List<Vehicle> ReadAll()
@@ -85,14 +86,19 @@ namespace CARDOC.Utils
             }
         }
 
-        public static void Write(Vehicle vehicle, DateTime date)
+        public static bool Exists(Vehicle vehicle)
+        {
+            return Vehicles.Any(x => x.Vin == vehicle.Vin);
+        }
+
+        public static void Write(Vehicle vehicle)
         {
             var existing = Vehicles.FirstOrDefault(x => x.Vin == vehicle.Vin);
             if (existing != null)
                 Vehicles.Remove(existing);
             Vehicles.Add(vehicle);
             AddCache(vehicle);
-            Write(date);
+            Write(vehicle.Date);
         }
 
         public static void Remove(Vehicle vehicle)
@@ -104,19 +110,19 @@ namespace CARDOC.Utils
         private static void AddCache(Vehicle vehicle)
         {
             Types.Add(vehicle.Type);
-            if (Models.TryGetValue(vehicle.Manufacturer, out HashSet<string> models))
+            if (Models.TryGetValue(vehicle.Manufacturer, out SortedSet<string> models))
                 Models[vehicle.Manufacturer].Add(vehicle.Model);
             else
-                Models.Add(vehicle.Manufacturer, new HashSet<string> { vehicle.Model });
+                Models.Add(vehicle.Manufacturer, new SortedSet<string> { vehicle.Model });
             foreach (var part in vehicle.Parts)
                 PartNames.Add(part.Name);
         }
 
         public static void FillCache()
         {
-            Types = new HashSet<string>();
-            Models = new Dictionary<string, HashSet<string>>();
-            PartNames = new HashSet<string>();
+            Types = new SortedSet<string>();
+            Models = new Dictionary<string, SortedSet<string>>();
+            PartNames = new SortedSet<string>();
             foreach (var vehicle in Vehicles.Union(Templates.Values))
             {
                 Types.Add(vehicle.Type);
@@ -125,7 +131,7 @@ namespace CARDOC.Utils
             }
             foreach (var manufacturer in Vehicles.Union(Templates.Values).GroupBy(x => x.Manufacturer))
             {
-                Models.Add(manufacturer.Key, manufacturer.Select(x => x.Model).ToHashSet());
+                Models.Add(manufacturer.Key, manufacturer.OrderBy(x => x.Model).Select(x => x.Model).ToSortedSet<string>());
             }
         }
 

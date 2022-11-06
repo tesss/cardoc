@@ -42,8 +42,6 @@ namespace CARDOC.Models
                     MileageUnits = Const.UnitsKm,
                     Parts = new List<Part>
                     {
-                        new Part { Name = "", Quantity = 4, Units = Const.DefaultPartUnits, Type = PartType.Tire.GetDescription() },
-                        new Part { Name = "6СТ-", Quantity = 1, Units = Const.DefaultPartUnits, Type = PartType.Battery.GetDescription() },
                         new Part { Name = "Кузов", Quantity = 1, Units = Const.DefaultPartUnits, Type = PartType.Aggregate.GetDescription() },
                         new Part { Name = "Двигун", Quantity = 1, Units = Const.DefaultPartUnits, Type = PartType.Aggregate.GetDescription() },
                         new Part { Name = "Передній міст", Quantity = 1, Units = Const.DefaultPartUnits, Type = PartType.Aggregate.GetDescription() },
@@ -51,7 +49,9 @@ namespace CARDOC.Models
                         new Part { Name = "Задній міст", Quantity = 1, Units = Const.DefaultPartUnits, Type = PartType.Aggregate.GetDescription() },
                         new Part { Name = "Роздавальна коробка", Quantity = 1, Units = Const.DefaultPartUnits, Type = PartType.Aggregate.GetDescription() },
                         new Part { Name = "Кермовий механізм", Quantity = 1, Units = Const.DefaultPartUnits, Type = PartType.Aggregate.GetDescription() },
-                        new Part { Name = "Тягово-зчипний пристрій", Quantity = 1, Units = Const.DefaultPartUnits, Type = PartType.Zip.GetDescription() }
+                        new Part { Name = "", Quantity = 4, Units = Const.DefaultPartUnits, Type = PartType.Tire.GetDescription() },
+                        new Part { Name = "6СТ-", Quantity = 1, Units = Const.DefaultPartUnits, Type = PartType.Battery.GetDescription() },
+                        new Part { Name = "Тягово-зчипний пристрій", Quantity = 1, Units = Const.DefaultPartUnits, Type = PartType.Equipment.GetDescription() }
                     }
                 };
             } 

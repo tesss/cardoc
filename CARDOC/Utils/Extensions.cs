@@ -7,6 +7,7 @@ using System.Linq;
 using System.Reflection;
 using System.Text;
 using System.Threading.Tasks;
+using System.Windows.Forms;
 
 namespace CARDOC.Utils
 {
@@ -133,8 +134,15 @@ namespace CARDOC.Utils
             comboBox.Items.Clear();
         }
 
-        public static void AddSuggestions(this CustomComboBox comboBox, string[] strings)
+        public static void AddSuggestions(this CustomComboBox comboBox, string[] strings, bool force = false)
         {
+            if (strings == null)
+            {
+                comboBox.ClearSuggestions();
+                return;
+            }
+            if (!force && comboBox.Items.Count == strings.Length)
+                return;
             comboBox.ClearSuggestions();
             var res = new AutoCompleteStringCollection();
             res.AddRange(strings);
@@ -142,11 +150,16 @@ namespace CARDOC.Utils
             comboBox.Items.AddRange(strings);
         }
 
-        public static void AddSuggestions(this CustomComboBox comboBox, HashSet<string> strings)
+        public static void AddSuggestions(this CustomComboBox comboBox, SortedSet<string> strings, bool force = false)
         {
-            comboBox.ClearSuggestions();
-            if (strings == null)
+            if(strings == null)
+            {
+                comboBox.ClearSuggestions();
                 return;
+            }
+            if (strings == null || !force && comboBox.Items.Count == strings.Count)
+                return;
+            comboBox.ClearSuggestions();
             var data = strings.ToArray();
             var res = new AutoCompleteStringCollection();
             res.AddRange(data);
@@ -154,8 +167,15 @@ namespace CARDOC.Utils
             comboBox.Items.AddRange(data);
         }
 
-        public static void AddSuggestions(this CustomComboBox comboBox, Dictionary<string, HashSet<string>> strings)
+        public static void AddSuggestions(this CustomComboBox comboBox, Dictionary<string, SortedSet<string>> strings, bool force = false)
         {
+            if (strings == null)
+            {
+                comboBox.ClearSuggestions();
+                return;
+            }
+            if (strings == null || !force && comboBox.Items.Count == strings.Count)
+                return;
             comboBox.ClearSuggestions();
             var data = strings.Keys.ToArray();
             var res = new AutoCompleteStringCollection();
@@ -220,6 +240,15 @@ namespace CARDOC.Utils
             }
 
             return default(T);
+        }
+
+        public static SortedSet<T> ToSortedSet<T>(this IEnumerable<T> t)
+        {
+            SortedSet<T> retval = new SortedSet<T>();
+
+            t.ToList().ForEach(x => retval.Add(x));
+
+            return retval;
         }
     }
 }

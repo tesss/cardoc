@@ -40,12 +40,13 @@ namespace CARDOC
                 lvi.SubItems.Add(new ListViewItem.ListViewSubItem(lvi, "Пробіг") { Text = vehicle.Mileage + vehicle.MileageUnits });
                 listHistory.Items.Add(lvi);
             }
+            listHistory.AutoResizeColumns(ColumnHeaderAutoResizeStyle.ColumnContent);
             if (first)
             {
                 boxFilterDate.CustomFormat = boxDate.CustomFormat = Const.DateShortFormat;
                 var start = 1970;
                 boxYear.AddSuggestions(Enumerable.Range(start, DateTime.Now.Year - start + 1).Select(x => x.ToString()).ToArray());
-                for (var i = 0; i < 40; i++)
+                for (var i = 0; i < 100; i++)
                     AddPart();
                     if (listHistory.Items.Count > 0)
                 {
@@ -54,9 +55,9 @@ namespace CARDOC
                 }
                 else
                     InitVehicleUI(Vehicle.Empty);
-                this.WindowState = FormWindowState.Maximized;
+                WindowState = FormWindowState.Maximized;
+                boxDate.MaxDate = boxFilterDate.MaxDate = DateTime.Today.Date.AddMonths(1);
             }
-            boxDate.MaxDate = boxFilterDate.MaxDate = DateTime.Today.Date.AddMonths(1);
             AddSuggesions();
         }
 
@@ -65,6 +66,8 @@ namespace CARDOC
             boxType.AddSuggestions(DataProvider.Types);
             boxManufacturer.AddSuggestions(DataProvider.Models);
             boxColor.AddSuggestions(DataProvider.Colors);
+            foreach (Part part in panelParts.Controls)
+                part.AddSuggestions();
         }
 
         private Part GetPartView(int index)
@@ -105,12 +108,13 @@ namespace CARDOC
                 boxMileageH.Text = "";
 
             int i = 0;
+            Part partView;
             if (vehicle.Parts != null && vehicle.Parts.Any())
             {
                 for (i = 0; i < vehicle.Parts.Count; i++)
                 {
                     var part = vehicle.Parts[i];
-                    Part partView = GetPartView(i);
+                    partView = GetPartView(i);
                     partView.Name = part.Name;
                     partView.Quantity = part.Quantity;
                     partView.Units = part.Units;
@@ -118,14 +122,21 @@ namespace CARDOC
                     partView.Number = part.Number;
                     partView.Notes = part.Notes;
                     partView.UpdateColor();
+                    partView.Index = i + 1;
                     if(!partView.Visible)
                         partView.Visible = true;
                 }
             }
-            GetPartView(i).Clear();
-            GetPartView(i).Visible = true;
+            partView = GetPartView(i);
+            partView.Clear();
+            partView.Visible = true;
+            partView.Index = i + 1;
             for (i = i + 1; i < panelParts.Controls.Count; i++)
-                GetPartView(i).Clear();
+            {
+                partView = GetPartView(i);
+                partView.Clear();
+                partView.Index = i + 1;
+            }
             ValidateChildren();
             ActiveControl = boxManufacturer;
             _vehicleUpdate = false;
@@ -211,7 +222,7 @@ namespace CARDOC
                 if (confirmResult == DialogResult.Yes)
                 {
                     var vehicle = GetVehicleFromView();
-                    DataProvider.Write(vehicle, vehicle.Date);
+                    DataProvider.Write(vehicle);
                     InitUI(false);
                     if (vin != null)
                         foreach (ListViewItem item in listHistory.Items)
@@ -237,7 +248,7 @@ namespace CARDOC
         private void boxManufacturer_SelectedIndexChanged(object sender, EventArgs e)
         {
             DataProvider.Models.TryGetValue(boxManufacturer.Text, out var strings);
-            boxModel.AddSuggestions(strings);
+            boxModel.AddSuggestions(strings, true);
         }
 
         private void boxModel_Validating(object sender, System.ComponentModel.CancelEventArgs e)
@@ -321,7 +332,13 @@ namespace CARDOC
         private void btnSave_Click(object sender, EventArgs e)
         {
             var vehicle = GetVehicleFromView();
-            DataProvider.Write(vehicle, vehicle.Date);
+            if (DataProvider.Exists(vehicle))
+            {
+                var confirmResult = MessageBox.Show("Такий VIN існує. Перезаписати?", "", MessageBoxButtons.YesNo);
+                if (confirmResult == DialogResult.No)
+                    return;
+            }
+            DataProvider.Write(vehicle);
             InitUI(false);
             InitVehicleUI(Vehicle.Empty);
         }
