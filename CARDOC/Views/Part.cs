@@ -109,6 +109,14 @@ namespace CARDOC.Views
             set { lblIndex.Text = value.ToString() + "."; }
         }
 
+        public bool IsEmpty
+        {
+            get
+            {
+                return string.IsNullOrEmpty(Name);
+            }
+        }
+
         public Part Previous
         {
             get 
@@ -116,26 +124,13 @@ namespace CARDOC.Views
                 if (Index == 1)
                     return null;
                 foreach (Part part in Parent.Controls)
-                    if (part.Index == Index - 1 && part.Visible)
+                    if (part.Index == Index - 1)
                         return part;
                 return null;
             }
         }
 
         public Part Next
-        {
-            get
-            {
-                if (Index == Parent.Controls.Count)
-                    return null;
-                foreach (Part part in Parent.Controls)
-                    if (part.Index == Index + 1 && part.Visible)
-                        return part;
-                return null;
-            }
-        }
-
-        public Part NextActual
         {
             get
             {
@@ -157,21 +152,18 @@ namespace CARDOC.Views
         {
             get
             {
-                return Next == null || !Next.Visible;
+                return Next == null;
             }
         }
 
         private void btnRemove_Click(object sender, EventArgs e)
         {
-            if(!IsLast)
-            {
-                Previous?.Focus();
-                this.RemoveValidation();
-                foreach (Part part in Parent.Controls)
-                    if (part.Index > Index)
-                        part.Index--;
-                this.Clear();
-            }
+            Previous?.Focus();
+            this.RemoveValidation();
+            var i = 0;
+            foreach (Part part in Parent.Controls)
+                part.Index = ++i;
+            Clear();
         }
 
         private MainForm GetMainForm()
@@ -181,8 +173,13 @@ namespace CARDOC.Views
 
         private void boxName_Validating(object sender, CancelEventArgs e)
         {
-            if (!IsLast)
-                GetMainForm().btnSave.Enabled = boxName.Validate(string.IsNullOrEmpty(boxName.Text));
+            //if (!IsLast)
+            //    GetMainForm().btnSave.Enabled = boxName.Validate(string.IsNullOrEmpty(boxName.Text));
+            if (boxName.Text == "")
+                ClearColor();
+            else
+                UpdateColor();
+            GetMainForm().btnSave.Enabled = boxName.Validate(boxName.Text == " " || boxName.Text == "6СТ-");
         }
 
         private void boxQuantity_KeyPress(object sender, KeyPressEventArgs e)
@@ -202,17 +199,12 @@ namespace CARDOC.Views
 
         private async void AddNewPart(int index)
         {
-            if (NextActual != null)
-                await Task.Factory.StartNew(() => {
-                    NextActual.Invoke((MethodInvoker)delegate
-                    {
-                        NextActual.Visible = true;
-                    });
-                }, TaskCreationOptions.LongRunning);
+            if (Next != null)
+            {
+            }
             else
             {
                 var part = GetMainForm().AddPart();
-                part.Visible = true;
                 part.Index = index;
             }
         }
@@ -271,7 +263,7 @@ namespace CARDOC.Views
             else if (boxType.Text == PartType.Zip.GetDescription())
                 BackColor = Color.LightYellow;
             else
-                BackColor = SystemColors.Window;
+                BackColor = SystemColors.Control;
         }
 
         private void boxType_TextChanged(object sender, EventArgs e)
@@ -286,6 +278,11 @@ namespace CARDOC.Views
             boxUnits.AddSuggestions(DataProvider.PartUnits);
         }
 
+        public void ClearColor()
+        {
+            BackColor = SystemColors.Control;
+        }
+
         public void Clear()
         {
             Quantity = 1;
@@ -293,8 +290,7 @@ namespace CARDOC.Views
             Type = PartType.Zip.GetDescription();
             Dock = DockStyle.Fill;
             Name = "";
-            if (Visible)
-                Visible = false;
+            ClearColor();
         }
 
         private void boxType_Enter(object sender, EventArgs e)

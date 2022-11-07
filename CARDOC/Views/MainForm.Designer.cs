@@ -112,7 +112,7 @@ namespace CARDOC
             // 
             this.btnRemove.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.btnRemove.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            this.btnRemove.ForeColor = System.Drawing.Color.Firebrick;
+            this.btnRemove.ForeColor = System.Drawing.Color.Brown;
             this.btnRemove.Location = new System.Drawing.Point(1049, 326);
             this.btnRemove.Name = "btnRemove";
             this.btnRemove.Size = new System.Drawing.Size(100, 70);
@@ -235,8 +235,8 @@ namespace CARDOC
             this.boxModel.TabIndex = 2;
             this.boxModel.SelectedIndexChanged += new System.EventHandler(this.boxModel_SelectedIndexChanged);
             this.boxModel.Enter += new System.EventHandler(this.boxModel_Enter);
-            this.boxModel.Validating += new System.ComponentModel.CancelEventHandler(this.boxModel_Validating);
             this.boxModel.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.Upper);
+            this.boxModel.Validating += new System.ComponentModel.CancelEventHandler(this.boxModel_Validating);
             // 
             // boxYear
             // 

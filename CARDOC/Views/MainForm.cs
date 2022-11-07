@@ -46,7 +46,8 @@ namespace CARDOC
                 boxFilterDate.CustomFormat = boxDate.CustomFormat = Const.DateShortFormat;
                 var start = 1970;
                 boxYear.AddSuggestions(Enumerable.Range(start, DateTime.Now.Year - start + 1).Select(x => x.ToString()).ToArray());
-                for (var i = 0; i < 100; i++)
+                var c = DataProvider.Vehicles.Max(x => x.Parts.Count);
+                for (var i = 0; i < c; i++)
                     AddPart();
                     if (listHistory.Items.Count > 0)
                 {
@@ -77,7 +78,7 @@ namespace CARDOC
             return panelParts.Controls[index] as Part;
         }
 
-        private void InitVehicleUI(Vehicle vehicle, bool fromTemplate = false)
+        private async void InitVehicleUI(Vehicle vehicle, bool fromTemplate = false)
         {
             _vehicleUpdate = true;
             if(!fromTemplate)
@@ -123,13 +124,10 @@ namespace CARDOC
                     partView.Notes = part.Notes;
                     partView.UpdateColor();
                     partView.Index = i + 1;
-                    if(!partView.Visible)
-                        partView.Visible = true;
                 }
             }
             partView = GetPartView(i);
             partView.Clear();
-            partView.Visible = true;
             partView.Index = i + 1;
             for (i = i + 1; i < panelParts.Controls.Count; i++)
             {
@@ -154,8 +152,7 @@ namespace CARDOC
                     Units = Const.DefaultPartUnits,
                     Type = PartType.Zip.GetDescription(),
                     Dock = DockStyle.Fill,
-                    Name = "",
-                    Visible = false
+                    Name = ""
                 };
             part.AutoSizeMode = AutoSizeMode.GrowAndShrink;
             part.AllowDrop = true;
@@ -164,7 +161,7 @@ namespace CARDOC
                 base.OnDragOver(e);
                 var from = e.Data.GetData(typeof(Part)) as Part;
                 var to = sender as Part;
-                if (from != null && !from.IsLast && !to.IsLast)
+                if (from != null)
                 {
                     FlowLayoutPanel p = (FlowLayoutPanel)(sender as Part).Parent;
                     p.Controls.SetChildIndex(from, p.Controls.GetChildIndex(to));
@@ -312,7 +309,7 @@ namespace CARDOC
             }
             foreach (Part part in panelParts.Controls)
             {
-                if (string.IsNullOrEmpty(part.Name) || !part.Visible)
+                if (part.IsEmpty)
                     continue;
                 vehicle.Parts.Add(new Models.Part
                 {

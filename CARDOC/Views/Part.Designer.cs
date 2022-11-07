@@ -48,7 +48,7 @@ namespace CARDOC.Views
             this.boxName.DrawMode = System.Windows.Forms.DrawMode.OwnerDrawFixed;
             this.boxName.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
             this.boxName.FormattingEnabled = true;
-            this.boxName.Hint = "Обладнання";
+            this.boxName.Hint = "";
             this.boxName.Location = new System.Drawing.Point(45, 4);
             this.boxName.Name = "boxName";
             this.boxName.Size = new System.Drawing.Size(472, 40);
@@ -62,12 +62,12 @@ namespace CARDOC.Views
             // 
             this.btnRemove.Dock = System.Windows.Forms.DockStyle.Right;
             this.btnRemove.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            this.btnRemove.ForeColor = System.Drawing.SystemColors.ControlText;
+            this.btnRemove.ForeColor = System.Drawing.Color.Brown;
             this.btnRemove.Location = new System.Drawing.Point(1058, 0);
             this.btnRemove.Name = "btnRemove";
             this.btnRemove.Size = new System.Drawing.Size(70, 47);
             this.btnRemove.TabIndex = 25;
-            this.btnRemove.Text = "―";
+            this.btnRemove.Text = "x";
             this.btnRemove.UseVisualStyleBackColor = true;
             this.btnRemove.Click += new System.EventHandler(this.btnRemove_Click);
             // 
