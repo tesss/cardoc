@@ -109,7 +109,6 @@ namespace CARDOC.Views
             this.boxNotes.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
             this.boxNotes.Location = new System.Drawing.Point(963, 5);
             this.boxNotes.Name = "boxNotes";
-            this.boxNotes.PlaceholderText = "Примітки";
             this.boxNotes.Size = new System.Drawing.Size(89, 39);
             this.boxNotes.TabIndex = 25;
             this.boxNotes.Enter += new System.EventHandler(this.boxNotes_Enter);
@@ -154,7 +153,6 @@ namespace CARDOC.Views
             this.boxNumber.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
             this.boxNumber.Location = new System.Drawing.Point(820, 5);
             this.boxNumber.Name = "boxNumber";
-            this.boxNumber.PlaceholderText = "Номер";
             this.boxNumber.Size = new System.Drawing.Size(137, 39);
             this.boxNumber.TabIndex = 24;
             this.boxNumber.Enter += new System.EventHandler(this.boxNumber_Enter);
