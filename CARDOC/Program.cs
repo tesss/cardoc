@@ -13,10 +13,11 @@ namespace CARDOC
         static void Main()
         {
             /* init folders */
-            if (!Directory.Exists(Const.DataFolder))
-                Directory.CreateDirectory(Const.DataFolder);
-            if (!Directory.Exists(Const.TemplateFolder))
-                Directory.CreateDirectory(Const.TemplateFolder);
+            Directory.CreateDirectory(Const.DataFolder);
+            Directory.CreateDirectory(Const.TemplateFolder);
+            Directory.CreateDirectory(Const.DocTemplateFolder);
+            Directory.CreateDirectory(Const.ExportFolder);
+
             DataProvider.ReadAll();
             DataProvider.ReadAllTemplates();
             DataProvider.FillCache();

@@ -1,4 +1,5 @@
 ﻿using CARDOC.Models;
+using CARDOC.Utils;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -19,5 +20,15 @@ namespace CARDOC.Views
         }
 
         public List<Vehicle> Vehicles { get; set; }
+
+        private void btnZip_Click(object sender, EventArgs e)
+        {
+            foreach (var vehicle in Vehicles)
+                Documents.GenerateZip(new Models.Doc.ZipModel
+                {
+                    Vehicle = vehicle,
+                    Quantity = Vehicles.Count
+                });
+        }
     }
 }

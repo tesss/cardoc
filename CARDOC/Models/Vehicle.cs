@@ -74,7 +74,7 @@ namespace CARDOC.Models
         {
             if (string.IsNullOrEmpty(Manufacturer) || string.IsNullOrEmpty(Model))
                 return null;
-            return Manufacturer.ToUpper() + " " + Model.ToUpper();
+            return (Manufacturer.ToUpper() + " " + Model.ToUpper()).RemoveInvalidChars();
         }
 
         public bool Equals(Vehicle? other)

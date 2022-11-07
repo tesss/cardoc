@@ -332,11 +332,16 @@ namespace CARDOC
         private void btnSave_Click(object sender, EventArgs e)
         {
             var vehicle = GetVehicleFromView();
-            if (DataProvider.Exists(vehicle))
+            var selectedVehicle = GetCurrentVehicle();
+            if (selectedVehicle.Vin != vehicle.Vin)
             {
-                var confirmResult = MessageBox.Show("Такий VIN існує. Перезаписати?", "", MessageBoxButtons.YesNo);
-                if (confirmResult == DialogResult.No)
-                    return;
+                if (DataProvider.Exists(vehicle))
+                {
+                    var confirmResult = MessageBox.Show("Такий VIN існує. Перезаписати?", "", MessageBoxButtons.YesNo);
+                    if (confirmResult == DialogResult.No)
+                        return;
+                }
+                DataProvider.Remove(selectedVehicle);
             }
             DataProvider.Write(vehicle);
             InitUI(false);

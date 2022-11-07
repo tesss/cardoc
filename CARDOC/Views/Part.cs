@@ -4,6 +4,7 @@ using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
+using System.Diagnostics;
 using System.Drawing;
 using System.Linq;
 using System.Runtime.CompilerServices;
@@ -199,10 +200,15 @@ namespace CARDOC.Views
             GetMainForm().btnSave.Enabled = boxType.Validate(string.IsNullOrEmpty(boxType.Text));
         }
 
-        private void AddNewPart(int index)
+        private async void AddNewPart(int index)
         {
             if (NextActual != null)
-                NextActual.Visible = true;
+                await Task.Factory.StartNew(() => {
+                    NextActual.Invoke((MethodInvoker)delegate
+                    {
+                        NextActual.Visible = true;
+                    });
+                }, TaskCreationOptions.LongRunning);
             else
             {
                 var part = GetMainForm().AddPart();

@@ -51,6 +51,7 @@
             this.btnZip.TabIndex = 107;
             this.btnZip.Text = "► Створити";
             this.btnZip.UseVisualStyleBackColor = true;
+            this.btnZip.Click += new System.EventHandler(this.btnZip_Click);
             // 
             // boxZip
             // 

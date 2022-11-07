@@ -137,7 +137,7 @@ namespace CARDOC.Utils
 
         private static string GetTemplatePath(Vehicle vehicle)
         {
-            return Const.TemplateFolder + "/" + (vehicle.Manufacturer + " " + vehicle.Model).RemoveInvalidChars() + ".json";
+            return Const.TemplateFolder + "/" + vehicle.GetTemplateName() + ".json";
         }
 
         public static List<Vehicle> ReadAllTemplates()

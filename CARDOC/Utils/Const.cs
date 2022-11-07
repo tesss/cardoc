@@ -4,6 +4,9 @@
     {
         public const string DataFolder = "Data";
         public const string TemplateFolder = "Templates";
+        public const string DocTemplateFolder = "DocTemplates";
+        public const string ExportFolder = "Export";
+
         public const string DateFormat = "dd.MM.yyyy";
         public const string DateShortFormat = "dd.MM.yy";
 
