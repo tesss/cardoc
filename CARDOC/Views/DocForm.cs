@@ -25,5 +25,20 @@ namespace CARDOC.Views
         {
             Documents.GenerateZip(Vehicles);
         }
+
+        private void btnIn_Click(object sender, EventArgs e)
+        {
+            Documents.GenerateIn(Vehicles);
+        }
+
+        private void btnOut_Click(object sender, EventArgs e)
+        {
+            Documents.GenerateOut(Vehicles);
+        }
+
+        private void btnInGeneral_Click(object sender, EventArgs e)
+        {
+            Documents.GenerateInGeneral(Vehicles);
+        }
     }
 }

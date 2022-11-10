@@ -41,7 +41,6 @@ namespace CARDOC.Utils
         {
             Generate(vehicles, (vehicle, folderPath) =>
             {
-                vehicle.Parts = vehicle.Parts.Where(x => x.PartType == PartType.Zip).ToList();
                 var document = DocumentFactory.Create(Const.DocTemplateFolder + "/zip.docx", vehicle);
                 document.Generate(string.Format("{0}/ЗІП {1} - {2}.docx", folderPath, vehicle.GetTemplateName(), vehicle.Vin));
             });
@@ -51,10 +50,37 @@ namespace CARDOC.Utils
         {
             Generate(vehicles, (vehicle, folderPath) =>
             {
-                vehicle.Parts = vehicle.Parts.Where(x => x.PartType == PartType.Zip).ToList();
                 var document = DocumentFactory.Create(Const.DocTemplateFolder + "/in.docx", vehicle);
-                document.Generate(string.Format("{0}/АКТ т ст {1} - {2}.docx", folderPath, vehicle.GetTemplateName(), vehicle.Vin));
+                document.Generate(string.Format("{0}/АКТ ПРИЙМАННЯ {1} - {2}.docx", folderPath, vehicle.GetTemplateName(), vehicle.Vin));
             });
+        }
+
+        public static void GenerateOut(List<Vehicle> vehicles)
+        {
+            Generate(vehicles, (vehicle, folderPath) =>
+            {
+                var document = DocumentFactory.Create(Const.DocTemplateFolder + "/out.docx", vehicle);
+                document.Generate(string.Format("{0}/АКТ ПЕРЕДАЧІ {1} - {2}.docx", folderPath, vehicle.GetTemplateName(), vehicle.Vin));
+            });
+        }
+
+        public static void GenerateInGeneral(List<Vehicle> vehicles)
+        {
+            bool success = true;
+            foreach (var date in vehicles.GroupBy(x => x.Date.Date))
+            {
+                try
+                {
+                    var document = DocumentFactory.Create(Const.DocTemplateFolder + "/inGeneral.docx", vehicles);
+                    document.Generate(string.Format("{0}/АКТ ПРИЙМАННЯ ЗАГАЛЬНИЙ {1} - {2}.docx", Const.ExportFolder, date.Key.ToString(Const.DateFormat), date.Count()));
+                }
+                catch (Exception ex)
+                {
+                    success = false;
+                }
+            }
+            if (success)
+                Process.Start("explorer.exe", System.IO.Path.GetDirectoryName(Application.ExecutablePath) + "\\" + Const.ExportFolder);
         }
     }
 }

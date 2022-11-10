@@ -12,8 +12,7 @@
 
         public const string UnitsKm = "км";
         public const string UnitsMiles = "миль";
-
-        public const string DefaultColor = "Зелений";
+        public const string UnitsHours = "м/год";
 
         public const string DefaultPartUnits = "шт";
     }

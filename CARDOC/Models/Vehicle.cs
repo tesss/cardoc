@@ -30,6 +30,14 @@ namespace CARDOC.Models
         public bool Сommunication { get; set; }
         public List<Part> Parts { get; set; }
 
+        /* out fields */
+        public string Act { get; set; }
+        public string Nom { get; set; }
+        public string Order { get; set; }
+        public string Mou { get; set; }
+        public string Unit { get; set; }
+        public DateTime OutDate { get; set; }
+
         public static Vehicle Empty 
         { 
             get 
@@ -38,7 +46,7 @@ namespace CARDOC.Models
                 {
                     Updated = DateTime.Now,
                     Date = DateTime.Now.Date,
-                    Color = Const.DefaultColor,
+                    OutDate = DateTime.Now.Date,
                     MileageUnits = Const.UnitsKm,
                     Parts = new List<Part>
                     {
@@ -52,9 +60,17 @@ namespace CARDOC.Models
                         new Part { Name = " ", Quantity = 4, Units = Const.DefaultPartUnits, Type = PartType.Tire.GetDescription() },
                         new Part { Name = "6СТ-", Quantity = 1, Units = Const.DefaultPartUnits, Type = PartType.Battery.GetDescription() },
                         new Part { Name = "Тягово-зчипний пристрій", Quantity = 1, Units = Const.DefaultPartUnits, Type = PartType.Equipment.GetDescription() }
-                    }
+                    },
+                    Nom = "Д2111000Y",
+                    Order = "Наряд ком. А № від ",
+                    Unit = "в/ч А м."
                 };
             } 
+        }
+
+        public bool Equals(Vehicle? other)
+        {
+            return JsonHelper.SerialiseAlphabeticaly(this) == JsonHelper.SerialiseAlphabeticaly(other);
         }
 
         public Vehicle Clone()
@@ -70,25 +86,13 @@ namespace CARDOC.Models
             }
         }
 
-        public string GetTemplateName()
-        {
-            if (string.IsNullOrEmpty(Manufacturer) || string.IsNullOrEmpty(Model))
-                return null;
-            return (Manufacturer.ToUpper() + " " + Model.ToUpper()).RemoveInvalidChars();
-        }
-
         [JsonIgnore]
         public string ExportFolder
         {
             get
             {
-                return string.Format("{0}/{1} {2}", Const.ExportFolder, Date.ToString("dd.MM.yyyy"), GetTemplateName());
+                return string.Format("{0}/{1} {2}", Const.ExportFolder, Date.ToString(Const.DateFormat), this.GetTemplateName());
             }
-        }
-
-        public bool Equals(Vehicle? other)
-        {
-            return JsonHelper.SerialiseAlphabeticaly(this) == JsonHelper.SerialiseAlphabeticaly(other);
         }
     }
 }

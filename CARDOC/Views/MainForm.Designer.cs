@@ -54,6 +54,12 @@ namespace CARDOC
             this.boxMedical = new System.Windows.Forms.CheckBox();
             this.boxRao = new System.Windows.Forms.CheckBox();
             this.boxCommunication = new System.Windows.Forms.CheckBox();
+            this.boxAct = new System.Windows.Forms.TextBox();
+            this.boxNom = new System.Windows.Forms.TextBox();
+            this.boxMou = new System.Windows.Forms.TextBox();
+            this.boxOrder = new System.Windows.Forms.TextBox();
+            this.boxUnit = new System.Windows.Forms.TextBox();
+            this.boxOutDate = new System.Windows.Forms.DateTimePicker();
             this.SuspendLayout();
             // 
             // listHistory
@@ -276,6 +282,7 @@ namespace CARDOC
             this.boxColor.Size = new System.Drawing.Size(639, 40);
             this.boxColor.TabIndex = 7;
             this.boxColor.Enter += new System.EventHandler(this.boxColor_Enter);
+            this.boxColor.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.Lower);
             this.boxColor.Validating += new System.ComponentModel.CancelEventHandler(this.boxColor_Validating);
             // 
             // panelParts
@@ -286,9 +293,9 @@ namespace CARDOC
             this.panelParts.AutoScroll = true;
             this.panelParts.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
             this.panelParts.FlowDirection = System.Windows.Forms.FlowDirection.TopDown;
-            this.panelParts.Location = new System.Drawing.Point(13, 709);
+            this.panelParts.Location = new System.Drawing.Point(13, 736);
             this.panelParts.Name = "panelParts";
-            this.panelParts.Size = new System.Drawing.Size(1144, 285);
+            this.panelParts.Size = new System.Drawing.Size(1144, 258);
             this.panelParts.TabIndex = 33;
             this.panelParts.WrapContents = false;
             this.panelParts.Paint += new System.Windows.Forms.PaintEventHandler(this.panelParts_Paint);
@@ -298,7 +305,7 @@ namespace CARDOC
             this.line1.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.line1.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
-            this.line1.Location = new System.Drawing.Point(14, 688);
+            this.line1.Location = new System.Drawing.Point(13, 731);
             this.line1.Name = "line1";
             this.line1.Size = new System.Drawing.Size(1145, 2);
             this.line1.TabIndex = 0;
@@ -307,7 +314,7 @@ namespace CARDOC
             // 
             this.btnSave.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.btnSave.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
-            this.btnSave.Location = new System.Drawing.Point(1049, 518);
+            this.btnSave.Location = new System.Drawing.Point(1050, 573);
             this.btnSave.Name = "btnSave";
             this.btnSave.Size = new System.Drawing.Size(100, 144);
             this.btnSave.TabIndex = 100;
@@ -368,7 +375,7 @@ namespace CARDOC
             this.boxMedical.Location = new System.Drawing.Point(673, 626);
             this.boxMedical.Name = "boxMedical";
             this.boxMedical.Size = new System.Drawing.Size(142, 36);
-            this.boxMedical.TabIndex = 108;
+            this.boxMedical.TabIndex = 12;
             this.boxMedical.Text = "Медична";
             this.boxMedical.UseVisualStyleBackColor = true;
             // 
@@ -380,7 +387,7 @@ namespace CARDOC
             this.boxRao.Location = new System.Drawing.Point(948, 626);
             this.boxRao.Name = "boxRao";
             this.boxRao.Size = new System.Drawing.Size(86, 36);
-            this.boxRao.TabIndex = 109;
+            this.boxRao.TabIndex = 14;
             this.boxRao.Text = "РАО";
             this.boxRao.UseVisualStyleBackColor = true;
             // 
@@ -392,15 +399,84 @@ namespace CARDOC
             this.boxCommunication.Location = new System.Drawing.Point(821, 626);
             this.boxCommunication.Name = "boxCommunication";
             this.boxCommunication.Size = new System.Drawing.Size(121, 36);
-            this.boxCommunication.TabIndex = 110;
+            this.boxCommunication.TabIndex = 13;
             this.boxCommunication.Text = "Зв\'язок";
             this.boxCommunication.UseVisualStyleBackColor = true;
+            // 
+            // boxAct
+            // 
+            this.boxAct.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
+            this.boxAct.Location = new System.Drawing.Point(13, 677);
+            this.boxAct.Name = "boxAct";
+            this.boxAct.PlaceholderText = "№ акту";
+            this.boxAct.Size = new System.Drawing.Size(140, 39);
+            this.boxAct.TabIndex = 15;
+            this.boxAct.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.boxAct_KeyPress);
+            // 
+            // boxNom
+            // 
+            this.boxNom.CharacterCasing = System.Windows.Forms.CharacterCasing.Upper;
+            this.boxNom.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
+            this.boxNom.Location = new System.Drawing.Point(159, 677);
+            this.boxNom.Name = "boxNom";
+            this.boxNom.PlaceholderText = "Ном. №";
+            this.boxNom.Size = new System.Drawing.Size(141, 39);
+            this.boxNom.TabIndex = 16;
+            // 
+            // boxMou
+            // 
+            this.boxMou.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.boxMou.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
+            this.boxMou.Location = new System.Drawing.Point(490, 677);
+            this.boxMou.Name = "boxMou";
+            this.boxMou.PlaceholderText = "МОУ №";
+            this.boxMou.Size = new System.Drawing.Size(162, 39);
+            this.boxMou.TabIndex = 18;
+            this.boxMou.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.boxMou_KeyPress);
+            // 
+            // boxOrder
+            // 
+            this.boxOrder.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.boxOrder.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
+            this.boxOrder.Location = new System.Drawing.Point(306, 677);
+            this.boxOrder.Name = "boxOrder";
+            this.boxOrder.PlaceholderText = "Наряд";
+            this.boxOrder.Size = new System.Drawing.Size(178, 39);
+            this.boxOrder.TabIndex = 17;
+            // 
+            // boxUnit
+            // 
+            this.boxUnit.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.boxUnit.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
+            this.boxUnit.Location = new System.Drawing.Point(658, 677);
+            this.boxUnit.Name = "boxUnit";
+            this.boxUnit.PlaceholderText = "В/Ч";
+            this.boxUnit.Size = new System.Drawing.Size(256, 39);
+            this.boxUnit.TabIndex = 19;
+            this.boxUnit.Enter += new System.EventHandler(this.boxUnit_Enter);
+            // 
+            // boxOutDate
+            // 
+            this.boxOutDate.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.boxOutDate.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
+            this.boxOutDate.Format = System.Windows.Forms.DateTimePickerFormat.Custom;
+            this.boxOutDate.Location = new System.Drawing.Point(920, 677);
+            this.boxOutDate.Name = "boxOutDate";
+            this.boxOutDate.Size = new System.Drawing.Size(123, 39);
+            this.boxOutDate.TabIndex = 20;
             // 
             // MainForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(10F, 25F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1288, 1006);
+            this.Controls.Add(this.boxMou);
+            this.Controls.Add(this.boxOutDate);
+            this.Controls.Add(this.boxUnit);
+            this.Controls.Add(this.boxOrder);
+            this.Controls.Add(this.boxNom);
+            this.Controls.Add(this.boxAct);
             this.Controls.Add(this.boxCommunication);
             this.Controls.Add(this.boxRao);
             this.Controls.Add(this.boxMedical);
@@ -461,5 +537,11 @@ namespace CARDOC
         private CheckBox boxMedical;
         private CheckBox boxRao;
         private CheckBox boxCommunication;
+        private TextBox boxAct;
+        private TextBox boxNom;
+        private TextBox boxMou;
+        private TextBox boxOrder;
+        private TextBox boxUnit;
+        private DateTimePicker boxOutDate;
     }
 }

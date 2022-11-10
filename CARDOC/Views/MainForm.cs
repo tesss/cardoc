@@ -43,10 +43,10 @@ namespace CARDOC
             listHistory.AutoResizeColumns(ColumnHeaderAutoResizeStyle.ColumnContent);
             if (first)
             {
-                boxFilterDate.CustomFormat = boxDate.CustomFormat = Const.DateShortFormat;
+                boxFilterDate.CustomFormat = boxDate.CustomFormat = boxOutDate.CustomFormat = Const.DateShortFormat;
                 var start = 1970;
-                boxYear.AddSuggestions(Enumerable.Range(start, DateTime.Now.Year - start + 1).Select(x => x.ToString()).ToArray());
-                var c = DataProvider.Vehicles.Max(x => x.Parts.Count);
+                boxYear.AddSuggestions(Enumerable.Range(start, DateTime.Now.Year - start + 1).Reverse().Select(x => x.ToString()).ToArray());
+                var c = DataProvider.Vehicles.Max(x => x.Parts.Count) + 3;
                 for (var i = 0; i < c; i++)
                     AddPart();
                     if (listHistory.Items.Count > 0)
@@ -57,7 +57,7 @@ namespace CARDOC
                 else
                     InitVehicleUI(Vehicle.Empty);
                 WindowState = FormWindowState.Maximized;
-                boxDate.MaxDate = boxFilterDate.MaxDate = DateTime.Today.Date.AddMonths(1);
+                boxDate.MaxDate = boxFilterDate.MaxDate = boxOutDate.MaxDate = DateTime.Today.Date.AddMonths(1);
             }
             AddSuggesions();
         }
@@ -94,6 +94,14 @@ namespace CARDOC
             boxMedical.Checked = vehicle.Medical;
             boxRao.Checked = vehicle.Rao;
             boxCommunication.Checked = vehicle.Сommunication;
+
+            boxAct.Text = vehicle.Act;
+            boxNom.Text = vehicle.Nom;
+            boxOrder.Text = vehicle.Order;
+            boxMou.Text = vehicle.Mou;
+            boxUnit.Text = vehicle.Unit;
+            boxOutDate.Value = vehicle.OutDate;
+
             if (vehicle.MileageUnits?.ToLower() == "км" && vehicle.Mileage > 0)
                 boxMileageK.Text = vehicle.Mileage.ToString();
             else if (vehicle.MileageUnits?.ToLower() == "миль" && vehicle.Mileage > 0)
@@ -272,7 +280,6 @@ namespace CARDOC
 
         private void boxColor_Validating(object sender, System.ComponentModel.CancelEventArgs e)
         {
-            btnSave.Enabled = boxColor.Validate(string.IsNullOrEmpty(boxColor.Text));
         }
 
         private Vehicle GetVehicleFromView()
@@ -280,7 +287,7 @@ namespace CARDOC
             var vehicle = new Vehicle()
             {
                 Vin = boxVin.Text.Trim().ToUpper(),
-                Color = boxColor.Text.Trim().ToFirstUpperCase(),
+                Color = boxColor.Text.Trim(),
                 Date = boxDate.Value,
                 Manufacturer = boxManufacturer.Text.Trim().ToUpper(),
                 Model = boxModel.Text.Trim().ToTitleCase().ToUpper(),
@@ -289,7 +296,12 @@ namespace CARDOC
                 Сommunication = boxCommunication.Checked,
                 Rao = boxRao.Checked,
                 Type = boxType.Text.Trim().ToFirstUpperCase(),
-                Year = 0,
+                Act = boxAct.Text,
+                Nom = boxNom.Text.Trim().ToUpper(),
+                Order = boxOrder.Text.Trim().ToFirstUpperCase(),
+                Mou = boxMou.Text,
+                Unit = boxUnit.Text.Trim().ToUpper(),
+                OutDate = boxOutDate.Value,
                 Parts = new List<Models.Part>()
             };
             if (int.TryParse(boxYear.Text, out var year))
@@ -318,7 +330,7 @@ namespace CARDOC
                     Type = part.Type.ToFirstUpperCase(),
                     Quantity = part.Quantity,
                     Number = part.Number.ToUpper(),
-                    Notes = part.Notes.ToFirstUpperCase(),
+                    Notes = part.Notes.ToLower(),
                     Units = part.Units.ToLower(),
                     Index = part.Index
                 });
@@ -519,7 +531,23 @@ namespace CARDOC
 
         public void Lower(object sender, KeyPressEventArgs e)
         {
-            
+            if (char.IsLetter(e.KeyChar))
+                e.KeyChar = char.ToLower(e.KeyChar);
+        }
+
+        private void boxAct_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            boxAct.HandleNumeric(e);
+        }
+
+        private void boxMou_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            boxMou.HandleNumeric(e);
+        }
+
+        private void boxUnit_Enter(object sender, EventArgs e)
+        {
+            SwitchLanguage(false);
         }
     }
 }

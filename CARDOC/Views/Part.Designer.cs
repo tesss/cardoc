@@ -100,6 +100,7 @@ namespace CARDOC.Views
             this.boxType.TabIndex = 23;
             this.boxType.TextChanged += new System.EventHandler(this.boxType_TextChanged);
             this.boxType.Enter += new System.EventHandler(this.boxType_Enter);
+            this.boxType.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.boxType_KeyPress);
             this.boxType.Validating += new System.ComponentModel.CancelEventHandler(this.boxType_Validating);
             // 
             // boxNotes
@@ -112,6 +113,7 @@ namespace CARDOC.Views
             this.boxNotes.Size = new System.Drawing.Size(89, 39);
             this.boxNotes.TabIndex = 25;
             this.boxNotes.Enter += new System.EventHandler(this.boxNotes_Enter);
+            this.boxNotes.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.boxNotes_KeyPress);
             // 
             // lblIndex
             // 

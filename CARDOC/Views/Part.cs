@@ -23,6 +23,7 @@ namespace CARDOC.Views
 
         private void Part_Load(object sender, EventArgs e)
         {
+            AddSuggestions();
         }
 
         public string Name
@@ -323,6 +324,17 @@ namespace CARDOC.Views
         {
             if (char.IsLetter(e.KeyChar))
                 e.KeyChar = char.ToUpper(e.KeyChar);
+        }
+
+        private void boxType_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            
+        }
+
+        private void boxNotes_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            if (char.IsLetter(e.KeyChar))
+                e.KeyChar = char.ToLower(e.KeyChar);
         }
     }
 }
