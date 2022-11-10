@@ -23,12 +23,7 @@ namespace CARDOC.Views
 
         private void btnZip_Click(object sender, EventArgs e)
         {
-            foreach (var vehicle in Vehicles)
-                Documents.GenerateZip(new Models.Doc.ZipModel
-                {
-                    Vehicle = vehicle,
-                    Quantity = Vehicles.Count
-                });
+            Documents.GenerateZip(Vehicles);
         }
     }
 }

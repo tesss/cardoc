@@ -250,5 +250,152 @@ namespace CARDOC.Utils
 
             return retval;
         }
+
+        public static IEnumerable<int> GetDigits(this int source)
+        {
+            int individualFactor = 0;
+            int tennerFactor = Convert.ToInt32(Math.Pow(10, source.ToString().Length));
+            do
+            {
+                source -= tennerFactor * individualFactor;
+                tennerFactor /= 10;
+                individualFactor = source / tennerFactor;
+
+                yield return individualFactor;
+            } while (tennerFactor > 1);
+        }
+
+        public static string ToText(this int number)
+        {
+            if (number < 0 || number > 1000)
+                return number.ToString();
+            if (number == 0)
+                return "нуль";
+            var str = "";
+            var digits = number.GetDigits().ToArray();
+            Func<int, string> r1 = (n) =>
+            {
+                if(n == 0)
+                    return "";
+                if (n == 1)
+                    return "одне";
+                if (n == 2)
+                    return "два";
+                if (n == 3)
+                    return "три";
+                if (n == 4)
+                    return "чотири";
+                if (n == 5)
+                    return "п'ять";
+                if (n == 6)
+                    return "шість";
+                if (n == 7)
+                    return "сім";
+                if (n == 8)
+                    return "вісім";
+                if (n == 9)
+                    return "дев'ять";
+                return "";
+            };
+            Func<int, int, string> r2 = (n1, n2) =>
+            {
+                if (n1 == 0)
+                    return r1(n2);
+                if (n1 == 1)
+                {
+                    if (n2 == 1)
+                        return "одинадцять";
+                    if (n2 == 2)
+                        return "дванадцять";
+                    if (n2 == 3)
+                        return "тринадцять";
+                    if (n2 == 4)
+                        return "чотирнадцять";
+                    if (n2 == 5)
+                        return "п'ятнадцять";
+                    if (n2 == 6)
+                        return "шістнадцять";
+                    if (n2 == 7)
+                        return "сімнадцять";
+                    if (n2 == 8)
+                        return "вісімнадцять";
+                    if (n2 == 9)
+                        return "дев'ятнадцять";
+                } else
+                {
+                    if (n1 == 2)
+                        return "двадцять " + r1(n2);
+                    if (n1 == 3)
+                        return "тридцять " + r1(n2);
+                    if (n1 == 4)
+                        return "сорок " + r1(n2);
+                    if (n1 == 5)
+                        return "п'ятдесят " + r1(n2);
+                    if (n1 == 6)
+                        return "шістдесят " + r1(n2);
+                    if (n1 == 7)
+                        return "сімдесят " + r1(n2);
+                    if (n1 == 8)
+                        return "вісімдесят " + r1(n2);
+                    if (n1 == 9)
+                        return "дев'яносто " + r1(n2);
+                }
+                
+                return "";
+            };
+            Func<int, int, int, string> r3 = (n1, n2, n3) =>
+            {
+                if (n1 == 1)
+                    return "сто " + r2(n2, n3);
+                if (n1 == 2)
+                    return "двісті " + r2(n2, n3);
+                if (n1 == 3)
+                    return "триста " + r2(n2, n3);
+                if (n1 == 4)
+                    return "чотириста " + r2(n2, n3);
+                if (n1 == 5)
+                    return "п'ятсот " + r2(n2, n3);
+                if (n1 == 6)
+                    return "шістсот " + r2(n2, n3);
+                if (n1 == 7)
+                    return "сімсот " + r2(n2, n3);
+                if (n1 == 8)
+                    return "вісімсот " + r2(n2, n3);
+                if (n1 == 9)
+                    return "дев'ятсот " + r2(n2, n3);
+                return "";
+            };
+            if (digits.Length == 1)
+                return r1(digits[0]).Trim();
+            if(digits.Length == 2)
+                return r2(digits[0], digits[1]).Trim();
+            if (digits.Length == 3)
+                return r3(digits[0], digits[1], digits[2]).Trim();
+            return number.ToString();
+        }
+
+        public static string Titles(this int number)
+        {
+            var digits = number.GetDigits().ToArray();
+            if (digits.Length >= 2 && digits[digits.Length - 2] == 1)
+                return "найменувань";
+            switch (digits[digits[digits.Length - 1]])
+            {
+                case 1:
+                case 2:
+                case 3:
+                case 4:
+                    return "найменування";
+                case 0:
+                case 5:
+                case 6:
+                case 7:
+                case 8:
+                case 9:
+                    return "найменувань";
+                    break;
+            }
+            return "найменувань";
+        }
     }
 }

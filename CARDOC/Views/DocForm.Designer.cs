@@ -61,7 +61,7 @@
             this.boxZip.Size = new System.Drawing.Size(891, 126);
             this.boxZip.TabIndex = 108;
             this.boxZip.TabStop = false;
-            this.boxZip.Text = "Комплектація";
+            this.boxZip.Text = "Відомість комплектації ЗІП";
             // 
             // btnIn
             // 
@@ -81,7 +81,7 @@
             this.boxIn.Size = new System.Drawing.Size(891, 126);
             this.boxIn.TabIndex = 109;
             this.boxIn.TabStop = false;
-            this.boxIn.Text = "Акт прийому";
+            this.boxIn.Text = "Акт техстану приймання";
             // 
             // btnOut
             // 
@@ -101,7 +101,7 @@
             this.boxOut.Size = new System.Drawing.Size(891, 126);
             this.boxOut.TabIndex = 110;
             this.boxOut.TabStop = false;
-            this.boxOut.Text = "Акт передачі";
+            this.boxOut.Text = "Акт техстану передачі";
             // 
             // btnInGeneral
             // 
@@ -121,7 +121,7 @@
             this.boxInGeneral.Size = new System.Drawing.Size(891, 126);
             this.boxInGeneral.TabIndex = 111;
             this.boxInGeneral.TabStop = false;
-            this.boxInGeneral.Text = "Загальний акт прийому";
+            this.boxInGeneral.Text = "Відомість надходження ОВТ";
             // 
             // DocForm
             // 

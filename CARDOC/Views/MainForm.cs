@@ -193,6 +193,7 @@ namespace CARDOC
         private void btnAdd_Click(object sender, EventArgs e)
         {
             listHistory.RemoveValidation();
+            listHistory.SelectedItems.Clear();
             InitVehicleUI(Vehicle.Empty);
         }
 

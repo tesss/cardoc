@@ -77,6 +77,15 @@ namespace CARDOC.Models
             return (Manufacturer.ToUpper() + " " + Model.ToUpper()).RemoveInvalidChars();
         }
 
+        [JsonIgnore]
+        public string ExportFolder
+        {
+            get
+            {
+                return string.Format("{0}/{1} {2}", Const.ExportFolder, Date.ToString("dd.MM.yyyy"), GetTemplateName());
+            }
+        }
+
         public bool Equals(Vehicle? other)
         {
             return JsonHelper.SerialiseAlphabeticaly(this) == JsonHelper.SerialiseAlphabeticaly(other);

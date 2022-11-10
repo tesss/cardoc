@@ -28,4 +28,8 @@
     </EmbeddedResource>
   </ItemGroup>
 
+  <Target Name="PreBuild" BeforeTargets="PreBuildEvent">
+    <Exec Command="copy $(ProjectDir)DocTemplates\* $(ProjectDir)$(OutDir)\DocTemplates" />
+  </Target>
+
 </Project>
