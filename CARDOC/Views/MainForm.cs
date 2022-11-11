@@ -37,7 +37,7 @@ namespace CARDOC
                 lvi.SubItems.Add(new ListViewItem.ListViewSubItem(lvi, "Модель"){ Text = vehicle.Model });
                 lvi.SubItems.Add(new ListViewItem.ListViewSubItem(lvi, "Vin") { Text = vehicle.Vin });
                 lvi.SubItems.Add(new ListViewItem.ListViewSubItem(lvi, "Рік") { Text = vehicle.Year.ToString() });
-                lvi.SubItems.Add(new ListViewItem.ListViewSubItem(lvi, "Пробіг") { Text = vehicle.Mileage + vehicle.MileageUnits });
+                lvi.SubItems.Add(new ListViewItem.ListViewSubItem(lvi, "Пробіг") { Text = vehicle.Mileage + " " + vehicle.MileageUnits });
                 listHistory.Items.Add(lvi);
             }
             listHistory.AutoResizeColumns(ColumnHeaderAutoResizeStyle.ColumnContent);
@@ -408,8 +408,7 @@ namespace CARDOC
                 else
                     listHistory.SelectedItems.Clear();
                 vehicle = vehicle.Clone();
-                vehicle.Vin = "";
-                vehicle.Date = DateTime.Now.Date;
+                vehicle.Date = vehicle.OutDate = DateTime.Now.Date;
                 vehicle.Updated = DateTime.Now;
                 InitVehicleUI(vehicle);
                 IdleHandlerSet = false;

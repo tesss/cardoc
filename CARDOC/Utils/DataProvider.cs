@@ -97,6 +97,7 @@ namespace CARDOC.Utils
             if (existing != null)
                 Vehicles.Remove(existing);
             Vehicles.Add(vehicle);
+            Vehicles = Vehicles.OrderByDescending(x => x.Date).ToList();
             AddCache(vehicle);
             Write(vehicle.Date);
         }

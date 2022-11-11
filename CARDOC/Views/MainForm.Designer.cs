@@ -295,7 +295,7 @@ namespace CARDOC
             this.panelParts.FlowDirection = System.Windows.Forms.FlowDirection.TopDown;
             this.panelParts.Location = new System.Drawing.Point(13, 736);
             this.panelParts.Name = "panelParts";
-            this.panelParts.Size = new System.Drawing.Size(1144, 258);
+            this.panelParts.Size = new System.Drawing.Size(1144, 241);
             this.panelParts.TabIndex = 33;
             this.panelParts.WrapContents = false;
             this.panelParts.Paint += new System.Windows.Forms.PaintEventHandler(this.panelParts_Paint);
@@ -470,6 +470,7 @@ namespace CARDOC
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(10F, 25F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.AutoScroll = true;
             this.ClientSize = new System.Drawing.Size(1288, 1006);
             this.Controls.Add(this.boxMou);
             this.Controls.Add(this.boxOutDate);
