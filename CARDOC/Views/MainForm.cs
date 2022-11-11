@@ -29,6 +29,7 @@ namespace CARDOC
             listHistory.Columns.Add("Vin", 200);
             listHistory.Columns.Add("Рік", 100);
             listHistory.Columns.Add("Пробіг", 100);
+            listHistory.Columns.Add("Оновлено", 100);
             foreach (var vehicle in DataProvider.Vehicles)
             {
                 ListViewItem lvi = new ListViewItem{ Checked = false };
@@ -38,6 +39,7 @@ namespace CARDOC
                 lvi.SubItems.Add(new ListViewItem.ListViewSubItem(lvi, "Vin") { Text = vehicle.Vin });
                 lvi.SubItems.Add(new ListViewItem.ListViewSubItem(lvi, "Рік") { Text = vehicle.Year.ToString() });
                 lvi.SubItems.Add(new ListViewItem.ListViewSubItem(lvi, "Пробіг") { Text = vehicle.Mileage + " " + vehicle.MileageUnits });
+                lvi.SubItems.Add(new ListViewItem.ListViewSubItem(lvi, "Оновлено") { Text = vehicle.Updated.ToString("dd.MM.yyyy HH:mm:ss") });
                 listHistory.Items.Add(lvi);
             }
             listHistory.AutoResizeColumns(ColumnHeaderAutoResizeStyle.ColumnContent);
@@ -302,7 +304,8 @@ namespace CARDOC
                 Mou = boxMou.Text,
                 Unit = boxUnit.Text.Trim(),
                 OutDate = boxOutDate.Value,
-                Parts = new List<Models.Part>()
+                Parts = new List<Models.Part>(),
+                Updated = DateTime.Now
             };
             if (int.TryParse(boxYear.Text, out var year))
                 vehicle.Year = year;
