@@ -149,6 +149,9 @@ namespace CARDOC.Views
             0,
             0,
             0});
+            this.boxQuantity.ValueChanged += new System.EventHandler(this.boxQuantity_ValueChanged);
+            this.boxQuantity.Enter += new System.EventHandler(this.boxQuantity_Enter);
+            this.boxQuantity.MouseDown += new System.Windows.Forms.MouseEventHandler(this.boxQuantity_MouseDown);
             // 
             // boxNumber
             // 

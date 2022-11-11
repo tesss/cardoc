@@ -70,6 +70,8 @@ namespace CARDOC.Utils
                     return r1(n2);
                 if (n1 == 1)
                 {
+                    if (n2 == 0)
+                        return "десять";
                     if (n2 == 1)
                         return "одинадцять";
                     if (n2 == 2)
@@ -182,7 +184,6 @@ namespace CARDOC.Utils
         public static List<Models.Part> GetEquipmentAndZip(this Vehicle vehicle)
         {
             var parts = vehicle.Parts.Where(x => x.PartType == PartType.Equipment).ToList();
-            parts.Add(new Models.Part());
             parts.AddRange(vehicle.Parts.Where(x => x.PartType == PartType.Zip).ToList());
             return parts;
         }

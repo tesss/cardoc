@@ -75,7 +75,7 @@ namespace CARDOC.Utils
             {
                 try
                 {
-                    var document = DocumentFactory.Create(Const.DocTemplateFolder + "/inGeneral.docx", vehicles.ToArray());
+                    var document = DocumentFactory.Create(Const.DocTemplateFolder + "/inGeneral.docx", date.ToArray());
                     document.Generate(string.Format("{0}/{1} АКТ ПРИЙМАННЯ ЗАГАЛЬНИЙ - {2} шт.docx", Const.ExportFolder, date.Key.ToString(Const.DateFormat), date.Count()));
                 }
                 catch (Exception ex)
@@ -94,7 +94,10 @@ namespace CARDOC.Utils
             {
                 try
                 {
-                    var document = DocumentFactory.Create(Const.DocTemplateFolder + "/zero.docx", model.First());
+                    Vehicle vehicle = model.First();
+                    if (DataProvider.Templates.ContainsKey(vehicle.TemplateName))
+                        vehicle = DataProvider.Templates[vehicle.TemplateName];
+                    var document = DocumentFactory.Create(Const.DocTemplateFolder + "/zero.docx", vehicle);
                     document.Generate(string.Format("{0}/ШАБЛОН {1}.docx", Const.ExportFolder, model.Key));
                 }
                 catch (Exception ex)

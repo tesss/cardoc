@@ -43,7 +43,9 @@ namespace CARDOC.Views
         {
             get
             {
-                return int.Parse(boxQuantity.Text);
+                if(int.TryParse(boxQuantity.Text, out int quantity))
+                    return quantity;
+                return 1;
             }
 
             set
@@ -301,7 +303,7 @@ namespace CARDOC.Views
 
         public void boxName_Enter(object sender, EventArgs e)
         {
-            GetMainForm().SwitchLanguage(false);
+            GetMainForm().SwitchLanguage(Type == PartType.Tire.GetDescription());
         }
 
         private void boxNumber_Enter(object sender, EventArgs e)
@@ -335,6 +337,33 @@ namespace CARDOC.Views
         {
             if (char.IsLetter(e.KeyChar))
                 e.KeyChar = char.ToLower(e.KeyChar);
+        }
+
+        private void boxQuantity_ValueChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        bool selectByMouse = false;
+        private void boxQuantity_Enter(object sender, EventArgs e)
+        {
+            NumericUpDown box = sender as NumericUpDown;
+            box.Select();
+            box.Select(0, box.Text.Length);
+            if (MouseButtons == MouseButtons.Left)
+            {
+                selectByMouse = true;
+            }
+        }
+
+        private void boxQuantity_MouseDown(object sender, MouseEventArgs e)
+        {
+            NumericUpDown box = sender as NumericUpDown;
+            if (selectByMouse)
+            {
+                box.Select(0, box.Text.Length);
+                selectByMouse = false;
+            }
         }
     }
 }

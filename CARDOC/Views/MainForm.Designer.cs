@@ -419,7 +419,7 @@ namespace CARDOC
             this.boxNom.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
             this.boxNom.Location = new System.Drawing.Point(159, 677);
             this.boxNom.Name = "boxNom";
-            this.boxNom.PlaceholderText = "Ном. №";
+            this.boxNom.PlaceholderText = "Д2111000Y";
             this.boxNom.Size = new System.Drawing.Size(141, 39);
             this.boxNom.TabIndex = 16;
             // 
@@ -441,7 +441,7 @@ namespace CARDOC
             this.boxOrder.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
             this.boxOrder.Location = new System.Drawing.Point(306, 677);
             this.boxOrder.Name = "boxOrder";
-            this.boxOrder.PlaceholderText = "Наряд";
+            this.boxOrder.PlaceholderText = "Наряд ком. А0222 №2780 від 02.11.22";
             this.boxOrder.Size = new System.Drawing.Size(178, 39);
             this.boxOrder.TabIndex = 17;
             // 
@@ -451,7 +451,7 @@ namespace CARDOC
             this.boxUnit.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
             this.boxUnit.Location = new System.Drawing.Point(658, 677);
             this.boxUnit.Name = "boxUnit";
-            this.boxUnit.PlaceholderText = "В/Ч";
+            this.boxUnit.PlaceholderText = "в/ч А0222 м. Київ";
             this.boxUnit.Size = new System.Drawing.Size(256, 39);
             this.boxUnit.TabIndex = 19;
             this.boxUnit.Enter += new System.EventHandler(this.boxUnit_Enter);

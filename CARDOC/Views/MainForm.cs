@@ -46,7 +46,7 @@ namespace CARDOC
                 boxFilterDate.CustomFormat = boxDate.CustomFormat = boxOutDate.CustomFormat = Const.DateShortFormat;
                 var start = 1970;
                 boxYear.AddSuggestions(Enumerable.Range(start, DateTime.Now.Year - start + 1).Reverse().Select(x => x.ToString()).ToArray());
-                var c = DataProvider.Vehicles.Max(x => x.Parts.Count) + 3;
+                var c = DataProvider.Vehicles.Any() ? DataProvider.Vehicles.Max(x => x.Parts.Count) + 3 : 50;
                 for (var i = 0; i < c; i++)
                     AddPart();
                     if (listHistory.Items.Count > 0)
@@ -300,7 +300,7 @@ namespace CARDOC
                 Nom = boxNom.Text.Trim().ToUpper(),
                 Order = boxOrder.Text.Trim().ToFirstUpperCase(),
                 Mou = boxMou.Text,
-                Unit = boxUnit.Text.Trim().ToUpper(),
+                Unit = boxUnit.Text.Trim(),
                 OutDate = boxOutDate.Value,
                 Parts = new List<Models.Part>()
             };

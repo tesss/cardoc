@@ -60,10 +60,7 @@ namespace CARDOC.Models
                         new Part { Name = " ", Quantity = 4, Units = Const.DefaultPartUnits, Type = PartType.Tire.GetDescription() },
                         new Part { Name = "6СТ-", Quantity = 1, Units = Const.DefaultPartUnits, Type = PartType.Battery.GetDescription() },
                         new Part { Name = "Тягово-зчипний пристрій", Quantity = 1, Units = Const.DefaultPartUnits, Type = PartType.Equipment.GetDescription() }
-                    },
-                    Nom = "Д2111000Y",
-                    Order = "Наряд ком. А № від ",
-                    Unit = "в/ч А м."
+                    }
                 };
             } 
         }

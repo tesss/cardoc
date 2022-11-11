@@ -60,7 +60,7 @@
             // btnInGeneral
             // 
             this.btnInGeneral.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            this.btnInGeneral.Location = new System.Drawing.Point(306, 102);
+            this.btnInGeneral.Location = new System.Drawing.Point(31, 102);
             this.btnInGeneral.Name = "btnInGeneral";
             this.btnInGeneral.Size = new System.Drawing.Size(269, 70);
             this.btnInGeneral.TabIndex = 203;
@@ -71,7 +71,7 @@
             // btnOut
             // 
             this.btnOut.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            this.btnOut.Location = new System.Drawing.Point(31, 102);
+            this.btnOut.Location = new System.Drawing.Point(306, 102);
             this.btnOut.Name = "btnOut";
             this.btnOut.Size = new System.Drawing.Size(269, 70);
             this.btnOut.TabIndex = 202;
