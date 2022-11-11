@@ -15,6 +15,10 @@ namespace CARDOC.Utils
 {
     public static class Documents
     {
+        private static void OpenFolder()
+        {
+            Process.Start("explorer.exe", System.IO.Path.GetDirectoryName(Application.ExecutablePath) + "\\" + Const.ExportFolder);
+        }
         public static void Generate(List<Vehicle> vehicles, Action<Vehicle, string> action)
         {
             bool success = true;
@@ -35,14 +39,14 @@ namespace CARDOC.Utils
                 }
             }
             if (success)
-                Process.Start("explorer.exe", System.IO.Path.GetDirectoryName(Application.ExecutablePath) + "\\" + Const.ExportFolder);
+                OpenFolder();
         }
         public static void GenerateZip(List<Vehicle> vehicles)
         {
             Generate(vehicles, (vehicle, folderPath) =>
             {
                 var document = DocumentFactory.Create(Const.DocTemplateFolder + "/zip.docx", vehicle);
-                document.Generate(string.Format("{0}/ЗІП {1} - {2}.docx", folderPath, vehicle.GetTemplateName(), vehicle.Vin));
+                document.Generate(string.Format("{0}/ЗІП {1} - {2}.docx", folderPath, vehicle.TemplateName, vehicle.Vin));
             });
         }
 
@@ -51,7 +55,7 @@ namespace CARDOC.Utils
             Generate(vehicles, (vehicle, folderPath) =>
             {
                 var document = DocumentFactory.Create(Const.DocTemplateFolder + "/in.docx", vehicle);
-                document.Generate(string.Format("{0}/АКТ ПРИЙМАННЯ {1} - {2}.docx", folderPath, vehicle.GetTemplateName(), vehicle.Vin));
+                document.Generate(string.Format("{0}/АКТ ПРИЙМАННЯ {1} - {2}.docx", folderPath, vehicle.TemplateName, vehicle.Vin));
             });
         }
 
@@ -60,7 +64,7 @@ namespace CARDOC.Utils
             Generate(vehicles, (vehicle, folderPath) =>
             {
                 var document = DocumentFactory.Create(Const.DocTemplateFolder + "/out.docx", vehicle);
-                document.Generate(string.Format("{0}/АКТ ПЕРЕДАЧІ {1} - {2}.docx", folderPath, vehicle.GetTemplateName(), vehicle.Vin));
+                document.Generate(string.Format("{0}/АКТ ПЕРЕДАЧІ {1} - {2}.docx", folderPath, vehicle.TemplateName, vehicle.Vin));
             });
         }
 
@@ -71,8 +75,8 @@ namespace CARDOC.Utils
             {
                 try
                 {
-                    var document = DocumentFactory.Create(Const.DocTemplateFolder + "/inGeneral.docx", vehicles);
-                    document.Generate(string.Format("{0}/АКТ ПРИЙМАННЯ ЗАГАЛЬНИЙ {1} - {2}.docx", Const.ExportFolder, date.Key.ToString(Const.DateFormat), date.Count()));
+                    var document = DocumentFactory.Create(Const.DocTemplateFolder + "/inGeneral.docx", vehicles.ToArray());
+                    document.Generate(string.Format("{0}/{1} АКТ ПРИЙМАННЯ ЗАГАЛЬНИЙ - {2} шт.docx", Const.ExportFolder, date.Key.ToString(Const.DateFormat), date.Count()));
                 }
                 catch (Exception ex)
                 {
@@ -80,7 +84,26 @@ namespace CARDOC.Utils
                 }
             }
             if (success)
-                Process.Start("explorer.exe", System.IO.Path.GetDirectoryName(Application.ExecutablePath) + "\\" + Const.ExportFolder);
+                OpenFolder();
+        }
+
+        internal static void GenerateZero(List<Vehicle> vehicles)
+        {
+            bool success = true;
+            foreach (var model in vehicles.GroupBy(x => x.TemplateName))
+            {
+                try
+                {
+                    var document = DocumentFactory.Create(Const.DocTemplateFolder + "/zero.docx", model.First());
+                    document.Generate(string.Format("{0}/ШАБЛОН {1}.docx", Const.ExportFolder, model.Key));
+                }
+                catch (Exception ex)
+                {
+                    success = false;
+                }
+            }
+            if (success)
+                OpenFolder();
         }
     }
 }

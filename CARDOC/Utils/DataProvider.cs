@@ -137,7 +137,7 @@ namespace CARDOC.Utils
 
         private static string GetTemplatePath(Vehicle vehicle)
         {
-            return Const.TemplateFolder + "/" + vehicle.GetTemplateName() + ".json";
+            return Const.TemplateFolder + "/" + vehicle.TemplateName + ".json";
         }
 
         public static List<Vehicle> ReadAllTemplates()
@@ -163,20 +163,20 @@ namespace CARDOC.Utils
                     // todo: error handling
                 }
             }
-            Templates = templates.ToDictionary(x => x.GetTemplateName());
+            Templates = templates.ToDictionary(x => x.TemplateName);
             return templates;
         }
 
         public static void WriteTemplate(Vehicle vehicle)
         {
-            if (vehicle.GetTemplateName() == null)
+            if (vehicle.TemplateName == null)
                 return;
             using (StreamWriter r = new StreamWriter(GetTemplatePath(vehicle)))
             {
                 string json = JsonConvert.SerializeObject(vehicle);
                 r.Write(json);
             }
-            var templateName = vehicle.GetTemplateName();
+            var templateName = vehicle.TemplateName;
             if (Templates.ContainsKey(templateName))
                 Templates[templateName] = vehicle;
             else

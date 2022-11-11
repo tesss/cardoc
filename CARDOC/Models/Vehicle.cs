@@ -68,6 +68,17 @@ namespace CARDOC.Models
             } 
         }
 
+        [JsonIgnore]
+        public string TemplateName
+        {
+            get
+            {
+                if (string.IsNullOrEmpty(Manufacturer) || string.IsNullOrEmpty(Model))
+                    return null;
+                return (Manufacturer.ToUpper() + " " + Model.ToUpper()).RemoveInvalidChars();
+            }
+        }
+
         public bool Equals(Vehicle? other)
         {
             return JsonHelper.SerialiseAlphabeticaly(this) == JsonHelper.SerialiseAlphabeticaly(other);
@@ -91,7 +102,7 @@ namespace CARDOC.Models
         {
             get
             {
-                return string.Format("{0}/{1} {2}", Const.ExportFolder, Date.ToString(Const.DateFormat), this.GetTemplateName());
+                return string.Format("{0}/{1} {2}", Const.ExportFolder, Date.ToString(Const.DateFormat), this.TemplateName);
             }
         }
     }

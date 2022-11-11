@@ -291,7 +291,7 @@ namespace CARDOC
                 Date = boxDate.Value,
                 Manufacturer = boxManufacturer.Text.Trim().ToUpper(),
                 Model = boxModel.Text.Trim().ToTitleCase().ToUpper(),
-                Notes = boxNotes.Text.Trim().ToFirstUpperCase(),
+                Notes = boxNotes.Text.Trim(),
                 Medical = boxMedical.Checked,
                 Сommunication = boxCommunication.Checked,
                 Rao = boxRao.Checked,
@@ -447,8 +447,8 @@ namespace CARDOC
                 _vehicleUpdate = false;
                 return;
             }
-            var templateName = GetVehicleFromView().GetTemplateName();
-            if(templateName != null && DataProvider.Templates.TryGetValue(GetVehicleFromView().GetTemplateName(), out Vehicle vehicle))
+            var templateName = GetVehicleFromView().TemplateName;
+            if(templateName != null && DataProvider.Templates.TryGetValue(GetVehicleFromView().TemplateName, out Vehicle vehicle))
                 InitVehicleUI(vehicle, true);
         }
 

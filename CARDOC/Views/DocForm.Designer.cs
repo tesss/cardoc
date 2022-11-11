@@ -86,8 +86,9 @@
             this.button1.Name = "button1";
             this.button1.Size = new System.Drawing.Size(269, 70);
             this.button1.TabIndex = 204;
-            this.button1.Text = "Шаблон приймання";
+            this.button1.Text = "0-й шаблон";
             this.button1.UseVisualStyleBackColor = true;
+            this.button1.Click += new System.EventHandler(this.button1_Click);
             // 
             // DocForm
             // 
@@ -103,7 +104,7 @@
             this.MaximizeBox = false;
             this.MinimizeBox = false;
             this.Name = "DocForm";
-            this.Text = "Шаблон приймання";
+            this.Text = "Документи";
             this.ResumeLayout(false);
 
         }

@@ -189,6 +189,13 @@ namespace CARDOC.Utils
             return string.Concat(filename.Split(Path.GetInvalidFileNameChars()));
         }
 
+        public static string ToFirstLowerCase(this string str)
+        {
+            if (string.IsNullOrEmpty(str))
+                return str;
+            return char.ToLower(str.First()) + str.Substring(1);
+        }
+
         public static string ToFirstUpperCase(this string str)
         {
             if (string.IsNullOrEmpty(str))

@@ -18,13 +18,6 @@ namespace CARDOC.Utils
 {
     public static partial class Extensions
     {
-        public static string GetTemplateName(this Vehicle vehicle)
-        {
-            if (string.IsNullOrEmpty(vehicle.Manufacturer) || string.IsNullOrEmpty(vehicle.Model))
-                return null;
-            return (vehicle.Manufacturer.ToUpper() + " " + vehicle.Model.ToUpper()).RemoveInvalidChars();
-        }
-        
         public static IEnumerable<int> GetDigits(this int source)
         {
             int individualFactor = 0;
@@ -153,7 +146,7 @@ namespace CARDOC.Utils
             var digits = number.GetDigits().ToArray();
             if (digits.Length >= 2 && digits[digits.Length - 2] == 1)
                 return "найменувань";
-            switch (digits[digits[digits.Length - 1]])
+            switch (digits[digits.Length - 1])
             {
                 case 1:
                 case 2:
@@ -184,6 +177,14 @@ namespace CARDOC.Utils
         public static List<Models.Part> GetAggregates(this Vehicle vehicle)
         {
             return vehicle.Parts.Where(x => x.PartType == PartType.Aggregate).ToList();
+        }
+
+        public static List<Models.Part> GetEquipmentAndZip(this Vehicle vehicle)
+        {
+            var parts = vehicle.Parts.Where(x => x.PartType == PartType.Equipment).ToList();
+            parts.Add(new Models.Part());
+            parts.AddRange(vehicle.Parts.Where(x => x.PartType == PartType.Zip).ToList());
+            return parts;
         }
 
         public static Models.Part GetTires(this Vehicle vehicle)
@@ -221,7 +222,7 @@ namespace CARDOC.Utils
 
         public static int GetCategory(this Vehicle vehicle)
         {
-            if (DateTime.Now.Year > 0 && DateTime.Now.Year - vehicle.Year <= 3 && (vehicle.Mileage > 0 && vehicle.Mileage <= 3000 || vehicle.MileageH > 0 && vehicle.MileageH <= 1864))
+            if (DateTime.Now.Year > 0 && DateTime.Now.Year - vehicle.Year <= 3 && (vehicle.Mileage > 0 && (vehicle.Mileage <= 3000 && vehicle.MileageUnits == Const.UnitsKm || vehicle.MileageH <= 1864 && vehicle.MileageUnits == Const.UnitsMiles)))
                 return 1;
             return 2;
         }
@@ -265,6 +266,13 @@ namespace CARDOC.Utils
             if (string.IsNullOrEmpty(part.Notes))
                 return "";
             return part.Notes + ", ";
+        }
+
+        public static string GetNotes(this Vehicle vehicle)
+        {
+            if (string.IsNullOrEmpty(vehicle.Notes))
+                return "прибув без документів";
+            return vehicle.Notes.ToFirstLowerCase();
         }
     }
 }
