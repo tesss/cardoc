@@ -17,7 +17,6 @@ namespace CARDOC.Models
                 Vin = "ZCFD4098009036791",
                 Manufacturer = "IVECO",
                 Model = "SPA,40E13 W/M",
-                Updated = DateTime.Now,
                 Date = DateTime.Now,
                 Year = 2021,
                 Mileage = 30195,

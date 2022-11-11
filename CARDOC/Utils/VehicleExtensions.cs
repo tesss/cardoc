@@ -18,6 +18,10 @@ namespace CARDOC.Utils
 {
     public static partial class Extensions
     {
+        public static IOrderedEnumerable<Vehicle> OrderVehicles(this IEnumerable<Vehicle> input)
+        {
+            return input.OrderByDescending(x => x.Date).ThenByDescending(x => x.TemplateName).ThenBy(x => x.Vin);
+        }
         public static IEnumerable<int> GetDigits(this int source)
         {
             int individualFactor = 0;

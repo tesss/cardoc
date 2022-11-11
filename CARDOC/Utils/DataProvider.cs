@@ -46,7 +46,7 @@ namespace CARDOC.Utils
                     // todo: error handling
                 }
             }
-            Vehicles = vehicles.OrderByDescending(x => x.Date).ToList();
+            Vehicles = vehicles.OrderByDescending(x => x.Date).ThenByDescending(x => x.TemplateName).ThenBy(x => x.Vin).ToList();
             return vehicles;
         }
 
@@ -64,7 +64,7 @@ namespace CARDOC.Utils
                     string json = r.ReadToEnd();
                     if (!string.IsNullOrEmpty(json))
                     {
-                        return JsonConvert.DeserializeObject<List<Vehicle>>(json).OrderByDescending(x => x.Date).ToList();
+                        return JsonConvert.DeserializeObject<List<Vehicle>>(json).OrderVehicles().ToList();
                     }
                 }
             }
@@ -77,7 +77,7 @@ namespace CARDOC.Utils
 
         public static void Write(DateTime date)
         {
-            Vehicles = Vehicles.OrderByDescending(x => x.Date).ToList();
+            Vehicles = Vehicles.OrderVehicles().ToList();
             var vehicles = Vehicles.Where(x => x.Date.Date == date.Date).ToList();
             using (StreamWriter r = new StreamWriter(GetDataPath(date)))
             {
@@ -97,7 +97,7 @@ namespace CARDOC.Utils
             if (existing != null)
                 Vehicles.Remove(existing);
             Vehicles.Add(vehicle);
-            Vehicles = Vehicles.OrderByDescending(x => x.Date).ToList();
+            Vehicles = Vehicles.OrderVehicles().ToList();
             AddCache(vehicle);
             Write(vehicle.Date);
         }
