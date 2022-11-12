@@ -62,7 +62,7 @@ namespace CARDOC.Views
             // 
             this.btnRemove.Dock = System.Windows.Forms.DockStyle.Right;
             this.btnRemove.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            this.btnRemove.ForeColor = System.Drawing.Color.Brown;
+            this.btnRemove.ForeColor = System.Drawing.SystemColors.ControlText;
             this.btnRemove.Location = new System.Drawing.Point(1058, 0);
             this.btnRemove.Name = "btnRemove";
             this.btnRemove.Size = new System.Drawing.Size(70, 47);

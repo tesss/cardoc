@@ -7,6 +7,7 @@ using System.Windows.Forms;
 using static System.Windows.Forms.DataFormats;
 using static System.Windows.Forms.VisualStyles.VisualStyleElement;
 using Part = CARDOC.Views.Part;
+using TextBox = System.Windows.Forms.TextBox;
 
 namespace CARDOC
 {
@@ -45,6 +46,12 @@ namespace CARDOC
             listHistory.AutoResizeColumns(ColumnHeaderAutoResizeStyle.ColumnContent);
             if (first)
             {
+                foreach(var control in Controls)
+                {
+                    TextBox textBox = control as TextBox;
+                    if(textBox != null && textBox.Name != boxVin.Name)
+                        textBox.MouseClick += new MouseEventHandler(this.SelectAll);
+                }
                 boxFilterDate.CustomFormat = boxDate.CustomFormat = boxOutDate.CustomFormat = Const.DateShortFormat;
                 var start = 1970;
                 boxYear.AddSuggestions(Enumerable.Range(start, DateTime.Now.Year - start + 1).Reverse().Select(x => x.ToString()).ToArray());
@@ -358,7 +365,11 @@ namespace CARDOC
             }
             DataProvider.Write(vehicle);
             InitUI(false);
-            InitVehicleUI(Vehicle.Empty);
+            /* add clone from the last */
+            vehicle = vehicle.Clone();
+            vehicle.Date = vehicle.OutDate = DateTime.Now.Date;
+            vehicle.Updated = DateTime.Now;
+            InitVehicleUI(vehicle);
         }
 
         private void boxMileageK_Validating(object sender, System.ComponentModel.CancelEventArgs e)
@@ -418,10 +429,20 @@ namespace CARDOC
             }
         }
 
+        public void DoResize(bool resetAutoScroll)
+        {
+            panelParts.Width = Width - 50;
+            foreach (Part control in panelParts.Controls)
+                control.Width = panelParts.Width - 5;
+            if (panelParts.Controls.Count > 0)
+                panelParts.Height = panelParts.Controls.Count * ((panelParts.Controls[0] as Part).Height + 6);
+            if(resetAutoScroll)
+                AutoScrollPosition = new Point(0, panelParts.Top);
+        }
+
         private void MainForm_Resize(object sender, EventArgs e)
         {
-            foreach (Part control in panelParts.Controls)
-                control.Width = Width - 203;
+            DoResize(true);
         }
 
         private void boxFilterDate_ValueChanged(object sender, EventArgs e)
@@ -550,6 +571,11 @@ namespace CARDOC
         private void boxUnit_Enter(object sender, EventArgs e)
         {
             SwitchLanguage(false);
+        }
+
+        public void SelectAll(object sender, MouseEventArgs e)
+        {
+            (sender as TextBox).SelectAll();
         }
     }
 }

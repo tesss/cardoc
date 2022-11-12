@@ -23,6 +23,8 @@ namespace CARDOC.Views
 
         private void Part_Load(object sender, EventArgs e)
         {
+            boxNumber.MouseClick += new MouseEventHandler(GetMainForm().SelectAll);
+            boxNotes.MouseClick += new MouseEventHandler(GetMainForm().SelectAll);
             AddSuggestions();
         }
 
@@ -209,11 +211,14 @@ namespace CARDOC.Views
             {
                 var part = GetMainForm().AddPart();
                 part.Index = index;
+                GetMainForm().DoResize(false);
             }
         }
 
         private void boxName_KeyPress(object sender, KeyPressEventArgs e)
         {
+            if (char.IsLetter(e.KeyChar) && (Type == PartType.Tire.GetDescription() || Type == PartType.Battery.GetDescription()))
+                e.KeyChar = char.ToUpper(e.KeyChar);
             if (IsLast && !char.IsControl(e.KeyChar))
                 AddNewPart(Index + 1);
             if (e.KeyChar == (char)Keys.Back && boxName.Text == "")
@@ -239,7 +244,9 @@ namespace CARDOC.Views
             else if (keyData == Keys.Down)
             {
                 if (Next != null)
+                {
                     Next.Focus();
+                }
                 return true;
             }
             return base.ProcessCmdKey(ref msg, keyData);

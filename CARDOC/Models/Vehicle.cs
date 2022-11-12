@@ -78,6 +78,8 @@ namespace CARDOC.Models
 
         public bool Equals(Vehicle? other)
         {
+            other = other.Clone();
+            other.Updated = Updated;
             return JsonHelper.SerialiseAlphabeticaly(this) == JsonHelper.SerialiseAlphabeticaly(other);
         }
 
