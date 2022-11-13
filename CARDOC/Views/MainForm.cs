@@ -367,7 +367,6 @@ namespace CARDOC
             InitUI(false);
             /* add clone from the last */
             vehicle = vehicle.Clone();
-            vehicle.Date = vehicle.OutDate = DateTime.Now.Date;
             vehicle.Updated = DateTime.Now;
             InitVehicleUI(vehicle);
         }
@@ -422,7 +421,6 @@ namespace CARDOC
                 else
                     listHistory.SelectedItems.Clear();
                 vehicle = vehicle.Clone();
-                vehicle.Date = vehicle.OutDate = DateTime.Now.Date;
                 vehicle.Updated = DateTime.Now;
                 InitVehicleUI(vehicle);
                 IdleHandlerSet = false;

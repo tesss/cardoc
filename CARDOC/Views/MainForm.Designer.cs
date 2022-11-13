@@ -94,7 +94,7 @@ namespace CARDOC
             // 
             this.btnAdd.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.btnAdd.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            this.btnAdd.Location = new System.Drawing.Point(1052, 228);
+            this.btnAdd.Location = new System.Drawing.Point(1052, 235);
             this.btnAdd.Name = "btnAdd";
             this.btnAdd.Size = new System.Drawing.Size(101, 92);
             this.btnAdd.TabIndex = 101;
@@ -120,11 +120,11 @@ namespace CARDOC
             this.btnRemove.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.btnRemove.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
             this.btnRemove.ForeColor = System.Drawing.SystemColors.ControlText;
-            this.btnRemove.Location = new System.Drawing.Point(1052, 326);
+            this.btnRemove.Location = new System.Drawing.Point(1052, 333);
             this.btnRemove.Name = "btnRemove";
-            this.btnRemove.Size = new System.Drawing.Size(100, 58);
+            this.btnRemove.Size = new System.Drawing.Size(100, 51);
             this.btnRemove.TabIndex = 103;
-            this.btnRemove.Text = "―\r\n Видалити";
+            this.btnRemove.Text = "―\r\n";
             this.btnRemove.UseVisualStyleBackColor = true;
             this.btnRemove.Click += new System.EventHandler(this.btnRemove_Click);
             // 
@@ -313,7 +313,7 @@ namespace CARDOC
             // 
             this.btnSave.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.btnSave.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
-            this.btnSave.Location = new System.Drawing.Point(1053, 561);
+            this.btnSave.Location = new System.Drawing.Point(1052, 561);
             this.btnSave.Name = "btnSave";
             this.btnSave.Size = new System.Drawing.Size(100, 144);
             this.btnSave.TabIndex = 100;
@@ -360,7 +360,7 @@ namespace CARDOC
             this.btnDoc.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
             this.btnDoc.Location = new System.Drawing.Point(1052, 45);
             this.btnDoc.Name = "btnDoc";
-            this.btnDoc.Size = new System.Drawing.Size(100, 59);
+            this.btnDoc.Size = new System.Drawing.Size(100, 91);
             this.btnDoc.TabIndex = 107;
             this.btnDoc.Text = "▒  Документ";
             this.btnDoc.UseVisualStyleBackColor = true;
