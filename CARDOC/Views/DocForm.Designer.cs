@@ -33,6 +33,7 @@
             this.btnInGeneral = new System.Windows.Forms.Button();
             this.btnOut = new System.Windows.Forms.Button();
             this.button1 = new System.Windows.Forms.Button();
+            this.btnInOut = new System.Windows.Forms.Button();
             this.SuspendLayout();
             // 
             // btnZip
@@ -90,11 +91,23 @@
             this.button1.UseVisualStyleBackColor = true;
             this.button1.Click += new System.EventHandler(this.button1_Click);
             // 
+            // btnInOut
+            // 
+            this.btnInOut.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
+            this.btnInOut.Location = new System.Drawing.Point(306, 178);
+            this.btnInOut.Name = "btnInOut";
+            this.btnInOut.Size = new System.Drawing.Size(269, 70);
+            this.btnInOut.TabIndex = 205;
+            this.btnInOut.Text = "Акт приймання-передачі";
+            this.btnInOut.UseVisualStyleBackColor = true;
+            this.btnInOut.Click += new System.EventHandler(this.btnInOut_Click);
+            // 
             // DocForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(10F, 25F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(604, 281);
+            this.Controls.Add(this.btnInOut);
             this.Controls.Add(this.button1);
             this.Controls.Add(this.btnInGeneral);
             this.Controls.Add(this.btnOut);
@@ -115,5 +128,6 @@
         private Button btnInGeneral;
         private Button btnOut;
         private Button button1;
+        private Button btnInOut;
     }
 }

@@ -45,5 +45,10 @@ namespace CARDOC.Views
         {
             Documents.GenerateZero(Vehicles);
         }
+
+        private void btnInOut_Click(object sender, EventArgs e)
+        {
+            Documents.GenerateInOut(Vehicles);
+        }
     }
 }

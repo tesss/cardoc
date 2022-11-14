@@ -87,7 +87,26 @@ namespace CARDOC.Utils
                 OpenFolder();
         }
 
-        internal static void GenerateZero(List<Vehicle> vehicles)
+        public static void GenerateInOut(List<Vehicle> vehicles)
+        {
+            bool success = true;
+            foreach (var date in vehicles.GroupBy(x => x.OutDate))
+            {
+                try
+                {
+                    var document = DocumentFactory.Create(Const.DocTemplateFolder + "/inOut.docx", date.ToArray());
+                    document.Generate(string.Format("{0}/{1} АКТ ПРИЙМАННЯ ПЕРЕДАЧІ - {2} шт.docx", Const.ExportFolder, date.Key.ToString(Const.DateFormat), date.Count()));
+                }
+                catch (Exception ex)
+                {
+                    success = false;
+                }
+            }
+            if (success)
+                OpenFolder();
+        }
+
+        public static void GenerateZero(List<Vehicle> vehicles)
         {
             bool success = true;
             foreach (var model in vehicles.GroupBy(x => x.TemplateName))

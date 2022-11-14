@@ -111,6 +111,8 @@ namespace CARDOC
             boxUnit.Text = vehicle.Unit;
             boxOutDate.Value = vehicle.OutDate;
 
+            boxPrice.Text = vehicle.Price.ToString("G");
+
             if (vehicle.MileageUnits?.ToLower() == "км" && vehicle.Mileage > 0)
                 boxMileageK.Text = vehicle.Mileage.ToString();
             else if (vehicle.MileageUnits?.ToLower() == "миль" && vehicle.Mileage > 0)
@@ -316,6 +318,8 @@ namespace CARDOC
             };
             if (int.TryParse(boxYear.Text, out var year))
                 vehicle.Year = year;
+            if (decimal.TryParse(boxPrice.Text, out var price))
+                vehicle.Price = price;
             if (!string.IsNullOrEmpty(boxMileageK.Text))
             {
                 vehicle.Mileage = int.Parse(boxMileageK.Text);
@@ -574,6 +578,11 @@ namespace CARDOC
         public void SelectAll(object sender, MouseEventArgs e)
         {
             (sender as TextBox).SelectAll();
+        }
+
+        private void boxPrice_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            boxPrice.HandlePrice(e);
         }
     }
 }

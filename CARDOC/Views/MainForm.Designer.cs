@@ -60,6 +60,7 @@ namespace CARDOC
             this.boxOrder = new System.Windows.Forms.TextBox();
             this.boxUnit = new System.Windows.Forms.TextBox();
             this.boxOutDate = new System.Windows.Forms.DateTimePicker();
+            this.boxPrice = new System.Windows.Forms.TextBox();
             this.SuspendLayout();
             // 
             // listHistory
@@ -292,9 +293,9 @@ namespace CARDOC
             // 
             this.panelParts.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
             this.panelParts.FlowDirection = System.Windows.Forms.FlowDirection.TopDown;
-            this.panelParts.Location = new System.Drawing.Point(0, 747);
+            this.panelParts.Location = new System.Drawing.Point(0, 730);
             this.panelParts.Name = "panelParts";
-            this.panelParts.Size = new System.Drawing.Size(1288, 259);
+            this.panelParts.Size = new System.Drawing.Size(1288, 276);
             this.panelParts.TabIndex = 33;
             this.panelParts.WrapContents = false;
             this.panelParts.Paint += new System.Windows.Forms.PaintEventHandler(this.panelParts_Paint);
@@ -313,7 +314,7 @@ namespace CARDOC
             // 
             this.btnSave.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.btnSave.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
-            this.btnSave.Location = new System.Drawing.Point(1052, 561);
+            this.btnSave.Location = new System.Drawing.Point(1050, 560);
             this.btnSave.Name = "btnSave";
             this.btnSave.Size = new System.Drawing.Size(100, 144);
             this.btnSave.TabIndex = 100;
@@ -441,7 +442,7 @@ namespace CARDOC
             this.boxOrder.Location = new System.Drawing.Point(318, 665);
             this.boxOrder.Name = "boxOrder";
             this.boxOrder.PlaceholderText = "Наряд ком. А0222 №2780 від 02.11.22";
-            this.boxOrder.Size = new System.Drawing.Size(204, 39);
+            this.boxOrder.Size = new System.Drawing.Size(70, 39);
             this.boxOrder.TabIndex = 17;
             // 
             // boxUnit
@@ -465,12 +466,24 @@ namespace CARDOC
             this.boxOutDate.Size = new System.Drawing.Size(126, 39);
             this.boxOutDate.TabIndex = 20;
             // 
+            // boxPrice
+            // 
+            this.boxPrice.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.boxPrice.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
+            this.boxPrice.Location = new System.Drawing.Point(394, 665);
+            this.boxPrice.Name = "boxPrice";
+            this.boxPrice.PlaceholderText = "Ціна";
+            this.boxPrice.Size = new System.Drawing.Size(128, 39);
+            this.boxPrice.TabIndex = 110;
+            this.boxPrice.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.boxPrice_KeyPress);
+            // 
             // MainForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(10F, 25F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.AutoScroll = true;
             this.ClientSize = new System.Drawing.Size(1288, 1006);
+            this.Controls.Add(this.boxPrice);
             this.Controls.Add(this.boxMou);
             this.Controls.Add(this.boxOutDate);
             this.Controls.Add(this.boxUnit);
@@ -543,5 +556,6 @@ namespace CARDOC
         private TextBox boxOrder;
         private TextBox boxUnit;
         private DateTimePicker boxOutDate;
+        private TextBox boxPrice;
     }
 }
