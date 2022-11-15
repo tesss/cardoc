@@ -95,7 +95,7 @@ namespace CARDOC.Utils
                 try
                 {
                     var document = DocumentFactory.Create(Const.DocTemplateFolder + "/inOut.docx", date.ToArray());
-                    document.Generate(string.Format("{0}/{1} АКТ ПРИЙМАННЯ ПЕРЕДАЧІ - {2} шт.docx", Const.ExportFolder, date.Key.ToString(Const.DateFormat), date.Count()));
+                    document.Generate(string.Format("{0}/{1} АКТ ПРИЙМАННЯ-ПЕРЕДАЧІ - {2} шт.docx", Const.ExportFolder, date.Key.ToString(Const.DateFormat), date.Count()));
                 }
                 catch (Exception ex)
                 {

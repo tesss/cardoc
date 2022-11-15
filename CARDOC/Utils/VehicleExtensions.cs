@@ -1,7 +1,9 @@
 ﻿using CARDOC.Models;
 using CARDOC.Views;
+using DocumentFormat.OpenXml.Drawing;
 using DocumentFormat.OpenXml.EMMA;
 using DocumentFormat.OpenXml.ExtendedProperties;
+using DocumentFormat.OpenXml.Office2019.Excel.RichData2;
 using DocumentFormat.OpenXml.Wordprocessing;
 using Microsoft.CodeAnalysis.CSharp.Syntax;
 using System;
@@ -10,6 +12,7 @@ using System.ComponentModel;
 using System.Globalization;
 using System.Linq;
 using System.Reflection;
+using System.Runtime.CompilerServices;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
@@ -22,34 +25,95 @@ namespace CARDOC.Utils
         {
             return input.OrderByDescending(x => x.Date).ThenByDescending(x => x.TemplateName).ThenBy(x => x.Vin);
         }
-        public static IEnumerable<int> GetDigits(this int source)
+        public static IEnumerable<int> GetDigits(this decimal s)
         {
-            int individualFactor = 0;
-            int tennerFactor = Convert.ToInt32(Math.Pow(10, source.ToString().Length));
+            Int64 source = (Int64)s;
+            Int64 individualFactor = 0;
+            var tennerFactor = Convert.ToInt64(Math.Pow(10, source.ToString().Length));
             do
             {
                 source -= tennerFactor * individualFactor;
                 tennerFactor /= 10;
                 individualFactor = source / tennerFactor;
 
-                yield return individualFactor;
+                yield return (int)individualFactor;
             } while (tennerFactor > 1);
         }
 
-        public static string ToText(this int number)
+        public static string ToText(this int number, int gender = 0)
         {
-            if (number < 0 || number > 1000)
+            return Convert.ToInt64(number).ToText(gender);
+        }
+
+        public static string ToText(this Int64 number, int gender = 0)
+        {
+            if (number < 0)
                 return number.ToString();
             if (number == 0)
                 return "нуль";
             var str = "";
-            var digits = number.GetDigits().ToArray();
-            Func<int, string> r1 = (n) =>
+            var digits = ((decimal)number).GetDigits().ToArray();
+            Func<int[], int, string> getWord = (digits, length) =>
+            {
+                var word = "";
+                var i = digits.Length - length + 1;
+                var j = i + 1;
+                if (i > 0 && digits[i] == 1)
+                {
+                    if (length == 6)
+                        word = " тисяч ";
+                    else if (length == 9)
+                        word = " мільйонів ";
+                    else if (length == 12)
+                        word = " мільярдів ";
+                } else if (digits[j] == 1)
+                {
+                    if (length == 6)
+                        word = " тисяча ";
+                    else if (length == 9)
+                        word = " мільйон ";
+                    else if (length == 12)
+                        word = " мільярд ";
+                } else if (digits[j] >= 2 && digits[j] <= 4)
+                {
+                    if (length == 6)
+                        word = " тисячі ";
+                    else if (length == 9)
+                        word = " мільйони ";
+                    else if (length == 12)
+                        word = " мільярди ";
+                } else if (digits[j] >= 2 && digits[j] <= 4)
+                {
+                    if (length == 6)
+                        word = " тисячі ";
+                    else if (length == 9)
+                        word = " мільйони ";
+                    else if (length == 12)
+                        word = " мільярди ";
+                } else if(digits[j] >= 5)
+                {
+                    if(length == 6)
+                        word = " тисяч ";
+                    else if (length == 9)
+                        word = " мільйонів ";
+                    else if (length == 12)
+                        word = " мільярдів ";
+                }
+                return word;
+            };
+            Func<int, int, string> r1 = (n, gender) =>
             {
                 if(n == 0)
                     return "";
                 if (n == 1)
-                    return "одне";
+                {
+                    if (gender == 0)
+                        return "одне";
+                    if(gender == 1)
+                        return "один";
+                    if (gender == 2)
+                        return "один";
+                }
                 if (n == 2)
                     return "два";
                 if (n == 3)
@@ -68,10 +132,10 @@ namespace CARDOC.Utils
                     return "дев'ять";
                 return "";
             };
-            Func<int, int, string> r2 = (n1, n2) =>
+            Func<int, int, int, string> r2 = (n1, n2, gender) =>
             {
                 if (n1 == 0)
-                    return r1(n2);
+                    return r1(n2, gender);
                 if (n1 == 1)
                 {
                     if (n2 == 0)
@@ -97,59 +161,127 @@ namespace CARDOC.Utils
                 } else
                 {
                     if (n1 == 2)
-                        return "двадцять " + r1(n2);
+                        return "двадцять " + r1(n2, gender);
                     if (n1 == 3)
-                        return "тридцять " + r1(n2);
+                        return "тридцять " + r1(n2, gender);
                     if (n1 == 4)
-                        return "сорок " + r1(n2);
+                        return "сорок " + r1(n2, gender);
                     if (n1 == 5)
-                        return "п'ятдесят " + r1(n2);
+                        return "п'ятдесят " + r1(n2, gender);
                     if (n1 == 6)
-                        return "шістдесят " + r1(n2);
+                        return "шістдесят " + r1(n2, gender);
                     if (n1 == 7)
-                        return "сімдесят " + r1(n2);
+                        return "сімдесят " + r1(n2, gender);
                     if (n1 == 8)
-                        return "вісімдесят " + r1(n2);
+                        return "вісімдесят " + r1(n2, gender);
                     if (n1 == 9)
-                        return "дев'яносто " + r1(n2);
+                        return "дев'яносто " + r1(n2, gender);
                 }
                 
                 return "";
             };
-            Func<int, int, int, string> r3 = (n1, n2, n3) =>
+            Func<int, int, int, int, string> r3 = (n1, n2, n3, gender) =>
             {
                 if (n1 == 1)
-                    return "сто " + r2(n2, n3);
+                    return "сто " + r2(n2, n3, gender);
                 if (n1 == 2)
-                    return "двісті " + r2(n2, n3);
+                    return "двісті " + r2(n2, n3, gender);
                 if (n1 == 3)
-                    return "триста " + r2(n2, n3);
+                    return "триста " + r2(n2, n3, gender);
                 if (n1 == 4)
-                    return "чотириста " + r2(n2, n3);
+                    return "чотириста " + r2(n2, n3, gender);
                 if (n1 == 5)
-                    return "п'ятсот " + r2(n2, n3);
+                    return "п'ятсот " + r2(n2, n3, gender);
                 if (n1 == 6)
-                    return "шістсот " + r2(n2, n3);
+                    return "шістсот " + r2(n2, n3, gender);
                 if (n1 == 7)
-                    return "сімсот " + r2(n2, n3);
+                    return "сімсот " + r2(n2, n3, gender);
                 if (n1 == 8)
-                    return "вісімсот " + r2(n2, n3);
+                    return "вісімсот " + r2(n2, n3, gender);
                 if (n1 == 9)
-                    return "дев'ятсот " + r2(n2, n3);
+                    return "дев'ятсот " + r2(n2, n3, gender);
+                return "";
+            };
+            Func<int[], int, string> r4_6 = (digits, gender) =>
+            {
+                var thousand = getWord(digits, 6);
+                if (digits.Length == 4)
+                    return r1(digits[0], 2) + thousand + r3(digits[1], digits[2], digits[3], gender);
+                if (digits.Length == 5)
+                    return r2(digits[0], digits[1], 2) + thousand + r3(digits[2], digits[3], digits[4], gender);
+                if (digits.Length == 6)
+                    return r3(digits[0], digits[1], digits[2], 2) + thousand + r3(digits[3], digits[4], digits[5], gender);
+                return "";
+            };
+            Func<int[], int, string> r7_9 = (digits, gender) =>
+            {
+                var million = getWord(digits, 9);
+                if (digits.Length == 7)
+                    return r1(digits[0], 1) + million + r4_6(digits.Skip(1).Take(6).ToArray(), gender);
+                if (digits.Length == 8)
+                    return r2(digits[0], digits[1], 2) + million + r4_6(digits.Skip(2).Take(6).ToArray(), gender);
+                if (digits.Length == 9)
+                    return r3(digits[0], digits[1], digits[2], 1) + million + r4_6(digits.Skip(2).Take(6).ToArray(), gender);
+                return "";
+            };
+            Func<int[], int, string> r10_12 = (digits, gender) =>
+            {
+                var billion = getWord(digits, 12);
+                if (digits.Length == 10)
+                    return r1(digits[0], 1) + billion + r7_9(digits.Skip(1).Take(9).ToArray(), gender);
+                if (digits.Length == 11)
+                    return r2(digits[0], digits[1], 1) + billion + r7_9(digits.Skip(2).Take(9).ToArray(), gender);
+                if (digits.Length == 12)
+                    return r3(digits[0], digits[1], digits[2], 1) + billion + r7_9(digits.Skip(2).Take(9).ToArray(), gender);
                 return "";
             };
             if (digits.Length == 1)
-                return r1(digits[0]).Trim();
+                return r1(digits[0], gender).Trim();
             if(digits.Length == 2)
-                return r2(digits[0], digits[1]).Trim();
+                return r2(digits[0], digits[1], gender).Trim();
             if (digits.Length == 3)
-                return r3(digits[0], digits[1], digits[2]).Trim();
+                return r3(digits[0], digits[1], digits[2], gender).Trim();
+            if (digits.Length > 3 && digits.Length <= 6)
+                return r4_6(digits, gender);
+            if (digits.Length > 6 && digits.Length <= 9)
+                return r7_9(digits, gender);
+            if (digits.Length > 9 && digits.Length <= 12)
+                return r10_12(digits, gender);
             return number.ToString();
+        }
+
+        public static string ToPrice(this decimal number)
+        {
+            var uah = Math.Truncate(number);
+            var digits = uah.GetDigits().ToArray();
+            var str = Convert.ToInt64(uah).ToText(2);
+            var last = digits.Last();
+            if (last == 0 || digits[digits.Count() - 1] == 1)
+                str += " гривень ";
+            if(last == 1)
+                str += " гривня ";
+            if (last > 1 && last <= 4)
+                str += " гривні ";
+            if(last > 4)
+                str += " гривень ";
+            var cop = Convert.ToDecimal((number - uah) * 100);
+            digits = cop.GetDigits().ToArray();
+            str += Convert.ToInt64(cop).ToText(2) + " ";
+            last = digits.Last();
+            if (last == 0 || digits[digits.Count() - 1] == 1)
+                str += " копійок";
+            if (last == 1)
+                str += " копійка";
+            if (last > 1 && last <= 4)
+                str += " копійки";
+            if (last > 4)
+                str += " копійок";
+            return str;
         }
 
         public static string Titles(this int number)
         {
-            var digits = number.GetDigits().ToArray();
+            var digits = Convert.ToDecimal(number).GetDigits().ToArray();
             if (digits.Length >= 2 && digits[digits.Length - 2] == 1)
                 return "найменувань";
             switch (digits[digits.Length - 1])

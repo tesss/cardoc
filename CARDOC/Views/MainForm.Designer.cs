@@ -409,7 +409,7 @@ namespace CARDOC
             this.boxAct.Location = new System.Drawing.Point(12, 665);
             this.boxAct.Name = "boxAct";
             this.boxAct.PlaceholderText = "№ акту";
-            this.boxAct.Size = new System.Drawing.Size(153, 39);
+            this.boxAct.Size = new System.Drawing.Size(100, 39);
             this.boxAct.TabIndex = 15;
             this.boxAct.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.boxAct_KeyPress);
             // 
@@ -417,20 +417,20 @@ namespace CARDOC
             // 
             this.boxNom.CharacterCasing = System.Windows.Forms.CharacterCasing.Upper;
             this.boxNom.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            this.boxNom.Location = new System.Drawing.Point(171, 665);
+            this.boxNom.Location = new System.Drawing.Point(118, 665);
             this.boxNom.Name = "boxNom";
             this.boxNom.PlaceholderText = "Д2111000Y";
-            this.boxNom.Size = new System.Drawing.Size(141, 39);
+            this.boxNom.Size = new System.Drawing.Size(194, 39);
             this.boxNom.TabIndex = 16;
             // 
             // boxMou
             // 
             this.boxMou.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.boxMou.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            this.boxMou.Location = new System.Drawing.Point(528, 665);
+            this.boxMou.Location = new System.Drawing.Point(591, 665);
             this.boxMou.Name = "boxMou";
             this.boxMou.PlaceholderText = "МОУ №";
-            this.boxMou.Size = new System.Drawing.Size(162, 39);
+            this.boxMou.Size = new System.Drawing.Size(99, 39);
             this.boxMou.TabIndex = 18;
             this.boxMou.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.boxMou_KeyPress);
             // 
@@ -442,7 +442,7 @@ namespace CARDOC
             this.boxOrder.Location = new System.Drawing.Point(318, 665);
             this.boxOrder.Name = "boxOrder";
             this.boxOrder.PlaceholderText = "Наряд ком. А0222 №2780 від 02.11.22";
-            this.boxOrder.Size = new System.Drawing.Size(70, 39);
+            this.boxOrder.Size = new System.Drawing.Size(16, 39);
             this.boxOrder.TabIndex = 17;
             // 
             // boxUnit
@@ -470,10 +470,10 @@ namespace CARDOC
             // 
             this.boxPrice.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.boxPrice.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            this.boxPrice.Location = new System.Drawing.Point(394, 665);
+            this.boxPrice.Location = new System.Drawing.Point(340, 665);
             this.boxPrice.Name = "boxPrice";
             this.boxPrice.PlaceholderText = "Ціна";
-            this.boxPrice.Size = new System.Drawing.Size(128, 39);
+            this.boxPrice.Size = new System.Drawing.Size(245, 39);
             this.boxPrice.TabIndex = 110;
             this.boxPrice.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.boxPrice_KeyPress);
             // 

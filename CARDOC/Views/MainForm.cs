@@ -111,7 +111,7 @@ namespace CARDOC
             boxUnit.Text = vehicle.Unit;
             boxOutDate.Value = vehicle.OutDate;
 
-            boxPrice.Text = vehicle.Price.ToString("G");
+            boxPrice.Text = string.Format("{0:N}", vehicle.Price);
 
             if (vehicle.MileageUnits?.ToLower() == "км" && vehicle.Mileage > 0)
                 boxMileageK.Text = vehicle.Mileage.ToString();
