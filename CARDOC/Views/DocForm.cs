@@ -75,7 +75,7 @@ namespace CARDOC.Views
             boxInfo.Text = "";
             foreach(var g in Vehicles.GroupBy(x => x.ExportFolder))
             {
-                boxInfo.AppendText(g.Key.Replace(Const.ExportFolder + "/", "").PadRight(50) + g.Count().ToString() + "\n");
+                boxInfo.AppendText(g.Key.Replace(Const.ExportFolder + "/", "").PadRight(70) + g.Count().ToString().PadLeft(3));
                 boxInfo.AppendText(Environment.NewLine);
             }
             boxOutDate.Value = DateTime.Now.Date;

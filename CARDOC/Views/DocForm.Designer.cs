@@ -45,9 +45,9 @@
             // btnZip
             // 
             this.btnZip.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            this.btnZip.Location = new System.Drawing.Point(1123, 6);
+            this.btnZip.Location = new System.Drawing.Point(956, 6);
             this.btnZip.Name = "btnZip";
-            this.btnZip.Size = new System.Drawing.Size(269, 70);
+            this.btnZip.Size = new System.Drawing.Size(168, 70);
             this.btnZip.TabIndex = 200;
             this.btnZip.Text = "Відомість комплектації ЗІП";
             this.btnZip.UseVisualStyleBackColor = true;
@@ -56,9 +56,9 @@
             // btnIn
             // 
             this.btnIn.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            this.btnIn.Location = new System.Drawing.Point(1123, 82);
+            this.btnIn.Location = new System.Drawing.Point(956, 82);
             this.btnIn.Name = "btnIn";
-            this.btnIn.Size = new System.Drawing.Size(269, 70);
+            this.btnIn.Size = new System.Drawing.Size(168, 70);
             this.btnIn.TabIndex = 201;
             this.btnIn.Text = "Акт техстану приймання";
             this.btnIn.UseVisualStyleBackColor = true;
@@ -67,9 +67,9 @@
             // btnInGeneral
             // 
             this.btnInGeneral.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            this.btnInGeneral.Location = new System.Drawing.Point(1123, 310);
+            this.btnInGeneral.Location = new System.Drawing.Point(956, 310);
             this.btnInGeneral.Name = "btnInGeneral";
-            this.btnInGeneral.Size = new System.Drawing.Size(269, 70);
+            this.btnInGeneral.Size = new System.Drawing.Size(168, 70);
             this.btnInGeneral.TabIndex = 203;
             this.btnInGeneral.Text = "Відомість надходження ОВТ";
             this.btnInGeneral.UseVisualStyleBackColor = true;
@@ -78,9 +78,9 @@
             // btnOut
             // 
             this.btnOut.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            this.btnOut.Location = new System.Drawing.Point(1123, 158);
+            this.btnOut.Location = new System.Drawing.Point(956, 158);
             this.btnOut.Name = "btnOut";
-            this.btnOut.Size = new System.Drawing.Size(269, 70);
+            this.btnOut.Size = new System.Drawing.Size(168, 70);
             this.btnOut.TabIndex = 202;
             this.btnOut.Text = "Акт техстану передачі";
             this.btnOut.UseVisualStyleBackColor = true;
@@ -89,9 +89,9 @@
             // button1
             // 
             this.button1.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            this.button1.Location = new System.Drawing.Point(1123, 386);
+            this.button1.Location = new System.Drawing.Point(956, 386);
             this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(269, 70);
+            this.button1.Size = new System.Drawing.Size(168, 70);
             this.button1.TabIndex = 204;
             this.button1.Text = "0-й шаблон";
             this.button1.UseVisualStyleBackColor = true;
@@ -100,9 +100,9 @@
             // btnInOut
             // 
             this.btnInOut.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            this.btnInOut.Location = new System.Drawing.Point(1123, 234);
+            this.btnInOut.Location = new System.Drawing.Point(956, 234);
             this.btnInOut.Name = "btnInOut";
-            this.btnInOut.Size = new System.Drawing.Size(269, 70);
+            this.btnInOut.Size = new System.Drawing.Size(168, 70);
             this.btnInOut.TabIndex = 205;
             this.btnInOut.Text = "Акт приймання-передачі";
             this.btnInOut.UseVisualStyleBackColor = true;
@@ -115,7 +115,8 @@
             this.boxInfo.Multiline = true;
             this.boxInfo.Name = "boxInfo";
             this.boxInfo.ReadOnly = true;
-            this.boxInfo.Size = new System.Drawing.Size(1105, 146);
+            this.boxInfo.ScrollBars = System.Windows.Forms.ScrollBars.Vertical;
+            this.boxInfo.Size = new System.Drawing.Size(938, 146);
             this.boxInfo.TabIndex = 206;
             // 
             // boxAct
@@ -134,14 +135,13 @@
             this.boxOrder.Location = new System.Drawing.Point(299, 173);
             this.boxOrder.Name = "boxOrder";
             this.boxOrder.PlaceholderText = "Наряд ком. А0222 №2780 від 02.11.22";
-            this.boxOrder.Size = new System.Drawing.Size(425, 39);
+            this.boxOrder.Size = new System.Drawing.Size(258, 39);
             this.boxOrder.TabIndex = 208;
             // 
             // boxUnit
             // 
-            this.boxUnit.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.boxUnit.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            this.boxUnit.Location = new System.Drawing.Point(730, 173);
+            this.boxUnit.Location = new System.Drawing.Point(563, 173);
             this.boxUnit.Name = "boxUnit";
             this.boxUnit.PlaceholderText = "в/ч А0222 м. Київ";
             this.boxUnit.Size = new System.Drawing.Size(216, 39);
@@ -150,10 +150,9 @@
             // 
             // boxOutDate
             // 
-            this.boxOutDate.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.boxOutDate.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
             this.boxOutDate.Format = System.Windows.Forms.DateTimePickerFormat.Custom;
-            this.boxOutDate.Location = new System.Drawing.Point(952, 173);
+            this.boxOutDate.Location = new System.Drawing.Point(785, 173);
             this.boxOutDate.Name = "boxOutDate";
             this.boxOutDate.Size = new System.Drawing.Size(165, 39);
             this.boxOutDate.TabIndex = 210;
@@ -172,7 +171,7 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(10F, 25F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(1403, 464);
+            this.ClientSize = new System.Drawing.Size(1297, 464);
             this.Controls.Add(this.boxNom);
             this.Controls.Add(this.boxOutDate);
             this.Controls.Add(this.boxUnit);
