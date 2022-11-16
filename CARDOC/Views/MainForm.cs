@@ -47,7 +47,12 @@ namespace CARDOC
                 lvi.SubItems.Add(new ListViewItem.ListViewSubItem(lvi, "Модель"){ Text = vehicle.Model });
                 lvi.SubItems.Add(new ListViewItem.ListViewSubItem(lvi, "Vin") { Text = vehicle.Vin });
                 lvi.SubItems.Add(new ListViewItem.ListViewSubItem(lvi, "Рік") { Text = vehicle.Year.ToString() });
-                lvi.SubItems.Add(new ListViewItem.ListViewSubItem(lvi, "Пробіг") { Text = vehicle.Mileage + " " + vehicle.MileageUnits });
+                string mileage = "";
+                if (vehicle.Mileage != 0)
+                    mileage = vehicle.Mileage + " " + vehicle.MileageUnits;
+                if(vehicle.MileageH != 0)
+                    mileage += " " + vehicle.MileageH + " " + Const.UnitsHours;
+                lvi.SubItems.Add(new ListViewItem.ListViewSubItem(lvi, "Пробіг") { Text = mileage.Trim() });
                 lvi.SubItems.Add(new ListViewItem.ListViewSubItem(lvi, "Оновлено") { Text = vehicle.Updated.ToString("dd.MM.yyyy HH:mm:ss") });
                 listHistory.Items.Add(lvi);
             }
@@ -96,7 +101,7 @@ namespace CARDOC
             return panelParts.Controls[index] as Part;
         }
 
-        private async void InitVehicleUI(Vehicle vehicle, bool fromTemplate = false)
+        public async void InitVehicleUI(Vehicle vehicle, bool fromTemplate = false)
         {
             _vehicleUpdate = true;
             if(!fromTemplate)
@@ -124,13 +129,12 @@ namespace CARDOC
 
             if (vehicle.MileageUnits?.ToLower() == "км" && vehicle.Mileage > 0)
                 boxMileageK.Text = vehicle.Mileage.ToString();
-            else if (vehicle.MileageUnits?.ToLower() == "миль" && vehicle.Mileage > 0)
+            else
+                boxMileageK.Text = "";
+            if (vehicle.MileageUnits?.ToLower() == "миль" && vehicle.Mileage > 0)
                 boxMileageM.Text = vehicle.Mileage.ToString();
             else
-            {
-                boxMileageK.Text = "";
                 boxMileageM.Text = "";
-            }
             if (vehicle.MileageH > 0)
                 boxMileageH.Text = vehicle.MileageH.ToString();
             else
@@ -496,6 +500,7 @@ namespace CARDOC
             foreach (int index in listHistory.CheckedIndices)
                 vehicles.Add(_vehicles[index]);
             docDialog.Vehicles = vehicles;
+            docDialog.MainForm = this;
             docDialog.ShowDialog(this);
             docDialog.Dispose();
         }

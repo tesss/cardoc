@@ -24,7 +24,7 @@ namespace CARDOC.Utils
             bool success = true;
             foreach (var folder in vehicles.GroupBy(x => x.ExportFolder))
             {
-                var folderPath = string.Format("{0} - {1} шт", folder.Key, folder.Count());
+                var folderPath = string.Format("{0}", folder.Key);
                 Directory.CreateDirectory(folderPath);
                 foreach (var vehicle in folder)
                 {
@@ -76,7 +76,7 @@ namespace CARDOC.Utils
                 try
                 {
                     var document = DocumentFactory.Create(Const.DocTemplateFolder + "/inGeneral.docx", date.ToArray());
-                    document.Generate(string.Format("{0}/{1} АКТ ПРИЙМАННЯ ЗАГАЛЬНИЙ - {2} шт.docx", Const.ExportFolder, date.Key.ToString(Const.DateFormat), date.Count()));
+                    document.Generate(string.Format("{0}/{1} АКТ ПРИЙМАННЯ ЗАГАЛЬНИЙ.docx", Const.ExportFolder, date.Key.ToString(Const.DateFormat)));
                 }
                 catch (Exception ex)
                 {
@@ -95,7 +95,7 @@ namespace CARDOC.Utils
                 try
                 {
                     var document = DocumentFactory.Create(Const.DocTemplateFolder + "/inOut.docx", date.ToArray());
-                    document.Generate(string.Format("{0}/{1} АКТ ПРИЙМАННЯ-ПЕРЕДАЧІ - {2} шт.docx", Const.ExportFolder, date.Key.ToString(Const.DateFormat), date.Count()));
+                    document.Generate(string.Format("{0}/{1} АКТ ПРИЙМАННЯ-ПЕРЕДАЧІ.docx", Const.ExportFolder, date.Key.ToString(Const.DateFormat)));
                 }
                 catch (Exception ex)
                 {

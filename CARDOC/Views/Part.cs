@@ -178,12 +178,7 @@ namespace CARDOC.Views
 
         private void boxName_Validating(object sender, CancelEventArgs e)
         {
-            //if (!IsLast)
-            //    GetMainForm().btnSave.Enabled = boxName.Validate(string.IsNullOrEmpty(boxName.Text));
-            if (boxName.Text == "")
-                ClearColor();
-            else
-                UpdateColor();
+            UpdateColor();
             GetMainForm().btnSave.Enabled = boxName.Validate(boxName.Text == " " || boxName.Text == "6СТ-");
         }
 
@@ -264,7 +259,9 @@ namespace CARDOC.Views
 
         public void UpdateColor()
         {
-            if (boxType.Text == PartType.Aggregate.GetDescription())
+            if (boxName.Text == "")
+                BackColor = SystemColors.Control;
+            else if (boxType.Text == PartType.Aggregate.GetDescription())
                 BackColor = Color.LightGray;
             else if (boxType.Text == PartType.Tire.GetDescription() || boxType.Text == PartType.Battery.GetDescription())
                 BackColor = Color.FromArgb(179, 179, 179);
@@ -288,11 +285,6 @@ namespace CARDOC.Views
             boxUnits.AddSuggestions(DataProvider.PartUnits);
         }
 
-        public void ClearColor()
-        {
-            BackColor = SystemColors.Control;
-        }
-
         public void Clear()
         {
             Quantity = 1;
@@ -300,7 +292,7 @@ namespace CARDOC.Views
             Type = PartType.Zip.GetDescription();
             Dock = DockStyle.Fill;
             Name = "";
-            ClearColor();
+            UpdateColor();
         }
 
         private void boxType_Enter(object sender, EventArgs e)
@@ -371,6 +363,24 @@ namespace CARDOC.Views
                 box.Select(0, box.Text.Length);
                 selectByMouse = false;
             }
+        }
+
+        private void Part_MouseHover(object sender, EventArgs e)
+        {
+        }
+
+        private void Part_Leave(object sender, EventArgs e)
+        {
+
+        }
+        private void Part_MouseEnter(object sender, EventArgs e)
+        {
+            BackColor = Color.FromArgb(60, 60, 60);
+        }
+
+        private void Part_MouseLeave(object sender, EventArgs e)
+        {
+            UpdateColor();
         }
     }
 }

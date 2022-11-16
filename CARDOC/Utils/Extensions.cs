@@ -80,11 +80,13 @@ namespace CARDOC.Utils
             }
             if (!force && comboBox.Items.Count == strings.Length)
                 return;
+            var text = comboBox.Text;
             comboBox.ClearSuggestions();
             var res = new AutoCompleteStringCollection();
             res.AddRange(strings);
             comboBox.AutoCompleteCustomSource = res;
             comboBox.Items.AddRange(strings);
+            comboBox.Text = text;
         }
 
         public static void AddSuggestions(this CustomComboBox comboBox, SortedSet<string> strings, bool force = false)
@@ -96,12 +98,14 @@ namespace CARDOC.Utils
             }
             if (strings == null || !force && comboBox.Items.Count == strings.Count)
                 return;
+            var text = comboBox.Text;
             comboBox.ClearSuggestions();
             var data = strings.ToArray();
             var res = new AutoCompleteStringCollection();
             res.AddRange(data);
             comboBox.AutoCompleteCustomSource = res;
             comboBox.Items.AddRange(data);
+            comboBox.Text = text;
         }
 
         public static void AddSuggestions(this CustomComboBox comboBox, Dictionary<string, SortedSet<string>> strings, bool force = false)
@@ -113,12 +117,14 @@ namespace CARDOC.Utils
             }
             if (strings == null || !force && comboBox.Items.Count == strings.Count)
                 return;
+            var text = comboBox.Text;
             comboBox.ClearSuggestions();
             var data = strings.Keys.ToArray();
             var res = new AutoCompleteStringCollection();
             res.AddRange(data);
             comboBox.AutoCompleteCustomSource = res;
             comboBox.Items.AddRange(data);
+            comboBox.Text = text;
         }
 
         public static string RemoveInvalidChars(this string filename)

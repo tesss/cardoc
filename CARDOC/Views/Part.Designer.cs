@@ -57,6 +57,8 @@ namespace CARDOC.Views
             this.boxName.Enter += new System.EventHandler(this.boxName_Enter);
             this.boxName.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.boxName_KeyPress);
             this.boxName.Validating += new System.ComponentModel.CancelEventHandler(this.boxName_Validating);
+            this.boxName.MouseEnter += new System.EventHandler(this.Part_MouseEnter);
+            this.boxName.MouseLeave += new System.EventHandler(this.Part_MouseLeave);
             // 
             // btnRemove
             // 
@@ -70,6 +72,8 @@ namespace CARDOC.Views
             this.btnRemove.Text = "x";
             this.btnRemove.UseVisualStyleBackColor = true;
             this.btnRemove.Click += new System.EventHandler(this.btnRemove_Click);
+            this.btnRemove.MouseEnter += new System.EventHandler(this.Part_MouseEnter);
+            this.btnRemove.MouseLeave += new System.EventHandler(this.Part_MouseLeave);
             // 
             // boxUnits
             // 
@@ -85,6 +89,8 @@ namespace CARDOC.Views
             this.boxUnits.TabIndex = 22;
             this.boxUnits.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.boxUnits_KeyPress);
             this.boxUnits.Validating += new System.ComponentModel.CancelEventHandler(this.boxUnits_Validating);
+            this.boxUnits.MouseEnter += new System.EventHandler(this.Part_MouseEnter);
+            this.boxUnits.MouseLeave += new System.EventHandler(this.Part_MouseLeave);
             // 
             // boxType
             // 
@@ -102,6 +108,8 @@ namespace CARDOC.Views
             this.boxType.Enter += new System.EventHandler(this.boxType_Enter);
             this.boxType.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.boxType_KeyPress);
             this.boxType.Validating += new System.ComponentModel.CancelEventHandler(this.boxType_Validating);
+            this.boxType.MouseEnter += new System.EventHandler(this.Part_MouseEnter);
+            this.boxType.MouseLeave += new System.EventHandler(this.Part_MouseLeave);
             // 
             // boxNotes
             // 
@@ -114,6 +122,8 @@ namespace CARDOC.Views
             this.boxNotes.TabIndex = 25;
             this.boxNotes.Enter += new System.EventHandler(this.boxNotes_Enter);
             this.boxNotes.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.boxNotes_KeyPress);
+            this.boxNotes.MouseEnter += new System.EventHandler(this.Part_MouseEnter);
+            this.boxNotes.MouseLeave += new System.EventHandler(this.Part_MouseLeave);
             // 
             // lblIndex
             // 
@@ -126,6 +136,8 @@ namespace CARDOC.Views
             this.lblIndex.TabIndex = 26;
             this.lblIndex.DragDrop += new System.Windows.Forms.DragEventHandler(this.PopulateDragDrop);
             this.lblIndex.MouseDown += new System.Windows.Forms.MouseEventHandler(this.PopulateMouseDown);
+            this.lblIndex.MouseEnter += new System.EventHandler(this.Part_MouseEnter);
+            this.lblIndex.MouseLeave += new System.EventHandler(this.Part_MouseLeave);
             // 
             // boxQuantity
             // 
@@ -152,6 +164,8 @@ namespace CARDOC.Views
             this.boxQuantity.ValueChanged += new System.EventHandler(this.boxQuantity_ValueChanged);
             this.boxQuantity.Enter += new System.EventHandler(this.boxQuantity_Enter);
             this.boxQuantity.MouseDown += new System.Windows.Forms.MouseEventHandler(this.boxQuantity_MouseDown);
+            this.boxQuantity.MouseEnter += new System.EventHandler(this.Part_MouseEnter);
+            this.boxQuantity.MouseLeave += new System.EventHandler(this.Part_MouseLeave);
             // 
             // boxNumber
             // 
@@ -162,6 +176,8 @@ namespace CARDOC.Views
             this.boxNumber.TabIndex = 24;
             this.boxNumber.Enter += new System.EventHandler(this.boxNumber_Enter);
             this.boxNumber.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.boxNumber_KeyPress);
+            this.boxNumber.MouseEnter += new System.EventHandler(this.Part_MouseEnter);
+            this.boxNumber.MouseLeave += new System.EventHandler(this.Part_MouseLeave);
             // 
             // Part
             // 
@@ -180,6 +196,9 @@ namespace CARDOC.Views
             this.Name = "Part";
             this.Size = new System.Drawing.Size(1128, 47);
             this.Load += new System.EventHandler(this.Part_Load);
+            this.Leave += new System.EventHandler(this.Part_Leave);
+            this.MouseEnter += new System.EventHandler(this.Part_MouseEnter);
+            this.MouseLeave += new System.EventHandler(this.Part_MouseLeave);
             ((System.ComponentModel.ISupportInitialize)(this.boxQuantity)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
