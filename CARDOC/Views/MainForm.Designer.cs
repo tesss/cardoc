@@ -33,7 +33,6 @@ namespace CARDOC
             this.listHistory = new System.Windows.Forms.ListView();
             this.boxFilterDate = new System.Windows.Forms.DateTimePicker();
             this.btnAdd = new System.Windows.Forms.Button();
-            this.btnDuplicate = new System.Windows.Forms.Button();
             this.btnRemove = new System.Windows.Forms.Button();
             this.boxVin = new System.Windows.Forms.TextBox();
             this.boxDate = new System.Windows.Forms.DateTimePicker();
@@ -61,6 +60,7 @@ namespace CARDOC
             this.boxUnit = new System.Windows.Forms.TextBox();
             this.boxOutDate = new System.Windows.Forms.DateTimePicker();
             this.boxPrice = new System.Windows.Forms.TextBox();
+            this.boxFilter = new System.Windows.Forms.TextBox();
             this.SuspendLayout();
             // 
             // listHistory
@@ -70,10 +70,10 @@ namespace CARDOC
             this.listHistory.CheckBoxes = true;
             this.listHistory.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
             this.listHistory.FullRowSelect = true;
-            this.listHistory.Location = new System.Drawing.Point(12, 0);
+            this.listHistory.Location = new System.Drawing.Point(12, 45);
             this.listHistory.MultiSelect = false;
             this.listHistory.Name = "listHistory";
-            this.listHistory.Size = new System.Drawing.Size(1032, 384);
+            this.listHistory.Size = new System.Drawing.Size(1032, 339);
             this.listHistory.TabIndex = 0;
             this.listHistory.UseCompatibleStateImageBehavior = false;
             this.listHistory.View = System.Windows.Forms.View.Details;
@@ -102,19 +102,6 @@ namespace CARDOC
             this.btnAdd.Text = "+ \r\nДодати";
             this.btnAdd.UseVisualStyleBackColor = true;
             this.btnAdd.Click += new System.EventHandler(this.btnAdd_Click);
-            // 
-            // btnDuplicate
-            // 
-            this.btnDuplicate.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.btnDuplicate.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            this.btnDuplicate.Location = new System.Drawing.Point(12, 0);
-            this.btnDuplicate.Name = "btnDuplicate";
-            this.btnDuplicate.Size = new System.Drawing.Size(100, 70);
-            this.btnDuplicate.TabIndex = 102;
-            this.btnDuplicate.Text = "║ \r\nКопія";
-            this.btnDuplicate.UseVisualStyleBackColor = true;
-            this.btnDuplicate.Visible = false;
-            this.btnDuplicate.Click += new System.EventHandler(this.btnDuplicate_Click);
             // 
             // btnRemove
             // 
@@ -477,12 +464,26 @@ namespace CARDOC
             this.boxPrice.TabIndex = 110;
             this.boxPrice.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.boxPrice_KeyPress);
             // 
+            // boxFilter
+            // 
+            this.boxFilter.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.boxFilter.CharacterCasing = System.Windows.Forms.CharacterCasing.Upper;
+            this.boxFilter.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
+            this.boxFilter.Location = new System.Drawing.Point(12, 0);
+            this.boxFilter.Name = "boxFilter";
+            this.boxFilter.PlaceholderText = "VIN";
+            this.boxFilter.Size = new System.Drawing.Size(1032, 39);
+            this.boxFilter.TabIndex = 111;
+            this.boxFilter.TextChanged += new System.EventHandler(this.boxFilter_TextChanged);
+            // 
             // MainForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(10F, 25F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.AutoScroll = true;
             this.ClientSize = new System.Drawing.Size(1288, 1006);
+            this.Controls.Add(this.boxFilter);
             this.Controls.Add(this.boxPrice);
             this.Controls.Add(this.boxMou);
             this.Controls.Add(this.boxOutDate);
@@ -510,7 +511,6 @@ namespace CARDOC
             this.Controls.Add(this.boxDate);
             this.Controls.Add(this.boxVin);
             this.Controls.Add(this.btnRemove);
-            this.Controls.Add(this.btnDuplicate);
             this.Controls.Add(this.btnAdd);
             this.Controls.Add(this.boxFilterDate);
             this.Controls.Add(this.listHistory);
@@ -557,5 +557,6 @@ namespace CARDOC
         private TextBox boxUnit;
         private DateTimePicker boxOutDate;
         private TextBox boxPrice;
+        private TextBox boxFilter;
     }
 }

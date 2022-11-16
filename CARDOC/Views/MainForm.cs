@@ -2,6 +2,7 @@
 using CARDOC.Utils;
 using CARDOC.Views;
 using Microsoft.VisualBasic;
+using Newtonsoft.Json;
 using System.Globalization;
 using System.Windows.Forms;
 using static System.Windows.Forms.DataFormats;
@@ -19,9 +20,16 @@ namespace CARDOC
         }
 
         private Vehicle _currentVehicle;
+        private List<Vehicle> _vehicles;
 
         private void InitUI(bool first)
         {
+            _vehicles = DataProvider.Vehicles;
+            if (!string.IsNullOrEmpty(boxFilter.Text))
+            {
+                var filter = boxFilter.Text.Trim();
+                _vehicles = _vehicles.Where(x => JsonConvert.SerializeObject(x).Contains(filter)).ToList();
+            }
             listHistory.Clear();
             listHistory.Columns.Add("✔", 50);
             listHistory.Columns.Add("Дата", 200);
@@ -31,7 +39,7 @@ namespace CARDOC
             listHistory.Columns.Add("Рік", 100);
             listHistory.Columns.Add("Пробіг", 100);
             listHistory.Columns.Add("Оновлено", 100);
-            foreach (var vehicle in DataProvider.Vehicles)
+            foreach (var vehicle in _vehicles)
             {
                 ListViewItem lvi = new ListViewItem{ Checked = false };
                 lvi.SubItems.Add(new ListViewItem.ListViewSubItem(lvi, "Дата") { Text = vehicle.Date.ToString(Const.DateFormat) });
@@ -67,11 +75,12 @@ namespace CARDOC
                     InitVehicleUI(Vehicle.Empty);
                 WindowState = FormWindowState.Maximized;
                 boxDate.MaxDate = boxFilterDate.MaxDate = boxOutDate.MaxDate = DateTime.Today.Date.AddMonths(1);
+                ActiveControl = boxFilter;
             }
-            AddSuggesions();
+            AddSuggestions();
         }
 
-        private void AddSuggesions()
+        private void AddSuggestions()
         {
             boxType.AddSuggestions(DataProvider.Types);
             boxManufacturer.AddSuggestions(DataProvider.Models);
@@ -160,7 +169,7 @@ namespace CARDOC
         }
         private Vehicle GetCurrentVehicle()
         {
-            return listHistory.SelectedIndices.Count > 0 ? DataProvider.Vehicles[listHistory.SelectedIndices[0]] : Vehicle.Empty;
+            return listHistory.SelectedIndices.Count > 0 ? _vehicles[listHistory.SelectedIndices[0]] : Vehicle.Empty;
         }
 
         public Part AddPart(Part part = null)
@@ -415,22 +424,6 @@ namespace CARDOC
             InitVehicleUI(Vehicle.Empty);
         }
 
-        private void btnDuplicate_Click(object sender, EventArgs e)
-        {
-            if (DataProvider.Vehicles.Any()) {
-                var vehicle = GetCurrentVehicle();
-                IdleHandlerSet = true;
-                if (vehicle.IsEmpty)
-                    vehicle = DataProvider.Vehicles.OrderByDescending(x => x.Updated).FirstOrDefault();
-                else
-                    listHistory.SelectedItems.Clear();
-                vehicle = vehicle.Clone();
-                vehicle.Updated = DateTime.Now;
-                InitVehicleUI(vehicle);
-                IdleHandlerSet = false;
-            }
-        }
-
         public void DoResize(bool resetAutoScroll)
         {
             panelParts.Width = Width - 50;
@@ -461,7 +454,7 @@ namespace CARDOC
         private void btnTemplate_Click(object sender, EventArgs e)
         {
             DataProvider.WriteTemplate(GetVehicleFromView());
-            AddSuggesions();
+            AddSuggestions();
         }
 
         private bool _vehicleUpdate;
@@ -473,8 +466,11 @@ namespace CARDOC
                 return;
             }
             var templateName = GetVehicleFromView().TemplateName;
-            if(templateName != null && DataProvider.Templates.TryGetValue(GetVehicleFromView().TemplateName, out Vehicle vehicle))
+            if (templateName != null && DataProvider.Templates.TryGetValue(GetVehicleFromView().TemplateName, out Vehicle vehicle))
+            {
+                vehicle.Date = vehicle.OutDate = DateTime.Now.Date;
                 InitVehicleUI(vehicle, true);
+            }
         }
 
         private int panelPartsHeight = 0;
@@ -498,7 +494,7 @@ namespace CARDOC
             var docDialog = new DocForm();
             var vehicles = new List<Vehicle>();
             foreach (int index in listHistory.CheckedIndices)
-                vehicles.Add(DataProvider.Vehicles[index]);
+                vehicles.Add(_vehicles[index]);
             docDialog.Vehicles = vehicles;
             docDialog.ShowDialog(this);
             docDialog.Dispose();
@@ -583,6 +579,11 @@ namespace CARDOC
         private void boxPrice_KeyPress(object sender, KeyPressEventArgs e)
         {
             boxPrice.HandlePrice(e);
+        }
+
+        private void boxFilter_TextChanged(object sender, EventArgs e)
+        {
+            InitUI(false);
         }
     }
 }
