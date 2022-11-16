@@ -472,7 +472,7 @@ namespace CARDOC
             this.boxFilter.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
             this.boxFilter.Location = new System.Drawing.Point(12, 0);
             this.boxFilter.Name = "boxFilter";
-            this.boxFilter.PlaceholderText = "VIN";
+            this.boxFilter.PlaceholderText = "Пошук...";
             this.boxFilter.Size = new System.Drawing.Size(1032, 39);
             this.boxFilter.TabIndex = 111;
             this.boxFilter.TextChanged += new System.EventHandler(this.boxFilter_TextChanged);
