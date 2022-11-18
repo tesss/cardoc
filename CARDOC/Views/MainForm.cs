@@ -89,6 +89,7 @@ namespace CARDOC
         {
             boxType.AddSuggestions(DataProvider.Types);
             boxManufacturer.AddSuggestions(DataProvider.Models);
+            boxManufacturer_SelectedIndexChanged(this, new EventArgs());
             boxColor.AddSuggestions(DataProvider.Colors);
             foreach (Part part in panelParts.Controls)
                 part.AddSuggestions();

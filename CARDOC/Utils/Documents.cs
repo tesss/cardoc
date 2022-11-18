@@ -1,6 +1,7 @@
 ﻿using CARDOC.Models;
 using CARDOC.Models.Doc;
 using DocumentFormat.OpenXml.EMMA;
+using DocumentFormat.OpenXml.Spreadsheet;
 using Microsoft.CodeAnalysis.Diagnostics;
 using SharpDocx;
 using System;
@@ -19,9 +20,10 @@ namespace CARDOC.Utils
         {
             Process.Start("explorer.exe", System.IO.Path.GetDirectoryName(Application.ExecutablePath) + "\\" + Const.ExportFolder);
         }
-        public static void Generate(List<Vehicle> vehicles, Action<Vehicle, string> action)
+        public static List<string> Generate(List<Vehicle> vehicles, Func<Vehicle, string, string> action)
         {
             bool success = true;
+            var files = new List<string>();
             foreach (var folder in vehicles.GroupBy(x => x.ExportFolder))
             {
                 var folderPath = string.Format("{0}", folder.Key);
@@ -30,7 +32,7 @@ namespace CARDOC.Utils
                 {
                     try
                     {
-                        action(vehicle, folderPath);
+                        files.Add(action(vehicle, folderPath));
                     }
                     catch (Exception ex)
                     {
@@ -38,77 +40,87 @@ namespace CARDOC.Utils
                     }
                 }
             }
-            if (success)
-                OpenFolder();
+            return files;
         }
-        public static void GenerateZip(List<Vehicle> vehicles)
+        public static List<string> GenerateZip(List<Vehicle> vehicles)
         {
-            Generate(vehicles, (vehicle, folderPath) =>
+            return Generate(vehicles, (vehicle, folderPath) =>
             {
                 var document = DocumentFactory.Create(Const.DocTemplateFolder + "/zip.docx", vehicle);
-                document.Generate(string.Format("{0}/ЗІП {1} - {2}.docx", folderPath, vehicle.TemplateName, vehicle.Vin));
+                var file = string.Format("{0}/ЗІП {1} - {2}.docx", folderPath, vehicle.TemplateName, vehicle.Vin);
+                document.Generate(file);
+                return file;
             });
         }
 
-        public static void GenerateIn(List<Vehicle> vehicles)
+        public static List<string> GenerateIn(List<Vehicle> vehicles)
         {
-            Generate(vehicles, (vehicle, folderPath) =>
+            return Generate(vehicles, (vehicle, folderPath) =>
             {
                 var document = DocumentFactory.Create(Const.DocTemplateFolder + "/in.docx", vehicle);
-                document.Generate(string.Format("{0}/АКТ ПРИЙМАННЯ {1} - {2}.docx", folderPath, vehicle.TemplateName, vehicle.Vin));
+                var file = string.Format("{0}/АКТ ПРИЙМАННЯ {1} - {2}.docx", folderPath, vehicle.TemplateName, vehicle.Vin);
+                document.Generate(file);
+                return file;
             });
         }
 
-        public static void GenerateOut(List<Vehicle> vehicles)
+        public static List<string> GenerateOut(List<Vehicle> vehicles)
         {
-            Generate(vehicles, (vehicle, folderPath) =>
+            return Generate(vehicles, (vehicle, folderPath) =>
             {
                 var document = DocumentFactory.Create(Const.DocTemplateFolder + "/out.docx", vehicle);
-                document.Generate(string.Format("{0}/АКТ ПЕРЕДАЧІ {1} - {2}.docx", folderPath, vehicle.TemplateName, vehicle.Vin));
+                var file = string.Format("{0}/АКТ ПЕРЕДАЧІ {1} - {2}.docx", folderPath, vehicle.TemplateName, vehicle.Vin);
+                document.Generate(file);
+                return file; 
             });
         }
 
-        public static void GenerateInGeneral(List<Vehicle> vehicles)
+        public static List<string> GenerateInGeneral(List<Vehicle> vehicles)
         {
             bool success = true;
+            var files = new List<string>();
             foreach (var date in vehicles.GroupBy(x => x.Date.Date))
             {
                 try
                 {
                     var document = DocumentFactory.Create(Const.DocTemplateFolder + "/inGeneral.docx", date.ToArray());
-                    document.Generate(string.Format("{0}/{1} АКТ ПРИЙМАННЯ ЗАГАЛЬНИЙ.docx", Const.ExportFolder, date.Key.ToString(Const.DateFormat)));
+                    var file = string.Format("{0}/{1} АКТ ПРИЙМАННЯ ЗАГАЛЬНИЙ.docx", Const.ExportFolder, date.Key.ToString(Const.DateFormat));
+                    document.Generate(file);
+                    files.Add(file);
                 }
                 catch (Exception ex)
                 {
                     success = false;
                 }
             }
-            if (success)
-                OpenFolder();
+            return files;
         }
 
-        public static void GenerateInOut(List<Vehicle> vehicles)
+        public static List<string> GenerateInOut(List<Vehicle> vehicles)
         {
             bool success = true;
+            var files = new List<string>();
             foreach (var date in vehicles.GroupBy(x => x.OutDate))
             {
                 try
                 {
                     var document = DocumentFactory.Create(Const.DocTemplateFolder + "/inOut.docx", date.ToArray());
-                    document.Generate(string.Format("{0}/{1} АКТ ПРИЙМАННЯ-ПЕРЕДАЧІ.docx", Const.ExportFolder, date.Key.ToString(Const.DateFormat)));
+                    var file = string.Format("{0}/{1} АКТ ПРИЙМАННЯ-ПЕРЕДАЧІ.docx", Const.ExportFolder, date.Key.ToString(Const.DateFormat));
+                    document.Generate(file);
+                    files.Add(file);
                 }
                 catch (Exception ex)
                 {
                     success = false;
                 }
             }
-            if (success)
-                OpenFolder();
+            return files;
         }
 
-        public static void GenerateZero(List<Vehicle> vehicles)
+        public static List<string> GenerateZero(List<Vehicle> vehicles)
         {
             bool success = true;
+            var files = new List<string>();
             foreach (var model in vehicles.GroupBy(x => x.TemplateName))
             {
                 try
@@ -117,15 +129,16 @@ namespace CARDOC.Utils
                     if (DataProvider.Templates.ContainsKey(vehicle.TemplateName))
                         vehicle = DataProvider.Templates[vehicle.TemplateName];
                     var document = DocumentFactory.Create(Const.DocTemplateFolder + "/zero.docx", vehicle);
-                    document.Generate(string.Format("{0}/ШАБЛОН {1}.docx", Const.ExportFolder, model.Key));
+                    var file = string.Format("{0}/ШАБЛОН {1}.docx", Const.ExportFolder, model.Key);
+                    document.Generate(file);
+                    files.Add(file);
                 }
                 catch (Exception ex)
                 {
                     success = false;
                 }
             }
-            if (success)
-                OpenFolder();
+            return files;
         }
     }
 }

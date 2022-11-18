@@ -86,7 +86,8 @@ namespace CARDOC.Utils
             res.AddRange(strings);
             comboBox.AutoCompleteCustomSource = res;
             comboBox.Items.AddRange(strings);
-            comboBox.Text = text;
+            if (comboBox.Text != text)
+                comboBox.Text = text;
         }
 
         public static void AddSuggestions(this CustomComboBox comboBox, SortedSet<string> strings, bool force = false)
@@ -105,7 +106,8 @@ namespace CARDOC.Utils
             res.AddRange(data);
             comboBox.AutoCompleteCustomSource = res;
             comboBox.Items.AddRange(data);
-            comboBox.Text = text;
+            if(comboBox.Text != text)
+                comboBox.Text = text;
         }
 
         public static void AddSuggestions(this CustomComboBox comboBox, Dictionary<string, SortedSet<string>> strings, bool force = false)
@@ -124,7 +126,8 @@ namespace CARDOC.Utils
             res.AddRange(data);
             comboBox.AutoCompleteCustomSource = res;
             comboBox.Items.AddRange(data);
-            comboBox.Text = text;
+            if (comboBox.Text != text)
+                comboBox.Text = text;
         }
 
         public static string RemoveInvalidChars(this string filename)

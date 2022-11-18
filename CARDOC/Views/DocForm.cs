@@ -22,14 +22,20 @@ namespace CARDOC.Views
         public List<Vehicle> Vehicles { get; set; }
         public MainForm MainForm { get; set; }
 
+        private void AddResults(List<string> files)
+        {
+            listFiles.Items.Clear();
+            listFiles.Items.AddRange(files.ToArray());
+        }
+
         private void btnZip_Click(object sender, EventArgs e)
         {
-            Documents.GenerateZip(Vehicles);
+            AddResults(Documents.GenerateZip(Vehicles));
         }
 
         private void btnIn_Click(object sender, EventArgs e)
         {
-            Documents.GenerateIn(Vehicles);
+            AddResults(Documents.GenerateIn(Vehicles));
         }
 
         private void btnOut_Click(object sender, EventArgs e)
@@ -52,22 +58,22 @@ namespace CARDOC.Views
                 DataProvider.Write(vehicle);
             }
             MainForm.InitVehicleUI(Vehicle.Empty);
-            Documents.GenerateOut(Vehicles);
+            AddResults(Documents.GenerateOut(Vehicles));
         }
 
         private void btnInGeneral_Click(object sender, EventArgs e)
         {
-            Documents.GenerateInGeneral(Vehicles);
+            AddResults(Documents.GenerateInGeneral(Vehicles));
         }
 
         private void button1_Click(object sender, EventArgs e)
         {
-            Documents.GenerateZero(Vehicles);
+            AddResults(Documents.GenerateZero(Vehicles));
         }
 
         private void btnInOut_Click(object sender, EventArgs e)
         {
-            Documents.GenerateInOut(Vehicles);
+            AddResults(Documents.GenerateInOut(Vehicles));
         }
 
         private void DocForm_Load(object sender, EventArgs e)
@@ -75,7 +81,7 @@ namespace CARDOC.Views
             boxInfo.Text = "";
             foreach(var g in Vehicles.GroupBy(x => x.ExportFolder))
             {
-                boxInfo.AppendText(g.Key.Replace(Const.ExportFolder + "/", "").PadRight(70) + g.Count().ToString().PadLeft(3));
+                boxInfo.AppendText(g.Key.Replace(Const.ExportFolder + "/", "").PadRight(60) + g.Count().ToString().PadLeft(3));
                 boxInfo.AppendText(Environment.NewLine);
             }
             boxOutDate.Value = DateTime.Now.Date;
@@ -89,6 +95,16 @@ namespace CARDOC.Views
         private void boxUnit_Enter(object sender, EventArgs e)
         {
             MainForm.SwitchLanguage(false);
+        }
+
+        private void listFiles_SelectedIndexChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private void listFiles_MouseDoubleClick(object sender, MouseEventArgs e)
+        {
+            System.Diagnostics.Process.Start(System.IO.Path.GetDirectoryName(Application.ExecutablePath) + "/" + (listFiles.SelectedItem as string));
         }
     }
 }

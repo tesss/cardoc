@@ -40,6 +40,7 @@
             this.boxUnit = new System.Windows.Forms.TextBox();
             this.boxOutDate = new System.Windows.Forms.DateTimePicker();
             this.boxNom = new System.Windows.Forms.TextBox();
+            this.listFiles = new System.Windows.Forms.ListBox();
             this.SuspendLayout();
             // 
             // btnZip
@@ -167,11 +168,24 @@
             this.boxNom.Size = new System.Drawing.Size(136, 39);
             this.boxNom.TabIndex = 211;
             // 
+            // listFiles
+            // 
+            this.listFiles.FormattingEnabled = true;
+            this.listFiles.ItemHeight = 25;
+            this.listFiles.Location = new System.Drawing.Point(12, 252);
+            this.listFiles.Name = "listFiles";
+            this.listFiles.ScrollAlwaysVisible = true;
+            this.listFiles.Size = new System.Drawing.Size(938, 204);
+            this.listFiles.TabIndex = 212;
+            this.listFiles.SelectedIndexChanged += new System.EventHandler(this.listFiles_SelectedIndexChanged);
+            this.listFiles.MouseDoubleClick += new System.Windows.Forms.MouseEventHandler(this.listFiles_MouseDoubleClick);
+            // 
             // DocForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(10F, 25F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(1297, 464);
+            this.ClientSize = new System.Drawing.Size(1297, 621);
+            this.Controls.Add(this.listFiles);
             this.Controls.Add(this.boxNom);
             this.Controls.Add(this.boxOutDate);
             this.Controls.Add(this.boxUnit);
@@ -208,5 +222,6 @@
         private TextBox boxUnit;
         private DateTimePicker boxOutDate;
         private TextBox boxNom;
+        private ListBox listFiles;
     }
 }
