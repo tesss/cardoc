@@ -9,6 +9,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using System.Diagnostics;
 
 namespace CARDOC.Views
 {
@@ -104,7 +105,13 @@ namespace CARDOC.Views
 
         private void listFiles_MouseDoubleClick(object sender, MouseEventArgs e)
         {
-            System.Diagnostics.Process.Start(System.IO.Path.GetDirectoryName(Application.ExecutablePath) + "/" + (listFiles.SelectedItem as string));
+            new Process
+            {
+                StartInfo = new ProcessStartInfo(System.IO.Path.GetDirectoryName(Application.ExecutablePath) + "\\" + (listFiles.SelectedItem as string).Replace("/", "\\"))
+                {
+                    UseShellExecute = true
+                }
+            }.Start();
         }
     }
 }

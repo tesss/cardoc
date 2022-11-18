@@ -428,7 +428,7 @@ namespace CARDOC
             this.boxOrder.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
             this.boxOrder.Location = new System.Drawing.Point(318, 665);
             this.boxOrder.Name = "boxOrder";
-            this.boxOrder.PlaceholderText = "Наряд ком. А0222 №2780 від 02.11.22";
+            this.boxOrder.PlaceholderText = "Наряд ком. А0119 №2900 від 02.11.22";
             this.boxOrder.Size = new System.Drawing.Size(16, 39);
             this.boxOrder.TabIndex = 17;
             // 

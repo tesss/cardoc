@@ -62,8 +62,8 @@ namespace CARDOC
                 foreach(var control in Controls)
                 {
                     TextBox textBox = control as TextBox;
-                    if(textBox != null && textBox.Name != boxVin.Name)
-                        textBox.MouseClick += new MouseEventHandler(this.SelectAll);
+                    if(textBox != null && (textBox.Name == boxMileageK.Name || textBox.Name == boxMileageM.Name || textBox.Name == boxMileageH.Name))
+                        textBox.MouseClick += new MouseEventHandler(SelectAll);
                 }
                 boxFilterDate.CustomFormat = boxDate.CustomFormat = boxOutDate.CustomFormat = Const.DateShortFormat;
                 var start = 1970;

@@ -23,7 +23,7 @@ namespace CARDOC.Utils
     {
         public static IOrderedEnumerable<Vehicle> OrderVehicles(this IEnumerable<Vehicle> input)
         {
-            return input.OrderByDescending(x => x.Date).ThenByDescending(x => x.TemplateName).ThenByDescending(x => x.Updated);
+            return input.OrderByDescending(x => x.Date).ThenByDescending(x => x.TemplateName).ThenByDescending(x => x.Vin);
         }
         public static IEnumerable<int> GetDigits(this decimal s)
         {
