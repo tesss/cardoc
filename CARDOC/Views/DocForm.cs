@@ -119,6 +119,9 @@ namespace CARDOC.Views
                     vehicle.Act = act.ToString();
                     vehicleView.Act = vehicle.Act;
                     act++;
+                } else
+                {
+                    vehicle.Act = vehicleView.Act;
                 }
                 if (!string.IsNullOrEmpty(boxNom.Text))
                 {
