@@ -94,12 +94,18 @@ namespace CARDOC.Utils
         public static void Write(Vehicle vehicle)
         {
             var existing = Vehicles.FirstOrDefault(x => x.Vin == vehicle.Vin);
+            var prevDate = vehicle.Date;
             if (existing != null)
+            {
+                prevDate = existing.Date;
                 Vehicles.Remove(existing);
+            }
             Vehicles.Add(vehicle);
             Vehicles = Vehicles.OrderVehicles().ToList();
             AddCache(vehicle);
             Write(vehicle.Date);
+            if(vehicle.Date != prevDate)
+                Write(prevDate);
         }
 
         public static void Remove(Vehicle vehicle)

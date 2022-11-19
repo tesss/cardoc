@@ -16,5 +16,8 @@
     <Compile Update="Views\Part.cs">
       <SubType>UserControl</SubType>
     </Compile>
+    <Compile Update="Views\VehicleItem.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
   </ItemGroup>
 </Project>
