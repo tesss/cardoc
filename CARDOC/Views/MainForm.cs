@@ -6,6 +6,7 @@ using Newtonsoft.Json;
 using System.Globalization;
 using System.Windows.Forms;
 using static System.Windows.Forms.DataFormats;
+using static System.Windows.Forms.ListView;
 using static System.Windows.Forms.VisualStyles.VisualStyleElement;
 using Part = CARDOC.Views.Part;
 using TextBox = System.Windows.Forms.TextBox;
@@ -39,6 +40,7 @@ namespace CARDOC
             listHistory.Columns.Add("Рік", 100);
             listHistory.Columns.Add("Пробіг", 100);
             listHistory.Columns.Add("Оновлено", 100);
+            _listHistoryUpdate = true;
             foreach (var vehicle in _vehicles)
             {
                 ListViewItem lvi = new ListViewItem{ Checked = false };
@@ -54,8 +56,11 @@ namespace CARDOC
                     mileage += " " + vehicle.MileageH + " " + Const.UnitsHours;
                 lvi.SubItems.Add(new ListViewItem.ListViewSubItem(lvi, "Пробіг") { Text = mileage.Trim() });
                 lvi.SubItems.Add(new ListViewItem.ListViewSubItem(lvi, "Оновлено") { Text = vehicle.Updated.ToString("dd.MM.yyyy HH:mm:ss") });
+                if (_checkedVins.Contains(vehicle.Vin))
+                    lvi.Checked = true;
                 listHistory.Items.Add(lvi);
             }
+            _listHistoryUpdate = false;
             listHistory.AutoResizeColumns(ColumnHeaderAutoResizeStyle.ColumnContent);
             if (first)
             {
@@ -242,7 +247,7 @@ namespace CARDOC
 
         private void listHistory_ItemSelectionChanged(object sender, EventArgs e)
         {
-            var vin = listHistory.SelectedItems.Count > 0 ? listHistory.SelectedItems[0].SubItems[3].Text : null;
+            var vin = listHistory.SelectedItems.Count > 0 ? listHistory.SelectedItems[0].SubItems[4].Text : null;
             var viewVehicle = GetVehicleFromView();
             var showConfirm = !viewVehicle.IsEmpty && !viewVehicle.Equals(Vehicle.Empty) && !viewVehicle.Equals(_currentVehicle);
             if (showConfirm)
@@ -257,7 +262,7 @@ namespace CARDOC
                     InitUI(false);
                     if (vin != null)
                         foreach (ListViewItem item in listHistory.Items)
-                            if (item.SubItems[3].Text == vin)
+                            if (item.SubItems[4].Text == vin)
                                 item.Selected = true;
                 }
             }
@@ -506,9 +511,19 @@ namespace CARDOC
             docDialog.Dispose();
         }
 
+
+        private HashSet<string> _checkedVins = new HashSet<string>();
+        private bool _listHistoryUpdate = false;
         private void listHistory_ItemChecked(object sender, ItemCheckedEventArgs e)
         {
             btnDoc.Enabled = listHistory.CheckedIndices.Count > 0;
+            if (!_listHistoryUpdate)
+            {
+                if (e.Item.Checked)
+                    _checkedVins.Add(e.Item.SubItems[4].Text);
+                else
+                    _checkedVins.Remove(e.Item.SubItems[4].Text);
+            }
         }
 
         public void SwitchLanguage(bool en)
@@ -590,6 +605,16 @@ namespace CARDOC
         private void boxFilter_TextChanged(object sender, EventArgs e)
         {
             InitUI(false);
+        }
+
+        private void listHistory_MouseClick(object sender, MouseEventArgs e)
+        {
+            
+        }
+
+        private void listHistory_ItemCheck(object sender, ItemCheckEventArgs e)
+        {
+
         }
     }
 }

@@ -133,7 +133,7 @@
             this.boxOrder.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
             this.boxOrder.Location = new System.Drawing.Point(300, 12);
             this.boxOrder.Name = "boxOrder";
-            this.boxOrder.PlaceholderText = "Наряд ком. А0222 №2780 від 02.11.22";
+            this.boxOrder.PlaceholderText = "2780 від 02.11.22";
             this.boxOrder.Size = new System.Drawing.Size(336, 39);
             this.boxOrder.TabIndex = 208;
             // 
@@ -143,7 +143,7 @@
             this.boxUnit.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
             this.boxUnit.Location = new System.Drawing.Point(642, 12);
             this.boxUnit.Name = "boxUnit";
-            this.boxUnit.PlaceholderText = "в/ч А0222 м. Київ";
+            this.boxUnit.PlaceholderText = "А0222 м. Київ";
             this.boxUnit.Size = new System.Drawing.Size(216, 39);
             this.boxUnit.TabIndex = 209;
             this.boxUnit.Enter += new System.EventHandler(this.boxUnit_Enter);

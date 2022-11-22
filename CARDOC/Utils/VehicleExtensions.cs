@@ -320,6 +320,9 @@ namespace CARDOC.Utils
         public static List<Models.Part> GetEquipmentAndZip(this Vehicle vehicle)
         {
             var parts = vehicle.Parts.Where(x => x.PartType == PartType.Equipment).ToList();
+            parts.Add(new Models.Part());
+            parts.Add(new Models.Part());
+            parts.Add(new Models.Part());
             parts.AddRange(vehicle.Parts.Where(x => x.PartType == PartType.Zip).ToList());
             return parts;
         }

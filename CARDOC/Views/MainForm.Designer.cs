@@ -77,8 +77,10 @@ namespace CARDOC
             this.listHistory.TabIndex = 0;
             this.listHistory.UseCompatibleStateImageBehavior = false;
             this.listHistory.View = System.Windows.Forms.View.Details;
+            this.listHistory.ItemCheck += new System.Windows.Forms.ItemCheckEventHandler(this.listHistory_ItemCheck);
             this.listHistory.ItemChecked += new System.Windows.Forms.ItemCheckedEventHandler(this.listHistory_ItemChecked);
             this.listHistory.SelectedIndexChanged += new System.EventHandler(this.listHistory_SelectedIndexChanged);
+            this.listHistory.MouseClick += new System.Windows.Forms.MouseEventHandler(this.listHistory_MouseClick);
             // 
             // boxFilterDate
             // 
@@ -428,7 +430,7 @@ namespace CARDOC
             this.boxOrder.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
             this.boxOrder.Location = new System.Drawing.Point(318, 665);
             this.boxOrder.Name = "boxOrder";
-            this.boxOrder.PlaceholderText = "Наряд ком. А0119 №2900 від 02.11.22";
+            this.boxOrder.PlaceholderText = "2900 від 02.11.22";
             this.boxOrder.Size = new System.Drawing.Size(16, 39);
             this.boxOrder.TabIndex = 17;
             // 
@@ -438,7 +440,7 @@ namespace CARDOC
             this.boxUnit.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
             this.boxUnit.Location = new System.Drawing.Point(680, 665);
             this.boxUnit.Name = "boxUnit";
-            this.boxUnit.PlaceholderText = "в/ч А0222 м. Київ";
+            this.boxUnit.PlaceholderText = "А0222 м. Київ";
             this.boxUnit.Size = new System.Drawing.Size(211, 39);
             this.boxUnit.TabIndex = 19;
             this.boxUnit.Enter += new System.EventHandler(this.boxUnit_Enter);
