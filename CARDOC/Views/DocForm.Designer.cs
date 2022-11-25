@@ -135,7 +135,8 @@
             this.boxOrder.Name = "boxOrder";
             this.boxOrder.PlaceholderText = "2780 від 02.11.22";
             this.boxOrder.Size = new System.Drawing.Size(336, 39);
-            this.boxOrder.TabIndex = 208;
+            this.boxOrder.TabIndex = 209;
+            this.boxOrder.Enter += new System.EventHandler(this.boxOrder_Enter);
             // 
             // boxUnit
             // 
@@ -145,7 +146,7 @@
             this.boxUnit.Name = "boxUnit";
             this.boxUnit.PlaceholderText = "А0222 м. Київ";
             this.boxUnit.Size = new System.Drawing.Size(216, 39);
-            this.boxUnit.TabIndex = 209;
+            this.boxUnit.TabIndex = 210;
             this.boxUnit.Enter += new System.EventHandler(this.boxUnit_Enter);
             // 
             // boxOutDate
@@ -156,7 +157,7 @@
             this.boxOutDate.Location = new System.Drawing.Point(864, 12);
             this.boxOutDate.Name = "boxOutDate";
             this.boxOutDate.Size = new System.Drawing.Size(165, 39);
-            this.boxOutDate.TabIndex = 210;
+            this.boxOutDate.TabIndex = 211;
             // 
             // boxNom
             // 
@@ -166,7 +167,8 @@
             this.boxNom.Name = "boxNom";
             this.boxNom.PlaceholderText = "Д2111000Y";
             this.boxNom.Size = new System.Drawing.Size(136, 39);
-            this.boxNom.TabIndex = 211;
+            this.boxNom.TabIndex = 208;
+            this.boxNom.Enter += new System.EventHandler(this.boxNom_Enter);
             // 
             // panelVehicles
             // 

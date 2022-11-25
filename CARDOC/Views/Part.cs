@@ -45,14 +45,12 @@ namespace CARDOC.Views
         {
             get
             {
-                if(int.TryParse(boxQuantity.Text, out int quantity))
-                    return quantity;
-                return 1;
+                return (int)boxQuantity.Value;
             }
 
             set
             {
-                boxQuantity.Text = value.ToString();
+                boxQuantity.Value = value;
             }
         }
 
@@ -259,7 +257,7 @@ namespace CARDOC.Views
 
         public void UpdateColor()
         {
-            if (boxName.Text == "")
+            if (Name == "" || Quantity == 0)
                 BackColor = SystemColors.Control;
             else if (boxType.Text == PartType.Aggregate.GetDescription())
                 BackColor = Color.LightGray;
@@ -340,7 +338,7 @@ namespace CARDOC.Views
 
         private void boxQuantity_ValueChanged(object sender, EventArgs e)
         {
-
+            UpdateColor();
         }
 
         bool selectByMouse = false;

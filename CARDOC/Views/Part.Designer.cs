@@ -56,9 +56,9 @@ namespace CARDOC.Views
             this.boxName.SelectedIndexChanged += new System.EventHandler(this.boxName_SelectedIndexChanged);
             this.boxName.Enter += new System.EventHandler(this.boxName_Enter);
             this.boxName.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.boxName_KeyPress);
-            this.boxName.Validating += new System.ComponentModel.CancelEventHandler(this.boxName_Validating);
             this.boxName.MouseEnter += new System.EventHandler(this.Part_MouseEnter);
             this.boxName.MouseLeave += new System.EventHandler(this.Part_MouseLeave);
+            this.boxName.Validating += new System.ComponentModel.CancelEventHandler(this.boxName_Validating);
             // 
             // btnRemove
             // 
@@ -88,9 +88,9 @@ namespace CARDOC.Views
             this.boxUnits.Size = new System.Drawing.Size(98, 40);
             this.boxUnits.TabIndex = 22;
             this.boxUnits.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.boxUnits_KeyPress);
-            this.boxUnits.Validating += new System.ComponentModel.CancelEventHandler(this.boxUnits_Validating);
             this.boxUnits.MouseEnter += new System.EventHandler(this.Part_MouseEnter);
             this.boxUnits.MouseLeave += new System.EventHandler(this.Part_MouseLeave);
+            this.boxUnits.Validating += new System.ComponentModel.CancelEventHandler(this.boxUnits_Validating);
             // 
             // boxType
             // 
@@ -107,9 +107,9 @@ namespace CARDOC.Views
             this.boxType.TextChanged += new System.EventHandler(this.boxType_TextChanged);
             this.boxType.Enter += new System.EventHandler(this.boxType_Enter);
             this.boxType.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.boxType_KeyPress);
-            this.boxType.Validating += new System.ComponentModel.CancelEventHandler(this.boxType_Validating);
             this.boxType.MouseEnter += new System.EventHandler(this.Part_MouseEnter);
             this.boxType.MouseLeave += new System.EventHandler(this.Part_MouseLeave);
+            this.boxType.Validating += new System.ComponentModel.CancelEventHandler(this.boxType_Validating);
             // 
             // boxNotes
             // 
@@ -148,11 +148,6 @@ namespace CARDOC.Views
             0,
             0,
             0});
-            this.boxQuantity.Minimum = new decimal(new int[] {
-            1,
-            0,
-            0,
-            0});
             this.boxQuantity.Name = "boxQuantity";
             this.boxQuantity.Size = new System.Drawing.Size(65, 39);
             this.boxQuantity.TabIndex = 21;
@@ -162,10 +157,10 @@ namespace CARDOC.Views
             0,
             0});
             this.boxQuantity.ValueChanged += new System.EventHandler(this.boxQuantity_ValueChanged);
-            this.boxQuantity.Enter += new System.EventHandler(this.boxQuantity_Enter);
-            this.boxQuantity.MouseDown += new System.Windows.Forms.MouseEventHandler(this.boxQuantity_MouseDown);
             this.boxQuantity.MouseEnter += new System.EventHandler(this.Part_MouseEnter);
             this.boxQuantity.MouseLeave += new System.EventHandler(this.Part_MouseLeave);
+            this.boxQuantity.Enter += new System.EventHandler(this.boxQuantity_Enter);
+            this.boxQuantity.MouseDown += new System.Windows.Forms.MouseEventHandler(this.boxQuantity_MouseDown);
             // 
             // boxNumber
             // 

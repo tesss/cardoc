@@ -305,7 +305,7 @@ namespace CARDOC.Utils
 
         public static List<Models.Part> GetZip(this Vehicle vehicle, bool columns = false)
         {
-            var zip = vehicle.Parts.Where(x => x.PartType == PartType.Zip).ToList();
+            var zip = vehicle.Parts.Where(x => x.PartType == PartType.Zip && x.Quantity > 0).ToList();
             if (columns)
                 if (zip.Count > 0 && zip.Count % 2 == 1)
                     zip.Add(new Models.Part());
@@ -314,22 +314,22 @@ namespace CARDOC.Utils
 
         public static List<Models.Part> GetAggregates(this Vehicle vehicle)
         {
-            return vehicle.Parts.Where(x => x.PartType == PartType.Aggregate).ToList();
+            return vehicle.Parts.Where(x => x.PartType == PartType.Aggregate && x.Quantity > 0).ToList();
         }
 
         public static List<Models.Part> GetEquipmentAndZip(this Vehicle vehicle)
         {
-            var parts = vehicle.Parts.Where(x => x.PartType == PartType.Equipment).ToList();
+            var parts = vehicle.Parts.Where(x => x.PartType == PartType.Equipment && x.Quantity > 0).ToList();
             parts.Add(new Models.Part());
             parts.Add(new Models.Part());
             parts.Add(new Models.Part());
-            parts.AddRange(vehicle.Parts.Where(x => x.PartType == PartType.Zip).ToList());
+            parts.AddRange(vehicle.Parts.Where(x => x.PartType == PartType.Zip && x.Quantity > 0).ToList());
             return parts;
         }
 
         public static Models.Part GetTires(this Vehicle vehicle)
         {
-            return vehicle.Parts.FirstOrDefault(x => x.PartType == PartType.Tire) ??
+            return vehicle.Parts.FirstOrDefault(x => x.PartType == PartType.Tire && x.Quantity > 0) ??
                 new Models.Part()
                 {
                     PartType = PartType.Tire,
@@ -341,7 +341,7 @@ namespace CARDOC.Utils
         public static string GetBatteries(this Vehicle vehicle)
         {
             var str = "";
-            foreach (var battery in vehicle.Parts.Where(x => x.PartType == PartType.Battery))
+            foreach (var battery in vehicle.Parts.Where(x => x.PartType == PartType.Battery && x.Quantity > 0))
             {
                 str += battery.Name + " - " + battery.Quantity + " " + battery.Units + "., ";
                 if (!string.IsNullOrEmpty(battery.Notes))
@@ -353,7 +353,7 @@ namespace CARDOC.Utils
         public static string GetEquipment(this Vehicle vehicle)
         {
             var str = "";
-            foreach (var equipment in vehicle.Parts.Where(x => x.PartType == PartType.Equipment))
+            foreach (var equipment in vehicle.Parts.Where(x => x.PartType == PartType.Equipment && x.Quantity > 0))
                 str += equipment.Name.ToFirstLowerCase() + ", ";
             if(str.Length > 0)
                 str = str.Substring(0, str.Length - 2);

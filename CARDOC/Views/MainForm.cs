@@ -29,7 +29,7 @@ namespace CARDOC
             if (!string.IsNullOrEmpty(boxFilter.Text))
             {
                 var filter = boxFilter.Text.Trim();
-                _vehicles = _vehicles.Where(x => JsonConvert.SerializeObject(x).Contains(filter)).ToList();
+                _vehicles = _vehicles.Where(x => JsonConvert.SerializeObject(x).Contains(filter, StringComparison.CurrentCultureIgnoreCase)).ToList();
             }
             listHistory.Clear();
             listHistory.Columns.Add("✔", 50);
@@ -502,10 +502,7 @@ namespace CARDOC
         private void btnDoc_Click(object sender, EventArgs e)
         {
             var docDialog = new DocForm();
-            var vehicles = new List<Vehicle>();
-            foreach (int index in listHistory.CheckedIndices)
-                vehicles.Add(_vehicles[index]);
-            docDialog.Vehicles = vehicles;
+            docDialog.Vehicles = DataProvider.Vehicles.Where(x => _checkedVins.Contains(x.Vin)).ToList();
             docDialog.MainForm = this;
             docDialog.ShowDialog(this);
             docDialog.Dispose();
@@ -516,7 +513,6 @@ namespace CARDOC
         private bool _listHistoryUpdate = false;
         private void listHistory_ItemChecked(object sender, ItemCheckedEventArgs e)
         {
-            btnDoc.Enabled = listHistory.CheckedIndices.Count > 0;
             if (!_listHistoryUpdate)
             {
                 if (e.Item.Checked)
@@ -524,6 +520,7 @@ namespace CARDOC
                 else
                     _checkedVins.Remove(e.Item.SubItems[4].Text);
             }
+            btnDoc.Enabled = _checkedVins.Any();
         }
 
         public void SwitchLanguage(bool en)
@@ -615,6 +612,31 @@ namespace CARDOC
         private void listHistory_ItemCheck(object sender, ItemCheckEventArgs e)
         {
 
+        }
+
+        private void listHistory_ColumnClick(object sender, ColumnClickEventArgs e)
+        {
+            if(e.Column == 0)
+            {
+                _checkedVins.Clear();
+                foreach (ListViewItem item in listHistory.CheckedItems)
+                    item.Checked = false;
+            }
+        }
+
+        private void boxNom_Enter(object sender, EventArgs e)
+        {
+            SwitchLanguage(false);
+        }
+
+        private void boxOrder_TextChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private void boxOrder_Enter(object sender, EventArgs e)
+        {
+            SwitchLanguage(false);
         }
     }
 }

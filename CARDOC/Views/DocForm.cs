@@ -61,8 +61,11 @@ namespace CARDOC.Views
 
         private void DocForm_Load(object sender, EventArgs e)
         {
-            
             boxOutDate.Value = DateTime.Now.Date;
+            var first = Vehicles.First();
+            boxNom.Text = first.Nom;
+            boxOrder.Text = first.Order;
+            boxUnit.Text = first.Unit;
             var i = 0;
             foreach(var vehicle in Vehicles)
             {
@@ -143,6 +146,16 @@ namespace CARDOC.Views
                 i++;
             }
             MainForm.InitVehicleUI(Vehicle.Empty);
+        }
+
+        private void boxNom_Enter(object sender, EventArgs e)
+        {
+            MainForm.SwitchLanguage(false);
+        }
+
+        private void boxOrder_Enter(object sender, EventArgs e)
+        {
+            MainForm.SwitchLanguage(false);
         }
     }
 }

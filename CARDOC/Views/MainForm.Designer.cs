@@ -77,6 +77,7 @@ namespace CARDOC
             this.listHistory.TabIndex = 0;
             this.listHistory.UseCompatibleStateImageBehavior = false;
             this.listHistory.View = System.Windows.Forms.View.Details;
+            this.listHistory.ColumnClick += new System.Windows.Forms.ColumnClickEventHandler(this.listHistory_ColumnClick);
             this.listHistory.ItemCheck += new System.Windows.Forms.ItemCheckEventHandler(this.listHistory_ItemCheck);
             this.listHistory.ItemChecked += new System.Windows.Forms.ItemCheckedEventHandler(this.listHistory_ItemChecked);
             this.listHistory.SelectedIndexChanged += new System.EventHandler(this.listHistory_SelectedIndexChanged);
@@ -411,6 +412,7 @@ namespace CARDOC
             this.boxNom.PlaceholderText = "Д2111000Y";
             this.boxNom.Size = new System.Drawing.Size(194, 39);
             this.boxNom.TabIndex = 16;
+            this.boxNom.Enter += new System.EventHandler(this.boxNom_Enter);
             // 
             // boxMou
             // 
@@ -433,6 +435,8 @@ namespace CARDOC
             this.boxOrder.PlaceholderText = "2900 від 02.11.22";
             this.boxOrder.Size = new System.Drawing.Size(16, 39);
             this.boxOrder.TabIndex = 17;
+            this.boxOrder.TextChanged += new System.EventHandler(this.boxOrder_TextChanged);
+            this.boxOrder.Enter += new System.EventHandler(this.boxOrder_Enter);
             // 
             // boxUnit
             // 
