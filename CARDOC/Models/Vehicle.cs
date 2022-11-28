@@ -98,11 +98,20 @@ namespace CARDOC.Models
         }
 
         [JsonIgnore]
-        public string ExportFolder
+        public string ExportFolderIn
         {
             get
             {
                 return string.Format("{0}/{1} {2}", Const.ExportFolder, Date.ToString(Const.DateFormat), this.TemplateName);
+            }
+        }
+
+        [JsonIgnore]
+        public string ExportFolderOut
+        {
+            get
+            {
+                return string.Format("{0}/{1} {2}", Const.ExportFolder, OutDate.ToString(Const.DateFormat), this.TemplateName);
             }
         }
     }

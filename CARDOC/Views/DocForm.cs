@@ -64,6 +64,7 @@ namespace CARDOC.Views
             boxOutDate.Value = DateTime.Now.Date;
             var first = Vehicles.First();
             boxNom.Text = first.Nom;
+            boxNom.Text = string.IsNullOrEmpty(boxNom.Text) ? DataProvider.Vehicles.FirstOrDefault(x => x.TemplateName == first.TemplateName && !string.IsNullOrEmpty(x.Nom))?.Nom : first.Nom;
             boxOrder.Text = first.Order;
             boxUnit.Text = first.Unit;
             var i = 0;

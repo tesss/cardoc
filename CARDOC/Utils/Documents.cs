@@ -20,11 +20,11 @@ namespace CARDOC.Utils
         {
             Process.Start("explorer.exe", System.IO.Path.GetDirectoryName(Application.ExecutablePath) + "\\" + Const.ExportFolder);
         }
-        public static List<string> Generate(List<Vehicle> vehicles, Func<Vehicle, string, string> action)
+        public static List<string> Generate(List<Vehicle> vehicles, Func<Vehicle, string, string> action, bool folderIn = true)
         {
             bool success = true;
             var files = new List<string>();
-            foreach (var folder in vehicles.GroupBy(x => x.ExportFolder))
+            foreach (var folder in vehicles.GroupBy(x => folderIn ? x.ExportFolderIn: x.ExportFolderOut))
             {
                 var folderPath = string.Format("{0}", folder.Key);
                 Directory.CreateDirectory(folderPath);
@@ -72,7 +72,7 @@ namespace CARDOC.Utils
                 var file = string.Format("{0}/АКТ ПЕРЕДАЧІ {1} - {2}.docx", folderPath, vehicle.TemplateName, vehicle.Vin);
                 document.Generate(file);
                 return file; 
-            });
+            }, false);
         }
 
         public static List<string> GenerateInGeneral(List<Vehicle> vehicles)

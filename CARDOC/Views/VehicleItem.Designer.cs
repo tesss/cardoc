@@ -52,14 +52,14 @@
             this.boxVin.Location = new System.Drawing.Point(431, 3);
             this.boxVin.Name = "boxVin";
             this.boxVin.ReadOnly = true;
-            this.boxVin.Size = new System.Drawing.Size(255, 39);
+            this.boxVin.Size = new System.Drawing.Size(280, 39);
             this.boxVin.TabIndex = 1001;
             this.boxVin.Text = "JM1BG2241R0797923";
             // 
             // boxMou
             // 
             this.boxMou.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            this.boxMou.Location = new System.Drawing.Point(942, 3);
+            this.boxMou.Location = new System.Drawing.Point(967, 3);
             this.boxMou.Name = "boxMou";
             this.boxMou.PlaceholderText = "МОУ";
             this.boxMou.Size = new System.Drawing.Size(122, 39);
@@ -69,7 +69,7 @@
             // boxPrice
             // 
             this.boxPrice.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            this.boxPrice.Location = new System.Drawing.Point(1070, 3);
+            this.boxPrice.Location = new System.Drawing.Point(1095, 3);
             this.boxPrice.Name = "boxPrice";
             this.boxPrice.PlaceholderText = "Ціна";
             this.boxPrice.Size = new System.Drawing.Size(229, 39);
@@ -90,7 +90,7 @@
             // 
             this.boxNom.CharacterCasing = System.Windows.Forms.CharacterCasing.Upper;
             this.boxNom.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            this.boxNom.Location = new System.Drawing.Point(798, 3);
+            this.boxNom.Location = new System.Drawing.Point(823, 3);
             this.boxNom.Name = "boxNom";
             this.boxNom.PlaceholderText = "Д2111000Y";
             this.boxNom.Size = new System.Drawing.Size(138, 39);
@@ -99,7 +99,7 @@
             // boxAct
             // 
             this.boxAct.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            this.boxAct.Location = new System.Drawing.Point(692, 3);
+            this.boxAct.Location = new System.Drawing.Point(717, 3);
             this.boxAct.Name = "boxAct";
             this.boxAct.PlaceholderText = "№ акту";
             this.boxAct.Size = new System.Drawing.Size(100, 39);
@@ -118,7 +118,7 @@
             this.Controls.Add(this.boxVin);
             this.Controls.Add(this.boxModel);
             this.Name = "VehicleItem";
-            this.Size = new System.Drawing.Size(1302, 47);
+            this.Size = new System.Drawing.Size(1324, 47);
             this.ResumeLayout(false);
             this.PerformLayout();
 
