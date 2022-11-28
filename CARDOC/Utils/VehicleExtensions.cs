@@ -354,7 +354,7 @@ namespace CARDOC.Utils
         {
             var str = "";
             foreach (var equipment in vehicle.Parts.Where(x => x.PartType == PartType.Equipment && x.Quantity > 0))
-                str += equipment.Name.ToFirstLowerCase() + ", ";
+                str += equipment.Name.ToFirstLowerCase() + (!string.IsNullOrEmpty(equipment.Notes) ? " - " + equipment.Notes : "") + ", ";
             if(str.Length > 0)
                 str = str.Substring(0, str.Length - 2);
             return str;
