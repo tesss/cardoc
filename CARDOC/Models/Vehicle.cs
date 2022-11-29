@@ -37,7 +37,15 @@ namespace CARDOC.Models
         public string Mou { get; set; }
         public string Unit { get; set; }
         public DateTime OutDate { get; set; }
+
+        /* in fields */
+        public string ActIn { get; set; }
+        public decimal H1 { get; set; }
+        public decimal H2 { get; set; }
+
         public decimal Price { get; set; }
+        public decimal PriceUSD { get; set; }
+        public decimal PriceEUR { get; set; }
 
         public static Vehicle Empty 
         { 

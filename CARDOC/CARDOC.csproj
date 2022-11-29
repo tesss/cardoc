@@ -9,37 +9,14 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <None Remove="DocTemplates\in.docx" />
-    <None Remove="DocTemplates\inGeneral.docx" />
-    <None Remove="DocTemplates\out.docx" />
-    <None Remove="DocTemplates\zero.docx" />
-    <None Remove="DocTemplates\zip.docx" />
-  </ItemGroup>
-
-  <ItemGroup>
-    <Resource Include="DocTemplates\out.docx">
-      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
-    </Resource>
-    <Resource Include="DocTemplates\zero.docx">
-      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
-    </Resource>
-    <Resource Include="DocTemplates\zip.docx">
-      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
-    </Resource>
+    <Compile Remove="DocTemplates\**" />
+    <EmbeddedResource Remove="DocTemplates\**" />
+    <None Remove="DocTemplates\**" />
   </ItemGroup>
 
   <ItemGroup>
     <PackageReference Include="Newtonsoft.Json" Version="13.0.1" />
     <PackageReference Include="SharpDocx" Version="2.3.0" />
-  </ItemGroup>
-
-  <ItemGroup>
-    <Resource Include="DocTemplates\in.docx">
-      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
-    </Resource>
-    <Resource Include="DocTemplates\inGeneral.docx">
-      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
-    </Resource>
   </ItemGroup>
 
   <ItemGroup>

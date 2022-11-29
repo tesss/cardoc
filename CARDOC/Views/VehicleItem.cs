@@ -47,11 +47,23 @@ namespace CARDOC.Views
         {
             get
             {
-                return boxAct.Text;
+                return boxActOut.Text;
             }
             set
             {
-                boxAct.Text = value;
+                boxActOut.Text = value;
+            }
+        }
+
+        public string ActIn
+        {
+            get
+            {
+                return boxActIn.Text;
+            }
+            set
+            {
+                boxActIn.Text = value;
             }
         }
 
@@ -79,15 +91,69 @@ namespace CARDOC.Views
             }
         }
 
-        public decimal Price
+        public decimal PriceUAH
         {
             get
             {
-                return decimal.Parse(boxPrice.Text);
+                if (decimal.TryParse(boxPriceUAH.Text, out decimal price))
+                    return price;
+                return 0;
             }
             set
             {
-                boxPrice.Text = string.Format("{0:N}", value);
+                boxPriceUAH.Text = string.Format("{0:N}", value);
+            }
+        }
+        public decimal PriceUSD
+        {
+            get
+            {
+                if (decimal.TryParse(boxPriceUSD.Text, out decimal price))
+                    return price;
+                return 0;
+            }
+            set
+            {
+                boxPriceUSD.Text = string.Format("{0:N}", value);
+            }
+        }
+        public decimal PriceEUR
+        {
+            get
+            {
+                if (decimal.TryParse(boxPriceEUR.Text, out decimal price))
+                    return price;
+                return 0;
+            }
+            set
+            {
+                boxPriceEUR.Text = string.Format("{0:N}", value);
+            }
+        }
+        public decimal H1
+        {
+            get
+            {
+                if (decimal.TryParse(boxH1.Text, out decimal d))
+                    return d;
+                return 0;
+            }
+            set
+            {
+                boxH1.Text = string.Format("{0:N}", value);
+            }
+        }
+        public decimal H2
+        {
+            get
+            {
+                if (decimal.TryParse(boxH2.Text, out decimal d))
+                    return d;
+                return 0;
+            }
+            set
+            {
+                boxH2.Text = string.Format("{0:N}", value);
             }
         }
         public int Index
@@ -98,7 +164,7 @@ namespace CARDOC.Views
 
         private void boxAct_KeyPress(object sender, KeyPressEventArgs e)
         {
-            boxAct.HandleNumeric(e);
+            boxActIn.HandleNumeric(e);
         }
 
         private void boxMou_KeyPress(object sender, KeyPressEventArgs e)
@@ -108,7 +174,22 @@ namespace CARDOC.Views
 
         private void boxPrice_KeyPress(object sender, KeyPressEventArgs e)
         {
-            boxPrice.HandlePrice(e);
+            boxPriceUSD.HandlePrice(e);
+        }
+
+        private void VehicleItem_Load(object sender, EventArgs e)
+        {
+            foreach (var control in Controls)
+            {
+                TextBox textBox = control as TextBox;
+                if (textBox != null)
+                    textBox.MouseClick += new MouseEventHandler(SelectAll);
+            }
+        }
+
+        public void SelectAll(object sender, MouseEventArgs e)
+        {
+            (sender as TextBox).SelectAll();
         }
     }
 }

@@ -23,13 +23,13 @@ namespace CARDOC
         private Vehicle _currentVehicle;
         private List<Vehicle> _vehicles;
 
-        private void InitUI(bool first)
+        public void InitUI(bool first)
         {
             _vehicles = DataProvider.Vehicles;
             if (!string.IsNullOrEmpty(boxFilter.Text))
             {
                 var filter = boxFilter.Text.Trim();
-                _vehicles = _vehicles.Where(x => JsonConvert.SerializeObject(x).Contains(filter, StringComparison.CurrentCultureIgnoreCase)).ToList();
+                _vehicles = _vehicles.Where(x => JsonConvert.SerializeObject(x).Contains(filter, StringComparison.InvariantCultureIgnoreCase)).ToList();
             }
             listHistory.Clear();
             listHistory.Columns.Add("✔", 50);
@@ -39,7 +39,7 @@ namespace CARDOC
             listHistory.Columns.Add("Vin", 200);
             listHistory.Columns.Add("Рік", 100);
             listHistory.Columns.Add("Пробіг", 100);
-            listHistory.Columns.Add("Оновлено", 100);
+            listHistory.Columns.Add("Видача", 100);
             _listHistoryUpdate = true;
             foreach (var vehicle in _vehicles)
             {
@@ -55,7 +55,7 @@ namespace CARDOC
                 if(vehicle.MileageH != 0)
                     mileage += " " + vehicle.MileageH + " " + Const.UnitsHours;
                 lvi.SubItems.Add(new ListViewItem.ListViewSubItem(lvi, "Пробіг") { Text = mileage.Trim() });
-                lvi.SubItems.Add(new ListViewItem.ListViewSubItem(lvi, "Оновлено") { Text = vehicle.Updated.ToString("dd.MM.yyyy HH:mm:ss") });
+                lvi.SubItems.Add(new ListViewItem.ListViewSubItem(lvi, "Видача") { Text = vehicle.OutDate.ToString("dd.MM.yyyy HH:mm:ss") });
                 if (_checkedVins.Contains(vehicle.Vin))
                     lvi.Checked = true;
                 listHistory.Items.Add(lvi);
@@ -67,7 +67,7 @@ namespace CARDOC
                 foreach(var control in Controls)
                 {
                     TextBox textBox = control as TextBox;
-                    if(textBox != null && (textBox.Name == boxMileageK.Name || textBox.Name == boxMileageM.Name || textBox.Name == boxMileageH.Name || textBox.Name == boxFilter.Name))
+                    if(textBox != null && (textBox.Name.Contains("Mileage") || textBox.Name.Contains("Price") || textBox.Name == boxFilter.Name))
                         textBox.MouseClick += new MouseEventHandler(SelectAll);
                 }
                 boxFilterDate.CustomFormat = boxDate.CustomFormat = boxOutDate.CustomFormat = Const.DateShortFormat;
@@ -124,14 +124,19 @@ namespace CARDOC
             boxRao.Checked = vehicle.Rao;
             boxCommunication.Checked = vehicle.Сommunication;
 
-            boxAct.Text = vehicle.Act;
+            boxActIn.Text = vehicle.ActIn;
+            boxActOut.Text = vehicle.Act;
             boxNom.Text = vehicle.Nom;
             boxOrder.Text = vehicle.Order;
             boxMou.Text = vehicle.Mou;
             boxUnit.Text = vehicle.Unit;
             boxOutDate.Value = vehicle.OutDate;
 
-            boxPrice.Text = string.Format("{0:N}", vehicle.Price);
+            boxPriceUAH.Text = string.Format("{0:N}", vehicle.Price);
+            boxPriceUSD.Text = string.Format("{0:N}", vehicle.PriceUSD);
+            boxPriceEUR.Text = string.Format("{0:N}", vehicle.PriceEUR);
+            boxH1.Text = string.Format("{0:N}", vehicle.H1);
+            boxH2.Text = string.Format("{0:N}", vehicle.H2);
 
             if (vehicle.MileageUnits?.ToLower() == "км" && vehicle.Mileage > 0)
                 boxMileageK.Text = vehicle.Mileage.ToString();
@@ -326,7 +331,8 @@ namespace CARDOC
                 Сommunication = boxCommunication.Checked,
                 Rao = boxRao.Checked,
                 Type = boxType.Text.Trim().ToFirstUpperCase(),
-                Act = boxAct.Text,
+                ActIn = boxActIn.Text,
+                Act = boxActOut.Text,
                 Nom = boxNom.Text.Trim().ToUpper(),
                 Order = boxOrder.Text.Trim().ToFirstUpperCase(),
                 Mou = boxMou.Text,
@@ -337,8 +343,16 @@ namespace CARDOC
             };
             if (int.TryParse(boxYear.Text, out var year))
                 vehicle.Year = year;
-            if (decimal.TryParse(boxPrice.Text, out var price))
+            if (decimal.TryParse(boxPriceUAH.Text, out var price))
                 vehicle.Price = price;
+            if (decimal.TryParse(boxPriceUSD.Text, out var priceUSD))
+                vehicle.PriceUSD = priceUSD;
+            if (decimal.TryParse(boxPriceEUR.Text, out var priceEUR))
+                vehicle.PriceEUR = priceEUR;
+            if (decimal.TryParse(boxH1.Text, out var h1))
+                vehicle.H1 = h1;
+            if (decimal.TryParse(boxH2.Text, out var h2))
+                vehicle.H2 = h2;
             if (!string.IsNullOrEmpty(boxMileageK.Text))
             {
                 vehicle.Mileage = int.Parse(boxMileageK.Text);
@@ -576,7 +590,7 @@ namespace CARDOC
 
         private void boxAct_KeyPress(object sender, KeyPressEventArgs e)
         {
-            boxAct.HandleNumeric(e);
+            boxActOut.HandleNumeric(e);
         }
 
         private void boxMou_KeyPress(object sender, KeyPressEventArgs e)
@@ -596,7 +610,7 @@ namespace CARDOC
 
         private void boxPrice_KeyPress(object sender, KeyPressEventArgs e)
         {
-            boxPrice.HandlePrice(e);
+            boxPriceUAH.HandlePrice(e);
         }
 
         private void boxFilter_TextChanged(object sender, EventArgs e)

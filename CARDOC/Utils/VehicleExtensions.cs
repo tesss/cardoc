@@ -414,5 +414,34 @@ namespace CARDOC.Utils
                 return "прибув без документів";
             return vehicle.Notes.ToFirstLowerCase();
         }
+
+        public static string GetMonth(this DateTime date)
+        {
+            if (date.Month == 1)
+                return "січня";
+            if (date.Month == 2)
+                return "лютого";
+            if (date.Month == 3)
+                return "березня";
+            if (date.Month == 4)
+                return "квітня";
+            if (date.Month == 5)
+                return "травня";
+            if (date.Month == 6)
+                return "червня";
+            if (date.Month == 7)
+                return "липня";
+            if (date.Month == 8)
+                return "серпня";
+            if (date.Month == 9)
+                return "вересня";
+            if (date.Month == 10)
+                return "жовтня";
+            if (date.Month == 11)
+                return "листопада";
+            if (date.Month == 12)
+                return "грудня";
+            return "";
+        }
     }
 }

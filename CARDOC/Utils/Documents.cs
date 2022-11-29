@@ -52,7 +52,7 @@ namespace CARDOC.Utils
                 return file;
             });
         }
-
+        
         public static List<string> GenerateIn(List<Vehicle> vehicles)
         {
             return Generate(vehicles, (vehicle, folderPath) =>
@@ -106,6 +106,27 @@ namespace CARDOC.Utils
                 {
                     var document = DocumentFactory.Create(Const.DocTemplateFolder + "/inOut.docx", date.ToArray());
                     var file = string.Format("{0}/{1} АКТ ПРИЙМАННЯ-ПЕРЕДАЧІ.docx", Const.ExportFolder, date.Key.ToString(Const.DateFormat));
+                    document.Generate(file);
+                    files.Add(file);
+                }
+                catch (Exception ex)
+                {
+                    success = false;
+                }
+            }
+            return files;
+        }
+
+        public static List<string> GenerateInOutGeneral(List<Vehicle> vehicles)
+        {
+            bool success = true;
+            var files = new List<string>();
+            foreach (var date in vehicles.GroupBy(x => x.OutDate))
+            {
+                try
+                {
+                    var document = DocumentFactory.Create(Const.DocTemplateFolder + "/inOutGeneral.docx", date.ToArray());
+                    var file = string.Format("{0}/{1} АКТ ПРИЙМАННЯ-ПЕРЕДАЧІ ОСН ЗАС.docx", Const.ExportFolder, date.Key.ToString(Const.DateFormat));
                     document.Generate(file);
                     files.Add(file);
                 }
