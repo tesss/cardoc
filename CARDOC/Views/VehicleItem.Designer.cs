@@ -73,7 +73,7 @@
             // 
             // boxPriceUSD
             // 
-            this.boxPriceUSD.BackColor = System.Drawing.Color.Honeydew;
+            this.boxPriceUSD.BackColor = System.Drawing.Color.FromArgb(230, 255, 230);
             this.boxPriceUSD.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
             this.boxPriceUSD.Location = new System.Drawing.Point(968, 3);
             this.boxPriceUSD.Name = "boxPriceUSD";
@@ -114,7 +114,7 @@
             // 
             // boxPriceEUR
             // 
-            this.boxPriceEUR.BackColor = System.Drawing.Color.LightCyan;
+            this.boxPriceEUR.BackColor = System.Drawing.Color.FromArgb(229, 249, 255);
             this.boxPriceEUR.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
             this.boxPriceEUR.Location = new System.Drawing.Point(1075, 3);
             this.boxPriceEUR.Name = "boxPriceEUR";
@@ -145,7 +145,7 @@
             // 
             // boxPriceUAH
             // 
-            this.boxPriceUAH.BackColor = System.Drawing.Color.SeaShell;
+            this.boxPriceUAH.BackColor = System.Drawing.Color.FromArgb(255, 236, 229);
             this.boxPriceUAH.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
             this.boxPriceUAH.Location = new System.Drawing.Point(1182, 3);
             this.boxPriceUAH.Name = "boxPriceUAH";

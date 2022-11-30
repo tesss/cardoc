@@ -10,6 +10,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using System.Diagnostics;
+using System.Net.NetworkInformation;
 
 namespace CARDOC.Views
 {
@@ -64,6 +65,11 @@ namespace CARDOC.Views
             AddResults(Documents.GenerateInOutGeneral(Vehicles));
         }
 
+        private void btnPrice_Click(object sender, EventArgs e)
+        {
+            AddResults(Documents.GeneratePrice(Vehicles));
+        }
+
         private void DocForm_Load(object sender, EventArgs e)
         {
             foreach (var control in Controls)
@@ -72,6 +78,8 @@ namespace CARDOC.Views
                 if (textBox != null)
                     textBox.MouseClick += new MouseEventHandler(SelectAll);
             }
+            boxH1.Text = string.Format("{0:N}", 0.3);
+            boxH2.Text = string.Format("{0:N}", 1.56);
             boxOutDate.Value = DateTime.Now.Date;
             var first = Vehicles.First();
             boxNom.Text = first.Nom;
@@ -148,6 +156,7 @@ namespace CARDOC.Views
                     act++;
                 } else
                     vehicle.Act = vehicleView.Act;
+
                 if (actIn > 0)
                 {
                     vehicleView.ActIn = vehicle.ActIn = actIn.ToString();
@@ -155,14 +164,17 @@ namespace CARDOC.Views
                 }
                 else
                     vehicle.ActIn = vehicleView.ActIn;
+
                 if (!string.IsNullOrEmpty(boxNom.Text))
-                    vehicleView.Nom = boxNom.Text.Trim().ToUpper();
+                    vehicleView.Nom = vehicle.Nom = boxNom.Text.Trim().ToUpper();
                 else
                     vehicle.Nom = vehicleView.Nom;
+
                 if (!string.IsNullOrEmpty(boxOrder.Text))
                     vehicle.Order = boxOrder.Text.Trim().ToFirstUpperCase();
                 if (!string.IsNullOrEmpty(boxUnit.Text))
                     vehicle.Unit = boxUnit.Text.Trim();
+
                 vehicle.OutDate = boxOutDate.Value;
                 vehicle.Mou = vehicleView.Mou;
                 vehicleView.PriceUAH = vehicle.Price = priceUAH > 0 ? priceUAH : vehicleView.PriceUAH;

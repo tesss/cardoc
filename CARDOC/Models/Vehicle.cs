@@ -47,6 +47,8 @@ namespace CARDOC.Models
         public decimal PriceUSD { get; set; }
         public decimal PriceEUR { get; set; }
 
+        public static DateTime EmptyDate = new DateTime(2000, 1, 1);
+
         public static Vehicle Empty 
         { 
             get 
@@ -55,7 +57,7 @@ namespace CARDOC.Models
                 {
                     Updated = DateTime.Now,
                     Date = DateTime.Now.Date,
-                    OutDate = DateTime.Now.Date,
+                    OutDate = EmptyDate,
                     MileageUnits = Const.UnitsKm,
                     Parts = new List<Part>
                     {

@@ -161,5 +161,29 @@ namespace CARDOC.Utils
             }
             return files;
         }
+
+        internal static List<string> GeneratePrice(List<Vehicle> vehicles)
+        {
+            bool success = true;
+            var files = new List<string>();
+            foreach (var model in vehicles.GroupBy(x => x.TemplateName))
+            {
+                try
+                {
+                    Vehicle vehicle = model.First();
+                    if (DataProvider.Templates.ContainsKey(vehicle.TemplateName))
+                        vehicle = DataProvider.Templates[vehicle.TemplateName];
+                    var document = DocumentFactory.Create(Const.DocTemplateFolder + "/zero.docx", vehicle);
+                    var file = string.Format("{0}/ШАБЛОН {1}.docx", Const.ExportFolder, model.Key);
+                    document.Generate(file);
+                    files.Add(file);
+                }
+                catch (Exception ex)
+                {
+                    success = false;
+                }
+            }
+            return files;
+        }
     }
 }

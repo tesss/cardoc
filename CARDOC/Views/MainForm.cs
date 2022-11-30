@@ -55,7 +55,7 @@ namespace CARDOC
                 if(vehicle.MileageH != 0)
                     mileage += " " + vehicle.MileageH + " " + Const.UnitsHours;
                 lvi.SubItems.Add(new ListViewItem.ListViewSubItem(lvi, "Пробіг") { Text = mileage.Trim() });
-                lvi.SubItems.Add(new ListViewItem.ListViewSubItem(lvi, "Видача") { Text = vehicle.OutDate.ToString("dd.MM.yyyy HH:mm:ss") });
+                lvi.SubItems.Add(new ListViewItem.ListViewSubItem(lvi, "Видача") { Text = vehicle.OutDate == Vehicle.EmptyDate ? "" : vehicle.OutDate.ToString("dd.MM.yy") });
                 if (_checkedVins.Contains(vehicle.Vin))
                     lvi.Checked = true;
                 listHistory.Items.Add(lvi);
@@ -341,6 +341,8 @@ namespace CARDOC
                 Parts = new List<Models.Part>(),
                 Updated = DateTime.Now
             };
+            if (!string.IsNullOrEmpty(vehicle.Order) && !string.IsNullOrEmpty(vehicle.Unit) && vehicle.OutDate == Vehicle.EmptyDate)
+                vehicle.OutDate = DateTime.Now.Date;
             if (int.TryParse(boxYear.Text, out var year))
                 vehicle.Year = year;
             if (decimal.TryParse(boxPriceUAH.Text, out var price))
@@ -492,7 +494,7 @@ namespace CARDOC
             var templateName = GetVehicleFromView().TemplateName;
             if (templateName != null && DataProvider.Templates.TryGetValue(GetVehicleFromView().TemplateName, out Vehicle vehicle))
             {
-                vehicle.Date = vehicle.OutDate = DateTime.Now.Date;
+                vehicle.Date = DateTime.Now.Date;
                 InitVehicleUI(vehicle, true);
             }
         }
@@ -516,7 +518,7 @@ namespace CARDOC
         private void btnDoc_Click(object sender, EventArgs e)
         {
             var docDialog = new DocForm();
-            docDialog.Vehicles = DataProvider.Vehicles.Where(x => _checkedVins.Contains(x.Vin)).ToList();
+            docDialog.Vehicles = DataProvider.Vehicles.Where(x => _checkedVins.Contains(x.Vin)).OrderBy(x => x.Act).ThenBy(x => x.Vin).ToList();
             docDialog.MainForm = this;
             docDialog.ShowDialog(this);
             docDialog.Dispose();

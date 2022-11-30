@@ -63,13 +63,14 @@
             this.label12 = new System.Windows.Forms.Label();
             this.btnInOutGeneral = new System.Windows.Forms.Button();
             this.btnUpdate = new System.Windows.Forms.Button();
+            this.btnPrice = new System.Windows.Forms.Button();
             this.SuspendLayout();
             // 
             // btnZip
             // 
             this.btnZip.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.btnZip.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            this.btnZip.Location = new System.Drawing.Point(1606, 7);
+            this.btnZip.Location = new System.Drawing.Point(1607, 7);
             this.btnZip.Name = "btnZip";
             this.btnZip.Size = new System.Drawing.Size(168, 84);
             this.btnZip.TabIndex = 200;
@@ -81,7 +82,7 @@
             // 
             this.btnIn.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.btnIn.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            this.btnIn.Location = new System.Drawing.Point(1606, 97);
+            this.btnIn.Location = new System.Drawing.Point(1607, 97);
             this.btnIn.Name = "btnIn";
             this.btnIn.Size = new System.Drawing.Size(168, 84);
             this.btnIn.TabIndex = 201;
@@ -93,7 +94,7 @@
             // 
             this.btnInGeneral.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.btnInGeneral.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            this.btnInGeneral.Location = new System.Drawing.Point(1606, 457);
+            this.btnInGeneral.Location = new System.Drawing.Point(1607, 457);
             this.btnInGeneral.Name = "btnInGeneral";
             this.btnInGeneral.Size = new System.Drawing.Size(168, 84);
             this.btnInGeneral.TabIndex = 203;
@@ -105,7 +106,7 @@
             // 
             this.btnOut.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.btnOut.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            this.btnOut.Location = new System.Drawing.Point(1606, 187);
+            this.btnOut.Location = new System.Drawing.Point(1607, 187);
             this.btnOut.Name = "btnOut";
             this.btnOut.Size = new System.Drawing.Size(168, 84);
             this.btnOut.TabIndex = 202;
@@ -117,7 +118,7 @@
             // 
             this.button1.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.button1.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            this.button1.Location = new System.Drawing.Point(1606, 547);
+            this.button1.Location = new System.Drawing.Point(1607, 637);
             this.button1.Name = "button1";
             this.button1.Size = new System.Drawing.Size(168, 84);
             this.button1.TabIndex = 204;
@@ -129,7 +130,7 @@
             // 
             this.btnInOut.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.btnInOut.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            this.btnInOut.Location = new System.Drawing.Point(1606, 277);
+            this.btnInOut.Location = new System.Drawing.Point(1607, 277);
             this.btnInOut.Name = "btnInOut";
             this.btnInOut.Size = new System.Drawing.Size(168, 84);
             this.btnInOut.TabIndex = 205;
@@ -140,7 +141,7 @@
             // boxActOut
             // 
             this.boxActOut.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            this.boxActOut.Location = new System.Drawing.Point(13, 52);
+            this.boxActOut.Location = new System.Drawing.Point(13, 63);
             this.boxActOut.Name = "boxActOut";
             this.boxActOut.PlaceholderText = "Поч № видачі";
             this.boxActOut.Size = new System.Drawing.Size(164, 39);
@@ -150,7 +151,7 @@
             // boxOrder
             // 
             this.boxOrder.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            this.boxOrder.Location = new System.Drawing.Point(325, 52);
+            this.boxOrder.Location = new System.Drawing.Point(325, 63);
             this.boxOrder.Name = "boxOrder";
             this.boxOrder.PlaceholderText = "2780 від 02.11.22";
             this.boxOrder.Size = new System.Drawing.Size(223, 39);
@@ -160,7 +161,7 @@
             // boxUnit
             // 
             this.boxUnit.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            this.boxUnit.Location = new System.Drawing.Point(554, 52);
+            this.boxUnit.Location = new System.Drawing.Point(554, 63);
             this.boxUnit.Name = "boxUnit";
             this.boxUnit.PlaceholderText = "А0222 м. Київ";
             this.boxUnit.Size = new System.Drawing.Size(594, 39);
@@ -171,7 +172,7 @@
             // 
             this.boxOutDate.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
             this.boxOutDate.Format = System.Windows.Forms.DateTimePickerFormat.Custom;
-            this.boxOutDate.Location = new System.Drawing.Point(1154, 52);
+            this.boxOutDate.Location = new System.Drawing.Point(1154, 63);
             this.boxOutDate.Name = "boxOutDate";
             this.boxOutDate.Size = new System.Drawing.Size(206, 39);
             this.boxOutDate.TabIndex = 219;
@@ -180,7 +181,7 @@
             // 
             this.boxNom.CharacterCasing = System.Windows.Forms.CharacterCasing.Upper;
             this.boxNom.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            this.boxNom.Location = new System.Drawing.Point(183, 52);
+            this.boxNom.Location = new System.Drawing.Point(183, 63);
             this.boxNom.Name = "boxNom";
             this.boxNom.PlaceholderText = "Д2111000Y";
             this.boxNom.Size = new System.Drawing.Size(136, 39);
@@ -193,9 +194,9 @@
             | System.Windows.Forms.AnchorStyles.Right)));
             this.panelVehicles.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
             this.panelVehicles.FlowDirection = System.Windows.Forms.FlowDirection.TopDown;
-            this.panelVehicles.Location = new System.Drawing.Point(12, 153);
+            this.panelVehicles.Location = new System.Drawing.Point(12, 169);
             this.panelVehicles.Name = "panelVehicles";
-            this.panelVehicles.Size = new System.Drawing.Size(1562, 411);
+            this.panelVehicles.Size = new System.Drawing.Size(1581, 395);
             this.panelVehicles.TabIndex = 213;
             this.panelVehicles.WrapContents = false;
             // 
@@ -208,7 +209,7 @@
             this.listFiles.Location = new System.Drawing.Point(13, 573);
             this.listFiles.Name = "listFiles";
             this.listFiles.ScrollAlwaysVisible = true;
-            this.listFiles.Size = new System.Drawing.Size(1561, 204);
+            this.listFiles.Size = new System.Drawing.Size(1580, 204);
             this.listFiles.TabIndex = 212;
             this.listFiles.SelectedIndexChanged += new System.EventHandler(this.listFiles_SelectedIndexChanged);
             this.listFiles.MouseDoubleClick += new System.Windows.Forms.MouseEventHandler(this.listFiles_MouseDoubleClick);
@@ -226,11 +227,11 @@
             // 
             // boxPriceUAH
             // 
-            this.boxPriceUAH.BackColor = System.Drawing.Color.SeaShell;
+            this.boxPriceUAH.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(236)))), ((int)(((byte)(229)))));
             this.boxPriceUAH.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
             this.boxPriceUAH.Location = new System.Drawing.Point(925, 7);
             this.boxPriceUAH.Name = "boxPriceUAH";
-            this.boxPriceUAH.PlaceholderText = "₴₴₴.₴₴";
+            this.boxPriceUAH.PlaceholderText = "₴₴₴";
             this.boxPriceUAH.Size = new System.Drawing.Size(223, 39);
             this.boxPriceUAH.TabIndex = 212;
             this.boxPriceUAH.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.HandleDecimal);
@@ -243,7 +244,6 @@
             this.boxH2.PlaceholderText = "H2";
             this.boxH2.Size = new System.Drawing.Size(102, 39);
             this.boxH2.TabIndex = 214;
-            this.boxH2.Text = "1.56";
             this.boxH2.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.HandleDecimal);
             // 
             // boxH1
@@ -255,34 +255,33 @@
             this.boxH1.PlaceholderText = "H1";
             this.boxH1.Size = new System.Drawing.Size(98, 39);
             this.boxH1.TabIndex = 213;
-            this.boxH1.Text = "0.3";
             this.boxH1.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.HandleDecimal);
             // 
             // boxPriceEUR
             // 
-            this.boxPriceEUR.BackColor = System.Drawing.Color.LightCyan;
+            this.boxPriceEUR.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(229)))), ((int)(((byte)(249)))), ((int)(((byte)(255)))));
             this.boxPriceEUR.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
             this.boxPriceEUR.Location = new System.Drawing.Point(554, 7);
             this.boxPriceEUR.Name = "boxPriceEUR";
-            this.boxPriceEUR.PlaceholderText = "€€€.€€";
+            this.boxPriceEUR.PlaceholderText = "€€€";
             this.boxPriceEUR.Size = new System.Drawing.Size(223, 39);
             this.boxPriceEUR.TabIndex = 210;
             this.boxPriceEUR.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.HandleDecimal);
             // 
             // boxPriceUSD
             // 
-            this.boxPriceUSD.BackColor = System.Drawing.Color.Honeydew;
+            this.boxPriceUSD.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(230)))), ((int)(((byte)(255)))), ((int)(((byte)(230)))));
             this.boxPriceUSD.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
             this.boxPriceUSD.Location = new System.Drawing.Point(183, 7);
             this.boxPriceUSD.Name = "boxPriceUSD";
-            this.boxPriceUSD.PlaceholderText = "$$$.$$";
+            this.boxPriceUSD.PlaceholderText = "$$$";
             this.boxPriceUSD.Size = new System.Drawing.Size(223, 39);
             this.boxPriceUSD.TabIndex = 208;
             this.boxPriceUSD.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.HandleDecimal);
             // 
             // boxRateEUR
             // 
-            this.boxRateEUR.BackColor = System.Drawing.Color.LightCyan;
+            this.boxRateEUR.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(229)))), ((int)(((byte)(249)))), ((int)(((byte)(255)))));
             this.boxRateEUR.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
             this.boxRateEUR.Location = new System.Drawing.Point(783, 7);
             this.boxRateEUR.Name = "boxRateEUR";
@@ -293,7 +292,7 @@
             // 
             // boxRateUSD
             // 
-            this.boxRateUSD.BackColor = System.Drawing.Color.Honeydew;
+            this.boxRateUSD.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(230)))), ((int)(((byte)(255)))), ((int)(((byte)(230)))));
             this.boxRateUSD.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
             this.boxRateUSD.Location = new System.Drawing.Point(412, 7);
             this.boxRateUSD.Name = "boxRateUSD";
@@ -305,7 +304,7 @@
             // label1
             // 
             this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(13, 115);
+            this.label1.Location = new System.Drawing.Point(13, 127);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(32, 25);
             this.label1.TabIndex = 1023;
@@ -314,7 +313,7 @@
             // label2
             // 
             this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(61, 115);
+            this.label2.Location = new System.Drawing.Point(61, 127);
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(76, 25);
             this.label2.TabIndex = 1024;
@@ -323,7 +322,7 @@
             // label3
             // 
             this.label3.AutoSize = true;
-            this.label3.Location = new System.Drawing.Point(276, 115);
+            this.label3.Location = new System.Drawing.Point(276, 127);
             this.label3.Name = "label3";
             this.label3.Size = new System.Drawing.Size(41, 25);
             this.label3.TabIndex = 1025;
@@ -332,7 +331,7 @@
             // label4
             // 
             this.label4.AutoSize = true;
-            this.label4.Location = new System.Drawing.Point(533, 115);
+            this.label4.Location = new System.Drawing.Point(533, 127);
             this.label4.Name = "label4";
             this.label4.Size = new System.Drawing.Size(86, 25);
             this.label4.TabIndex = 1026;
@@ -341,7 +340,7 @@
             // label5
             // 
             this.label5.AutoSize = true;
-            this.label5.Location = new System.Drawing.Point(639, 115);
+            this.label5.Location = new System.Drawing.Point(639, 127);
             this.label5.Name = "label5";
             this.label5.Size = new System.Drawing.Size(94, 25);
             this.label5.TabIndex = 1027;
@@ -350,7 +349,7 @@
             // label6
             // 
             this.label6.AutoSize = true;
-            this.label6.Location = new System.Drawing.Point(745, 115);
+            this.label6.Location = new System.Drawing.Point(745, 127);
             this.label6.Name = "label6";
             this.label6.Size = new System.Drawing.Size(131, 25);
             this.label6.TabIndex = 1028;
@@ -359,7 +358,7 @@
             // label7
             // 
             this.label7.AutoSize = true;
-            this.label7.Location = new System.Drawing.Point(889, 115);
+            this.label7.Location = new System.Drawing.Point(889, 127);
             this.label7.Name = "label7";
             this.label7.Size = new System.Drawing.Size(52, 25);
             this.label7.TabIndex = 1029;
@@ -368,7 +367,7 @@
             // label8
             // 
             this.label8.AutoSize = true;
-            this.label8.Location = new System.Drawing.Point(976, 115);
+            this.label8.Location = new System.Drawing.Point(976, 127);
             this.label8.Name = "label8";
             this.label8.Size = new System.Drawing.Size(47, 25);
             this.label8.TabIndex = 1030;
@@ -377,7 +376,7 @@
             // label9
             // 
             this.label9.AutoSize = true;
-            this.label9.Location = new System.Drawing.Point(1084, 115);
+            this.label9.Location = new System.Drawing.Point(1084, 127);
             this.label9.Name = "label9";
             this.label9.Size = new System.Drawing.Size(44, 25);
             this.label9.TabIndex = 1031;
@@ -386,7 +385,7 @@
             // label10
             // 
             this.label10.AutoSize = true;
-            this.label10.Location = new System.Drawing.Point(1192, 115);
+            this.label10.Location = new System.Drawing.Point(1192, 127);
             this.label10.Name = "label10";
             this.label10.Size = new System.Drawing.Size(49, 25);
             this.label10.TabIndex = 1032;
@@ -395,7 +394,7 @@
             // label11
             // 
             this.label11.AutoSize = true;
-            this.label11.Location = new System.Drawing.Point(1300, 115);
+            this.label11.Location = new System.Drawing.Point(1300, 127);
             this.label11.Name = "label11";
             this.label11.Size = new System.Drawing.Size(35, 25);
             this.label11.TabIndex = 1033;
@@ -404,7 +403,7 @@
             // label12
             // 
             this.label12.AutoSize = true;
-            this.label12.Location = new System.Drawing.Point(1364, 115);
+            this.label12.Location = new System.Drawing.Point(1364, 127);
             this.label12.Name = "label12";
             this.label12.Size = new System.Drawing.Size(35, 25);
             this.label12.TabIndex = 1034;
@@ -414,7 +413,7 @@
             // 
             this.btnInOutGeneral.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.btnInOutGeneral.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            this.btnInOutGeneral.Location = new System.Drawing.Point(1606, 367);
+            this.btnInOutGeneral.Location = new System.Drawing.Point(1607, 367);
             this.btnInOutGeneral.Name = "btnInOutGeneral";
             this.btnInOutGeneral.Size = new System.Drawing.Size(168, 84);
             this.btnInOutGeneral.TabIndex = 1035;
@@ -426,7 +425,7 @@
             // 
             this.btnUpdate.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.btnUpdate.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            this.btnUpdate.Location = new System.Drawing.Point(1481, 7);
+            this.btnUpdate.Location = new System.Drawing.Point(1500, 7);
             this.btnUpdate.Name = "btnUpdate";
             this.btnUpdate.Size = new System.Drawing.Size(93, 84);
             this.btnUpdate.TabIndex = 1036;
@@ -434,12 +433,25 @@
             this.btnUpdate.UseVisualStyleBackColor = true;
             this.btnUpdate.Click += new System.EventHandler(this.btnUpdate_Click);
             // 
+            // btnPrice
+            // 
+            this.btnPrice.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.btnPrice.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
+            this.btnPrice.Location = new System.Drawing.Point(1607, 547);
+            this.btnPrice.Name = "btnPrice";
+            this.btnPrice.Size = new System.Drawing.Size(168, 84);
+            this.btnPrice.TabIndex = 1037;
+            this.btnPrice.Text = "Відомість визначення вартості";
+            this.btnPrice.UseVisualStyleBackColor = true;
+            this.btnPrice.Click += new System.EventHandler(this.btnPrice_Click);
+            // 
             // DocForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(10F, 25F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.AutoScroll = true;
             this.ClientSize = new System.Drawing.Size(1786, 789);
+            this.Controls.Add(this.btnPrice);
             this.Controls.Add(this.btnUpdate);
             this.Controls.Add(this.btnInOutGeneral);
             this.Controls.Add(this.label12);
@@ -523,5 +535,6 @@
         private Label label12;
         private Button btnInOutGeneral;
         private Button btnUpdate;
+        private Button btnPrice;
     }
 }

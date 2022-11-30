@@ -66,7 +66,8 @@ namespace CARDOC.Utils
                         word = " мільйонів ";
                     else if (length == 12)
                         word = " мільярдів ";
-                } else if (digits[j] == 1)
+                }
+                else if (digits[j] == 1)
                 {
                     if (length == 6)
                         word = " тисяча ";
@@ -74,7 +75,8 @@ namespace CARDOC.Utils
                         word = " мільйон ";
                     else if (length == 12)
                         word = " мільярд ";
-                } else if (digits[j] >= 2 && digits[j] <= 4)
+                }
+                else if (digits[j] >= 2 && digits[j] <= 4)
                 {
                     if (length == 6)
                         word = " тисячі ";
@@ -82,7 +84,8 @@ namespace CARDOC.Utils
                         word = " мільйони ";
                     else if (length == 12)
                         word = " мільярди ";
-                } else if (digits[j] >= 2 && digits[j] <= 4)
+                }
+                else if (digits[j] >= 2 && digits[j] <= 4)
                 {
                     if (length == 6)
                         word = " тисячі ";
@@ -90,9 +93,10 @@ namespace CARDOC.Utils
                         word = " мільйони ";
                     else if (length == 12)
                         word = " мільярди ";
-                } else if(digits[j] >= 5)
+                }
+                else if (digits[j] >= 5)
                 {
-                    if(length == 6)
+                    if (length == 6)
                         word = " тисяч ";
                     else if (length == 9)
                         word = " мільйонів ";
@@ -103,13 +107,13 @@ namespace CARDOC.Utils
             };
             Func<int, int, string> r1 = (n, gender) =>
             {
-                if(n == 0)
+                if (n == 0)
                     return "";
                 if (n == 1)
                 {
                     if (gender == 0)
                         return "одне";
-                    if(gender == 1)
+                    if (gender == 1)
                         return "один";
                     if (gender == 2)
                         return "один";
@@ -158,7 +162,8 @@ namespace CARDOC.Utils
                         return "вісімнадцять";
                     if (n2 == 9)
                         return "дев'ятнадцять";
-                } else
+                }
+                else
                 {
                     if (n1 == 2)
                         return "двадцять " + r1(n2, gender);
@@ -177,7 +182,7 @@ namespace CARDOC.Utils
                     if (n1 == 9)
                         return "дев'яносто " + r1(n2, gender);
                 }
-                
+
                 return "";
             };
             Func<int, int, int, int, string> r3 = (n1, n2, n3, gender) =>
@@ -237,7 +242,7 @@ namespace CARDOC.Utils
             };
             if (digits.Length == 1)
                 return r1(digits[0], gender).Trim();
-            if(digits.Length == 2)
+            if (digits.Length == 2)
                 return r2(digits[0], digits[1], gender).Trim();
             if (digits.Length == 3)
                 return r3(digits[0], digits[1], digits[2], gender).Trim();
@@ -258,11 +263,11 @@ namespace CARDOC.Utils
             var last = digits.Last();
             if (last == 0 || digits[digits.Count() - 1] == 1)
                 str += " гривень ";
-            if(last == 1)
+            if (last == 1)
                 str += " гривня ";
             if (last > 1 && last <= 4)
                 str += " гривні ";
-            if(last > 4)
+            if (last > 4)
                 str += " гривень ";
             var cop = Convert.ToDecimal((number - uah) * 100);
             digits = cop.GetDigits().ToArray();
@@ -355,7 +360,7 @@ namespace CARDOC.Utils
             var str = "";
             foreach (var equipment in vehicle.Parts.Where(x => x.PartType == PartType.Equipment && x.Quantity > 0))
                 str += equipment.Name.ToFirstLowerCase() + (!string.IsNullOrEmpty(equipment.Notes) ? " - " + equipment.Notes : "") + ", ";
-            if(str.Length > 0)
+            if (str.Length > 0)
                 str = str.Substring(0, str.Length - 2);
             return str;
         }
@@ -377,7 +382,7 @@ namespace CARDOC.Utils
 
         public static string GetAddons(this Vehicle vehicle)
         {
-            if(vehicle.Medical || vehicle.Сommunication || vehicle.Rao)
+            if (vehicle.Medical || vehicle.Сommunication || vehicle.Rao)
             {
                 var str = "Додається: ";
                 if (vehicle.Medical)
@@ -442,6 +447,17 @@ namespace CARDOC.Utils
             if (date.Month == 12)
                 return "грудня";
             return "";
+        }
+
+        public static string GetReceiver(this Vehicle vehicle)
+        {
+            if (vehicle.Type == "Автомобіль вантажний" ||
+                vehicle.Type == "Контейнеровоз" ||
+                vehicle.Type == "Напівпричеп" ||
+                vehicle.Type == "Самоскид" ||
+                vehicle.Type == "Сідельний тягач")
+                return "сержант                                                                               Ігор СТРУК";
+            return     "штаб сержант                                                                   Олександр ОЛІЙНИК";
         }
     }
 }
