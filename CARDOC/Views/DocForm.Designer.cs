@@ -32,7 +32,7 @@
             this.btnIn = new System.Windows.Forms.Button();
             this.btnInGeneral = new System.Windows.Forms.Button();
             this.btnOut = new System.Windows.Forms.Button();
-            this.button1 = new System.Windows.Forms.Button();
+            this.btnZero = new System.Windows.Forms.Button();
             this.btnInOut = new System.Windows.Forms.Button();
             this.boxActOut = new System.Windows.Forms.TextBox();
             this.boxOrder = new System.Windows.Forms.TextBox();
@@ -64,12 +64,13 @@
             this.btnInOutGeneral = new System.Windows.Forms.Button();
             this.btnUpdate = new System.Windows.Forms.Button();
             this.btnPrice = new System.Windows.Forms.Button();
+            this.btnGeneral = new System.Windows.Forms.Button();
             this.SuspendLayout();
             // 
             // btnZip
             // 
             this.btnZip.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.btnZip.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
+            this.btnZip.Font = new System.Drawing.Font("Segoe UI", 8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
             this.btnZip.Location = new System.Drawing.Point(1607, 7);
             this.btnZip.Name = "btnZip";
             this.btnZip.Size = new System.Drawing.Size(168, 84);
@@ -81,7 +82,7 @@
             // btnIn
             // 
             this.btnIn.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.btnIn.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
+            this.btnIn.Font = new System.Drawing.Font("Segoe UI", 8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
             this.btnIn.Location = new System.Drawing.Point(1607, 97);
             this.btnIn.Name = "btnIn";
             this.btnIn.Size = new System.Drawing.Size(168, 84);
@@ -93,7 +94,7 @@
             // btnInGeneral
             // 
             this.btnInGeneral.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.btnInGeneral.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
+            this.btnInGeneral.Font = new System.Drawing.Font("Segoe UI", 8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
             this.btnInGeneral.Location = new System.Drawing.Point(1607, 457);
             this.btnInGeneral.Name = "btnInGeneral";
             this.btnInGeneral.Size = new System.Drawing.Size(168, 84);
@@ -105,7 +106,7 @@
             // btnOut
             // 
             this.btnOut.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.btnOut.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
+            this.btnOut.Font = new System.Drawing.Font("Segoe UI", 8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
             this.btnOut.Location = new System.Drawing.Point(1607, 187);
             this.btnOut.Name = "btnOut";
             this.btnOut.Size = new System.Drawing.Size(168, 84);
@@ -114,22 +115,22 @@
             this.btnOut.UseVisualStyleBackColor = true;
             this.btnOut.Click += new System.EventHandler(this.btnOut_Click);
             // 
-            // button1
+            // btnZero
             // 
-            this.button1.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.button1.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            this.button1.Location = new System.Drawing.Point(1607, 637);
-            this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(168, 84);
-            this.button1.TabIndex = 204;
-            this.button1.Text = "0-й шаблон";
-            this.button1.UseVisualStyleBackColor = true;
-            this.button1.Click += new System.EventHandler(this.button1_Click);
+            this.btnZero.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.btnZero.Font = new System.Drawing.Font("Segoe UI", 8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
+            this.btnZero.Location = new System.Drawing.Point(1607, 727);
+            this.btnZero.Name = "btnZero";
+            this.btnZero.Size = new System.Drawing.Size(168, 84);
+            this.btnZero.TabIndex = 204;
+            this.btnZero.Text = "0-й шаблон";
+            this.btnZero.UseVisualStyleBackColor = true;
+            this.btnZero.Click += new System.EventHandler(this.button1_Click);
             // 
             // btnInOut
             // 
             this.btnInOut.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.btnInOut.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
+            this.btnInOut.Font = new System.Drawing.Font("Segoe UI", 8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
             this.btnInOut.Location = new System.Drawing.Point(1607, 277);
             this.btnInOut.Name = "btnInOut";
             this.btnInOut.Size = new System.Drawing.Size(168, 84);
@@ -412,7 +413,7 @@
             // btnInOutGeneral
             // 
             this.btnInOutGeneral.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.btnInOutGeneral.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
+            this.btnInOutGeneral.Font = new System.Drawing.Font("Segoe UI", 8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
             this.btnInOutGeneral.Location = new System.Drawing.Point(1607, 367);
             this.btnInOutGeneral.Name = "btnInOutGeneral";
             this.btnInOutGeneral.Size = new System.Drawing.Size(168, 84);
@@ -436,7 +437,7 @@
             // btnPrice
             // 
             this.btnPrice.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.btnPrice.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
+            this.btnPrice.Font = new System.Drawing.Font("Segoe UI", 8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
             this.btnPrice.Location = new System.Drawing.Point(1607, 547);
             this.btnPrice.Name = "btnPrice";
             this.btnPrice.Size = new System.Drawing.Size(168, 84);
@@ -445,12 +446,25 @@
             this.btnPrice.UseVisualStyleBackColor = true;
             this.btnPrice.Click += new System.EventHandler(this.btnPrice_Click);
             // 
+            // btnGeneral
+            // 
+            this.btnGeneral.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.btnGeneral.Font = new System.Drawing.Font("Segoe UI", 8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
+            this.btnGeneral.Location = new System.Drawing.Point(1607, 637);
+            this.btnGeneral.Name = "btnGeneral";
+            this.btnGeneral.Size = new System.Drawing.Size(168, 84);
+            this.btnGeneral.TabIndex = 1038;
+            this.btnGeneral.Text = "Загальна відомість";
+            this.btnGeneral.UseVisualStyleBackColor = true;
+            this.btnGeneral.Click += new System.EventHandler(this.btnGeneral_Click);
+            // 
             // DocForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(10F, 25F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.AutoScroll = true;
-            this.ClientSize = new System.Drawing.Size(1786, 789);
+            this.ClientSize = new System.Drawing.Size(1786, 924);
+            this.Controls.Add(this.btnGeneral);
             this.Controls.Add(this.btnPrice);
             this.Controls.Add(this.btnUpdate);
             this.Controls.Add(this.btnInOutGeneral);
@@ -482,7 +496,7 @@
             this.Controls.Add(this.boxOrder);
             this.Controls.Add(this.boxActOut);
             this.Controls.Add(this.btnInOut);
-            this.Controls.Add(this.button1);
+            this.Controls.Add(this.btnZero);
             this.Controls.Add(this.btnInGeneral);
             this.Controls.Add(this.btnOut);
             this.Controls.Add(this.btnIn);
@@ -504,7 +518,7 @@
         private Button btnIn;
         private Button btnInGeneral;
         private Button btnOut;
-        private Button button1;
+        private Button btnZero;
         private Button btnInOut;
         private TextBox boxActOut;
         private TextBox boxOrder;
@@ -536,5 +550,6 @@
         private Button btnInOutGeneral;
         private Button btnUpdate;
         private Button btnPrice;
+        private Button btnGeneral;
     }
 }

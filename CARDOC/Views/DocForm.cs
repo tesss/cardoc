@@ -65,9 +65,17 @@ namespace CARDOC.Views
             AddResults(Documents.GenerateInOutGeneral(Vehicles));
         }
 
+        private void btnGeneral_Click(object sender, EventArgs e)
+        {
+            AddResults(Documents.GenerateGeneral(Vehicles));
+        }
+
         private void btnPrice_Click(object sender, EventArgs e)
         {
-            AddResults(Documents.GeneratePrice(Vehicles));
+            decimal.TryParse(boxRateUSD.Text, out decimal rateUSD);
+            decimal.TryParse(boxRateEUR.Text, out decimal rateEUR);
+            var rate = rateUSD > 0 ? rateUSD : rateEUR;
+            AddResults(Documents.GeneratePrice(Vehicles, rate));
         }
 
         private void DocForm_Load(object sender, EventArgs e)

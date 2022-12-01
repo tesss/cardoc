@@ -6,9 +6,9 @@ using System.Threading.Tasks;
 
 namespace CARDOC.Models.Doc
 {
-    public class ZipModel
+    public class PriceModel
     {
-        public int Quantity { get; set; }
-        public Vehicle Vehicle { get; set; }
+        public decimal Rate { get; set; }
+        public List<Vehicle> Vehicles { get; set; }
     }
 }

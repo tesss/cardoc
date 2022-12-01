@@ -634,9 +634,17 @@ namespace CARDOC
         {
             if(e.Column == 0)
             {
-                _checkedVins.Clear();
-                foreach (ListViewItem item in listHistory.CheckedItems)
-                    item.Checked = false;
+                if (_checkedVins.Any())
+                {
+                    _checkedVins.Clear();
+                    foreach (ListViewItem item in listHistory.CheckedItems)
+                        item.Checked = false;
+                }
+                else
+                {
+                    foreach (ListViewItem item in listHistory.Items)
+                        item.Checked = true;
+                }
             }
         }
 

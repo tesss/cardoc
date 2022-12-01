@@ -459,5 +459,24 @@ namespace CARDOC.Utils
                 return "сержант                                                                               Ігор СТРУК";
             return     "штаб сержант                                                                   Олександр ОЛІЙНИК";
         }
+
+        public static string GetCurrency(this Vehicle vehicle)
+        {
+            if (vehicle.PriceUSD > 0)
+                return string.Format("${0:N}", vehicle.PriceUSD);
+            if (vehicle.PriceEUR > 0)
+                return string.Format("€{0:N}", vehicle.PriceUSD);
+            return "";
+        }
+
+        public static string GetOrder(this Vehicle vehicle)
+        {
+            var str = "";
+            if (!string.IsNullOrEmpty(vehicle.Order))
+                str += "№" + vehicle.Order;
+            if (!string.IsNullOrEmpty(vehicle.Unit))
+                str += "\n" + vehicle.Unit;
+            return str.Trim();
+        }
     }
 }

@@ -1,6 +1,7 @@
 ﻿using CARDOC.Models;
 using CARDOC.Models.Doc;
 using DocumentFormat.OpenXml.EMMA;
+using DocumentFormat.OpenXml.Office2019.Drawing.Model3D;
 using DocumentFormat.OpenXml.Spreadsheet;
 using Microsoft.CodeAnalysis.Diagnostics;
 using SharpDocx;
@@ -162,19 +163,20 @@ namespace CARDOC.Utils
             return files;
         }
 
-        internal static List<string> GeneratePrice(List<Vehicle> vehicles)
+        internal static List<string> GeneratePrice(List<Vehicle> vehicles, decimal rate)
         {
             bool success = true;
             var files = new List<string>();
-            foreach (var model in vehicles.GroupBy(x => x.TemplateName))
+            foreach (var model in vehicles.GroupBy(x => x.Date))
             {
                 try
                 {
-                    Vehicle vehicle = model.First();
-                    if (DataProvider.Templates.ContainsKey(vehicle.TemplateName))
-                        vehicle = DataProvider.Templates[vehicle.TemplateName];
-                    var document = DocumentFactory.Create(Const.DocTemplateFolder + "/zero.docx", vehicle);
-                    var file = string.Format("{0}/ШАБЛОН {1}.docx", Const.ExportFolder, model.Key);
+                    var document = DocumentFactory.Create(Const.DocTemplateFolder + "/price.docx", new PriceModel
+                    {
+                        Rate = rate,
+                        Vehicles = model.ToList()
+                    });
+                    var file = string.Format("{0}/{1} ВІДОМІСТЬ ВИЗНАЧЕННЯ ВАРТОСТІ.docx", Const.ExportFolder, model.Key.ToString(Const.DateFormat));
                     document.Generate(file);
                     files.Add(file);
                 }
@@ -182,6 +184,22 @@ namespace CARDOC.Utils
                 {
                     success = false;
                 }
+            }
+            return files;
+        }
+
+        internal static List<string> GenerateGeneral(List<Vehicle> vehicles)
+        {
+            var files = new List<string>();
+            try
+            {
+                var document = DocumentFactory.Create(Const.DocTemplateFolder + "/general.docx", vehicles.OrderBy(x => x.Date).ThenBy(x => x.TemplateName).ThenBy(x => x.Vin).ToArray());
+                var file = string.Format("{0}/{1} ЗАГАЛЬНА ВІДОМІСТЬ.docx", Const.ExportFolder, DateTime.Now.ToString(Const.DateFormat));
+                document.Generate(file);
+                files.Add(file);
+            }
+            catch (Exception ex)
+            {
             }
             return files;
         }
