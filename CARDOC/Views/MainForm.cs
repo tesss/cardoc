@@ -495,6 +495,7 @@ namespace CARDOC
             if (templateName != null && DataProvider.Templates.TryGetValue(GetVehicleFromView().TemplateName, out Vehicle vehicle))
             {
                 vehicle.Date = DateTime.Now.Date;
+                vehicle.OutDate = Vehicle.EmptyDate;
                 InitVehicleUI(vehicle, true);
             }
         }
