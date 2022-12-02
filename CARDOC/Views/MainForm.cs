@@ -94,10 +94,10 @@ namespace CARDOC
         {
             boxType.AddSuggestions(DataProvider.Types);
             boxManufacturer.AddSuggestions(DataProvider.Models);
-            boxManufacturer_SelectedIndexChanged(this, new EventArgs());
             boxColor.AddSuggestions(DataProvider.Colors);
             foreach (Part part in panelParts.Controls)
                 part.AddSuggestions();
+            boxManufacturer_SelectedIndexChanged(this, new EventArgs());
         }
 
         private Part GetPartView(int index)
