@@ -68,12 +68,12 @@
             this.boxMou.Name = "boxMou";
             this.boxMou.PlaceholderText = "МОУ";
             this.boxMou.Size = new System.Drawing.Size(84, 39);
-            this.boxMou.TabIndex = 1004;
+            this.boxMou.TabIndex = 1005;
             this.boxMou.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.boxMou_KeyPress);
             // 
             // boxPriceUSD
             // 
-            this.boxPriceUSD.BackColor = System.Drawing.Color.FromArgb(230, 255, 230);
+            this.boxPriceUSD.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(230)))), ((int)(((byte)(255)))), ((int)(((byte)(230)))));
             this.boxPriceUSD.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
             this.boxPriceUSD.Location = new System.Drawing.Point(968, 3);
             this.boxPriceUSD.Name = "boxPriceUSD";
@@ -100,7 +100,7 @@
             this.boxNom.Name = "boxNom";
             this.boxNom.PlaceholderText = "Д2111000Y";
             this.boxNom.Size = new System.Drawing.Size(138, 39);
-            this.boxNom.TabIndex = 1003;
+            this.boxNom.TabIndex = 1004;
             // 
             // boxActIn
             // 
@@ -114,7 +114,7 @@
             // 
             // boxPriceEUR
             // 
-            this.boxPriceEUR.BackColor = System.Drawing.Color.FromArgb(229, 249, 255);
+            this.boxPriceEUR.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(229)))), ((int)(((byte)(249)))), ((int)(((byte)(255)))));
             this.boxPriceEUR.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
             this.boxPriceEUR.Location = new System.Drawing.Point(1075, 3);
             this.boxPriceEUR.Name = "boxPriceEUR";
@@ -130,7 +130,7 @@
             this.boxH1.Name = "boxH1";
             this.boxH1.PlaceholderText = "H1";
             this.boxH1.Size = new System.Drawing.Size(58, 39);
-            this.boxH1.TabIndex = 1008;
+            this.boxH1.TabIndex = 1009;
             this.boxH1.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.boxPrice_KeyPress);
             // 
             // boxH2
@@ -140,18 +140,18 @@
             this.boxH2.Name = "boxH2";
             this.boxH2.PlaceholderText = "H2";
             this.boxH2.Size = new System.Drawing.Size(58, 39);
-            this.boxH2.TabIndex = 1009;
+            this.boxH2.TabIndex = 1010;
             this.boxH2.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.boxPrice_KeyPress);
             // 
             // boxPriceUAH
             // 
-            this.boxPriceUAH.BackColor = System.Drawing.Color.FromArgb(255, 236, 229);
+            this.boxPriceUAH.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(236)))), ((int)(((byte)(229)))));
             this.boxPriceUAH.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
             this.boxPriceUAH.Location = new System.Drawing.Point(1182, 3);
             this.boxPriceUAH.Name = "boxPriceUAH";
             this.boxPriceUAH.PlaceholderText = "₴₴₴.₴₴";
             this.boxPriceUAH.Size = new System.Drawing.Size(101, 39);
-            this.boxPriceUAH.TabIndex = 1010;
+            this.boxPriceUAH.TabIndex = 1008;
             this.boxPriceUAH.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.boxPrice_KeyPress);
             // 
             // boxActOut
@@ -161,7 +161,7 @@
             this.boxActOut.Name = "boxActOut";
             this.boxActOut.PlaceholderText = "№ видачі";
             this.boxActOut.Size = new System.Drawing.Size(100, 39);
-            this.boxActOut.TabIndex = 1011;
+            this.boxActOut.TabIndex = 1003;
             this.boxActOut.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.boxAct_KeyPress);
             // 
             // VehicleItem

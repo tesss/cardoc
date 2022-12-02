@@ -65,6 +65,10 @@
             this.btnUpdate = new System.Windows.Forms.Button();
             this.btnPrice = new System.Windows.Forms.Button();
             this.btnGeneral = new System.Windows.Forms.Button();
+            this.btnPriceCalc = new System.Windows.Forms.Button();
+            this.boxKi = new System.Windows.Forms.TextBox();
+            this.btnInvoice = new System.Windows.Forms.Button();
+            this.btnInOutGeneralWear = new System.Windows.Forms.Button();
             this.SuspendLayout();
             // 
             // btnZip
@@ -95,10 +99,10 @@
             // 
             this.btnInGeneral.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.btnInGeneral.Font = new System.Drawing.Font("Segoe UI", 8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            this.btnInGeneral.Location = new System.Drawing.Point(1607, 457);
+            this.btnInGeneral.Location = new System.Drawing.Point(1607, 547);
             this.btnInGeneral.Name = "btnInGeneral";
             this.btnInGeneral.Size = new System.Drawing.Size(168, 84);
-            this.btnInGeneral.TabIndex = 203;
+            this.btnInGeneral.TabIndex = 205;
             this.btnInGeneral.Text = "Відомість надходження ОВТ";
             this.btnInGeneral.UseVisualStyleBackColor = true;
             this.btnInGeneral.Click += new System.EventHandler(this.btnInGeneral_Click);
@@ -119,10 +123,10 @@
             // 
             this.btnZero.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.btnZero.Font = new System.Drawing.Font("Segoe UI", 8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            this.btnZero.Location = new System.Drawing.Point(1607, 727);
+            this.btnZero.Location = new System.Drawing.Point(1607, 997);
             this.btnZero.Name = "btnZero";
             this.btnZero.Size = new System.Drawing.Size(168, 84);
-            this.btnZero.TabIndex = 204;
+            this.btnZero.TabIndex = 209;
             this.btnZero.Text = "0-й шаблон";
             this.btnZero.UseVisualStyleBackColor = true;
             this.btnZero.Click += new System.EventHandler(this.button1_Click);
@@ -134,7 +138,7 @@
             this.btnInOut.Location = new System.Drawing.Point(1607, 277);
             this.btnInOut.Name = "btnInOut";
             this.btnInOut.Size = new System.Drawing.Size(168, 84);
-            this.btnInOut.TabIndex = 205;
+            this.btnInOut.TabIndex = 203;
             this.btnInOut.Text = "Акт приймання\r\nпередачі";
             this.btnInOut.UseVisualStyleBackColor = true;
             this.btnInOut.Click += new System.EventHandler(this.btnInOut_Click);
@@ -146,7 +150,7 @@
             this.boxActOut.Name = "boxActOut";
             this.boxActOut.PlaceholderText = "Поч № видачі";
             this.boxActOut.Size = new System.Drawing.Size(164, 39);
-            this.boxActOut.TabIndex = 215;
+            this.boxActOut.TabIndex = 216;
             this.boxActOut.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.boxAct_KeyPress);
             // 
             // boxOrder
@@ -156,7 +160,7 @@
             this.boxOrder.Name = "boxOrder";
             this.boxOrder.PlaceholderText = "2780 від 02.11.22";
             this.boxOrder.Size = new System.Drawing.Size(223, 39);
-            this.boxOrder.TabIndex = 217;
+            this.boxOrder.TabIndex = 218;
             this.boxOrder.Enter += new System.EventHandler(this.boxOrder_Enter);
             // 
             // boxUnit
@@ -165,18 +169,18 @@
             this.boxUnit.Location = new System.Drawing.Point(554, 63);
             this.boxUnit.Name = "boxUnit";
             this.boxUnit.PlaceholderText = "А0222 м. Київ";
-            this.boxUnit.Size = new System.Drawing.Size(594, 39);
-            this.boxUnit.TabIndex = 218;
+            this.boxUnit.Size = new System.Drawing.Size(608, 39);
+            this.boxUnit.TabIndex = 219;
             this.boxUnit.Enter += new System.EventHandler(this.boxUnit_Enter);
             // 
             // boxOutDate
             // 
             this.boxOutDate.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
             this.boxOutDate.Format = System.Windows.Forms.DateTimePickerFormat.Custom;
-            this.boxOutDate.Location = new System.Drawing.Point(1154, 63);
+            this.boxOutDate.Location = new System.Drawing.Point(1168, 63);
             this.boxOutDate.Name = "boxOutDate";
-            this.boxOutDate.Size = new System.Drawing.Size(206, 39);
-            this.boxOutDate.TabIndex = 219;
+            this.boxOutDate.Size = new System.Drawing.Size(192, 39);
+            this.boxOutDate.TabIndex = 220;
             // 
             // boxNom
             // 
@@ -186,7 +190,7 @@
             this.boxNom.Name = "boxNom";
             this.boxNom.PlaceholderText = "Д2111000Y";
             this.boxNom.Size = new System.Drawing.Size(136, 39);
-            this.boxNom.TabIndex = 216;
+            this.boxNom.TabIndex = 217;
             this.boxNom.Enter += new System.EventHandler(this.boxNom_Enter);
             // 
             // panelVehicles
@@ -197,8 +201,8 @@
             this.panelVehicles.FlowDirection = System.Windows.Forms.FlowDirection.TopDown;
             this.panelVehicles.Location = new System.Drawing.Point(12, 169);
             this.panelVehicles.Name = "panelVehicles";
-            this.panelVehicles.Size = new System.Drawing.Size(1581, 395);
-            this.panelVehicles.TabIndex = 213;
+            this.panelVehicles.Size = new System.Drawing.Size(1581, 661);
+            this.panelVehicles.TabIndex = 3000;
             this.panelVehicles.WrapContents = false;
             // 
             // listFiles
@@ -207,11 +211,11 @@
             | System.Windows.Forms.AnchorStyles.Right)));
             this.listFiles.FormattingEnabled = true;
             this.listFiles.ItemHeight = 25;
-            this.listFiles.Location = new System.Drawing.Point(13, 573);
+            this.listFiles.Location = new System.Drawing.Point(13, 827);
             this.listFiles.Name = "listFiles";
             this.listFiles.ScrollAlwaysVisible = true;
-            this.listFiles.Size = new System.Drawing.Size(1580, 204);
-            this.listFiles.TabIndex = 212;
+            this.listFiles.Size = new System.Drawing.Size(1580, 254);
+            this.listFiles.TabIndex = 4000;
             this.listFiles.SelectedIndexChanged += new System.EventHandler(this.listFiles_SelectedIndexChanged);
             this.listFiles.MouseDoubleClick += new System.Windows.Forms.MouseEventHandler(this.listFiles_MouseDoubleClick);
             // 
@@ -230,32 +234,32 @@
             // 
             this.boxPriceUAH.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(236)))), ((int)(((byte)(229)))));
             this.boxPriceUAH.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            this.boxPriceUAH.Location = new System.Drawing.Point(925, 7);
+            this.boxPriceUAH.Location = new System.Drawing.Point(937, 7);
             this.boxPriceUAH.Name = "boxPriceUAH";
             this.boxPriceUAH.PlaceholderText = "₴₴₴";
-            this.boxPriceUAH.Size = new System.Drawing.Size(223, 39);
+            this.boxPriceUAH.Size = new System.Drawing.Size(225, 39);
             this.boxPriceUAH.TabIndex = 212;
             this.boxPriceUAH.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.HandleDecimal);
             // 
             // boxH2
             // 
             this.boxH2.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            this.boxH2.Location = new System.Drawing.Point(1258, 7);
+            this.boxH2.Location = new System.Drawing.Point(1300, 7);
             this.boxH2.Name = "boxH2";
             this.boxH2.PlaceholderText = "H2";
-            this.boxH2.Size = new System.Drawing.Size(102, 39);
-            this.boxH2.TabIndex = 214;
+            this.boxH2.Size = new System.Drawing.Size(60, 39);
+            this.boxH2.TabIndex = 215;
             this.boxH2.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.HandleDecimal);
             // 
             // boxH1
             // 
             this.boxH1.BackColor = System.Drawing.SystemColors.Window;
             this.boxH1.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            this.boxH1.Location = new System.Drawing.Point(1154, 7);
+            this.boxH1.Location = new System.Drawing.Point(1234, 7);
             this.boxH1.Name = "boxH1";
             this.boxH1.PlaceholderText = "H1";
-            this.boxH1.Size = new System.Drawing.Size(98, 39);
-            this.boxH1.TabIndex = 213;
+            this.boxH1.Size = new System.Drawing.Size(60, 39);
+            this.boxH1.TabIndex = 214;
             this.boxH1.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.HandleDecimal);
             // 
             // boxPriceEUR
@@ -265,7 +269,7 @@
             this.boxPriceEUR.Location = new System.Drawing.Point(554, 7);
             this.boxPriceEUR.Name = "boxPriceEUR";
             this.boxPriceEUR.PlaceholderText = "€€€";
-            this.boxPriceEUR.Size = new System.Drawing.Size(223, 39);
+            this.boxPriceEUR.Size = new System.Drawing.Size(239, 39);
             this.boxPriceEUR.TabIndex = 210;
             this.boxPriceEUR.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.HandleDecimal);
             // 
@@ -276,7 +280,7 @@
             this.boxPriceUSD.Location = new System.Drawing.Point(183, 7);
             this.boxPriceUSD.Name = "boxPriceUSD";
             this.boxPriceUSD.PlaceholderText = "$$$";
-            this.boxPriceUSD.Size = new System.Drawing.Size(223, 39);
+            this.boxPriceUSD.Size = new System.Drawing.Size(226, 39);
             this.boxPriceUSD.TabIndex = 208;
             this.boxPriceUSD.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.HandleDecimal);
             // 
@@ -284,10 +288,10 @@
             // 
             this.boxRateEUR.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(229)))), ((int)(((byte)(249)))), ((int)(((byte)(255)))));
             this.boxRateEUR.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            this.boxRateEUR.Location = new System.Drawing.Point(783, 7);
+            this.boxRateEUR.Location = new System.Drawing.Point(799, 7);
             this.boxRateEUR.Name = "boxRateEUR";
             this.boxRateEUR.PlaceholderText = "Курс €";
-            this.boxRateEUR.Size = new System.Drawing.Size(136, 39);
+            this.boxRateEUR.Size = new System.Drawing.Size(132, 39);
             this.boxRateEUR.TabIndex = 211;
             this.boxRateEUR.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.HandleDecimal);
             // 
@@ -295,10 +299,10 @@
             // 
             this.boxRateUSD.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(230)))), ((int)(((byte)(255)))), ((int)(((byte)(230)))));
             this.boxRateUSD.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            this.boxRateUSD.Location = new System.Drawing.Point(412, 7);
+            this.boxRateUSD.Location = new System.Drawing.Point(415, 7);
             this.boxRateUSD.Name = "boxRateUSD";
             this.boxRateUSD.PlaceholderText = "Курс $";
-            this.boxRateUSD.Size = new System.Drawing.Size(136, 39);
+            this.boxRateUSD.Size = new System.Drawing.Size(132, 39);
             this.boxRateUSD.TabIndex = 209;
             this.boxRateUSD.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.HandleDecimal);
             // 
@@ -417,8 +421,8 @@
             this.btnInOutGeneral.Location = new System.Drawing.Point(1607, 367);
             this.btnInOutGeneral.Name = "btnInOutGeneral";
             this.btnInOutGeneral.Size = new System.Drawing.Size(168, 84);
-            this.btnInOutGeneral.TabIndex = 1035;
-            this.btnInOutGeneral.Text = "Акт приймання\r\nпередачі осн. зас.";
+            this.btnInOutGeneral.TabIndex = 204;
+            this.btnInOutGeneral.Text = "Акт основних\r\nзасобів";
             this.btnInOutGeneral.UseVisualStyleBackColor = true;
             this.btnInOutGeneral.Click += new System.EventHandler(this.btnInOutGeneral_Click);
             // 
@@ -429,7 +433,7 @@
             this.btnUpdate.Location = new System.Drawing.Point(1500, 7);
             this.btnUpdate.Name = "btnUpdate";
             this.btnUpdate.Size = new System.Drawing.Size(93, 84);
-            this.btnUpdate.TabIndex = 1036;
+            this.btnUpdate.TabIndex = 220;
             this.btnUpdate.Text = "Оновити\r\n↓";
             this.btnUpdate.UseVisualStyleBackColor = true;
             this.btnUpdate.Click += new System.EventHandler(this.btnUpdate_Click);
@@ -438,10 +442,10 @@
             // 
             this.btnPrice.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.btnPrice.Font = new System.Drawing.Font("Segoe UI", 8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            this.btnPrice.Location = new System.Drawing.Point(1607, 547);
+            this.btnPrice.Location = new System.Drawing.Point(1607, 637);
             this.btnPrice.Name = "btnPrice";
             this.btnPrice.Size = new System.Drawing.Size(168, 84);
-            this.btnPrice.TabIndex = 1037;
+            this.btnPrice.TabIndex = 206;
             this.btnPrice.Text = "Відомість визначення вартості";
             this.btnPrice.UseVisualStyleBackColor = true;
             this.btnPrice.Click += new System.EventHandler(this.btnPrice_Click);
@@ -450,20 +454,70 @@
             // 
             this.btnGeneral.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.btnGeneral.Font = new System.Drawing.Font("Segoe UI", 8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            this.btnGeneral.Location = new System.Drawing.Point(1607, 637);
+            this.btnGeneral.Location = new System.Drawing.Point(1607, 907);
             this.btnGeneral.Name = "btnGeneral";
             this.btnGeneral.Size = new System.Drawing.Size(168, 84);
-            this.btnGeneral.TabIndex = 1038;
+            this.btnGeneral.TabIndex = 208;
             this.btnGeneral.Text = "Загальна відомість";
             this.btnGeneral.UseVisualStyleBackColor = true;
             this.btnGeneral.Click += new System.EventHandler(this.btnGeneral_Click);
+            // 
+            // btnPriceCalc
+            // 
+            this.btnPriceCalc.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.btnPriceCalc.Font = new System.Drawing.Font("Segoe UI", 8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
+            this.btnPriceCalc.Location = new System.Drawing.Point(1607, 817);
+            this.btnPriceCalc.Name = "btnPriceCalc";
+            this.btnPriceCalc.Size = new System.Drawing.Size(168, 84);
+            this.btnPriceCalc.TabIndex = 207;
+            this.btnPriceCalc.Text = "Визначення вартості з коефіцієнтами";
+            this.btnPriceCalc.UseVisualStyleBackColor = true;
+            this.btnPriceCalc.Click += new System.EventHandler(this.btnPriceCalc_click);
+            // 
+            // boxKi
+            // 
+            this.boxKi.BackColor = System.Drawing.SystemColors.Window;
+            this.boxKi.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
+            this.boxKi.Location = new System.Drawing.Point(1168, 7);
+            this.boxKi.Name = "boxKi";
+            this.boxKi.PlaceholderText = "Ki";
+            this.boxKi.Size = new System.Drawing.Size(60, 39);
+            this.boxKi.TabIndex = 213;
+            // 
+            // btnInvoice
+            // 
+            this.btnInvoice.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.btnInvoice.Font = new System.Drawing.Font("Segoe UI", 8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
+            this.btnInvoice.Location = new System.Drawing.Point(1606, 727);
+            this.btnInvoice.Name = "btnInvoice";
+            this.btnInvoice.Size = new System.Drawing.Size(168, 84);
+            this.btnInvoice.TabIndex = 4001;
+            this.btnInvoice.Text = "Накладна";
+            this.btnInvoice.UseVisualStyleBackColor = true;
+            this.btnInvoice.Click += new System.EventHandler(this.btnInvoice_Click);
+            // 
+            // btnInOutGeneralWear
+            // 
+            this.btnInOutGeneralWear.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.btnInOutGeneralWear.Font = new System.Drawing.Font("Segoe UI", 8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
+            this.btnInOutGeneralWear.Location = new System.Drawing.Point(1607, 457);
+            this.btnInOutGeneralWear.Name = "btnInOutGeneralWear";
+            this.btnInOutGeneralWear.Size = new System.Drawing.Size(168, 84);
+            this.btnInOutGeneralWear.TabIndex = 4002;
+            this.btnInOutGeneralWear.Text = "Акт основних\r\nзасобів знос";
+            this.btnInOutGeneralWear.UseVisualStyleBackColor = true;
+            this.btnInOutGeneralWear.Click += new System.EventHandler(this.btnInOutGeneral_Click);
             // 
             // DocForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(10F, 25F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.AutoScroll = true;
-            this.ClientSize = new System.Drawing.Size(1786, 924);
+            this.ClientSize = new System.Drawing.Size(1786, 1087);
+            this.Controls.Add(this.btnInOutGeneralWear);
+            this.Controls.Add(this.btnInvoice);
+            this.Controls.Add(this.boxKi);
+            this.Controls.Add(this.btnPriceCalc);
             this.Controls.Add(this.btnGeneral);
             this.Controls.Add(this.btnPrice);
             this.Controls.Add(this.btnUpdate);
@@ -501,8 +555,6 @@
             this.Controls.Add(this.btnOut);
             this.Controls.Add(this.btnIn);
             this.Controls.Add(this.btnZip);
-            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedToolWindow;
-            this.MaximizeBox = false;
             this.MinimizeBox = false;
             this.Name = "DocForm";
             this.Text = "Документи";
@@ -551,5 +603,9 @@
         private Button btnUpdate;
         private Button btnPrice;
         private Button btnGeneral;
+        private Button btnPriceCalc;
+        private TextBox boxKi;
+        private Button btnInvoice;
+        private Button btnInOutGeneralWear;
     }
 }

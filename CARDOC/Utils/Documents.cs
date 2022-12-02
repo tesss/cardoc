@@ -118,7 +118,7 @@ namespace CARDOC.Utils
             return files;
         }
 
-        public static List<string> GenerateInOutGeneral(List<Vehicle> vehicles)
+        public static List<string> GenerateInOutGeneral(List<Vehicle> vehicles, bool withWear)
         {
             bool success = true;
             var files = new List<string>();
@@ -126,8 +126,8 @@ namespace CARDOC.Utils
             {
                 try
                 {
-                    var document = DocumentFactory.Create(Const.DocTemplateFolder + "/inOutGeneral.docx", date.ToArray());
-                    var file = string.Format("{0}/{1} АКТ ПРИЙМАННЯ-ПЕРЕДАЧІ ОСН ЗАС.docx", Const.ExportFolder, date.Key.ToString(Const.DateFormat));
+                    var document = DocumentFactory.Create(Const.DocTemplateFolder + (withWear ? "/inOutGeneralWear.docx" : "/inOutGeneral.docx"), date.ToArray());
+                    var file = string.Format("{0}/{1} АКТ ПРИЙМАННЯ-ПЕРЕДАЧІ ОСН ЗАС{2}.docx", Const.ExportFolder, date.Key.ToString(Const.DateFormat), withWear ? " ЗНОС" : "");
                     document.Generate(file);
                     files.Add(file);
                 }
@@ -200,6 +200,48 @@ namespace CARDOC.Utils
             }
             catch (Exception ex)
             {
+            }
+            return files;
+        }
+
+        internal static List<string> GeneratePriceCalc(List<Vehicle> vehicles)
+        {
+            bool success = true;
+            var files = new List<string>();
+            foreach (var model in vehicles.GroupBy(x => x.Date))
+            {
+                try
+                {
+                    var document = DocumentFactory.Create(Const.DocTemplateFolder + "/priceCalc.docx", model.ToArray());
+                    var file = string.Format("{0}/{1} ВІДОМІСТЬ ВИЗНАЧЕННЯ ВАРТОСТІ КОЕФ.docx", Const.ExportFolder, model.Key.ToString(Const.DateFormat));
+                    document.Generate(file);
+                    files.Add(file);
+                }
+                catch (Exception ex)
+                {
+                    success = false;
+                }
+            }
+            return files;
+        }
+
+        internal static List<string> GenerateInvoice(List<Vehicle> vehicles)
+        {
+            bool success = true;
+            var files = new List<string>();
+            foreach (var model in vehicles.GroupBy(x => x.OutDate))
+            {
+                try
+                {
+                    var document = DocumentFactory.Create(Const.DocTemplateFolder + "/invoice.docx", model.ToArray());
+                    var file = string.Format("{0}/{1} НАКЛАДНА.docx", Const.ExportFolder, model.Key.ToString(Const.DateFormat));
+                    document.Generate(file);
+                    files.Add(file);
+                }
+                catch (Exception ex)
+                {
+                    success = false;
+                }
             }
             return files;
         }

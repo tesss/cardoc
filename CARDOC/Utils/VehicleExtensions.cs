@@ -478,5 +478,42 @@ namespace CARDOC.Utils
                 str += "\n" + vehicle.Unit;
             return str.Trim();
         }
+
+        public static decimal GetPrimaryPrice(this Vehicle vehicle)
+        {
+            return vehicle.Price * vehicle.Ki;
+        }
+
+        public static decimal GetEndPrice(this Vehicle vehicle)
+        {
+            return vehicle.Price * vehicle.Ki * vehicle.GetWearCoef();
+        }
+
+        public static decimal GetMileageCoef(this Vehicle vehicle)
+        {
+            if (vehicle.Mileage > 0)
+            {
+                if (vehicle.MileageUnits == Const.UnitsKm)
+                    return Math.Round((decimal)vehicle.Mileage / 1000, 2);
+                if (vehicle.MileageUnits == Const.UnitsMiles)
+                    return Math.Round((decimal)(vehicle.Mileage * 1.6) / 1000, 2);
+            }
+            return 0;
+        }
+
+        public static decimal GetWearCoef(this Vehicle vehicle)
+        {
+            return 1 - (vehicle.H1 * vehicle.GetMileageCoef() + vehicle.H2 * (DateTime.Now.Year - vehicle.Year)) / 100;
+        }
+
+        public static decimal GetWear(this Vehicle vehicle)
+        {
+            return vehicle.Price * vehicle.Ki * (1 - vehicle.GetWearCoef());
+        }
+
+        public static string Format(this decimal value)
+        {
+            return string.Format("{0:N}", Math.Round(value, 2));
+        }
     }
 }

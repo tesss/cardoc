@@ -43,6 +43,9 @@ namespace CARDOC.Models
         public decimal H1 { get; set; }
         public decimal H2 { get; set; }
 
+        [JsonIgnore]
+        public decimal Ki { get; set; }
+
         public decimal Price { get; set; }
         public decimal PriceUSD { get; set; }
         public decimal PriceEUR { get; set; }

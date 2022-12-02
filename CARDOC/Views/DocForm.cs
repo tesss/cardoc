@@ -62,7 +62,8 @@ namespace CARDOC.Views
 
         private void btnInOutGeneral_Click(object sender, EventArgs e)
         {
-            AddResults(Documents.GenerateInOutGeneral(Vehicles));
+            FillKi();
+            AddResults(Documents.GenerateInOutGeneral(Vehicles, (sender as Button).Name == btnInOutGeneralWear.Name));
         }
 
         private void btnGeneral_Click(object sender, EventArgs e)
@@ -77,6 +78,11 @@ namespace CARDOC.Views
             var rate = rateUSD > 0 ? rateUSD : rateEUR;
             AddResults(Documents.GeneratePrice(Vehicles, rate));
         }
+        private void btnPriceCalc_click(object sender, EventArgs e)
+        {
+            FillKi();
+            AddResults(Documents.GeneratePriceCalc(Vehicles));
+        }
 
         private void DocForm_Load(object sender, EventArgs e)
         {
@@ -86,6 +92,7 @@ namespace CARDOC.Views
                 if (textBox != null)
                     textBox.MouseClick += new MouseEventHandler(SelectAll);
             }
+            boxKi.Text = string.Format("{0:N}", 0.7);
             boxH1.Text = string.Format("{0:N}", 0.3);
             boxH2.Text = string.Format("{0:N}", 1.56);
             boxOutDate.Value = DateTime.Now.Date;
@@ -226,6 +233,19 @@ namespace CARDOC.Views
         public void SelectAll(object sender, MouseEventArgs e)
         {
             (sender as TextBox).SelectAll();
+        }
+
+        private void btnInvoice_Click(object sender, EventArgs e)
+        {
+            FillKi();
+            AddResults(Documents.GenerateInvoice(Vehicles));
+        }
+
+        private void FillKi()
+        {
+            decimal.TryParse(boxKi.Text, out decimal ki);
+            foreach (var vehicle in Vehicles)
+                vehicle.Ki = ki;
         }
     }
 }
