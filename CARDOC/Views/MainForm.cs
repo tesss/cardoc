@@ -64,7 +64,7 @@ namespace CARDOC
             listHistory.AutoResizeColumns(ColumnHeaderAutoResizeStyle.ColumnContent);
             if (first)
             {
-                foreach(var control in Controls)
+                foreach (var control in Controls)
                 {
                     TextBox textBox = control as TextBox;
                     if(textBox != null && (textBox.Name.Contains("Mileage") || textBox.Name.Contains("Price") || textBox.Name == boxFilter.Name))
@@ -252,6 +252,19 @@ namespace CARDOC
 
         private void listHistory_ItemSelectionChanged(object sender, EventArgs e)
         {
+            foreach (ListViewItem it in listHistory.Items)
+            {
+                if (it.Selected && it.BackColor != SystemColors.Highlight)
+                {
+                    it.BackColor = SystemColors.Highlight;
+                    it.ForeColor = SystemColors.HighlightText;
+                }
+                if (!it.Selected && it.BackColor != SystemColors.Window)
+                {
+                    it.BackColor = SystemColors.Window;
+                    it.ForeColor = SystemColors.WindowText;
+                }
+            }
             var vin = listHistory.SelectedItems.Count > 0 ? listHistory.SelectedItems[0].SubItems[4].Text : null;
             var viewVehicle = GetVehicleFromView();
             var showConfirm = !viewVehicle.IsEmpty && !viewVehicle.Equals(Vehicle.Empty) && !viewVehicle.Equals(_currentVehicle);

@@ -66,7 +66,6 @@
             this.boxMou.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
             this.boxMou.Location = new System.Drawing.Point(878, 3);
             this.boxMou.Name = "boxMou";
-            this.boxMou.PlaceholderText = "МОУ";
             this.boxMou.Size = new System.Drawing.Size(84, 39);
             this.boxMou.TabIndex = 1005;
             this.boxMou.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.boxMou_KeyPress);
@@ -77,7 +76,6 @@
             this.boxPriceUSD.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
             this.boxPriceUSD.Location = new System.Drawing.Point(968, 3);
             this.boxPriceUSD.Name = "boxPriceUSD";
-            this.boxPriceUSD.PlaceholderText = "$$$.$$";
             this.boxPriceUSD.Size = new System.Drawing.Size(101, 39);
             this.boxPriceUSD.TabIndex = 1006;
             this.boxPriceUSD.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.boxPrice_KeyPress);
@@ -98,7 +96,6 @@
             this.boxNom.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
             this.boxNom.Location = new System.Drawing.Point(734, 3);
             this.boxNom.Name = "boxNom";
-            this.boxNom.PlaceholderText = "Д2111000Y";
             this.boxNom.Size = new System.Drawing.Size(138, 39);
             this.boxNom.TabIndex = 1004;
             // 
@@ -107,7 +104,6 @@
             this.boxActIn.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
             this.boxActIn.Location = new System.Drawing.Point(522, 3);
             this.boxActIn.Name = "boxActIn";
-            this.boxActIn.PlaceholderText = "№ прийм";
             this.boxActIn.Size = new System.Drawing.Size(100, 39);
             this.boxActIn.TabIndex = 1002;
             this.boxActIn.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.boxAct_KeyPress);
@@ -118,7 +114,6 @@
             this.boxPriceEUR.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
             this.boxPriceEUR.Location = new System.Drawing.Point(1075, 3);
             this.boxPriceEUR.Name = "boxPriceEUR";
-            this.boxPriceEUR.PlaceholderText = "€€€.€€";
             this.boxPriceEUR.Size = new System.Drawing.Size(101, 39);
             this.boxPriceEUR.TabIndex = 1007;
             this.boxPriceEUR.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.boxPrice_KeyPress);
@@ -128,7 +123,6 @@
             this.boxH1.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
             this.boxH1.Location = new System.Drawing.Point(1289, 3);
             this.boxH1.Name = "boxH1";
-            this.boxH1.PlaceholderText = "H1";
             this.boxH1.Size = new System.Drawing.Size(58, 39);
             this.boxH1.TabIndex = 1009;
             this.boxH1.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.boxPrice_KeyPress);
@@ -138,7 +132,6 @@
             this.boxH2.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
             this.boxH2.Location = new System.Drawing.Point(1353, 3);
             this.boxH2.Name = "boxH2";
-            this.boxH2.PlaceholderText = "H2";
             this.boxH2.Size = new System.Drawing.Size(58, 39);
             this.boxH2.TabIndex = 1010;
             this.boxH2.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.boxPrice_KeyPress);
@@ -149,7 +142,6 @@
             this.boxPriceUAH.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
             this.boxPriceUAH.Location = new System.Drawing.Point(1182, 3);
             this.boxPriceUAH.Name = "boxPriceUAH";
-            this.boxPriceUAH.PlaceholderText = "₴₴₴.₴₴";
             this.boxPriceUAH.Size = new System.Drawing.Size(101, 39);
             this.boxPriceUAH.TabIndex = 1008;
             this.boxPriceUAH.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.boxPrice_KeyPress);
@@ -159,7 +151,6 @@
             this.boxActOut.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
             this.boxActOut.Location = new System.Drawing.Point(628, 3);
             this.boxActOut.Name = "boxActOut";
-            this.boxActOut.PlaceholderText = "№ видачі";
             this.boxActOut.Size = new System.Drawing.Size(100, 39);
             this.boxActOut.TabIndex = 1003;
             this.boxActOut.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.boxAct_KeyPress);

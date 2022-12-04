@@ -216,6 +216,7 @@
             this.listFiles.ScrollAlwaysVisible = true;
             this.listFiles.Size = new System.Drawing.Size(1580, 254);
             this.listFiles.TabIndex = 4000;
+            this.listFiles.MouseClick += new System.Windows.Forms.MouseEventHandler(this.listFiles_MouseClick);
             this.listFiles.SelectedIndexChanged += new System.EventHandler(this.listFiles_SelectedIndexChanged);
             this.listFiles.MouseDoubleClick += new System.Windows.Forms.MouseEventHandler(this.listFiles_MouseDoubleClick);
             // 

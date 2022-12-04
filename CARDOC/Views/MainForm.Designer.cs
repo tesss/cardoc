@@ -75,6 +75,7 @@ namespace CARDOC
             this.listHistory.CheckBoxes = true;
             this.listHistory.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
             this.listHistory.FullRowSelect = true;
+            this.listHistory.HideSelection = true;
             this.listHistory.Location = new System.Drawing.Point(12, 61);
             this.listHistory.MultiSelect = false;
             this.listHistory.Name = "listHistory";

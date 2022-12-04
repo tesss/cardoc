@@ -57,6 +57,7 @@ namespace CARDOC.Views
 
         private void btnInOut_Click(object sender, EventArgs e)
         {
+            FillKi();
             AddResults(Documents.GenerateInOut(Vehicles));
         }
 
@@ -141,13 +142,16 @@ namespace CARDOC.Views
 
         private void listFiles_MouseDoubleClick(object sender, MouseEventArgs e)
         {
-            new Process
-            {
-                StartInfo = new ProcessStartInfo(System.IO.Path.GetDirectoryName(Application.ExecutablePath) + "\\" + (listFiles.SelectedItem as string).Replace("/", "\\"))
+            if(listFiles.SelectedItem == null)
+                Process.Start("explorer.exe", System.IO.Path.GetDirectoryName(Application.ExecutablePath) + "\\" + Const.ExportFolder);
+            else
+                new Process
                 {
-                    UseShellExecute = true
-                }
-            }.Start();
+                    StartInfo = new ProcessStartInfo(System.IO.Path.GetDirectoryName(Application.ExecutablePath) + "\\" + (listFiles.SelectedItem as string).Replace("/", "\\"))
+                    {
+                        UseShellExecute = true
+                    }
+                }.Start();
         }
 
         private void btnUpdate_Click(object sender, EventArgs e)
@@ -190,7 +194,8 @@ namespace CARDOC.Views
                 if (!string.IsNullOrEmpty(boxUnit.Text))
                     vehicle.Unit = boxUnit.Text.Trim();
 
-                vehicle.OutDate = boxOutDate.Value;
+                if (!string.IsNullOrEmpty(vehicle.Order) && !string.IsNullOrEmpty(vehicle.Unit))
+                    vehicle.OutDate = boxOutDate.Value;
                 vehicle.Mou = vehicleView.Mou;
                 vehicleView.PriceUAH = vehicle.Price = priceUAH > 0 ? priceUAH : vehicleView.PriceUAH;
                 vehicleView.PriceUSD = vehicle.PriceUSD = priceUSD > 0 ? priceUSD : vehicleView.PriceUSD;
@@ -246,6 +251,13 @@ namespace CARDOC.Views
             decimal.TryParse(boxKi.Text, out decimal ki);
             foreach (var vehicle in Vehicles)
                 vehicle.Ki = ki;
+        }
+
+        private void listFiles_MouseClick(object sender, MouseEventArgs e)
+        {
+            if (listFiles.SelectedIndex < 0 || !listFiles.GetItemRectangle(listFiles.SelectedIndex).Contains(e.Location))
+                listFiles.SelectedIndex = -1;
+            
         }
     }
 }

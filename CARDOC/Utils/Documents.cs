@@ -17,10 +17,6 @@ namespace CARDOC.Utils
 {
     public static class Documents
     {
-        private static void OpenFolder()
-        {
-            Process.Start("explorer.exe", System.IO.Path.GetDirectoryName(Application.ExecutablePath) + "\\" + Const.ExportFolder);
-        }
         public static List<string> Generate(List<Vehicle> vehicles, Func<Vehicle, string, string> action, bool folderIn = true)
         {
             bool success = true;
