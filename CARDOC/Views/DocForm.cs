@@ -261,10 +261,16 @@ namespace CARDOC.Views
         {
             if (listFiles.SelectedIndex < 0 || !listFiles.GetItemRectangle(listFiles.SelectedIndex).Contains(e.Location))
                 listFiles.SelectedIndex = -1;
-            if(e.Button == MouseButtons.Right && listFiles.SelectedItem != null)
+            
+        }
+
+        private void listFiles_MouseUp(object sender, MouseEventArgs e)
+        {
+            listFiles.SelectedIndex = listFiles.IndexFromPoint(e.X, e.Y);
+            if (e.Button == MouseButtons.Right && listFiles.SelectedItem != null)
                 new Process
                 {
-                    StartInfo = new ProcessStartInfo(System.IO.Path.GetDirectoryName(Application.ExecutablePath + "\\" + (listFiles.SelectedItem as string).Replace("/", "\\")))
+                    StartInfo = new ProcessStartInfo(System.IO.Path.GetDirectoryName((System.IO.Path.GetDirectoryName(Application.ExecutablePath) + "\\" + (listFiles.SelectedItem as string).Replace("/", "\\"))))
                     {
                         UseShellExecute = true
                     }

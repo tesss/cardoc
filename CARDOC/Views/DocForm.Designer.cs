@@ -220,6 +220,7 @@
             this.listFiles.MouseClick += new System.Windows.Forms.MouseEventHandler(this.listFiles_MouseClick);
             this.listFiles.SelectedIndexChanged += new System.EventHandler(this.listFiles_SelectedIndexChanged);
             this.listFiles.MouseDoubleClick += new System.Windows.Forms.MouseEventHandler(this.listFiles_MouseDoubleClick);
+            this.listFiles.MouseUp += new System.Windows.Forms.MouseEventHandler(this.listFiles_MouseUp);
             // 
             // boxActIn
             // 
