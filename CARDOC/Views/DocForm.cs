@@ -163,6 +163,7 @@ namespace CARDOC.Views
             decimal.TryParse(boxPriceUAH.Text, out decimal priceUAH);
             decimal.TryParse(boxRateUSD.Text, out decimal rateUSD);
             decimal.TryParse(boxRateEUR.Text, out decimal rateEUR);
+            decimal.TryParse(boxKi.Text, out decimal ki);
             decimal.TryParse(boxH1.Text, out decimal h1);
             decimal.TryParse(boxH2.Text, out decimal h2);
             var i = 0;
@@ -204,6 +205,9 @@ namespace CARDOC.Views
                     vehicleView.PriceUAH = vehicle.Price = vehicle.PriceUSD * rateUSD;
                 else if (vehicle.PriceEUR > 0 && rateEUR > 0)
                     vehicleView.PriceUAH = vehicle.Price = vehicle.PriceEUR * rateEUR;
+                if (boxPrimaryPrice.Checked && ki > 0)
+                    vehicleView.PriceUAH = vehicle.Price = vehicle.Price / ki;
+
                 if (h1 > 0)
                     vehicleView.H1 = vehicle.H1 = h1;
                 else
@@ -257,7 +261,14 @@ namespace CARDOC.Views
         {
             if (listFiles.SelectedIndex < 0 || !listFiles.GetItemRectangle(listFiles.SelectedIndex).Contains(e.Location))
                 listFiles.SelectedIndex = -1;
-            
+            if(e.Button == MouseButtons.Right && listFiles.SelectedItem != null)
+                new Process
+                {
+                    StartInfo = new ProcessStartInfo(System.IO.Path.GetDirectoryName(Application.ExecutablePath + "\\" + (listFiles.SelectedItem as string).Replace("/", "\\")))
+                    {
+                        UseShellExecute = true
+                    }
+                }.Start();
         }
     }
 }

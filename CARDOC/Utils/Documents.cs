@@ -47,7 +47,7 @@ namespace CARDOC.Utils
                 var file = string.Format("{0}/ЗІП {1} - {2}.docx", folderPath, vehicle.TemplateName, vehicle.Vin);
                 document.Generate(file);
                 return file;
-            });
+            }, false);
         }
         
         public static List<string> GenerateIn(List<Vehicle> vehicles)

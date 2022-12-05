@@ -69,6 +69,7 @@
             this.boxKi = new System.Windows.Forms.TextBox();
             this.btnInvoice = new System.Windows.Forms.Button();
             this.btnInOutGeneralWear = new System.Windows.Forms.Button();
+            this.boxPrimaryPrice = new System.Windows.Forms.CheckBox();
             this.SuspendLayout();
             // 
             // btnZip
@@ -199,9 +200,9 @@
             | System.Windows.Forms.AnchorStyles.Right)));
             this.panelVehicles.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
             this.panelVehicles.FlowDirection = System.Windows.Forms.FlowDirection.TopDown;
-            this.panelVehicles.Location = new System.Drawing.Point(12, 169);
+            this.panelVehicles.Location = new System.Drawing.Point(12, 214);
             this.panelVehicles.Name = "panelVehicles";
-            this.panelVehicles.Size = new System.Drawing.Size(1581, 661);
+            this.panelVehicles.Size = new System.Drawing.Size(1581, 616);
             this.panelVehicles.TabIndex = 3000;
             this.panelVehicles.WrapContents = false;
             // 
@@ -310,7 +311,7 @@
             // label1
             // 
             this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(13, 127);
+            this.label1.Location = new System.Drawing.Point(13, 177);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(32, 25);
             this.label1.TabIndex = 1023;
@@ -319,7 +320,7 @@
             // label2
             // 
             this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(61, 127);
+            this.label2.Location = new System.Drawing.Point(61, 177);
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(76, 25);
             this.label2.TabIndex = 1024;
@@ -328,7 +329,7 @@
             // label3
             // 
             this.label3.AutoSize = true;
-            this.label3.Location = new System.Drawing.Point(276, 127);
+            this.label3.Location = new System.Drawing.Point(276, 177);
             this.label3.Name = "label3";
             this.label3.Size = new System.Drawing.Size(41, 25);
             this.label3.TabIndex = 1025;
@@ -337,7 +338,7 @@
             // label4
             // 
             this.label4.AutoSize = true;
-            this.label4.Location = new System.Drawing.Point(533, 127);
+            this.label4.Location = new System.Drawing.Point(533, 177);
             this.label4.Name = "label4";
             this.label4.Size = new System.Drawing.Size(86, 25);
             this.label4.TabIndex = 1026;
@@ -346,7 +347,7 @@
             // label5
             // 
             this.label5.AutoSize = true;
-            this.label5.Location = new System.Drawing.Point(639, 127);
+            this.label5.Location = new System.Drawing.Point(639, 177);
             this.label5.Name = "label5";
             this.label5.Size = new System.Drawing.Size(94, 25);
             this.label5.TabIndex = 1027;
@@ -355,7 +356,7 @@
             // label6
             // 
             this.label6.AutoSize = true;
-            this.label6.Location = new System.Drawing.Point(745, 127);
+            this.label6.Location = new System.Drawing.Point(745, 177);
             this.label6.Name = "label6";
             this.label6.Size = new System.Drawing.Size(131, 25);
             this.label6.TabIndex = 1028;
@@ -364,7 +365,7 @@
             // label7
             // 
             this.label7.AutoSize = true;
-            this.label7.Location = new System.Drawing.Point(889, 127);
+            this.label7.Location = new System.Drawing.Point(889, 177);
             this.label7.Name = "label7";
             this.label7.Size = new System.Drawing.Size(52, 25);
             this.label7.TabIndex = 1029;
@@ -373,7 +374,7 @@
             // label8
             // 
             this.label8.AutoSize = true;
-            this.label8.Location = new System.Drawing.Point(976, 127);
+            this.label8.Location = new System.Drawing.Point(976, 177);
             this.label8.Name = "label8";
             this.label8.Size = new System.Drawing.Size(47, 25);
             this.label8.TabIndex = 1030;
@@ -382,7 +383,7 @@
             // label9
             // 
             this.label9.AutoSize = true;
-            this.label9.Location = new System.Drawing.Point(1084, 127);
+            this.label9.Location = new System.Drawing.Point(1084, 177);
             this.label9.Name = "label9";
             this.label9.Size = new System.Drawing.Size(44, 25);
             this.label9.TabIndex = 1031;
@@ -391,7 +392,7 @@
             // label10
             // 
             this.label10.AutoSize = true;
-            this.label10.Location = new System.Drawing.Point(1192, 127);
+            this.label10.Location = new System.Drawing.Point(1192, 177);
             this.label10.Name = "label10";
             this.label10.Size = new System.Drawing.Size(49, 25);
             this.label10.TabIndex = 1032;
@@ -400,7 +401,7 @@
             // label11
             // 
             this.label11.AutoSize = true;
-            this.label11.Location = new System.Drawing.Point(1300, 127);
+            this.label11.Location = new System.Drawing.Point(1300, 177);
             this.label11.Name = "label11";
             this.label11.Size = new System.Drawing.Size(35, 25);
             this.label11.TabIndex = 1033;
@@ -409,7 +410,7 @@
             // label12
             // 
             this.label12.AutoSize = true;
-            this.label12.Location = new System.Drawing.Point(1364, 127);
+            this.label12.Location = new System.Drawing.Point(1364, 177);
             this.label12.Name = "label12";
             this.label12.Size = new System.Drawing.Size(35, 25);
             this.label12.TabIndex = 1034;
@@ -509,12 +510,23 @@
             this.btnInOutGeneralWear.UseVisualStyleBackColor = true;
             this.btnInOutGeneralWear.Click += new System.EventHandler(this.btnInOutGeneral_Click);
             // 
+            // boxPrimaryPrice
+            // 
+            this.boxPrimaryPrice.AutoSize = true;
+            this.boxPrimaryPrice.Location = new System.Drawing.Point(18, 125);
+            this.boxPrimaryPrice.Name = "boxPrimaryPrice";
+            this.boxPrimaryPrice.Size = new System.Drawing.Size(159, 29);
+            this.boxPrimaryPrice.TabIndex = 4004;
+            this.boxPrimaryPrice.Text = "Первинна ціна";
+            this.boxPrimaryPrice.UseVisualStyleBackColor = true;
+            // 
             // DocForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(10F, 25F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.AutoScroll = true;
             this.ClientSize = new System.Drawing.Size(1786, 1087);
+            this.Controls.Add(this.boxPrimaryPrice);
             this.Controls.Add(this.btnInOutGeneralWear);
             this.Controls.Add(this.btnInvoice);
             this.Controls.Add(this.boxKi);
@@ -608,5 +620,6 @@
         private TextBox boxKi;
         private Button btnInvoice;
         private Button btnInOutGeneralWear;
+        private CheckBox boxPrimaryPrice;
     }
 }
