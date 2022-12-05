@@ -64,7 +64,7 @@ namespace CARDOC.Views
         private void btnInOutGeneral_Click(object sender, EventArgs e)
         {
             FillKi();
-            AddResults(Documents.GenerateInOutGeneral(Vehicles, (sender as Button).Name == btnInOutGeneralWear.Name));
+            AddResults(Documents.GenerateInOutGeneral(Vehicles, boxWear.Checked));
         }
 
         private void btnGeneral_Click(object sender, EventArgs e)
@@ -247,7 +247,7 @@ namespace CARDOC.Views
         private void btnInvoice_Click(object sender, EventArgs e)
         {
             FillKi();
-            AddResults(Documents.GenerateInvoice(Vehicles));
+            AddResults(Documents.GenerateInvoice(Vehicles, boxWear.Checked));
         }
 
         private void FillKi()

@@ -221,7 +221,7 @@ namespace CARDOC.Utils
             return files;
         }
 
-        internal static List<string> GenerateInvoice(List<Vehicle> vehicles)
+        internal static List<string> GenerateInvoice(List<Vehicle> vehicles, bool withWear)
         {
             bool success = true;
             var files = new List<string>();
@@ -229,8 +229,8 @@ namespace CARDOC.Utils
             {
                 try
                 {
-                    var document = DocumentFactory.Create(Const.DocTemplateFolder + "/invoice.docx", model.ToArray());
-                    var file = string.Format("{0}/{1} НАКЛАДНА.docx", Const.ExportFolder, model.Key.ToString(Const.DateFormat));
+                    var document = DocumentFactory.Create(Const.DocTemplateFolder + (withWear ? "/invoiceWear.docx" : "/invoice.docx"), model.ToArray());
+                    var file = string.Format("{0}/{1} НАКЛАДНА{2}.docx", Const.ExportFolder, model.Key.ToString(Const.DateFormat), withWear ? " ЗНОС" : "");
                     document.Generate(file);
                     files.Add(file);
                 }

@@ -68,8 +68,8 @@
             this.btnPriceCalc = new System.Windows.Forms.Button();
             this.boxKi = new System.Windows.Forms.TextBox();
             this.btnInvoice = new System.Windows.Forms.Button();
-            this.btnInOutGeneralWear = new System.Windows.Forms.Button();
             this.boxPrimaryPrice = new System.Windows.Forms.CheckBox();
+            this.boxWear = new System.Windows.Forms.CheckBox();
             this.SuspendLayout();
             // 
             // btnZip
@@ -100,10 +100,10 @@
             // 
             this.btnInGeneral.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.btnInGeneral.Font = new System.Drawing.Font("Segoe UI", 8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            this.btnInGeneral.Location = new System.Drawing.Point(1607, 547);
+            this.btnInGeneral.Location = new System.Drawing.Point(1606, 582);
             this.btnInGeneral.Name = "btnInGeneral";
             this.btnInGeneral.Size = new System.Drawing.Size(168, 84);
-            this.btnInGeneral.TabIndex = 205;
+            this.btnInGeneral.TabIndex = 207;
             this.btnInGeneral.Text = "Відомість надходження ОВТ";
             this.btnInGeneral.UseVisualStyleBackColor = true;
             this.btnInGeneral.Click += new System.EventHandler(this.btnInGeneral_Click);
@@ -124,10 +124,10 @@
             // 
             this.btnZero.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.btnZero.Font = new System.Drawing.Font("Segoe UI", 8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            this.btnZero.Location = new System.Drawing.Point(1607, 997);
+            this.btnZero.Location = new System.Drawing.Point(1607, 942);
             this.btnZero.Name = "btnZero";
             this.btnZero.Size = new System.Drawing.Size(168, 84);
-            this.btnZero.TabIndex = 209;
+            this.btnZero.TabIndex = 211;
             this.btnZero.Text = "0-й шаблон";
             this.btnZero.UseVisualStyleBackColor = true;
             this.btnZero.Click += new System.EventHandler(this.button1_Click);
@@ -421,10 +421,10 @@
             // 
             this.btnInOutGeneral.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.btnInOutGeneral.Font = new System.Drawing.Font("Segoe UI", 8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            this.btnInOutGeneral.Location = new System.Drawing.Point(1607, 367);
+            this.btnInOutGeneral.Location = new System.Drawing.Point(1606, 402);
             this.btnInOutGeneral.Name = "btnInOutGeneral";
             this.btnInOutGeneral.Size = new System.Drawing.Size(168, 84);
-            this.btnInOutGeneral.TabIndex = 204;
+            this.btnInOutGeneral.TabIndex = 205;
             this.btnInOutGeneral.Text = "Акт основних\r\nзасобів";
             this.btnInOutGeneral.UseVisualStyleBackColor = true;
             this.btnInOutGeneral.Click += new System.EventHandler(this.btnInOutGeneral_Click);
@@ -445,10 +445,10 @@
             // 
             this.btnPrice.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.btnPrice.Font = new System.Drawing.Font("Segoe UI", 8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            this.btnPrice.Location = new System.Drawing.Point(1607, 637);
+            this.btnPrice.Location = new System.Drawing.Point(1606, 672);
             this.btnPrice.Name = "btnPrice";
             this.btnPrice.Size = new System.Drawing.Size(168, 84);
-            this.btnPrice.TabIndex = 206;
+            this.btnPrice.TabIndex = 208;
             this.btnPrice.Text = "Відомість визначення вартості";
             this.btnPrice.UseVisualStyleBackColor = true;
             this.btnPrice.Click += new System.EventHandler(this.btnPrice_Click);
@@ -457,10 +457,10 @@
             // 
             this.btnGeneral.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.btnGeneral.Font = new System.Drawing.Font("Segoe UI", 8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            this.btnGeneral.Location = new System.Drawing.Point(1607, 907);
+            this.btnGeneral.Location = new System.Drawing.Point(1607, 852);
             this.btnGeneral.Name = "btnGeneral";
             this.btnGeneral.Size = new System.Drawing.Size(168, 84);
-            this.btnGeneral.TabIndex = 208;
+            this.btnGeneral.TabIndex = 210;
             this.btnGeneral.Text = "Загальна відомість";
             this.btnGeneral.UseVisualStyleBackColor = true;
             this.btnGeneral.Click += new System.EventHandler(this.btnGeneral_Click);
@@ -469,10 +469,10 @@
             // 
             this.btnPriceCalc.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.btnPriceCalc.Font = new System.Drawing.Font("Segoe UI", 8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            this.btnPriceCalc.Location = new System.Drawing.Point(1607, 817);
+            this.btnPriceCalc.Location = new System.Drawing.Point(1607, 762);
             this.btnPriceCalc.Name = "btnPriceCalc";
             this.btnPriceCalc.Size = new System.Drawing.Size(168, 84);
-            this.btnPriceCalc.TabIndex = 207;
+            this.btnPriceCalc.TabIndex = 209;
             this.btnPriceCalc.Text = "Визначення вартості з коефіцієнтами";
             this.btnPriceCalc.UseVisualStyleBackColor = true;
             this.btnPriceCalc.Click += new System.EventHandler(this.btnPriceCalc_click);
@@ -491,25 +491,13 @@
             // 
             this.btnInvoice.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.btnInvoice.Font = new System.Drawing.Font("Segoe UI", 8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            this.btnInvoice.Location = new System.Drawing.Point(1606, 727);
+            this.btnInvoice.Location = new System.Drawing.Point(1607, 492);
             this.btnInvoice.Name = "btnInvoice";
             this.btnInvoice.Size = new System.Drawing.Size(168, 84);
-            this.btnInvoice.TabIndex = 4001;
+            this.btnInvoice.TabIndex = 206;
             this.btnInvoice.Text = "Накладна";
             this.btnInvoice.UseVisualStyleBackColor = true;
             this.btnInvoice.Click += new System.EventHandler(this.btnInvoice_Click);
-            // 
-            // btnInOutGeneralWear
-            // 
-            this.btnInOutGeneralWear.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.btnInOutGeneralWear.Font = new System.Drawing.Font("Segoe UI", 8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            this.btnInOutGeneralWear.Location = new System.Drawing.Point(1607, 457);
-            this.btnInOutGeneralWear.Name = "btnInOutGeneralWear";
-            this.btnInOutGeneralWear.Size = new System.Drawing.Size(168, 84);
-            this.btnInOutGeneralWear.TabIndex = 4002;
-            this.btnInOutGeneralWear.Text = "Акт основних\r\nзасобів знос";
-            this.btnInOutGeneralWear.UseVisualStyleBackColor = true;
-            this.btnInOutGeneralWear.Click += new System.EventHandler(this.btnInOutGeneral_Click);
             // 
             // boxPrimaryPrice
             // 
@@ -517,18 +505,29 @@
             this.boxPrimaryPrice.Location = new System.Drawing.Point(18, 125);
             this.boxPrimaryPrice.Name = "boxPrimaryPrice";
             this.boxPrimaryPrice.Size = new System.Drawing.Size(159, 29);
-            this.boxPrimaryPrice.TabIndex = 4004;
+            this.boxPrimaryPrice.TabIndex = 221;
             this.boxPrimaryPrice.Text = "Первинна ціна";
             this.boxPrimaryPrice.UseVisualStyleBackColor = true;
+            // 
+            // boxWear
+            // 
+            this.boxWear.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.boxWear.AutoSize = true;
+            this.boxWear.Location = new System.Drawing.Point(1606, 367);
+            this.boxWear.Name = "boxWear";
+            this.boxWear.Size = new System.Drawing.Size(77, 29);
+            this.boxWear.TabIndex = 204;
+            this.boxWear.Text = "Знос";
+            this.boxWear.UseVisualStyleBackColor = true;
             // 
             // DocForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(10F, 25F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.AutoScroll = true;
-            this.ClientSize = new System.Drawing.Size(1786, 1087);
+            this.ClientSize = new System.Drawing.Size(1786, 1095);
+            this.Controls.Add(this.boxWear);
             this.Controls.Add(this.boxPrimaryPrice);
-            this.Controls.Add(this.btnInOutGeneralWear);
             this.Controls.Add(this.btnInvoice);
             this.Controls.Add(this.boxKi);
             this.Controls.Add(this.btnPriceCalc);
@@ -620,7 +619,7 @@
         private Button btnPriceCalc;
         private TextBox boxKi;
         private Button btnInvoice;
-        private Button btnInOutGeneralWear;
         private CheckBox boxPrimaryPrice;
+        private CheckBox boxWear;
     }
 }
