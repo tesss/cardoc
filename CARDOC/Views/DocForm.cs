@@ -93,15 +93,19 @@ namespace CARDOC.Views
                 if (textBox != null)
                     textBox.MouseClick += new MouseEventHandler(SelectAll);
             }
+            var first = Vehicles.First();
+            bool allSame = Vehicles.All(x => x.Order == first.Order && x.Unit == first.Unit && x.OutDate == first.OutDate);
             boxKi.Text = string.Format("{0:N}", 0.7);
             boxH1.Text = string.Format("{0:N}", 0.3);
             boxH2.Text = string.Format("{0:N}", 1.56);
             boxOutDate.Value = DateTime.Now.Date;
-            var first = Vehicles.First();
             boxNom.Text = first.Nom;
             boxNom.Text = string.IsNullOrEmpty(boxNom.Text) ? DataProvider.Vehicles.FirstOrDefault(x => x.TemplateName == first.TemplateName && !string.IsNullOrEmpty(x.Nom))?.Nom : first.Nom;
-            boxOrder.Text = first.Order;
-            boxUnit.Text = first.Unit;
+            if (allSame)
+            {
+                boxOrder.Text = first.Order;
+                boxUnit.Text = first.Unit;
+            }
             var i = 0;
             foreach(var vehicle in Vehicles)
             {
