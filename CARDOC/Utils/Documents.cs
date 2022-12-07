@@ -44,7 +44,7 @@ namespace CARDOC.Utils
             return Generate(vehicles, (vehicle, folderPath) =>
             {
                 var document = DocumentFactory.Create(Const.DocTemplateFolder + "/zip.docx", vehicle);
-                var file = string.Format("{0}/ЗІП {1} - {2}.docx", folderPath, vehicle.TemplateName, vehicle.Vin);
+                var file = string.Format("{0}/ЗІП {1} - {2}.docx", folderPath, vehicle.TemplateName, vehicle.Vin.RemoveInvalidChars());
                 document.Generate(file);
                 return file;
             }, false);
@@ -55,7 +55,7 @@ namespace CARDOC.Utils
             return Generate(vehicles, (vehicle, folderPath) =>
             {
                 var document = DocumentFactory.Create(Const.DocTemplateFolder + "/in.docx", vehicle);
-                var file = string.Format("{0}/АКТ ПРИЙМАННЯ {1} - {2}.docx", folderPath, vehicle.TemplateName, vehicle.Vin);
+                var file = string.Format("{0}/АКТ ПРИЙМАННЯ {1} - {2}.docx", folderPath, vehicle.TemplateName, vehicle.Vin.RemoveInvalidChars());
                 document.Generate(file);
                 return file;
             });
@@ -66,7 +66,7 @@ namespace CARDOC.Utils
             return Generate(vehicles, (vehicle, folderPath) =>
             {
                 var document = DocumentFactory.Create(Const.DocTemplateFolder + "/out.docx", vehicle);
-                var file = string.Format("{0}/АКТ ПЕРЕДАЧІ {1} - {2}.docx", folderPath, vehicle.TemplateName, vehicle.Vin);
+                var file = string.Format("{0}/АКТ ПЕРЕДАЧІ {1} - {2}.docx", folderPath, vehicle.TemplateName, vehicle.Vin.RemoveInvalidChars());
                 document.Generate(file);
                 return file; 
             }, false);
