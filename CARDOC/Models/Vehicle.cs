@@ -124,7 +124,7 @@ namespace CARDOC.Models
         {
             get
             {
-                return string.Format("{0}/{1} {2}", Const.ExportFolder, OutDate.ToString(Const.DateFormat), Unit);
+                return string.Format("{0}/{1} {2}", Const.ExportFolder, OutDate.ToString(Const.DateFormat), Unit).Trim();
             }
         }
     }
