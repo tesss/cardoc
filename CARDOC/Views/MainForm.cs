@@ -29,7 +29,10 @@ namespace CARDOC
             if (!string.IsNullOrEmpty(boxFilter.Text))
             {
                 var filter = boxFilter.Text.Trim();
-                _vehicles = _vehicles.Where(x => JsonConvert.SerializeObject(x).Contains(filter, StringComparison.InvariantCultureIgnoreCase)).ToList();
+                if(filter == "-")
+                    _vehicles = _vehicles.Where(x => _checkedVins.Contains(x.Vin)).ToList();
+                else
+                    _vehicles = _vehicles.Where(x => x.SerializeForFilter().Contains(filter, StringComparison.InvariantCultureIgnoreCase)).ToList();
             }
             listHistory.Clear();
             listHistory.Columns.Add("✔", 50);

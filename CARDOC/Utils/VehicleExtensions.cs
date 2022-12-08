@@ -21,6 +21,11 @@ namespace CARDOC.Utils
 {
     public static partial class Extensions
     {
+        public static string SerializeForFilter(this Vehicle vehicle)
+        {
+            return string.Concat(vehicle.Manufacturer, vehicle.Model, vehicle.Type, vehicle.Date.ToString(Const.DateShortFormat), vehicle.OutDate.ToString(Const.DateShortFormat),
+                vehicle.Year.ToString(), vehicle.Color, vehicle.Notes, vehicle.Act, vehicle.ActIn, vehicle.Nom, vehicle.Order, vehicle.Mou, vehicle.Unit);
+        }
         public static IOrderedEnumerable<Vehicle> OrderVehicles(this IEnumerable<Vehicle> input)
         {
             return input.OrderByDescending(x => x.Date).ThenByDescending(x => x.TemplateName).ThenByDescending(x => x.Vin);
