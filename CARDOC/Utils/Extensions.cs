@@ -38,13 +38,17 @@ namespace CARDOC.Utils
             InvalidControls.RemoveWhere(x => x.StartsWith(control.Parent.GetFullName()));
             return !InvalidControls.Any();
         }
-        public static bool Validate(this Control control, bool err, bool skipValidation = false)
+        public static bool Validate(this Control control, bool err, bool skipValidation = false, bool warning = false)
         {
             if (err)
             {
                 control.BackColor = Color.FromArgb(255, 180, 128);
                 if (!skipValidation)
                     InvalidControls.Add(control.GetFullName());
+            }
+            else if(warning)
+            {
+                control.BackColor = Color.FromArgb(255, 255, 179);
             }
             else
             {

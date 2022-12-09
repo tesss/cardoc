@@ -316,7 +316,18 @@ namespace CARDOC
         private void boxVin_Validating(object sender, System.ComponentModel.CancelEventArgs e)
         {
             btnSave.Enabled = boxVin.Validate(string.IsNullOrEmpty(boxVin.Text));
-            boxVin.Validate(!Extensions.ValidateVin(boxVin.Text), true);
+            if (boxManufacturer.Text == "HMMWV")
+                boxVin.Validate(!(boxVin.Text.Length == 6 && int.TryParse(boxVin.Text, out _)), true);
+            else if (boxManufacturer.Text == "SKYTRAK")
+                boxVin.Validate(boxVin.Text.Length != 12, true);
+            else if (boxManufacturer.Text == "BROSHUIS")
+                boxVin.Validate(!(boxVin.Text.Length == 5 && int.TryParse(boxVin.Text, out _)), true);
+            else if (boxManufacturer.Text == "LOHR")
+                boxVin.Validate(!(boxVin.Text.Length == 3 && int.TryParse(boxVin.Text, out _)), true);
+            else if (boxManufacturer.Text == "KÄSSBOHRER")
+                boxVin.Validate(!boxVin.Text.StartsWith("10/611."), true);
+            else
+                boxVin.Validate(!Extensions.ValidateVin(boxVin.Text), true);
         }
 
         private void boxYear_KeyPress(object sender, KeyPressEventArgs e)
