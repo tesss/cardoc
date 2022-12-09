@@ -89,8 +89,8 @@ namespace CARDOC
                 WindowState = FormWindowState.Maximized;
                 boxDate.MaxDate = boxFilterDate.MaxDate = boxOutDate.MaxDate = DateTime.Today.Date.AddMonths(1);
                 ActiveControl = boxFilter;
+                AddSuggestions();
             }
-            AddSuggestions();
         }
 
         private void AddSuggestions()
@@ -496,7 +496,6 @@ namespace CARDOC
         private void btnTemplate_Click(object sender, EventArgs e)
         {
             DataProvider.WriteTemplate(GetVehicleFromView());
-            AddSuggestions();
         }
 
         private bool _vehicleUpdate;

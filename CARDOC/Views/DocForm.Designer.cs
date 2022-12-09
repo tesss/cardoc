@@ -70,6 +70,7 @@
             this.btnInvoice = new System.Windows.Forms.Button();
             this.boxPrimaryPrice = new System.Windows.Forms.CheckBox();
             this.boxWear = new System.Windows.Forms.CheckBox();
+            this.btnReg = new System.Windows.Forms.Button();
             this.SuspendLayout();
             // 
             // btnZip
@@ -124,7 +125,7 @@
             // 
             this.btnZero.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.btnZero.Font = new System.Drawing.Font("Segoe UI", 8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            this.btnZero.Location = new System.Drawing.Point(1607, 942);
+            this.btnZero.Location = new System.Drawing.Point(1607, 1032);
             this.btnZero.Name = "btnZero";
             this.btnZero.Size = new System.Drawing.Size(168, 84);
             this.btnZero.TabIndex = 211;
@@ -212,10 +213,10 @@
             | System.Windows.Forms.AnchorStyles.Right)));
             this.listFiles.FormattingEnabled = true;
             this.listFiles.ItemHeight = 25;
-            this.listFiles.Location = new System.Drawing.Point(13, 827);
+            this.listFiles.Location = new System.Drawing.Point(13, 862);
             this.listFiles.Name = "listFiles";
             this.listFiles.ScrollAlwaysVisible = true;
-            this.listFiles.Size = new System.Drawing.Size(1580, 254);
+            this.listFiles.Size = new System.Drawing.Size(1580, 229);
             this.listFiles.TabIndex = 4000;
             this.listFiles.MouseClick += new System.Windows.Forms.MouseEventHandler(this.listFiles_MouseClick);
             this.listFiles.SelectedIndexChanged += new System.EventHandler(this.listFiles_SelectedIndexChanged);
@@ -520,12 +521,25 @@
             this.boxWear.Text = "Знос";
             this.boxWear.UseVisualStyleBackColor = true;
             // 
+            // btnReg
+            // 
+            this.btnReg.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.btnReg.Font = new System.Drawing.Font("Segoe UI", 8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
+            this.btnReg.Location = new System.Drawing.Point(1607, 942);
+            this.btnReg.Name = "btnReg";
+            this.btnReg.Size = new System.Drawing.Size(168, 84);
+            this.btnReg.TabIndex = 4001;
+            this.btnReg.Text = "Заява ВІБДР";
+            this.btnReg.UseVisualStyleBackColor = true;
+            this.btnReg.Click += new System.EventHandler(this.btnReg_Click);
+            // 
             // DocForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(10F, 25F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.AutoScroll = true;
-            this.ClientSize = new System.Drawing.Size(1786, 1095);
+            this.ClientSize = new System.Drawing.Size(1786, 1127);
+            this.Controls.Add(this.btnReg);
             this.Controls.Add(this.boxWear);
             this.Controls.Add(this.boxPrimaryPrice);
             this.Controls.Add(this.btnInvoice);
@@ -621,5 +635,6 @@
         private Button btnInvoice;
         private CheckBox boxPrimaryPrice;
         private CheckBox boxWear;
+        private Button btnReg;
     }
 }

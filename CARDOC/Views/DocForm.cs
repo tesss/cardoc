@@ -280,5 +280,10 @@ namespace CARDOC.Views
                     }
                 }.Start();
         }
+
+        private void btnReg_Click(object sender, EventArgs e)
+        {
+            AddResults(Documents.GenerateReg(Vehicles));
+        }
     }
 }

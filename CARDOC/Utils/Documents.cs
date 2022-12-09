@@ -241,5 +241,26 @@ namespace CARDOC.Utils
             }
             return files;
         }
+
+        internal static List<string> GenerateReg(List<Vehicle> vehicles)
+        {
+            bool success = true;
+            var files = new List<string>();
+            foreach (var model in vehicles.GroupBy(x => x.Date))
+            {
+                try
+                {
+                    var document = DocumentFactory.Create(Const.DocTemplateFolder + "/reg.docx", model.ToArray());
+                    var file = string.Format("{0}/{1} РЕЄСТРАЦІЯ ВІБДР.docx", Const.ExportFolder, model.Key.ToString(Const.DateFormat));
+                    document.Generate(file);
+                    files.Add(file);
+                }
+                catch (Exception ex)
+                {
+                    success = false;
+                }
+            }
+            return files;
+        }
     }
 }
