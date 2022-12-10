@@ -272,13 +272,19 @@ namespace CARDOC.Views
         {
             listFiles.SelectedIndex = listFiles.IndexFromPoint(e.X, e.Y);
             if (e.Button == MouseButtons.Right && listFiles.SelectedItem != null)
+            {
+                var fileName = Path.GetDirectoryName(Application.ExecutablePath) + "\\" + (listFiles.SelectedItem as string).Replace("/", "\\");
+                string args = string.Format("/e, /select, \"{0}\"", fileName);
                 new Process
                 {
-                    StartInfo = new ProcessStartInfo(System.IO.Path.GetDirectoryName((System.IO.Path.GetDirectoryName(Application.ExecutablePath) + "\\" + (listFiles.SelectedItem as string).Replace("/", "\\"))))
+                    StartInfo = new ProcessStartInfo()
                     {
-                        UseShellExecute = true
+                        UseShellExecute = true,
+                        FileName = "explorer",
+                        Arguments = args
                     }
                 }.Start();
+            }
         }
 
         private void btnReg_Click(object sender, EventArgs e)
