@@ -138,6 +138,7 @@ namespace CARDOC
             boxPriceUAH.Text = string.Format("{0:N}", vehicle.Price);
             boxPriceUSD.Text = string.Format("{0:N}", vehicle.PriceUSD);
             boxPriceEUR.Text = string.Format("{0:N}", vehicle.PriceEUR);
+            boxCategory.Text = vehicle.Category > 0 ? vehicle.Category.ToString() : "";
             boxH1.Text = string.Format("{0:N}", vehicle.H1);
             boxH2.Text = string.Format("{0:N}", vehicle.H2);
 
@@ -382,6 +383,8 @@ namespace CARDOC
                 vehicle.H1 = h1;
             if (decimal.TryParse(boxH2.Text, out var h2))
                 vehicle.H2 = h2;
+            if (int.TryParse(boxCategory.Text, out var category))
+                vehicle.Category = category;
             if (!string.IsNullOrEmpty(boxMileageK.Text))
             {
                 vehicle.Mileage = int.Parse(boxMileageK.Text);
@@ -688,6 +691,11 @@ namespace CARDOC
         private void boxOrder_Enter(object sender, EventArgs e)
         {
             SwitchLanguage(false);
+        }
+
+        private void boxCategory_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            boxCategory.HandleNumeric(e);
         }
     }
 }

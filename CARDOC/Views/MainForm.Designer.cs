@@ -66,6 +66,7 @@ namespace CARDOC
             this.boxPriceEUR = new System.Windows.Forms.TextBox();
             this.boxPriceUSD = new System.Windows.Forms.TextBox();
             this.boxActIn = new System.Windows.Forms.TextBox();
+            this.boxCategory = new System.Windows.Forms.TextBox();
             this.SuspendLayout();
             // 
             // listHistory
@@ -144,7 +145,7 @@ namespace CARDOC
             this.boxDate.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.boxDate.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
             this.boxDate.Format = System.Windows.Forms.DateTimePickerFormat.Custom;
-            this.boxDate.Location = new System.Drawing.Point(897, 457);
+            this.boxDate.Location = new System.Drawing.Point(897, 458);
             this.boxDate.Name = "boxDate";
             this.boxDate.Size = new System.Drawing.Size(126, 39);
             this.boxDate.TabIndex = 4;
@@ -153,7 +154,7 @@ namespace CARDOC
             // 
             this.boxMileageK.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.boxMileageK.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            this.boxMileageK.Location = new System.Drawing.Point(636, 554);
+            this.boxMileageK.Location = new System.Drawing.Point(636, 555);
             this.boxMileageK.Name = "boxMileageK";
             this.boxMileageK.PlaceholderText = "Кілометри";
             this.boxMileageK.Size = new System.Drawing.Size(126, 39);
@@ -179,7 +180,7 @@ namespace CARDOC
             // 
             this.boxMileageH.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.boxMileageH.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            this.boxMileageH.Location = new System.Drawing.Point(897, 554);
+            this.boxMileageH.Location = new System.Drawing.Point(897, 555);
             this.boxMileageH.Name = "boxMileageH";
             this.boxMileageH.PlaceholderText = "Мото/год";
             this.boxMileageH.Size = new System.Drawing.Size(126, 39);
@@ -211,7 +212,7 @@ namespace CARDOC
             this.boxManufacturer.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
             this.boxManufacturer.FormattingEnabled = true;
             this.boxManufacturer.Hint = "Виробник";
-            this.boxManufacturer.Location = new System.Drawing.Point(12, 408);
+            this.boxManufacturer.Location = new System.Drawing.Point(12, 407);
             this.boxManufacturer.Name = "boxManufacturer";
             this.boxManufacturer.Size = new System.Drawing.Size(256, 40);
             this.boxManufacturer.TabIndex = 1;
@@ -310,7 +311,7 @@ namespace CARDOC
             // 
             this.btnSave.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.btnSave.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
-            this.btnSave.Location = new System.Drawing.Point(1030, 554);
+            this.btnSave.Location = new System.Drawing.Point(1030, 556);
             this.btnSave.Name = "btnSave";
             this.btnSave.Size = new System.Drawing.Size(100, 186);
             this.btnSave.TabIndex = 100;
@@ -402,7 +403,7 @@ namespace CARDOC
             // boxActOut
             // 
             this.boxActOut.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            this.boxActOut.Location = new System.Drawing.Point(12, 699);
+            this.boxActOut.Location = new System.Drawing.Point(12, 701);
             this.boxActOut.Name = "boxActOut";
             this.boxActOut.PlaceholderText = "№ А вид";
             this.boxActOut.Size = new System.Drawing.Size(100, 39);
@@ -413,7 +414,7 @@ namespace CARDOC
             // 
             this.boxNom.CharacterCasing = System.Windows.Forms.CharacterCasing.Upper;
             this.boxNom.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            this.boxNom.Location = new System.Drawing.Point(118, 700);
+            this.boxNom.Location = new System.Drawing.Point(118, 701);
             this.boxNom.Name = "boxNom";
             this.boxNom.PlaceholderText = "Д2111000Y";
             this.boxNom.Size = new System.Drawing.Size(223, 39);
@@ -424,7 +425,7 @@ namespace CARDOC
             // 
             this.boxMou.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.boxMou.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            this.boxMou.Location = new System.Drawing.Point(498, 700);
+            this.boxMou.Location = new System.Drawing.Point(498, 701);
             this.boxMou.Name = "boxMou";
             this.boxMou.PlaceholderText = "МОУ №";
             this.boxMou.Size = new System.Drawing.Size(132, 39);
@@ -436,7 +437,7 @@ namespace CARDOC
             this.boxOrder.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.boxOrder.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            this.boxOrder.Location = new System.Drawing.Point(347, 700);
+            this.boxOrder.Location = new System.Drawing.Point(347, 701);
             this.boxOrder.Name = "boxOrder";
             this.boxOrder.PlaceholderText = "2900 від 02.11.22";
             this.boxOrder.Size = new System.Drawing.Size(145, 39);
@@ -448,7 +449,7 @@ namespace CARDOC
             // 
             this.boxUnit.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.boxUnit.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            this.boxUnit.Location = new System.Drawing.Point(636, 700);
+            this.boxUnit.Location = new System.Drawing.Point(636, 701);
             this.boxUnit.Name = "boxUnit";
             this.boxUnit.PlaceholderText = "А0222 м. Київ";
             this.boxUnit.Size = new System.Drawing.Size(255, 39);
@@ -460,7 +461,7 @@ namespace CARDOC
             this.boxOutDate.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.boxOutDate.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
             this.boxOutDate.Format = System.Windows.Forms.DateTimePickerFormat.Custom;
-            this.boxOutDate.Location = new System.Drawing.Point(897, 700);
+            this.boxOutDate.Location = new System.Drawing.Point(897, 701);
             this.boxOutDate.Name = "boxOutDate";
             this.boxOutDate.Size = new System.Drawing.Size(126, 39);
             this.boxOutDate.TabIndex = 20;
@@ -484,12 +485,13 @@ namespace CARDOC
             this.boxPriceUAH.Location = new System.Drawing.Point(576, 651);
             this.boxPriceUAH.Name = "boxPriceUAH";
             this.boxPriceUAH.PlaceholderText = "₴₴₴.₴₴";
-            this.boxPriceUAH.Size = new System.Drawing.Size(223, 39);
+            this.boxPriceUAH.Size = new System.Drawing.Size(231, 39);
             this.boxPriceUAH.TabIndex = 1015;
             this.boxPriceUAH.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.boxPrice_KeyPress);
             // 
             // boxH2
             // 
+            this.boxH2.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.boxH2.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
             this.boxH2.Location = new System.Drawing.Point(921, 651);
             this.boxH2.Name = "boxH2";
@@ -500,8 +502,9 @@ namespace CARDOC
             // 
             // boxH1
             // 
+            this.boxH1.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.boxH1.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            this.boxH1.Location = new System.Drawing.Point(811, 651);
+            this.boxH1.Location = new System.Drawing.Point(817, 651);
             this.boxH1.Name = "boxH1";
             this.boxH1.PlaceholderText = "H1";
             this.boxH1.Size = new System.Drawing.Size(98, 39);
@@ -538,12 +541,24 @@ namespace CARDOC
             this.boxActIn.TabIndex = 1016;
             this.boxActIn.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.boxAct_KeyPress);
             // 
+            // boxCategory
+            // 
+            this.boxCategory.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.boxCategory.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
+            this.boxCategory.Location = new System.Drawing.Point(756, 651);
+            this.boxCategory.Name = "boxCategory";
+            this.boxCategory.PlaceholderText = "Кат";
+            this.boxCategory.Size = new System.Drawing.Size(55, 39);
+            this.boxCategory.TabIndex = 1017;
+            this.boxCategory.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.boxCategory_KeyPress);
+            // 
             // MainForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(10F, 25F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.AutoScroll = true;
             this.ClientSize = new System.Drawing.Size(1288, 1006);
+            this.Controls.Add(this.boxCategory);
             this.Controls.Add(this.boxActIn);
             this.Controls.Add(this.boxPriceUAH);
             this.Controls.Add(this.boxH2);
@@ -629,5 +644,6 @@ namespace CARDOC
         private TextBox boxPriceEUR;
         private TextBox boxPriceUSD;
         private TextBox boxActIn;
+        private TextBox boxCategory;
     }
 }

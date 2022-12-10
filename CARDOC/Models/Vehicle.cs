@@ -42,6 +42,7 @@ namespace CARDOC.Models
         public string ActIn { get; set; }
         public decimal H1 { get; set; }
         public decimal H2 { get; set; }
+        public int Category { get; set; }
 
         [JsonIgnore]
         public decimal Ki { get; set; }

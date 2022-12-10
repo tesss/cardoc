@@ -24,7 +24,7 @@ namespace CARDOC.Utils
         public static string SerializeForFilter(this Vehicle vehicle)
         {
             return string.Concat(vehicle.Vin, vehicle.Manufacturer, vehicle.Model, vehicle.Type, vehicle.Date.ToString(Const.DateShortFormat), vehicle.OutDate.ToString(Const.DateShortFormat),
-                vehicle.Year.ToString(), vehicle.Color, vehicle.Notes, vehicle.Act, vehicle.ActIn, vehicle.Nom, vehicle.Order, vehicle.Mou, vehicle.Unit);
+                vehicle.Year.ToString(), vehicle.Color, vehicle.Notes, vehicle.Act, vehicle.ActIn, vehicle.Nom, vehicle.Order, vehicle.Mou, vehicle.Unit, vehicle.Category);
         }
         public static IOrderedEnumerable<Vehicle> OrderVehicles(this IEnumerable<Vehicle> input)
         {
@@ -372,6 +372,8 @@ namespace CARDOC.Utils
 
         public static int GetCategory(this Vehicle vehicle)
         {
+            if (vehicle.Category > 0)
+                return vehicle.Category;
             if (DateTime.Now.Year > 0 && DateTime.Now.Year - vehicle.Year <= 3 && (vehicle.Mileage > 0 && (vehicle.Mileage <= 3000 && vehicle.MileageUnits == Const.UnitsKm || vehicle.MileageH <= 1864 && vehicle.MileageUnits == Const.UnitsMiles)))
                 return 1;
             return 2;
