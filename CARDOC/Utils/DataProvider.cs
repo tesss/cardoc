@@ -46,8 +46,8 @@ namespace CARDOC.Utils
                     // todo: error handling
                 }
             }
-            Vehicles = vehicles.OrderByDescending(x => x.Date).ThenByDescending(x => x.TemplateName).ThenBy(x => x.Vin).ToList();
-            return vehicles;
+            Vehicles = vehicles.OrderVehicles().ToList();
+            return Vehicles;
         }
 
         private static string GetDataPath(DateTime date)

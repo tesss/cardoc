@@ -328,7 +328,11 @@ namespace CARDOC
             else if (boxManufacturer.Text == "KÄSSBOHRER")
                 boxVin.Validate(!boxVin.Text.StartsWith("10/611."), true);
             else
-                boxVin.Validate(!Extensions.ValidateVin(boxVin.Text), true);
+            {
+                var errorByRegex = !Extensions.ValidateVin(boxVin.Text);
+                var errorByControlChar = !Extensions.ValidateVinByControlChar(boxVin.Text);
+                boxVin.Validate(errorByRegex, true, errorByControlChar);
+            }
         }
 
         private void boxYear_KeyPress(object sender, KeyPressEventArgs e)
