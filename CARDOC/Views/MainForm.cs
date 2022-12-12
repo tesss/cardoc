@@ -520,8 +520,9 @@ namespace CARDOC
                 _vehicleUpdate = false;
                 return;
             }
-            var templateName = GetVehicleFromView().TemplateName;
-            if (templateName != null && DataProvider.Templates.TryGetValue(GetVehicleFromView().TemplateName, out Vehicle vehicle))
+            var currentVehicle = GetVehicleFromView();
+            var templateName = currentVehicle.TemplateName;
+            if (templateName != null && DataProvider.Templates.TryGetValue(currentVehicle.TemplateName, out Vehicle vehicle) && string.IsNullOrEmpty(currentVehicle.Vin))
             {
                 vehicle.Date = DateTime.Now.Date;
                 vehicle.OutDate = Vehicle.EmptyDate;
