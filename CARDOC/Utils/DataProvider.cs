@@ -18,7 +18,7 @@ namespace CARDOC.Utils
         public static List<Vehicle> Vehicles { get; private set; }
         public static Dictionary<string, Vehicle> Templates { get; private set; }
         public static SortedSet<string> Types { get; private set; }
-        public static Dictionary<string, SortedSet<string>> Models { get; private set; }
+        public static SortedDictionary<string, SortedSet<string>> Models { get; private set; }
         public static string[] Colors { get { return new string[] { "чорний", "коричневий", "сірий", "білий", "синій", "зелений", "жовтий", "червоний" }; } }
         public static SortedSet<string> PartNames { get; private set; }
         public static string[] PartTypes { get { return new string[] { PartType.Zip.GetDescription(), PartType.Equipment.GetDescription(), PartType.Aggregate.GetDescription(), PartType.Tire.GetDescription(), PartType.Battery.GetDescription() }; } }
@@ -128,7 +128,7 @@ namespace CARDOC.Utils
         public static void FillCache()
         {
             Types = new SortedSet<string>();
-            Models = new Dictionary<string, SortedSet<string>>();
+            Models = new SortedDictionary<string, SortedSet<string>>();
             PartNames = new SortedSet<string>();
             foreach (var vehicle in Vehicles.Union(Templates.Values))
             {

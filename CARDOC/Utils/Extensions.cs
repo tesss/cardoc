@@ -190,7 +190,7 @@ namespace CARDOC.Utils
                 comboBox.Text = text;
         }
 
-        public static void AddSuggestions(this CustomComboBox comboBox, Dictionary<string, SortedSet<string>> strings, bool force = false)
+        public static void AddSuggestions(this CustomComboBox comboBox, SortedDictionary<string, SortedSet<string>> strings, bool force = false)
         {
             if (strings == null)
             {
