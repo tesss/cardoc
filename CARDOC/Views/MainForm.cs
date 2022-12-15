@@ -73,7 +73,7 @@ namespace CARDOC
                     if(textBox != null && (textBox.Name.Contains("Mileage") || textBox.Name.Contains("Price") || textBox.Name == boxFilter.Name))
                         textBox.MouseClick += new MouseEventHandler(SelectAll);
                 }
-                boxFilterDate.CustomFormat = boxDate.CustomFormat = boxOutDate.CustomFormat = Const.DateShortFormat;
+                boxDate.CustomFormat = boxOutDate.CustomFormat = Const.DateShortFormat;
                 var start = 1970;
                 boxYear.AddSuggestions(Enumerable.Range(start, DateTime.Now.Year - start + 1).Reverse().Select(x => x.ToString()).ToArray());
                 var c = DataProvider.Vehicles.Any() ? DataProvider.Vehicles.Max(x => x.Parts.Count) + 3 : 50;
@@ -87,7 +87,7 @@ namespace CARDOC
                 else
                     InitVehicleUI(Vehicle.Empty);
                 WindowState = FormWindowState.Maximized;
-                boxDate.MaxDate = boxFilterDate.MaxDate = boxOutDate.MaxDate = DateTime.Today.Date.AddMonths(1);
+                boxDate.MaxDate = boxOutDate.MaxDate = DateTime.Today.Date.AddMonths(1);
                 ActiveControl = boxFilter;
                 AddSuggestions();
             }
@@ -500,12 +500,6 @@ namespace CARDOC
             DoResize(true);
         }
 
-        private void boxFilterDate_ValueChanged(object sender, EventArgs e)
-        {
-            foreach (ListViewItem item in listHistory.Items)
-                item.Checked = DateTime.ParseExact(item.SubItems[1].Text, Const.DateFormat, CultureInfo.InvariantCulture).Date == boxFilterDate.Value.Date;
-        }
-
         private void boxManufacturer_TextChanged(object sender, EventArgs e)
         {
             
@@ -572,6 +566,7 @@ namespace CARDOC
                     _checkedVins.Remove(e.Item.SubItems[4].Text);
             }
             btnDoc.Enabled = _checkedVins.Any();
+            this.Text = _checkedVins.Any() ? "CARDOC 1.0    ✔" + _checkedVins.Count() : "CARDOC 1.0";
         }
 
         public void SwitchLanguage(bool en)
@@ -701,6 +696,11 @@ namespace CARDOC
         private void boxCategory_KeyPress(object sender, KeyPressEventArgs e)
         {
             boxCategory.HandleNumeric(e);
+        }
+
+        private void btnToday_Click(object sender, EventArgs e)
+        {
+            boxFilter.Text = DateTime.Now.Date.ToString(Const.DateShortFormat);
         }
     }
 }

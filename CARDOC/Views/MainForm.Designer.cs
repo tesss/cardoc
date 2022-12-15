@@ -31,7 +31,6 @@ namespace CARDOC
         private void InitializeComponent()
         {
             this.listHistory = new System.Windows.Forms.ListView();
-            this.boxFilterDate = new System.Windows.Forms.DateTimePicker();
             this.btnAdd = new System.Windows.Forms.Button();
             this.btnRemove = new System.Windows.Forms.Button();
             this.boxVin = new System.Windows.Forms.TextBox();
@@ -67,6 +66,7 @@ namespace CARDOC
             this.boxPriceUSD = new System.Windows.Forms.TextBox();
             this.boxActIn = new System.Windows.Forms.TextBox();
             this.boxCategory = new System.Windows.Forms.TextBox();
+            this.btnToday = new System.Windows.Forms.Button();
             this.SuspendLayout();
             // 
             // listHistory
@@ -89,17 +89,6 @@ namespace CARDOC
             this.listHistory.ItemChecked += new System.Windows.Forms.ItemCheckedEventHandler(this.listHistory_ItemChecked);
             this.listHistory.SelectedIndexChanged += new System.EventHandler(this.listHistory_SelectedIndexChanged);
             this.listHistory.MouseClick += new System.Windows.Forms.MouseEventHandler(this.listHistory_MouseClick);
-            // 
-            // boxFilterDate
-            // 
-            this.boxFilterDate.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.boxFilterDate.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            this.boxFilterDate.Format = System.Windows.Forms.DateTimePickerFormat.Custom;
-            this.boxFilterDate.Location = new System.Drawing.Point(1031, 8);
-            this.boxFilterDate.Name = "boxFilterDate";
-            this.boxFilterDate.Size = new System.Drawing.Size(126, 39);
-            this.boxFilterDate.TabIndex = 104;
-            this.boxFilterDate.ValueChanged += new System.EventHandler(this.boxFilterDate_ValueChanged);
             // 
             // btnAdd
             // 
@@ -552,12 +541,26 @@ namespace CARDOC
             this.boxCategory.TabIndex = 1017;
             this.boxCategory.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.boxCategory_KeyPress);
             // 
+            // btnToday
+            // 
+            this.btnToday.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.btnToday.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
+            this.btnToday.ForeColor = System.Drawing.SystemColors.ControlText;
+            this.btnToday.Location = new System.Drawing.Point(1031, 8);
+            this.btnToday.Name = "btnToday";
+            this.btnToday.Size = new System.Drawing.Size(99, 39);
+            this.btnToday.TabIndex = 1018;
+            this.btnToday.Text = "Сьогодні";
+            this.btnToday.UseVisualStyleBackColor = true;
+            this.btnToday.Click += new System.EventHandler(this.btnToday_Click);
+            // 
             // MainForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(10F, 25F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.AutoScroll = true;
             this.ClientSize = new System.Drawing.Size(1288, 1006);
+            this.Controls.Add(this.btnToday);
             this.Controls.Add(this.boxCategory);
             this.Controls.Add(this.boxActIn);
             this.Controls.Add(this.boxPriceUAH);
@@ -593,7 +596,6 @@ namespace CARDOC
             this.Controls.Add(this.boxVin);
             this.Controls.Add(this.btnRemove);
             this.Controls.Add(this.btnAdd);
-            this.Controls.Add(this.boxFilterDate);
             this.Controls.Add(this.listHistory);
             this.MinimumSize = new System.Drawing.Size(1310, 900);
             this.Name = "MainForm";
@@ -608,7 +610,6 @@ namespace CARDOC
         #endregion
 
         private ListView listHistory;
-        private DateTimePicker boxFilterDate;
         private Button btnAdd;
         private Button btnDuplicate;
         private Button btnRemove;
@@ -645,5 +646,6 @@ namespace CARDOC
         private TextBox boxPriceUSD;
         private TextBox boxActIn;
         private TextBox boxCategory;
+        private Button btnToday;
     }
 }
