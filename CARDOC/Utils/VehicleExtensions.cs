@@ -456,15 +456,17 @@ namespace CARDOC.Utils
             return "";
         }
 
-        public static string GetReceiver(this Vehicle vehicle)
+        public static string GetReceiver(this Vehicle vehicle, bool shortVersion = false)
         {
             if (vehicle.Type == "Автомобіль вантажний" ||
                 vehicle.Type == "Контейнеровоз" ||
                 vehicle.Type == "Напівпричеп" ||
                 vehicle.Type == "Самоскид" ||
                 vehicle.Type == "Сідельний тягач")
-                return "сержант                                                                               Ігор СТРУК";
-            return     "штаб сержант                                                                   Олександр ОЛІЙНИК";
+                return shortVersion ? "сержант                 Ігор СТРУК" :
+                                      "сержант                                                                                                             Ігор СТРУК";
+            return     shortVersion ? "штаб сержант     Олександр ОЛІЙНИК" :
+                                      "штаб сержант                                                                                                 Олександр ОЛІЙНИК";
         }
 
         public static string GetCurrency(this Vehicle vehicle)
