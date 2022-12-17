@@ -565,7 +565,7 @@ namespace CARDOC
                 else
                     _checkedVins.Remove(e.Item.SubItems[4].Text);
             }
-            btnDoc.Enabled = _checkedVins.Any();
+            btnDoc.Enabled = btnSyncZip.Enabled = _checkedVins.Any();
             this.Text = _checkedVins.Any() ? "CARDOC 1.0    ✔" + _checkedVins.Count() : "CARDOC 1.0";
         }
 
@@ -701,6 +701,19 @@ namespace CARDOC
         private void btnToday_Click(object sender, EventArgs e)
         {
             boxFilter.Text = DateTime.Now.Date.ToString(Const.DateShortFormat);
+        }
+
+        private void btnSyncZip_Click(object sender, EventArgs e)
+        {
+            var vehicles = DataProvider.Vehicles.Where(x => _checkedVins.Contains(x.Vin)).OrderBy(x => x.Act).ThenBy(x => x.Vin).ToList();
+            var currentZip = GetVehicleFromView().Parts.Where(x => x.PartType == PartType.Zip).ToList();
+            foreach(var vehicle in vehicles)
+            {
+                vehicle.Parts.RemoveAll(x => x.PartType == PartType.Zip);
+                vehicle.Parts.AddRange(currentZip);
+                DataProvider.Write(vehicle);
+            }
+            InitUI(false);
         }
     }
 }

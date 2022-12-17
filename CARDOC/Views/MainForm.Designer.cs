@@ -67,6 +67,7 @@ namespace CARDOC
             this.boxActIn = new System.Windows.Forms.TextBox();
             this.boxCategory = new System.Windows.Forms.TextBox();
             this.btnToday = new System.Windows.Forms.Button();
+            this.btnSyncZip = new System.Windows.Forms.Button();
             this.SuspendLayout();
             // 
             // listHistory
@@ -94,11 +95,11 @@ namespace CARDOC
             // 
             this.btnAdd.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.btnAdd.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            this.btnAdd.Location = new System.Drawing.Point(1030, 236);
+            this.btnAdd.Location = new System.Drawing.Point(1031, 277);
             this.btnAdd.Name = "btnAdd";
-            this.btnAdd.Size = new System.Drawing.Size(101, 92);
+            this.btnAdd.Size = new System.Drawing.Size(101, 51);
             this.btnAdd.TabIndex = 101;
-            this.btnAdd.Text = "+ \r\nДодати";
+            this.btnAdd.Text = "+";
             this.btnAdd.UseVisualStyleBackColor = true;
             this.btnAdd.Click += new System.EventHandler(this.btnAdd_Click);
             // 
@@ -554,12 +555,25 @@ namespace CARDOC
             this.btnToday.UseVisualStyleBackColor = true;
             this.btnToday.Click += new System.EventHandler(this.btnToday_Click);
             // 
+            // btnSyncZip
+            // 
+            this.btnSyncZip.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.btnSyncZip.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
+            this.btnSyncZip.Location = new System.Drawing.Point(1029, 158);
+            this.btnSyncZip.Name = "btnSyncZip";
+            this.btnSyncZip.Size = new System.Drawing.Size(100, 51);
+            this.btnSyncZip.TabIndex = 1019;
+            this.btnSyncZip.Text = "↑↓ ЗІП";
+            this.btnSyncZip.UseVisualStyleBackColor = true;
+            this.btnSyncZip.Click += new System.EventHandler(this.btnSyncZip_Click);
+            // 
             // MainForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(10F, 25F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.AutoScroll = true;
             this.ClientSize = new System.Drawing.Size(1288, 1006);
+            this.Controls.Add(this.btnSyncZip);
             this.Controls.Add(this.btnToday);
             this.Controls.Add(this.boxCategory);
             this.Controls.Add(this.boxActIn);
@@ -647,5 +661,6 @@ namespace CARDOC
         private TextBox boxActIn;
         private TextBox boxCategory;
         private Button btnToday;
+        private Button btnSyncZip;
     }
 }
