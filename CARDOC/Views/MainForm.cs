@@ -715,5 +715,17 @@ namespace CARDOC
             }
             InitUI(false);
         }
+
+        private void btnAddZip_Click(object sender, EventArgs e)
+        {
+            var vehicles = DataProvider.Vehicles.Where(x => _checkedVins.Contains(x.Vin)).OrderBy(x => x.Act).ThenBy(x => x.Vin).ToList();
+            var currentZip = GetVehicleFromView().Parts.Where(x => x.PartType == PartType.Zip).ToList();
+            foreach (var vehicle in vehicles)
+            {
+                vehicle.Parts.AddRange(currentZip);
+                DataProvider.Write(vehicle);
+            }
+            InitUI(false);
+        }
     }
 }

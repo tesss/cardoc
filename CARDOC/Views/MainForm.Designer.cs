@@ -68,6 +68,7 @@ namespace CARDOC
             this.boxCategory = new System.Windows.Forms.TextBox();
             this.btnToday = new System.Windows.Forms.Button();
             this.btnSyncZip = new System.Windows.Forms.Button();
+            this.btnAddZip = new System.Windows.Forms.Button();
             this.SuspendLayout();
             // 
             // listHistory
@@ -95,7 +96,7 @@ namespace CARDOC
             // 
             this.btnAdd.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.btnAdd.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            this.btnAdd.Location = new System.Drawing.Point(1031, 277);
+            this.btnAdd.Location = new System.Drawing.Point(1030, 277);
             this.btnAdd.Name = "btnAdd";
             this.btnAdd.Size = new System.Drawing.Size(101, 51);
             this.btnAdd.TabIndex = 101;
@@ -547,7 +548,7 @@ namespace CARDOC
             this.btnToday.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.btnToday.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
             this.btnToday.ForeColor = System.Drawing.SystemColors.ControlText;
-            this.btnToday.Location = new System.Drawing.Point(1031, 8);
+            this.btnToday.Location = new System.Drawing.Point(1030, 8);
             this.btnToday.Name = "btnToday";
             this.btnToday.Size = new System.Drawing.Size(99, 39);
             this.btnToday.TabIndex = 1018;
@@ -559,7 +560,7 @@ namespace CARDOC
             // 
             this.btnSyncZip.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.btnSyncZip.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            this.btnSyncZip.Location = new System.Drawing.Point(1029, 158);
+            this.btnSyncZip.Location = new System.Drawing.Point(1030, 158);
             this.btnSyncZip.Name = "btnSyncZip";
             this.btnSyncZip.Size = new System.Drawing.Size(100, 51);
             this.btnSyncZip.TabIndex = 1019;
@@ -567,12 +568,25 @@ namespace CARDOC
             this.btnSyncZip.UseVisualStyleBackColor = true;
             this.btnSyncZip.Click += new System.EventHandler(this.btnSyncZip_Click);
             // 
+            // btnAddZip
+            // 
+            this.btnAddZip.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.btnAddZip.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
+            this.btnAddZip.Location = new System.Drawing.Point(1030, 215);
+            this.btnAddZip.Name = "btnAddZip";
+            this.btnAddZip.Size = new System.Drawing.Size(100, 51);
+            this.btnAddZip.TabIndex = 1020;
+            this.btnAddZip.Text = "+ ЗІП";
+            this.btnAddZip.UseVisualStyleBackColor = true;
+            this.btnAddZip.Click += new System.EventHandler(this.btnAddZip_Click);
+            // 
             // MainForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(10F, 25F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.AutoScroll = true;
             this.ClientSize = new System.Drawing.Size(1288, 1006);
+            this.Controls.Add(this.btnAddZip);
             this.Controls.Add(this.btnSyncZip);
             this.Controls.Add(this.btnToday);
             this.Controls.Add(this.boxCategory);
@@ -662,5 +676,6 @@ namespace CARDOC
         private TextBox boxCategory;
         private Button btnToday;
         private Button btnSyncZip;
+        private Button btnAddZip;
     }
 }
