@@ -565,7 +565,7 @@ namespace CARDOC
                 else
                     _checkedVins.Remove(e.Item.SubItems[4].Text);
             }
-            btnDoc.Enabled = btnSyncZip.Enabled = _checkedVins.Any();
+            btnDoc.Enabled = btnSyncZip.Enabled = btnAddZip.Enabled = _checkedVins.Any();
             this.Text = _checkedVins.Any() ? "CARDOC 1.0    ✔" + _checkedVins.Count() : "CARDOC 1.0";
         }
 
