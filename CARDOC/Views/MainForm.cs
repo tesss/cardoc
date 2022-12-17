@@ -65,6 +65,7 @@ namespace CARDOC
             }
             _listHistoryUpdate = false;
             listHistory.AutoResizeColumns(ColumnHeaderAutoResizeStyle.ColumnContent);
+            btnRemove.Enabled = false;
             if (first)
             {
                 foreach (var control in Controls)
