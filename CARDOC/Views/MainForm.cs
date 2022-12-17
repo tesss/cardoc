@@ -270,6 +270,7 @@ namespace CARDOC
                 }
             }
             var vin = listHistory.SelectedItems.Count > 0 ? listHistory.SelectedItems[0].SubItems[4].Text : null;
+            btnRemove.Enabled = vin != null;
             var viewVehicle = GetVehicleFromView();
             var showConfirm = !viewVehicle.IsEmpty && !viewVehicle.Equals(Vehicle.Empty) && !viewVehicle.Equals(_currentVehicle);
             if (showConfirm)
