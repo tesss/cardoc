@@ -26,7 +26,7 @@ namespace CARDOC
         public void InitUI(bool first)
         {
             _vehicles = DataProvider.Vehicles;
-            if (!string.IsNullOrEmpty(boxFilter.Text))
+            if (!string.IsNullOrEmpty(boxFilter.Text) && boxFilter.Text.Length >= 3)
             {
                 var filter = boxFilter.Text.Trim();
                 if(filter == "-")
@@ -657,7 +657,8 @@ namespace CARDOC
 
         private void boxFilter_TextChanged(object sender, EventArgs e)
         {
-            InitUI(false);
+            if (boxFilter.Text.Length == 0 || boxFilter.Text.Length >= 3)
+                InitUI(false);
         }
 
         private void listHistory_MouseClick(object sender, MouseEventArgs e)
