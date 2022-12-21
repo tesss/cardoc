@@ -68,6 +68,7 @@ namespace CARDOC
             btnRemove.Enabled = false;
             if (first)
             {
+                UpdateTitle();
                 foreach (var control in Controls)
                 {
                     TextBox textBox = control as TextBox;
@@ -184,7 +185,8 @@ namespace CARDOC
                 partView.Index = i + 1;
             }
             ValidateChildren();
-            ActiveControl = boxManufacturer;
+            ActiveControl = boxVin;
+            boxVin.Select(boxVin.Text.Length, 0);
             _vehicleUpdate = false;
         }
         private Vehicle GetCurrentVehicle()
@@ -335,6 +337,7 @@ namespace CARDOC
                 var errorByControlChar = !Extensions.ValidateVinByControlChar(boxVin.Text);
                 boxVin.Validate(errorByRegex, true, errorByControlChar);
             }
+            UpdateTitle();
         }
 
         private void boxYear_KeyPress(object sender, KeyPressEventArgs e)
@@ -443,6 +446,9 @@ namespace CARDOC
             /* add clone from the last */
             vehicle = vehicle.Clone();
             vehicle.Updated = DateTime.Now;
+            var templateName = vehicle.TemplateName;
+            if (templateName != null && DataProvider.Templates.TryGetValue(vehicle.TemplateName, out Vehicle template) && !string.IsNullOrEmpty(template.Vin))
+                vehicle.Vin = template.Vin;
             InitVehicleUI(vehicle);
         }
 
@@ -524,7 +530,7 @@ namespace CARDOC
             var templateName = currentVehicle.TemplateName;
             if (templateName != null && DataProvider.Templates.TryGetValue(currentVehicle.TemplateName, out Vehicle vehicle) && string.IsNullOrEmpty(currentVehicle.Vin))
             {
-                vehicle.Date = DateTime.Now.Date;
+                vehicle.Date = boxDate.Value;
                 vehicle.OutDate = Vehicle.EmptyDate;
                 InitVehicleUI(vehicle, true);
             }
@@ -558,6 +564,7 @@ namespace CARDOC
 
         private HashSet<string> _checkedVins = new HashSet<string>();
         private bool _listHistoryUpdate = false;
+        private bool _titleUpdate = false;
         private void listHistory_ItemChecked(object sender, ItemCheckedEventArgs e)
         {
             if (!_listHistoryUpdate)
@@ -567,8 +574,9 @@ namespace CARDOC
                 else
                     _checkedVins.Remove(e.Item.SubItems[4].Text);
             }
-            btnDoc.Enabled = btnSyncZip.Enabled = btnAddZip.Enabled = _checkedVins.Any();
-            this.Text = _checkedVins.Any() ? "CARDOC 1.0    ✔" + _checkedVins.Count() : "CARDOC 1.0";
+            btnSyncZip.Enabled = btnAddZip.Enabled = _checkedVins.Any();
+            if(!_titleUpdate)
+                UpdateTitle();
         }
 
         public void SwitchLanguage(bool en)
@@ -654,7 +662,22 @@ namespace CARDOC
 
         private void listHistory_MouseClick(object sender, MouseEventArgs e)
         {
-            
+            if(e.Button == MouseButtons.Right)
+            {
+                using (OpenFileDialog openFileDialog = new OpenFileDialog())
+                {
+                    openFileDialog.Filter = "*.*|*.*";
+                    if (openFileDialog.ShowDialog() == DialogResult.OK)
+                    {
+                        using (StreamReader reader = new StreamReader(openFileDialog.OpenFile()))
+                        {
+                            Import.FromCsv(reader);
+                        }
+                    }
+                }
+                InitUI(false);
+                AddSuggestions();
+            }
         }
 
         private void listHistory_ItemCheck(object sender, ItemCheckEventArgs e)
@@ -666,6 +689,7 @@ namespace CARDOC
         {
             if(e.Column == 0)
             {
+                _titleUpdate = true;
                 if (_checkedVins.Any())
                 {
                     _checkedVins.Clear();
@@ -677,6 +701,8 @@ namespace CARDOC
                     foreach (ListViewItem item in listHistory.Items)
                         item.Checked = true;
                 }
+                _titleUpdate = false;
+                UpdateTitle();
             }
         }
 
@@ -728,6 +754,11 @@ namespace CARDOC
                 DataProvider.Write(vehicle);
             }
             InitUI(false);
+        }
+
+        private void UpdateTitle()
+        {
+            this.Text = "CARD☼C" + boxVin.Text.PadLeft(25) + (listHistory.CheckedIndices.Count > 0 ? ("✔" + listHistory.CheckedIndices.Count) : " ").PadLeft(10);
         }
     }
 }

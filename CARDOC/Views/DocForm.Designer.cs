@@ -71,6 +71,9 @@
             this.boxPrimaryPrice = new System.Windows.Forms.CheckBox();
             this.boxWear = new System.Windows.Forms.CheckBox();
             this.btnReg = new System.Windows.Forms.Button();
+            this.btnAT1 = new System.Windows.Forms.Button();
+            this.boxTo = new System.Windows.Forms.DateTimePicker();
+            this.boxFrom = new System.Windows.Forms.DateTimePicker();
             this.SuspendLayout();
             // 
             // btnZip
@@ -216,7 +219,7 @@
             this.listFiles.Location = new System.Drawing.Point(13, 862);
             this.listFiles.Name = "listFiles";
             this.listFiles.ScrollAlwaysVisible = true;
-            this.listFiles.Size = new System.Drawing.Size(1580, 229);
+            this.listFiles.Size = new System.Drawing.Size(1149, 229);
             this.listFiles.TabIndex = 4000;
             this.listFiles.MouseClick += new System.Windows.Forms.MouseEventHandler(this.listFiles_MouseClick);
             this.listFiles.SelectedIndexChanged += new System.EventHandler(this.listFiles_SelectedIndexChanged);
@@ -533,12 +536,47 @@
             this.btnReg.UseVisualStyleBackColor = true;
             this.btnReg.Click += new System.EventHandler(this.btnReg_Click);
             // 
+            // btnAT1
+            // 
+            this.btnAT1.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.btnAT1.Font = new System.Drawing.Font("Segoe UI", 8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
+            this.btnAT1.Location = new System.Drawing.Point(1606, 1122);
+            this.btnAT1.Name = "btnAT1";
+            this.btnAT1.Size = new System.Drawing.Size(168, 84);
+            this.btnAT1.TabIndex = 4002;
+            this.btnAT1.Text = "Кількість";
+            this.btnAT1.UseVisualStyleBackColor = true;
+            this.btnAT1.Click += new System.EventHandler(this.btnAT1_click);
+            // 
+            // boxTo
+            // 
+            this.boxTo.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.boxTo.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
+            this.boxTo.Format = System.Windows.Forms.DateTimePickerFormat.Custom;
+            this.boxTo.Location = new System.Drawing.Point(1419, 1167);
+            this.boxTo.Name = "boxTo";
+            this.boxTo.Size = new System.Drawing.Size(181, 39);
+            this.boxTo.TabIndex = 4003;
+            // 
+            // boxFrom
+            // 
+            this.boxFrom.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.boxFrom.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
+            this.boxFrom.Format = System.Windows.Forms.DateTimePickerFormat.Custom;
+            this.boxFrom.Location = new System.Drawing.Point(1419, 1122);
+            this.boxFrom.Name = "boxFrom";
+            this.boxFrom.Size = new System.Drawing.Size(181, 39);
+            this.boxFrom.TabIndex = 4004;
+            // 
             // DocForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(10F, 25F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.AutoScroll = true;
-            this.ClientSize = new System.Drawing.Size(1786, 1127);
+            this.ClientSize = new System.Drawing.Size(1786, 1270);
+            this.Controls.Add(this.boxFrom);
+            this.Controls.Add(this.boxTo);
+            this.Controls.Add(this.btnAT1);
             this.Controls.Add(this.btnReg);
             this.Controls.Add(this.boxWear);
             this.Controls.Add(this.boxPrimaryPrice);
@@ -636,5 +674,8 @@
         private CheckBox boxPrimaryPrice;
         private CheckBox boxWear;
         private Button btnReg;
+        private Button btnAT1;
+        private DateTimePicker boxTo;
+        private DateTimePicker boxFrom;
     }
 }

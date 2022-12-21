@@ -93,40 +93,45 @@ namespace CARDOC.Views
                 if (textBox != null)
                     textBox.MouseClick += new MouseEventHandler(SelectAll);
             }
-            var first = Vehicles.First();
-            bool allSame = Vehicles.All(x => x.Order == first.Order && x.Unit == first.Unit && x.OutDate == first.OutDate);
-            boxKi.Text = string.Format("{0:N}", 0.7);
-            boxH1.Text = string.Format("{0:N}", 0.3);
-            boxH2.Text = string.Format("{0:N}", 1.56);
-            boxOutDate.Value = DateTime.Now.Date;
-            boxNom.Text = first.Nom;
-            boxNom.Text = string.IsNullOrEmpty(boxNom.Text) ? DataProvider.Vehicles.FirstOrDefault(x => x.TemplateName == first.TemplateName && !string.IsNullOrEmpty(x.Nom))?.Nom : first.Nom;
-            if (allSame)
+            var first = Vehicles.FirstOrDefault();
+            if (first != null)
             {
-                boxOrder.Text = first.Order;
-                boxUnit.Text = first.Unit;
-            }
-            var i = 0;
-            foreach(var vehicle in Vehicles)
-            {
-                panelVehicles.Controls.Add(new VehicleItem
+                bool allSame = Vehicles.All(x => x.Order == first.Order && x.Unit == first.Unit && x.OutDate == first.OutDate);
+                boxKi.Text = string.Format("{0:N}", 0.7);
+                boxH1.Text = string.Format("{0:N}", 0.3);
+                boxH2.Text = string.Format("{0:N}", 1.56);
+                boxOutDate.Value = DateTime.Now.Date;
+                boxNom.Text = first.Nom;
+                boxNom.Text = string.IsNullOrEmpty(boxNom.Text) ? DataProvider.Vehicles.FirstOrDefault(x => x.TemplateName == first.TemplateName && !string.IsNullOrEmpty(x.Nom))?.Nom : first.Nom;
+                if (allSame)
                 {
-                    Index = ++i,
-                    Model = vehicle.TemplateName,
-                    Vin = vehicle.Vin,
-                    Mou = vehicle.Mou,
-                    PriceUAH = vehicle.Price,
-                    PriceUSD = vehicle.PriceUSD,
-                    PriceEUR = vehicle.PriceEUR,
-                    Nom = vehicle.Nom,
-                    Act = vehicle.Act,
-                    ActIn = vehicle.ActIn,
-                    H1 = vehicle.H1,
-                    H2 = vehicle.H2
-                });
+                    boxOrder.Text = first.Order;
+                    boxUnit.Text = first.Unit;
+                }
+                var i = 0;
+                foreach (var vehicle in Vehicles)
+                {
+                    panelVehicles.Controls.Add(new VehicleItem
+                    {
+                        Index = ++i,
+                        Model = vehicle.TemplateName,
+                        Vin = vehicle.Vin,
+                        Mou = vehicle.Mou,
+                        PriceUAH = vehicle.Price,
+                        PriceUSD = vehicle.PriceUSD,
+                        PriceEUR = vehicle.PriceEUR,
+                        Nom = vehicle.Nom,
+                        Act = vehicle.Act,
+                        ActIn = vehicle.ActIn,
+                        H1 = vehicle.H1,
+                        H2 = vehicle.H2
+                    });
+                }
+                panelVehicles.Height = panelVehicles.Controls.Count * ((panelVehicles.Controls[0] as VehicleItem).Height + 6);
             }
-            panelVehicles.Height = panelVehicles.Controls.Count * ((panelVehicles.Controls[0] as VehicleItem).Height + 6);
             listFiles.Top = panelVehicles.Top + panelVehicles.Height + 20;
+            boxFrom.MinDate = boxTo.MinDate = boxFrom.Value = DataProvider.Vehicles.Min(x => x.Date).Date;
+            boxFrom.MaxDate = boxTo.MaxDate = boxTo.Value = DataProvider.Vehicles.Max(x => x.Date).Date;
         }
 
         private void boxAct_KeyPress(object sender, KeyPressEventArgs e)
@@ -290,6 +295,13 @@ namespace CARDOC.Views
         private void btnReg_Click(object sender, EventArgs e)
         {
             AddResults(Documents.GenerateReg(Vehicles));
+        }
+
+        private void btnAT1_click(object sender, EventArgs e)
+        {
+            var from = boxFrom.Value;
+            var to = boxTo.Value;
+            AddResults(Documents.GenerateCounts(from, to));
         }
     }
 }

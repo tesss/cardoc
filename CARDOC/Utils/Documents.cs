@@ -41,6 +41,8 @@ namespace CARDOC.Utils
         }
         public static List<string> GenerateZip(List<Vehicle> vehicles)
         {
+            if (!vehicles.Any())
+                return new List<string>();
             return Generate(vehicles, (vehicle, folderPath) =>
             {
                 var document = DocumentFactory.Create(Const.DocTemplateFolder + "/zip.docx", vehicle);
@@ -52,6 +54,8 @@ namespace CARDOC.Utils
         
         public static List<string> GenerateIn(List<Vehicle> vehicles)
         {
+            if (!vehicles.Any())
+                return new List<string>();
             return Generate(vehicles, (vehicle, folderPath) =>
             {
                 var document = DocumentFactory.Create(Const.DocTemplateFolder + "/in.docx", vehicle);
@@ -63,6 +67,8 @@ namespace CARDOC.Utils
 
         public static List<string> GenerateOut(List<Vehicle> vehicles)
         {
+            if (!vehicles.Any())
+                return new List<string>();
             return Generate(vehicles, (vehicle, folderPath) =>
             {
                 var document = DocumentFactory.Create(Const.DocTemplateFolder + "/out.docx", vehicle);
@@ -74,6 +80,8 @@ namespace CARDOC.Utils
 
         public static List<string> GenerateInGeneral(List<Vehicle> vehicles)
         {
+            if (!vehicles.Any())
+                return new List<string>();
             bool success = true;
             var files = new List<string>();
             foreach (var date in vehicles.GroupBy(x => x.Date.Date))
@@ -95,6 +103,8 @@ namespace CARDOC.Utils
 
         public static List<string> GenerateInOut(List<Vehicle> vehicles)
         {
+            if (!vehicles.Any())
+                return new List<string>();
             bool success = true;
             var files = new List<string>();
             foreach (var date in vehicles.GroupBy(x => x.OutDate))
@@ -116,6 +126,8 @@ namespace CARDOC.Utils
 
         public static List<string> GenerateInOutGeneral(List<Vehicle> vehicles, bool withWear)
         {
+            if (!vehicles.Any())
+                return new List<string>();
             bool success = true;
             var files = new List<string>();
             foreach (var date in vehicles.GroupBy(x => x.OutDate))
@@ -137,6 +149,8 @@ namespace CARDOC.Utils
 
         public static List<string> GenerateZero(List<Vehicle> vehicles)
         {
+            if (!vehicles.Any())
+                return new List<string>();
             bool success = true;
             var files = new List<string>();
             foreach (var model in vehicles.GroupBy(x => x.TemplateName))
@@ -161,6 +175,8 @@ namespace CARDOC.Utils
 
         internal static List<string> GeneratePrice(List<Vehicle> vehicles, decimal rate)
         {
+            if (!vehicles.Any())
+                return new List<string>();
             bool success = true;
             var files = new List<string>();
             foreach (var model in vehicles.GroupBy(x => x.Date))
@@ -186,6 +202,8 @@ namespace CARDOC.Utils
 
         internal static List<string> GenerateGeneral(List<Vehicle> vehicles)
         {
+            if (!vehicles.Any())
+                return new List<string>();
             var files = new List<string>();
             try
             {
@@ -202,6 +220,8 @@ namespace CARDOC.Utils
 
         internal static List<string> GeneratePriceCalc(List<Vehicle> vehicles)
         {
+            if (!vehicles.Any())
+                return new List<string>();
             bool success = true;
             var files = new List<string>();
             foreach (var model in vehicles.GroupBy(x => x.Date))
@@ -223,6 +243,8 @@ namespace CARDOC.Utils
 
         internal static List<string> GenerateInvoice(List<Vehicle> vehicles, bool withWear)
         {
+            if (!vehicles.Any())
+                return new List<string>();
             bool success = true;
             var files = new List<string>();
             foreach (var model in vehicles.GroupBy(x => x.OutDate))
@@ -244,6 +266,8 @@ namespace CARDOC.Utils
 
         internal static List<string> GenerateReg(List<Vehicle> vehicles)
         {
+            if (!vehicles.Any())
+                return new List<string>();
             bool success = true;
             var files = new List<string>();
             foreach (var model in vehicles.GroupBy(x => x.Date))
@@ -259,6 +283,32 @@ namespace CARDOC.Utils
                 {
                     success = false;
                 }
+            }
+            return files;
+        }
+
+        internal static List<string> GenerateCounts(DateTime from, DateTime to)
+        {
+            bool success = true;
+            var files = new List<string>();
+            var vehicles = DataProvider.Vehicles.Where(x => x.Date >= from && x.Date <= to);
+            var counts = vehicles.GroupBy(x => x.Type).OrderBy(x => x.Key).Select(x => new KeyValuePair<string, int>(x.Key, x.Count())).ToArray();
+            var model = new AT1Model
+            {
+                From = from,
+                To = to,
+                Counts = counts
+            };
+            try
+            {
+                var document = DocumentFactory.Create(Const.DocTemplateFolder + "/counts.docx", model);
+                var file = string.Format("{0}/{1}-{2} КІЛЬКІСТЬ ТЗ.docx", Const.ExportFolder, model.From.ToString(Const.DateFormat), model.To.ToString(Const.DateFormat), model);
+                document.Generate(file);
+                files.Add(file);
+            }
+            catch (Exception ex)
+            {
+                success = false;
             }
             return files;
         }

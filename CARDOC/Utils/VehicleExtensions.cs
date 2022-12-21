@@ -329,11 +329,11 @@ namespace CARDOC.Utils
 
         public static List<Models.Part> GetEquipmentAndZip(this Vehicle vehicle)
         {
-            var parts = vehicle.Parts.Where(x => x.PartType == PartType.Equipment && x.Quantity > 0).ToList();
+            var parts = vehicle.Parts.Where(x => x.PartType == PartType.Equipment).ToList();
             parts.Add(new Models.Part());
             parts.Add(new Models.Part());
             parts.Add(new Models.Part());
-            parts.AddRange(vehicle.Parts.Where(x => x.PartType == PartType.Zip && x.Quantity > 0).ToList());
+            parts.AddRange(vehicle.Parts.Where(x => x.PartType == PartType.Zip).ToList());
             return parts;
         }
 
@@ -464,9 +464,9 @@ namespace CARDOC.Utils
                 vehicle.Type == "Самоскид" ||
                 vehicle.Type == "Сідельний тягач")
                 return shortVersion ? "сержант                 Ігор СТРУК" :
-                                      "сержант                                                                                                             Ігор СТРУК";
+                                      "сержант                                                                                                        Ігор СТРУК";
             return     shortVersion ? "штаб сержант     Олександр ОЛІЙНИК" :
-                                      "штаб сержант                                                                                                 Олександр ОЛІЙНИК";
+                                      "штаб сержант                                                                                            Олександр ОЛІЙНИК";
         }
 
         public static string GetCurrency(this Vehicle vehicle)
