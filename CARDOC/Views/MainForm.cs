@@ -777,7 +777,7 @@ namespace CARDOC
 
         private void UpdateTitle()
         {
-            this.Text = "CARD☼C" + boxVin.Text.PadLeft(25) + (listHistory.CheckedIndices.Count > 0 ? ("✔" + listHistory.CheckedIndices.Count) : " ").PadLeft(10);
+            this.Text = "CARD☼C" + boxVin.Text.PadLeft(25) + (_checkedVins.Any() ? ("✔" + _checkedVins.Count) : " ").PadLeft(10);
         }
     }
 }
