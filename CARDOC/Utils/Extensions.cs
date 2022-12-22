@@ -136,7 +136,7 @@ namespace CARDOC.Utils
         }
         public static bool ValidateVin(string vin)
         {
-            return Regex.IsMatch(vin, "[A-HJ-NPR-Z0-9]{13}[0-9]{4}");
+            return !string.IsNullOrEmpty(vin) && vin.Length == 17 && Regex.IsMatch(vin, "[A-HJ-NPR-Z0-9]{13}[0-9]{4}");
         }
 
         public static string GetFullName(this Control control)
