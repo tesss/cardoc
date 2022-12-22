@@ -26,12 +26,13 @@ namespace CARDOC
 
         public void InitUI(bool first)
         {
-            _vehicles = DataProvider.Vehicles;
             var filter = boxFilter.Text.Trim();
             if (filter == "-")
                 _vehicles = _vehicles.Where(x => _checkedVins.Contains(x.Vin)).ToList();
-            else if(filter != "" && filter.Length >= 3)
+            else if (filter != "" && filter.Length >= 3)
                 _vehicles = _vehicles.Where(x => x.SerializeForFilter().Contains(filter, StringComparison.InvariantCultureIgnoreCase)).ToList();
+            else
+                _vehicles = DataProvider.Vehicles.Where(x => x.Date >= DateTime.Now.Date.AddMonths(-1)).ToList();
             listHistory.Clear();
             listHistory.Columns.Add("✔", 50);
             listHistory.Columns.Add("Дата", 200);
