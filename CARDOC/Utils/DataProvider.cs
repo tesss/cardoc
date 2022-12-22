@@ -101,7 +101,6 @@ namespace CARDOC.Utils
                 Vehicles.Remove(existing);
             }
             Vehicles.Add(vehicle);
-            Vehicles = Vehicles.OrderVehicles().ToList();
             AddCache(vehicle);
             Write(vehicle.Date);
             if(vehicle.Date != prevDate)

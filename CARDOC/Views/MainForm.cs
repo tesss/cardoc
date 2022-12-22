@@ -3,6 +3,7 @@ using CARDOC.Utils;
 using CARDOC.Views;
 using Microsoft.VisualBasic;
 using Newtonsoft.Json;
+using System.Diagnostics;
 using System.Globalization;
 using System.Windows.Forms;
 using static System.Windows.Forms.DataFormats;
@@ -26,14 +27,11 @@ namespace CARDOC
         public void InitUI(bool first)
         {
             _vehicles = DataProvider.Vehicles;
-            if (!string.IsNullOrEmpty(boxFilter.Text) && boxFilter.Text.Length >= 3)
-            {
-                var filter = boxFilter.Text.Trim();
-                if(filter == "-")
-                    _vehicles = _vehicles.Where(x => _checkedVins.Contains(x.Vin)).ToList();
-                else
-                    _vehicles = _vehicles.Where(x => x.SerializeForFilter().Contains(filter, StringComparison.InvariantCultureIgnoreCase)).ToList();
-            }
+            var filter = boxFilter.Text.Trim();
+            if (filter == "-")
+                _vehicles = _vehicles.Where(x => _checkedVins.Contains(x.Vin)).ToList();
+            else if(filter != "" && filter.Length >= 3)
+                _vehicles = _vehicles.Where(x => x.SerializeForFilter().Contains(filter, StringComparison.InvariantCultureIgnoreCase)).ToList();
             listHistory.Clear();
             listHistory.Columns.Add("✔", 50);
             listHistory.Columns.Add("Дата", 200);
@@ -44,6 +42,8 @@ namespace CARDOC
             listHistory.Columns.Add("Пробіг", 100);
             listHistory.Columns.Add("Видача", 100);
             _listHistoryUpdate = true;
+            listHistory.BeginUpdate();
+            List<ListViewItem> items = new List<ListViewItem>();
             foreach (var vehicle in _vehicles)
             {
                 ListViewItem lvi = new ListViewItem{ Checked = false };
@@ -61,10 +61,12 @@ namespace CARDOC
                 lvi.SubItems.Add(new ListViewItem.ListViewSubItem(lvi, "Видача") { Text = vehicle.OutDate == Vehicle.EmptyDate ? "" : vehicle.OutDate.ToString("dd.MM.yy") });
                 if (_checkedVins.Contains(vehicle.Vin))
                     lvi.Checked = true;
-                listHistory.Items.Add(lvi);
+                items.Add(lvi);
             }
+            listHistory.Items.AddRange(items.ToArray());
+            listHistory.EndUpdate();
             _listHistoryUpdate = false;
-            listHistory.AutoResizeColumns(ColumnHeaderAutoResizeStyle.ColumnContent);
+            //listHistory.AutoResizeColumns(ColumnHeaderAutoResizeStyle.ColumnContent);
             btnRemove.Enabled = false;
             if (first)
             {
@@ -657,7 +659,7 @@ namespace CARDOC
 
         private void boxFilter_TextChanged(object sender, EventArgs e)
         {
-            if (boxFilter.Text.Length == 0 || boxFilter.Text.Length >= 3)
+            if (boxFilter.Text.Length == 0 || boxFilter.Text == "-" || boxFilter.Text.Length >= 3)
                 InitUI(false);
         }
 
