@@ -27,27 +27,27 @@ namespace CARDOC
         public void InitUI(bool first)
         {
             var filter = boxFilter.Text.Trim();
-            bool showLastMonth = false;
-            if (filter == "-")
+            var useTextFilter = false;
+            if (filter == "")
+                _vehicles = DataProvider.Vehicles.Where(x => x.Date >= DateTime.Now.Date.AddMonths(-1)).ToList();
+            else if (filter == "-")
                 _vehicles = DataProvider.Vehicles.Where(x => _checkedVins.Contains(x.Vin)).ToList();
             else if (filter.Contains("-"))
             {
                 var splitted = filter.Split('-');
-                if(splitted.Length == 2)
+                if (splitted.Length == 2)
                 {
                     if (DateTime.TryParseExact(splitted[0], Const.DateShortFormat, CultureInfo.CurrentCulture.DateTimeFormat, DateTimeStyles.None, out DateTime from) &&
                        DateTime.TryParseExact(splitted[1], Const.DateShortFormat, CultureInfo.CurrentCulture.DateTimeFormat, DateTimeStyles.None, out DateTime to))
                         _vehicles = DataProvider.Vehicles.Where(x => x.Date >= from && x.Date <= to).ToList();
                     else
-                        showLastMonth = true;
+                        useTextFilter = true;
                 }
             }
-            else if (filter != "" && filter.Length >= 3)
+            else if (filter.Length >= 3)
+                useTextFilter = true;
+            if(useTextFilter)
                 _vehicles = DataProvider.Vehicles.Where(x => x.SerializeForFilter().Contains(filter, StringComparison.InvariantCultureIgnoreCase)).ToList();
-            else
-                showLastMonth = true;
-            if(showLastMonth)
-                _vehicles = DataProvider.Vehicles.Where(x => x.Date >= DateTime.Now.Date.AddMonths(-1)).ToList();
             listHistory.Clear();
             listHistory.Columns.Add("✔", 50);
             listHistory.Columns.Add("Дата", 200);
