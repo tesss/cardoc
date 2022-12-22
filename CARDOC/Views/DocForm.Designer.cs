@@ -128,7 +128,7 @@
             // 
             this.btnZero.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.btnZero.Font = new System.Drawing.Font("Segoe UI", 8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            this.btnZero.Location = new System.Drawing.Point(1607, 1212);
+            this.btnZero.Location = new System.Drawing.Point(1607, 1223);
             this.btnZero.Name = "btnZero";
             this.btnZero.Size = new System.Drawing.Size(168, 84);
             this.btnZero.TabIndex = 211;
@@ -540,7 +540,7 @@
             // 
             this.btnAT1.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.btnAT1.Font = new System.Drawing.Font("Segoe UI", 8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            this.btnAT1.Location = new System.Drawing.Point(1607, 1122);
+            this.btnAT1.Location = new System.Drawing.Point(1607, 1133);
             this.btnAT1.Name = "btnAT1";
             this.btnAT1.Size = new System.Drawing.Size(168, 84);
             this.btnAT1.TabIndex = 4002;
