@@ -104,7 +104,7 @@
             // 
             this.btnInGeneral.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.btnInGeneral.Font = new System.Drawing.Font("Segoe UI", 8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            this.btnInGeneral.Location = new System.Drawing.Point(1606, 582);
+            this.btnInGeneral.Location = new System.Drawing.Point(1607, 582);
             this.btnInGeneral.Name = "btnInGeneral";
             this.btnInGeneral.Size = new System.Drawing.Size(168, 84);
             this.btnInGeneral.TabIndex = 207;
@@ -128,7 +128,7 @@
             // 
             this.btnZero.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.btnZero.Font = new System.Drawing.Font("Segoe UI", 8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            this.btnZero.Location = new System.Drawing.Point(1607, 1259);
+            this.btnZero.Location = new System.Drawing.Point(1607, 1212);
             this.btnZero.Name = "btnZero";
             this.btnZero.Size = new System.Drawing.Size(168, 84);
             this.btnZero.TabIndex = 211;
@@ -425,7 +425,7 @@
             // 
             this.btnInOutGeneral.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.btnInOutGeneral.Font = new System.Drawing.Font("Segoe UI", 8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            this.btnInOutGeneral.Location = new System.Drawing.Point(1606, 402);
+            this.btnInOutGeneral.Location = new System.Drawing.Point(1607, 402);
             this.btnInOutGeneral.Name = "btnInOutGeneral";
             this.btnInOutGeneral.Size = new System.Drawing.Size(168, 84);
             this.btnInOutGeneral.TabIndex = 205;
@@ -449,7 +449,7 @@
             // 
             this.btnPrice.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.btnPrice.Font = new System.Drawing.Font("Segoe UI", 8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            this.btnPrice.Location = new System.Drawing.Point(1606, 672);
+            this.btnPrice.Location = new System.Drawing.Point(1607, 672);
             this.btnPrice.Name = "btnPrice";
             this.btnPrice.Size = new System.Drawing.Size(168, 84);
             this.btnPrice.TabIndex = 208;
@@ -517,7 +517,7 @@
             // 
             this.boxWear.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.boxWear.AutoSize = true;
-            this.boxWear.Location = new System.Drawing.Point(1606, 367);
+            this.boxWear.Location = new System.Drawing.Point(1607, 367);
             this.boxWear.Name = "boxWear";
             this.boxWear.Size = new System.Drawing.Size(77, 29);
             this.boxWear.TabIndex = 204;
@@ -540,7 +540,7 @@
             // 
             this.btnAT1.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.btnAT1.Font = new System.Drawing.Font("Segoe UI", 8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            this.btnAT1.Location = new System.Drawing.Point(1607, 1153);
+            this.btnAT1.Location = new System.Drawing.Point(1607, 1122);
             this.btnAT1.Name = "btnAT1";
             this.btnAT1.Size = new System.Drawing.Size(168, 84);
             this.btnAT1.TabIndex = 4002;
@@ -553,7 +553,7 @@
             this.boxTo.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.boxTo.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
             this.boxTo.Format = System.Windows.Forms.DateTimePickerFormat.Custom;
-            this.boxTo.Location = new System.Drawing.Point(1606, 1095);
+            this.boxTo.Location = new System.Drawing.Point(1607, 1077);
             this.boxTo.Name = "boxTo";
             this.boxTo.Size = new System.Drawing.Size(169, 39);
             this.boxTo.TabIndex = 4003;
@@ -563,7 +563,7 @@
             this.boxFrom.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.boxFrom.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
             this.boxFrom.Format = System.Windows.Forms.DateTimePickerFormat.Custom;
-            this.boxFrom.Location = new System.Drawing.Point(1605, 1040);
+            this.boxFrom.Location = new System.Drawing.Point(1607, 1032);
             this.boxFrom.Name = "boxFrom";
             this.boxFrom.Size = new System.Drawing.Size(169, 39);
             this.boxFrom.TabIndex = 4004;
