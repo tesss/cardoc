@@ -28,9 +28,9 @@ namespace CARDOC
         {
             var filter = boxFilter.Text.Trim();
             if (filter == "-")
-                _vehicles = _vehicles.Where(x => _checkedVins.Contains(x.Vin)).ToList();
+                _vehicles = DataProvider.Vehicles.Where(x => _checkedVins.Contains(x.Vin)).ToList();
             else if (filter != "" && filter.Length >= 3)
-                _vehicles = _vehicles.Where(x => x.SerializeForFilter().Contains(filter, StringComparison.InvariantCultureIgnoreCase)).ToList();
+                _vehicles = DataProvider.Vehicles.Where(x => x.SerializeForFilter().Contains(filter, StringComparison.InvariantCultureIgnoreCase)).ToList();
             else
                 _vehicles = DataProvider.Vehicles.Where(x => x.Date >= DateTime.Now.Date.AddMonths(-1)).ToList();
             listHistory.Clear();
@@ -65,9 +65,9 @@ namespace CARDOC
                 items.Add(lvi);
             }
             listHistory.Items.AddRange(items.ToArray());
+            listHistory.AutoResizeColumns(ColumnHeaderAutoResizeStyle.ColumnContent);
             listHistory.EndUpdate();
             _listHistoryUpdate = false;
-            //listHistory.AutoResizeColumns(ColumnHeaderAutoResizeStyle.ColumnContent);
             btnRemove.Enabled = false;
             if (first)
             {
