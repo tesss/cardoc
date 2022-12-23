@@ -13,7 +13,15 @@ namespace CARDOC.Utils
     {
         public static void FromCsv(StreamReader stream)
         {
+            string fileName = null;
+            if (stream.BaseStream is FileStream)
+            {
+                fileName = (stream.BaseStream as FileStream).Name;
+            }
             DateTime date = DateTime.Now;
+            string unit = "";
+            string order = "";
+            DateTime outDate = Vehicle.EmptyDate;
             using (StreamWriter sw = new StreamWriter("import.csv")) {
                 while (!stream.EndOfStream)
                 {
@@ -63,15 +71,27 @@ namespace CARDOC.Utils
                             }
                         }
                         decimal price = 0;
-                        string unit = "";
-                        string order = "";
-                        DateTime outDate = Vehicle.EmptyDate;
                         if (values.Length > 4) {
-                            decimal.TryParse(values[4].Trim(), out price);
-                            unit = values[5].Replace("в/ч ", "").Trim();
-                            order = values[6].Replace("№ ", "").Trim();
-                            if (!DateTime.TryParseExact(values[7].Trim(), "d/M/yyyy", CultureInfo.InvariantCulture, DateTimeStyles.None, out outDate))
-                                outDate = Vehicle.EmptyDate;
+                            var i = 4;
+                            var priceStr = "";
+                            while (i < values.Length) {
+                                if (decimal.TryParse(values[i].Trim(), out price))
+                                {
+                                    priceStr += values[i].Trim();
+                                    i++;
+                                }
+                                else
+                                    break;
+                            }
+                            decimal.TryParse(priceStr, out price);
+                            var u = values[i].Replace("в/ч ", "").Trim();
+                            if (!string.IsNullOrEmpty(u))
+                                unit = u;
+                            var o = values[i+1].Replace("№ ", "").Trim();
+                            if (!string.IsNullOrEmpty(o))
+                                order = o;
+                            if (DateTime.TryParseExact(values[i+2].Trim(), "d/M/yyyy", CultureInfo.InvariantCulture, DateTimeStyles.None, out DateTime od))
+                                outDate = od;
                         }
                         if (manufacturer == "MAXX")
                         {
@@ -91,7 +111,22 @@ namespace CARDOC.Utils
                             OutDate = outDate,
                             Parts = new List<Part>()
                         };
-                        DataProvider.Vehicles.Add(vehicle);
+                        if(fileName.Contains("update_out", StringComparison.InvariantCultureIgnoreCase))
+                        {
+                            var v = DataProvider.Vehicles.FirstOrDefault(x => x.Vin == vin);
+                            if(v != null)
+                            {
+                                v.Price = price;
+                                v.Unit = unit;
+                                v.Order = order;
+                                v.OutDate = outDate;
+                            } else
+                                DataProvider.Vehicles.Add(vehicle);
+                        }
+                        else
+                        {
+                            DataProvider.Vehicles.Add(vehicle);
+                        }
                         sw.WriteLine("{0,15}{1,40}{2,30}{3,40}{4,25}{5,20}{6,50}{7,40}{8,30}", vehicle.Date, vehicle.Type, vehicle.Manufacturer, vehicle.Model, vehicle.Vin, vehicle.Price, vehicle.Unit, vehicle.Order, vehicle.OutDate);
                     }
                 }
