@@ -263,7 +263,7 @@ namespace CARDOC.Views
                 BackColor = Color.LightGray;
             else if (boxType.Text == PartType.Tire.GetDescription() || boxType.Text == PartType.Battery.GetDescription())
                 BackColor = Color.FromArgb(179, 179, 179);
-            else if (boxType.Text == PartType.Equipment.GetDescription())
+            else if (boxType.Text == PartType.Equipment.GetDescription() || boxType.Text == PartType.EquipmentCargo.GetDescription())
                 BackColor = Color.FromArgb(255, 255, 179);
             else if (boxType.Text == PartType.Zip.GetDescription())
                 BackColor = Color.LightYellow;

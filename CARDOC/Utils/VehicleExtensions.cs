@@ -4,6 +4,7 @@ using DocumentFormat.OpenXml.Drawing;
 using DocumentFormat.OpenXml.EMMA;
 using DocumentFormat.OpenXml.ExtendedProperties;
 using DocumentFormat.OpenXml.Office2019.Excel.RichData2;
+using DocumentFormat.OpenXml.Spreadsheet;
 using DocumentFormat.OpenXml.Wordprocessing;
 using Microsoft.CodeAnalysis.CSharp.Syntax;
 using System;
@@ -330,6 +331,7 @@ namespace CARDOC.Utils
         public static List<Models.Part> GetEquipmentAndZip(this Vehicle vehicle)
         {
             var parts = vehicle.Parts.Where(x => x.PartType == PartType.Equipment).ToList();
+            parts.AddRange(vehicle.Parts.Where(x => x.PartType == PartType.EquipmentCargo).ToList());
             parts.Add(new Models.Part());
             parts.Add(new Models.Part());
             parts.Add(new Models.Part());
@@ -368,6 +370,14 @@ namespace CARDOC.Utils
             if (str.Length > 0)
                 str = str.Substring(0, str.Length - 2);
             return str;
+        }
+        public static List<CARDOC.Models.Part> GetEquipmentCargo(this Vehicle vehicle, bool columns = false)
+        {
+            var zip = vehicle.Parts.Where(x => x.PartType == PartType.EquipmentCargo && x.Quantity > 0).ToList();
+            if (columns)
+                if (zip.Count > 0 && zip.Count % 2 == 1)
+                    zip.Add(new Models.Part());
+            return zip;
         }
 
         public static int GetCategory(this Vehicle vehicle)

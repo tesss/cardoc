@@ -1,4 +1,6 @@
 ﻿using CARDOC.Models;
+using DocumentFormat.OpenXml.Drawing.Charts;
+using Microsoft.CodeAnalysis.CSharp;
 using Newtonsoft.Json;
 using System.Collections.Immutable;
 using System.IO;
@@ -21,7 +23,7 @@ namespace CARDOC.Utils
         public static SortedDictionary<string, SortedSet<string>> Models { get; private set; }
         public static string[] Colors { get { return new string[] { "чорний", "коричневий", "сірий", "білий", "синій", "зелений", "жовтий", "червоний" }; } }
         public static SortedSet<string> PartNames { get; private set; }
-        public static string[] PartTypes { get { return new string[] { PartType.Zip.GetDescription(), PartType.Equipment.GetDescription(), PartType.Aggregate.GetDescription(), PartType.Tire.GetDescription(), PartType.Battery.GetDescription() }; } }
+        public static string[] PartTypes { get { return new string[] { PartType.Zip.GetDescription(), PartType.Equipment.GetDescription(), PartType.Aggregate.GetDescription(), PartType.Tire.GetDescription(), PartType.Battery.GetDescription(), PartType.EquipmentCargo.GetDescription(), }; } }
         public static string[] PartUnits { get { return new string[] { Const.DefaultPartUnits, "к-т", "пар" }; } }
         public static List<Vehicle> ReadAll()
         {

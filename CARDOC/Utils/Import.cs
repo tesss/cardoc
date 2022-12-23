@@ -90,7 +90,7 @@ namespace CARDOC.Utils
                             var o = values[i+1].Replace("№ ", "").Trim();
                             if (!string.IsNullOrEmpty(o))
                                 order = o;
-                            if (DateTime.TryParseExact(values[i+2].Trim(), "d/M/yyyy", CultureInfo.InvariantCulture, DateTimeStyles.None, out DateTime od))
+                            if (DateTime.TryParseExact(values[i+2].Trim(), "M/d/yyyy", CultureInfo.InvariantCulture, DateTimeStyles.None, out DateTime od))
                                 outDate = od;
                         }
                         if (manufacturer == "MAXX")
@@ -120,6 +120,11 @@ namespace CARDOC.Utils
                                 v.Unit = unit;
                                 v.Order = order;
                                 v.OutDate = outDate;
+                                if(v.Date != vehicle.Date)
+                                {
+                                    v.Date = vehicle.Date;
+                                    DataProvider.Write(v);
+                                }
                             } else
                                 DataProvider.Vehicles.Add(vehicle);
                         }
@@ -131,6 +136,7 @@ namespace CARDOC.Utils
                     }
                 }
             }
+            DataProvider.Write(date);
             DataProvider.FillCache();
         }
     }

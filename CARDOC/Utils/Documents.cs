@@ -43,39 +43,91 @@ namespace CARDOC.Utils
         {
             if (!vehicles.Any())
                 return new List<string>();
-            return Generate(vehicles, (vehicle, folderPath) =>
+            bool success = true;
+            var files = new List<string>();
+            foreach (var folder in vehicles.GroupBy(x => x.ExportFolderOut))
             {
-                var document = DocumentFactory.Create(Const.DocTemplateFolder + "/zip.docx", vehicle);
-                var file = string.Format("{0}/ЗІП {1} - {2}.docx", folderPath, vehicle.TemplateName, vehicle.Vin.RemoveInvalidChars());
-                document.Generate(file);
-                return file;
-            }, false);
+                var folderPath = string.Format("{0}", folder.Key);
+                Directory.CreateDirectory(folderPath);
+                foreach (var vehicle in folder)
+                {
+                    try
+                    {
+                        var document = DocumentFactory.Create(Const.DocTemplateFolder + "/zip.docx", vehicle);
+                        var file = string.Format("{0}/ЗІП {1} - {2}.docx", folderPath, vehicle.TemplateName, vehicle.Vin.RemoveInvalidChars());
+                        document.Generate(file);
+                        files.Add(file);
+                        if(vehicle.GetEquipmentCargo().Any())
+                        {
+                            document = DocumentFactory.Create(Const.DocTemplateFolder + "/zipCargo.docx", vehicle);
+                            file = string.Format("{0}/ЗІП КУЗОВ {1} - {2}.docx", folderPath, vehicle.TemplateName, vehicle.Vin.RemoveInvalidChars());
+                            document.Generate(file);
+                            files.Add(file);
+                        }
+                    }
+                    catch (Exception ex)
+                    {
+                        success = false;
+                    }
+                }
+            }
+            return files;
         }
         
         public static List<string> GenerateIn(List<Vehicle> vehicles)
         {
             if (!vehicles.Any())
                 return new List<string>();
-            return Generate(vehicles, (vehicle, folderPath) =>
+            bool success = true;
+            var files = new List<string>();
+            foreach (var folder in vehicles.GroupBy(x => x.ExportFolderIn))
             {
-                var document = DocumentFactory.Create(Const.DocTemplateFolder + "/in.docx", vehicle);
-                var file = string.Format("{0}/АКТ ПРИЙМАННЯ {1} - {2}.docx", folderPath, vehicle.TemplateName, vehicle.Vin.RemoveInvalidChars());
-                document.Generate(file);
-                return file;
-            });
+                var folderPath = string.Format("{0}", folder.Key);
+                Directory.CreateDirectory(folderPath);
+                foreach (var vehicle in folder)
+                {
+                    try
+                    {
+                        var document = DocumentFactory.Create(Const.DocTemplateFolder + "/in.docx", vehicle);
+                        var file = string.Format("{0}/АКТ ПРИЙМАННЯ {1} - {2}.docx", folderPath, vehicle.TemplateName, vehicle.Vin.RemoveInvalidChars());
+                        document.Generate(file);
+                        files.Add(file);
+                    }
+                    catch (Exception ex)
+                    {
+                        success = false;
+                    }
+                }
+            }
+            return files;
         }
 
         public static List<string> GenerateOut(List<Vehicle> vehicles)
         {
             if (!vehicles.Any())
                 return new List<string>();
-            return Generate(vehicles, (vehicle, folderPath) =>
+            bool success = true;
+            var files = new List<string>();
+            foreach (var folder in vehicles.GroupBy(x => x.ExportFolderOut))
             {
-                var document = DocumentFactory.Create(Const.DocTemplateFolder + "/out.docx", vehicle);
-                var file = string.Format("{0}/АКТ ПЕРЕДАЧІ {1} - {2}.docx", folderPath, vehicle.TemplateName, vehicle.Vin.RemoveInvalidChars());
-                document.Generate(file);
-                return file; 
-            }, false);
+                var folderPath = string.Format("{0}", folder.Key);
+                Directory.CreateDirectory(folderPath);
+                foreach (var vehicle in folder)
+                {
+                    try
+                    {
+                        var document = DocumentFactory.Create(Const.DocTemplateFolder + "/out.docx", vehicle);
+                        var file = string.Format("{0}/АКТ ПЕРЕДАЧІ {1} - {2}.docx", folderPath, vehicle.TemplateName, vehicle.Vin.RemoveInvalidChars());
+                        document.Generate(file);
+                        files.Add(file);
+                    }
+                    catch (Exception ex)
+                    {
+                        success = false;
+                    }
+                }
+            }
+            return files;
         }
 
         public static List<string> GenerateInGeneral(List<Vehicle> vehicles)
