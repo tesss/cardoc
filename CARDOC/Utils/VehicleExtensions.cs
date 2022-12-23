@@ -339,15 +339,9 @@ namespace CARDOC.Utils
             return parts;
         }
 
-        public static Models.Part GetTires(this Vehicle vehicle)
+        public static List<Models.Part> GetTires(this Vehicle vehicle)
         {
-            return vehicle.Parts.FirstOrDefault(x => x.PartType == PartType.Tire && x.Quantity > 0) ??
-                new Models.Part()
-                {
-                    PartType = PartType.Tire,
-                    Name = "",
-                    Quantity = 4
-                };
+            return vehicle.Parts.Where(x => x.PartType == PartType.Tire && x.Quantity > 0).ToList();
         }
 
         public static string GetBatteries(this Vehicle vehicle)
