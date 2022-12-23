@@ -52,6 +52,24 @@ namespace CARDOC.Utils
             return Vehicles;
         }
 
+        public static void Cleanout()
+        {
+            var vins = new string[]
+            {
+                "AHTDB3CD605622765","381337","1HPLUAFP2AX385065","381335","380882","380751","380733","380843","380849","380749","380897","380859","380857","380756","380767","380782","1HTWEAZR4AJ173814","10TDC1523CS733592","10TDC1525KS788432","10TDC1527KS788531","10TDC1525KS788236","TM-208815EHHV","TM-208816EHHV","10TDC1523CS749775","TM-208824EHHV","VF6TRM2000S007316","JTEEB71JХ0F016862","JTEEB71J50F017000","VF640K837PB000161","MMBJJKL10NH073389","JTEEB71J30F016444","JTEEB71J70F016589","JTEEB71J40F016825","JTEEB71J40F016839","JTEEB71J70F016897","JTEEB71J90F016965","JTEEB71J40F016971","VF640K834PB000165","JTMHV09J2B4050815","JTMHV09J2B4050975","JTMHV09J8B5022429","MMBJJKL10NH074931","MMBJJKL10NH076392","MMBJJKL10NH072946","MMBJJKL10NH073105","MMBJJKL10NH074639","MMBNGV542NH209270","MMBNGV543NH209892","MMBNGV543NH210055","MMBNGV546NH210129","MMBNGV547NH210107","VR3FDAHDJM3005476"
+            };
+            foreach (var vin in vins)
+            {
+                var vehicle = Vehicles.First(x => x.Vin == vin);
+                if (vehicle.OutDate < new DateTime(2022, 11, 11)) {
+                    vehicle.Unit = "";
+                    vehicle.Order = "";
+                    vehicle.OutDate = Vehicle.EmptyDate;
+                    Write(vehicle);
+                }
+            }
+        }
+
         private static string GetDataPath(DateTime date)
         {
             return Const.DataFolder + "/" + date.ToString(Const.DateFormat) + ".json";

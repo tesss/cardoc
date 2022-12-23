@@ -29,7 +29,7 @@ namespace CARDOC
             var filter = boxFilter.Text.Trim();
             var useTextFilter = false;
             if (filter == "")
-                _vehicles = DataProvider.Vehicles.Where(x => x.Date >= DateTime.Now.Date.AddMonths(-1)).ToList();
+                _vehicles = DataProvider.Vehicles.Take(100).ToList();
             else if (filter == "-")
                 _vehicles = DataProvider.Vehicles.Where(x => _checkedVins.Contains(x.Vin)).ToList();
             else if (filter.Contains("-"))

@@ -27,10 +27,10 @@ namespace CARDOC.Utils
                 {
                     var line = stream.ReadLine();
                     var values = line.Split(',');
-                    if (values[1].StartsWith("Зведений реєстр автомобілів"))
+                    if (values[0].StartsWith("Зведений реєстр автомобілів"))
                     {
                         DataProvider.Write(date);
-                        date = DateTime.ParseExact(values[1].Replace("Зведений реєстр автомобілів", "").Trim(), "dd.MM.yyyy", CultureInfo.InvariantCulture);
+                        date = DateTime.ParseExact(values[0].Replace("Зведений реєстр автомобілів", "").Trim(), "d.M.yyyy", CultureInfo.InvariantCulture);
                         continue;
                     }
                     if (int.TryParse(values[1], out int result))
@@ -113,20 +113,24 @@ namespace CARDOC.Utils
                         };
                         if(fileName.Contains("update_out", StringComparison.InvariantCultureIgnoreCase))
                         {
-                            var v = DataProvider.Vehicles.FirstOrDefault(x => x.Vin == vin);
-                            if(v != null)
+                            if (vin != "Б/Н")
                             {
-                                v.Price = price;
-                                v.Unit = unit;
-                                v.Order = order;
-                                v.OutDate = outDate;
-                                if(v.Date != vehicle.Date)
+                                var v = DataProvider.Vehicles.FirstOrDefault(x => x.Vin == vin);
+                                if (v != null)
                                 {
-                                    v.Date = vehicle.Date;
-                                    DataProvider.Write(v);
+                                    v.Price = price;
+                                    v.Unit = unit;
+                                    v.Order = order;
+                                    v.OutDate = outDate;
+                                    if (v.Date != vehicle.Date)
+                                    {
+                                        v.Date = vehicle.Date;
+                                        DataProvider.Write(v);
+                                    }
                                 }
-                            } else
-                                DataProvider.Vehicles.Add(vehicle);
+                                else
+                                    DataProvider.Vehicles.Add(vehicle);
+                            }
                         }
                         else
                         {

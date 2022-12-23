@@ -21,6 +21,7 @@ namespace CARDOC
             DataProvider.ReadAll();
             DataProvider.ReadAllTemplates();
             DataProvider.FillCache();
+            //DataProvider.Cleanout();
 
             ApplicationConfiguration.Initialize();
             Application.Run(new MainForm());
