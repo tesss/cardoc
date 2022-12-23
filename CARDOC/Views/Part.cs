@@ -177,7 +177,7 @@ namespace CARDOC.Views
         private void boxName_Validating(object sender, CancelEventArgs e)
         {
             UpdateColor();
-            GetMainForm().btnSave.Enabled = boxName.Validate(boxName.Text == " " || boxName.Text == "6СТ-");
+            boxName.Validate(boxName.Text == " " || boxName.Text == "6СТ-");
         }
 
         private void boxQuantity_KeyPress(object sender, KeyPressEventArgs e)
@@ -187,12 +187,12 @@ namespace CARDOC.Views
 
         private void boxUnits_Validating(object sender, CancelEventArgs e)
         {
-            GetMainForm().btnSave.Enabled = boxUnits.Validate(string.IsNullOrEmpty(boxUnits.Text));
+            boxUnits.Validate(string.IsNullOrEmpty(boxUnits.Text));
         }
 
         private void boxType_Validating(object sender, CancelEventArgs e)
         {
-            GetMainForm().btnSave.Enabled = boxType.Validate(string.IsNullOrEmpty(boxType.Text));
+            boxType.Validate(string.IsNullOrEmpty(boxType.Text));
         }
 
         private async void AddNewPart(int index)

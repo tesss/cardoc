@@ -85,8 +85,12 @@ namespace CARDOC.Models
         {
             get
             {
-                if (string.IsNullOrEmpty(Manufacturer) || string.IsNullOrEmpty(Model))
+                if (string.IsNullOrEmpty(Manufacturer) && string.IsNullOrEmpty(Model))
                     return "";
+                if (string.IsNullOrEmpty(Manufacturer))
+                    return Model;
+                if (string.IsNullOrEmpty(Model))
+                    return Manufacturer;
                 return (Manufacturer.ToUpper() + " " + Model.ToUpper()).RemoveInvalidChars();
             }
         }

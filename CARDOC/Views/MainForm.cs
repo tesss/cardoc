@@ -318,12 +318,12 @@ namespace CARDOC
 
         private void boxType_Validating(object sender, System.ComponentModel.CancelEventArgs e)
         {
-            btnSave.Enabled = boxType.Validate(string.IsNullOrEmpty(boxType.Text));
+            boxType.Validate(string.IsNullOrEmpty(boxType.Text));
         }
 
         private void boxManufacturer_Validating(object sender, System.ComponentModel.CancelEventArgs e)
         {
-            btnSave.Enabled = boxManufacturer.Validate(string.IsNullOrEmpty(boxManufacturer.Text));
+            boxManufacturer.Validate(string.IsNullOrEmpty(boxManufacturer.Text));
         }
         private void boxManufacturer_SelectedIndexChanged(object sender, EventArgs e)
         {
@@ -333,12 +333,12 @@ namespace CARDOC
 
         private void boxModel_Validating(object sender, System.ComponentModel.CancelEventArgs e)
         {
-            btnSave.Enabled = boxModel.Validate(string.IsNullOrEmpty(boxModel.Text));
+            boxModel.Validate(string.IsNullOrEmpty(boxModel.Text));
         }
 
         private void boxVin_Validating(object sender, System.ComponentModel.CancelEventArgs e)
         {
-            btnSave.Enabled = boxVin.Validate(string.IsNullOrEmpty(boxVin.Text));
+            boxVin.Validate(string.IsNullOrEmpty(boxVin.Text));
             if (boxManufacturer.Text == "HMMWV")
                 boxVin.Validate(!(boxVin.Text.Length == 6 && int.TryParse(boxVin.Text, out _)), true);
             else if (boxManufacturer.Text == "SKYTRAK")
@@ -365,7 +365,7 @@ namespace CARDOC
 
         private void boxYear_Validating(object sender, System.ComponentModel.CancelEventArgs e)
         {
-            btnSave.Enabled = boxYear.Validate(!int.TryParse(boxYear.Text, out int year) || year < 1900 || year > DateTime.Now.Year, true);
+            boxYear.Validate(!int.TryParse(boxYear.Text, out int year) || year < 1900 || year > DateTime.Now.Year, true);
         }
 
         private void boxColor_Validating(object sender, System.ComponentModel.CancelEventArgs e)
@@ -475,7 +475,7 @@ namespace CARDOC
             var empty = string.IsNullOrEmpty(boxMileageK.Text) && string.IsNullOrEmpty(boxMileageM.Text) ||
                 (!int.TryParse(boxMileageK.Text, out int m1) || m1 <= 0) &&
                 (!int.TryParse(boxMileageM.Text, out int m2) || m2 <= 0);
-            btnSave.Enabled = boxMileageK.Validate(empty, true) && boxMileageK.Validate(empty, true);
+            _ = boxMileageK.Validate(empty, true) && boxMileageK.Validate(empty, true);
         }
 
         private void boxMileageM_Validating(object sender, System.ComponentModel.CancelEventArgs e)
@@ -485,7 +485,7 @@ namespace CARDOC
 
         private void boxMileageH_Validating(object sender, System.ComponentModel.CancelEventArgs e)
         {
-            btnSave.Enabled = boxMileageH.Validate(!string.IsNullOrEmpty(boxMileageH.Text) && (!int.TryParse(boxMileageH.Text, out int m) || m <= 0), true);
+            boxMileageH.Validate(!string.IsNullOrEmpty(boxMileageH.Text) && (!int.TryParse(boxMileageH.Text, out int m) || m <= 0), true);
         }
 
         private void boxMileageK_KeyPress(object sender, KeyPressEventArgs e)
