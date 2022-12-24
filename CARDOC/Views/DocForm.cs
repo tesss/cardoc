@@ -107,6 +107,7 @@ namespace CARDOC.Views
                 {
                     boxOrder.Text = first.Order;
                     boxUnit.Text = first.Unit;
+                    boxOutDate.Value = first.OutDate;
                 }
                 var i = 0;
                 foreach (var vehicle in Vehicles)
