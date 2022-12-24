@@ -592,7 +592,7 @@ namespace CARDOC
                 else
                     _checkedVins.Remove(e.Item.SubItems[4].Text);
             }
-            btnSyncZip.Enabled = btnAddZip.Enabled = _checkedVins.Any();
+            btnSyncZip.Enabled = btnAddZip.Enabled = btnQuantityZip.Enabled = _checkedVins.Any();
             if(!_titleUpdate)
                 UpdateTitle();
         }
@@ -752,12 +752,13 @@ namespace CARDOC
 
         private void btnSyncZip_Click(object sender, EventArgs e)
         {
-            var vehicles = DataProvider.Vehicles.Where(x => _checkedVins.Contains(x.Vin)).OrderBy(x => x.Act).ThenBy(x => x.Vin).ToList();
-            var currentZip = GetVehicleFromView().Parts.Where(x => x.PartType == PartType.Zip).ToList();
+            var vehicles = DataProvider.Vehicles.Where(x => _checkedVins.Contains(x.Vin)).ToList();
+            var currentZip = GetVehicleFromView().Parts.ToList();
             foreach(var vehicle in vehicles)
             {
-                vehicle.Parts.RemoveAll(x => x.PartType == PartType.Zip);
+                vehicle.Parts.Clear();
                 vehicle.Parts.AddRange(currentZip);
+                vehicle.Parts = vehicle.Parts.OrderBy(x => x.PartType).ThenBy(x => x.Index).ToList();
                 DataProvider.Write(vehicle);
             }
             InitUI(false);
@@ -765,16 +766,40 @@ namespace CARDOC
 
         private void btnAddZip_Click(object sender, EventArgs e)
         {
-            var vehicles = DataProvider.Vehicles.Where(x => _checkedVins.Contains(x.Vin)).OrderBy(x => x.Act).ThenBy(x => x.Vin).ToList();
-            var currentZip = GetVehicleFromView().Parts.Where(x => x.PartType == PartType.Zip).ToList();
+            var vehicles = DataProvider.Vehicles.Where(x => _checkedVins.Contains(x.Vin)).ToList();
+            var currentZip = GetVehicleFromView().Parts.ToList();
             foreach (var vehicle in vehicles)
             {
                 vehicle.Parts.AddRange(currentZip);
+                vehicle.Parts = vehicle.Parts.OrderBy(x => x.PartType).ThenBy(x => x.Index).ToList();
                 DataProvider.Write(vehicle);
             }
             InitUI(false);
         }
 
+        private void btnQuantityZip_Click(object sender, EventArgs e)
+        {
+            var vehicles = DataProvider.Vehicles.Where(x => _checkedVins.Contains(x.Vin)).ToList();
+            var currentZip = GetVehicleFromView().Parts.ToList();
+            foreach (var vehicle in vehicles)
+            {
+                foreach(var zip in currentZip)
+                {
+                    var otherZip = vehicle.Parts.FirstOrDefault(x => x.Name == zip.Name);
+                    if(otherZip != null)
+                    {
+                        otherZip.Quantity = zip.Quantity;
+                        otherZip.Type = zip.Type;
+                        otherZip.Units = zip.Units;
+                        otherZip.Number = zip.Number;
+                        otherZip.Notes = zip.Notes;
+                        vehicle.Parts = vehicle.Parts.OrderBy(x => x.PartType).ThenBy(x => x.Index).ToList();
+                        DataProvider.Write(vehicle);
+                    }
+                }
+            }
+            InitUI(false);
+        }
         private void UpdateTitle()
         {
             this.Text = "CARD☼C" + boxVin.Text.PadLeft(25) + (_checkedVins.Any() ? ("✔" + _checkedVins.Count) : " ").PadLeft(10);

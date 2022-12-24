@@ -69,6 +69,7 @@ namespace CARDOC
             this.btnToday = new System.Windows.Forms.Button();
             this.btnSyncZip = new System.Windows.Forms.Button();
             this.btnAddZip = new System.Windows.Forms.Button();
+            this.btnQuantityZip = new System.Windows.Forms.Button();
             this.SuspendLayout();
             // 
             // listHistory
@@ -562,7 +563,7 @@ namespace CARDOC
             this.btnSyncZip.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
             this.btnSyncZip.Location = new System.Drawing.Point(1030, 158);
             this.btnSyncZip.Name = "btnSyncZip";
-            this.btnSyncZip.Size = new System.Drawing.Size(100, 51);
+            this.btnSyncZip.Size = new System.Drawing.Size(100, 34);
             this.btnSyncZip.TabIndex = 1019;
             this.btnSyncZip.Text = "↑↓ ЗІП";
             this.btnSyncZip.UseVisualStyleBackColor = true;
@@ -572,13 +573,25 @@ namespace CARDOC
             // 
             this.btnAddZip.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.btnAddZip.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            this.btnAddZip.Location = new System.Drawing.Point(1030, 215);
+            this.btnAddZip.Location = new System.Drawing.Point(1030, 197);
             this.btnAddZip.Name = "btnAddZip";
-            this.btnAddZip.Size = new System.Drawing.Size(100, 51);
+            this.btnAddZip.Size = new System.Drawing.Size(100, 34);
             this.btnAddZip.TabIndex = 1020;
             this.btnAddZip.Text = "+ ЗІП";
             this.btnAddZip.UseVisualStyleBackColor = true;
             this.btnAddZip.Click += new System.EventHandler(this.btnAddZip_Click);
+            // 
+            // btnQuantityZip
+            // 
+            this.btnQuantityZip.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.btnQuantityZip.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
+            this.btnQuantityZip.Location = new System.Drawing.Point(1030, 236);
+            this.btnQuantityZip.Name = "btnQuantityZip";
+            this.btnQuantityZip.Size = new System.Drawing.Size(100, 34);
+            this.btnQuantityZip.TabIndex = 1021;
+            this.btnQuantityZip.Text = "½ ЗІП";
+            this.btnQuantityZip.UseVisualStyleBackColor = true;
+            this.btnQuantityZip.Click += new System.EventHandler(this.btnQuantityZip_Click);
             // 
             // MainForm
             // 
@@ -586,6 +599,7 @@ namespace CARDOC
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.AutoScroll = true;
             this.ClientSize = new System.Drawing.Size(1288, 1006);
+            this.Controls.Add(this.btnQuantityZip);
             this.Controls.Add(this.btnAddZip);
             this.Controls.Add(this.btnSyncZip);
             this.Controls.Add(this.btnToday);
@@ -677,5 +691,6 @@ namespace CARDOC
         private Button btnToday;
         private Button btnSyncZip;
         private Button btnAddZip;
+        private Button btnQuantityZip;
     }
 }

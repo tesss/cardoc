@@ -21,7 +21,7 @@ namespace CARDOC.Models
         Equipment,
         [Description("ЗІП")]
         Zip,
-        [Description("Обл кузова")]
+        [Description("Кунг")]
         EquipmentCargo,
     }
 }
