@@ -468,9 +468,9 @@ namespace CARDOC.Utils
                 vehicle.Type == "Самоскид" ||
                 vehicle.Type == "Сідельний тягач")
                 return shortVersion ? "сержант                 Ігор СТРУК" :
-                                      "сержант                                                                                                        Ігор СТРУК";
+                                      "сержант                                                                                               Ігор СТРУК";
             return     shortVersion ? "штаб сержант     Олександр ОЛІЙНИК" :
-                                      "штаб сержант                                                                                            Олександр ОЛІЙНИК";
+                                      "штаб сержант                                                                                   Олександр ОЛІЙНИК";
         }
 
         public static string GetCurrency(this Vehicle vehicle)
