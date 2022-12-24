@@ -1,6 +1,7 @@
 ﻿using CARDOC.Models;
 using CARDOC.Utils;
 using CARDOC.Views;
+using DocumentFormat.OpenXml.Spreadsheet;
 using Microsoft.VisualBasic;
 using Newtonsoft.Json;
 using System.Diagnostics;
@@ -9,6 +10,7 @@ using System.Windows.Forms;
 using static System.Windows.Forms.DataFormats;
 using static System.Windows.Forms.ListView;
 using static System.Windows.Forms.VisualStyles.VisualStyleElement;
+using Color = System.Drawing.Color;
 using Part = CARDOC.Views.Part;
 using TextBox = System.Windows.Forms.TextBox;
 
@@ -23,6 +25,8 @@ namespace CARDOC
 
         private Vehicle _currentVehicle;
         private List<Vehicle> _vehicles;
+        private int _topItemIndex = -1;
+        private string _selectedVin = null;
 
         public void InitUI(bool first)
         {
@@ -48,6 +52,7 @@ namespace CARDOC
                 useTextFilter = true;
             if(useTextFilter)
                 _vehicles = DataProvider.Vehicles.Where(x => x.SerializeForFilter().Contains(filter, StringComparison.InvariantCultureIgnoreCase)).ToList();
+            
             listHistory.Clear();
             listHistory.Columns.Add("✔", 50);
             listHistory.Columns.Add("Дата", 200);
@@ -60,9 +65,10 @@ namespace CARDOC
             _listHistoryUpdate = true;
             listHistory.BeginUpdate();
             List<ListViewItem> items = new List<ListViewItem>();
-            foreach (var vehicle in _vehicles)
+            for (int i = 0; i < _vehicles.Count; i++)
             {
-                ListViewItem lvi = new ListViewItem{ Checked = false };
+                Vehicle? vehicle = _vehicles[i];
+                ListViewItem lvi = new ListViewItem{ Checked = false, Text = " " };
                 lvi.SubItems.Add(new ListViewItem.ListViewSubItem(lvi, "Дата") { Text = vehicle.Date.ToString(Const.DateFormat) });
                 lvi.SubItems.Add(new ListViewItem.ListViewSubItem(lvi, "Виробник") { Text = vehicle.Manufacturer });
                 lvi.SubItems.Add(new ListViewItem.ListViewSubItem(lvi, "Модель"){ Text = vehicle.Model });
@@ -76,12 +82,31 @@ namespace CARDOC
                 lvi.SubItems.Add(new ListViewItem.ListViewSubItem(lvi, "Пробіг") { Text = mileage.Trim() });
                 lvi.SubItems.Add(new ListViewItem.ListViewSubItem(lvi, "Видача") { Text = vehicle.OutDate == Vehicle.EmptyDate ? "" : vehicle.OutDate.ToString("dd.MM.yy") });
                 if (_checkedVins.Contains(vehicle.Vin))
+                {
                     lvi.Checked = true;
+                    lvi.BackColor = Color.LightYellow;
+                } else
+                {
+                    lvi.BackColor = SystemColors.Window;
+                }
                 items.Add(lvi);
+                if (_topItemIndex == -1 && _selectedVin != null && _selectedVin == vehicle.Vin)
+                    _topItemIndex = i;
             }
             listHistory.Items.AddRange(items.ToArray());
             listHistory.AutoResizeColumns(ColumnHeaderAutoResizeStyle.ColumnContent);
             listHistory.EndUpdate();
+            if (listHistory.Items.Count > _topItemIndex && _topItemIndex >= 0)
+            {
+                //listHistory.EnsureVisible(_selectedIndex);
+                try { listHistory.TopItem = listHistory.Items[_topItemIndex]; } catch (Exception ex) { }
+                if(_selectedVin != null)
+                    foreach(ListViewItem item in listHistory.Items)
+                    {
+                        if(item.SubItems[4].Text == _selectedVin)
+                            item.BackColor = Color.LightGray;
+                    }
+            }
             _listHistoryUpdate = false;
             btnRemove.Enabled = false;
             if (first)
@@ -262,6 +287,7 @@ namespace CARDOC
         {
             listHistory.RemoveValidation();
             listHistory.SelectedItems.Clear();
+            _selectedVin = null;
             InitVehicleUI(Vehicle.Empty);
         }
 
@@ -277,6 +303,8 @@ namespace CARDOC
 
         private void listHistory_ItemSelectionChanged(object sender, EventArgs e)
         {
+            _selectedVin = listHistory.SelectedItems.Count > 0 ? listHistory.SelectedItems[0].SubItems[4].Text : null;
+            try { _topItemIndex = listHistory.TopItem.Index; } catch (Exception ex) { }
             foreach (ListViewItem it in listHistory.Items)
             {
                 if (it.Selected && it.BackColor != SystemColors.Highlight)
@@ -286,7 +314,12 @@ namespace CARDOC
                 }
                 if (!it.Selected && it.BackColor != SystemColors.Window)
                 {
-                    it.BackColor = SystemColors.Window;
+                    if (it.SubItems[4].Text == _selectedVin)
+                        it.BackColor = Color.LightGray;
+                    else if (it.Checked)
+                        it.BackColor = Color.LightYellow;
+                    else
+                        it.BackColor = SystemColors.Window;
                     it.ForeColor = SystemColors.WindowText;
                 }
             }
@@ -460,6 +493,9 @@ namespace CARDOC
                 DataProvider.Remove(selectedVehicle);
             }
             DataProvider.Write(vehicle);
+            if(_selectedVin == null) // if new car - scroll to top
+                _topItemIndex = -1;
+            _selectedVin = vehicle.Vin;
             InitUI(false);
             /* add clone from the last */
             vehicle = vehicle.Clone();
@@ -506,6 +542,7 @@ namespace CARDOC
         private void btnRemove_Click(object sender, EventArgs e)
         {
             DataProvider.Remove(GetCurrentVehicle());
+            _selectedVin = null;
             InitUI(false);
             InitVehicleUI(Vehicle.Empty);
         }
@@ -588,9 +625,21 @@ namespace CARDOC
             if (!_listHistoryUpdate)
             {
                 if (e.Item.Checked)
+                {
+                    if (e.Item.SubItems[4].Text == _selectedVin)
+                        e.Item.BackColor = Color.LightGray;
+                    else
+                        e.Item.BackColor = Color.LightYellow;
                     _checkedVins.Add(e.Item.SubItems[4].Text);
+                }
                 else
+                {
+                    if (e.Item.SubItems[4].Text == _selectedVin)
+                        e.Item.BackColor = Color.LightGray;
+                    else
+                        e.Item.BackColor = SystemColors.Window;
                     _checkedVins.Remove(e.Item.SubItems[4].Text);
+                }
             }
             btnSyncZip.Enabled = btnAddZip.Enabled = btnQuantityZip.Enabled = _checkedVins.Any();
             if(!_titleUpdate)
@@ -676,7 +725,9 @@ namespace CARDOC
         private void boxFilter_TextChanged(object sender, EventArgs e)
         {
             if (boxFilter.Text.Length == 0 || boxFilter.Text == "-" || boxFilter.Text.Length >= 3)
+            {
                 InitUI(false);
+            }
         }
 
         private void listHistory_MouseClick(object sender, MouseEventArgs e)
