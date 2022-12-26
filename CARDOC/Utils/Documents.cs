@@ -159,7 +159,7 @@ namespace CARDOC.Utils
                 return new List<string>();
             bool success = true;
             var files = new List<string>();
-            foreach (var date in vehicles.GroupBy(x => x.OutDate))
+            foreach (var date in vehicles.GroupBy(x => x.Date))
             {
                 try
                 {
