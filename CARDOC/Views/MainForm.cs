@@ -500,9 +500,15 @@ namespace CARDOC
             /* add clone from the last */
             vehicle = vehicle.Clone();
             vehicle.Updated = DateTime.Now;
+            vehicle.OutDate = Vehicle.EmptyDate;
+            vehicle.ActIn = vehicle.Act = vehicle.Order = vehicle.Unit = vehicle.Mou = "";
             var templateName = vehicle.TemplateName;
             if (templateName != null && DataProvider.Templates.TryGetValue(vehicle.TemplateName, out Vehicle template) && !string.IsNullOrEmpty(template.Vin))
                 vehicle.Vin = template.Vin;
+            foreach(var part in vehicle.Parts)
+            {
+                part.Number = part.Notes = "";
+            }
             InitVehicleUI(vehicle);
         }
 
