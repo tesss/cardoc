@@ -290,6 +290,8 @@ namespace CARDOC.Views
             Type = PartType.Zip.GetDescription();
             Dock = DockStyle.Fill;
             Name = "";
+            Number = "";
+            Notes = "";
             UpdateColor();
         }
 
