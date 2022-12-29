@@ -62,6 +62,8 @@ namespace CARDOC
             listHistory.Columns.Add("Рік", 100);
             listHistory.Columns.Add("Пробіг", 100);
             listHistory.Columns.Add("Видача", 100);
+            listHistory.Columns.Add("Наряд", 100);
+            listHistory.Columns.Add("Кому", 100);
             _listHistoryUpdate = true;
             listHistory.BeginUpdate();
             List<ListViewItem> items = new List<ListViewItem>();
@@ -81,6 +83,8 @@ namespace CARDOC
                     mileage += " " + vehicle.MileageH + " " + Const.UnitsHours;
                 lvi.SubItems.Add(new ListViewItem.ListViewSubItem(lvi, "Пробіг") { Text = mileage.Trim() });
                 lvi.SubItems.Add(new ListViewItem.ListViewSubItem(lvi, "Видача") { Text = vehicle.OutDate == Vehicle.EmptyDate ? "" : vehicle.OutDate.ToString("dd.MM.yy") });
+                lvi.SubItems.Add(new ListViewItem.ListViewSubItem(lvi, "Наряд") { Text = vehicle.Order });
+                lvi.SubItems.Add(new ListViewItem.ListViewSubItem(lvi, "Кому") { Text = vehicle.Unit });
                 if (_checkedVins.Contains(vehicle.Vin))
                 {
                     lvi.Checked = true;
