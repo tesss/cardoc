@@ -283,5 +283,13 @@ namespace CARDOC.Utils
 
             return retval;
         }
+
+        public static string GetFirstWord(this string str)
+        {
+            if (string.IsNullOrEmpty(str))
+                return "";
+            var splitted = str.Split(' ');
+            return splitted.Length > 0 ? splitted[0] : "";
+        }
     }
 }
