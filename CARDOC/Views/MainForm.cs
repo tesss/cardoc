@@ -59,7 +59,7 @@ namespace CARDOC
             listHistory.Columns.Add("Виробник", 150);
             listHistory.Columns.Add("Модель", 300);
             listHistory.Columns.Add("Vin", 200);
-            listHistory.Columns.Add("Рік", 100);
+            //listHistory.Columns.Add("Рік", 100);
             listHistory.Columns.Add("Видача", 100);
             listHistory.Columns.Add("Наряд", 100);
             listHistory.Columns.Add("Кому", 100);
@@ -74,7 +74,7 @@ namespace CARDOC
                 lvi.SubItems.Add(new ListViewItem.ListViewSubItem(lvi, "Виробник") { Text = vehicle.Manufacturer });
                 lvi.SubItems.Add(new ListViewItem.ListViewSubItem(lvi, "Модель"){ Text = vehicle.Model });
                 lvi.SubItems.Add(new ListViewItem.ListViewSubItem(lvi, "Vin") { Text = vehicle.Vin });
-                lvi.SubItems.Add(new ListViewItem.ListViewSubItem(lvi, "Рік") { Text = vehicle.Year.ToString() });
+                //lvi.SubItems.Add(new ListViewItem.ListViewSubItem(lvi, "Рік") { Text = vehicle.Year.ToString() });
                 lvi.SubItems.Add(new ListViewItem.ListViewSubItem(lvi, "Видача") { Text = vehicle.OutDate == Vehicle.EmptyDate ? "" : vehicle.OutDate.ToString("dd.MM.yy") });
                 lvi.SubItems.Add(new ListViewItem.ListViewSubItem(lvi, "Наряд") { Text = vehicle.Order.GetFirstWord() });
                 lvi.SubItems.Add(new ListViewItem.ListViewSubItem(lvi, "Кому") { Text = vehicle.Unit });
