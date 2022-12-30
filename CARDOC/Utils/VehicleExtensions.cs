@@ -385,10 +385,15 @@ namespace CARDOC.Utils
 
         public static string GetMileage(this Vehicle vehicle)
         {
-            var str = vehicle.Mileage + " " + vehicle.MileageUnits;
+            var str = vehicle.Mileage == 0 ? "" : vehicle.Mileage + " " + vehicle.MileageUnits;
             if (vehicle.MileageH > 0)
                 str += "; " + vehicle.MileageH + " " + Const.UnitsHours;
             return str;
+        }
+
+        public static string GetYear(this Vehicle vehicle, bool withUnit = false)
+        {
+            return vehicle.Year > 0 ? vehicle.Year.ToString() + (withUnit ? " рік" : "") : "";
         }
 
         public static string GetAddons(this Vehicle vehicle)
