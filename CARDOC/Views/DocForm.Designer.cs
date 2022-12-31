@@ -345,18 +345,18 @@
             this.label4.AutoSize = true;
             this.label4.Location = new System.Drawing.Point(533, 177);
             this.label4.Name = "label4";
-            this.label4.Size = new System.Drawing.Size(86, 25);
+            this.label4.Size = new System.Drawing.Size(99, 25);
             this.label4.TabIndex = 1026;
-            this.label4.Text = "Акт прий";
+            this.label4.Text = "Акт прийм";
             // 
             // label5
             // 
             this.label5.AutoSize = true;
             this.label5.Location = new System.Drawing.Point(639, 177);
             this.label5.Name = "label5";
-            this.label5.Size = new System.Drawing.Size(94, 25);
+            this.label5.Size = new System.Drawing.Size(98, 25);
             this.label5.TabIndex = 1027;
-            this.label5.Text = "Акт перед";
+            this.label5.Text = "Акт видачі";
             // 
             // label6
             // 

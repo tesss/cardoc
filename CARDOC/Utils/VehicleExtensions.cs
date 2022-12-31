@@ -467,11 +467,12 @@ namespace CARDOC.Utils
 
         public static string GetReceiver(this Vehicle vehicle, bool shortVersion = false)
         {
-            if (vehicle.Type == "Автомобіль вантажний" ||
+            if (vehicle.Type.Contains("вантаж", StringComparison.InvariantCultureIgnoreCase) ||
                 vehicle.Type == "Контейнеровоз" ||
                 vehicle.Type == "Напівпричеп" ||
                 vehicle.Type == "Самоскид" ||
-                vehicle.Type == "Сідельний тягач")
+                vehicle.Type == "Сідельний тягач" ||
+                vehicle.Type == "Мультиліфт")
                 return shortVersion ? "сержант                 Ігор СТРУК" :
                                       "сержант                                                                                               Ігор СТРУК";
             return     shortVersion ? "штаб сержант     Олександр ОЛІЙНИК" :
