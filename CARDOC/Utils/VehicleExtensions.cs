@@ -468,11 +468,15 @@ namespace CARDOC.Utils
         public static string GetReceiver(this Vehicle vehicle, bool shortVersion = false)
         {
             if (vehicle.Type.Contains("вантаж", StringComparison.InvariantCultureIgnoreCase) ||
-                vehicle.Type == "Контейнеровоз" ||
-                vehicle.Type == "Напівпричеп" ||
-                vehicle.Type == "Самоскид" ||
-                vehicle.Type == "Сідельний тягач" ||
-                vehicle.Type == "Мультиліфт")
+                vehicle.Type.Contains("причіп", StringComparison.InvariantCultureIgnoreCase) ||
+                vehicle.Type.Contains("причеп", StringComparison.InvariantCultureIgnoreCase) ||
+                vehicle.Type.Contains("Контейнеровоз", StringComparison.InvariantCultureIgnoreCase) ||
+                vehicle.Type.Contains("Сідельний тягач", StringComparison.InvariantCultureIgnoreCase) ||
+                vehicle.Type.Contains("Автотягач", StringComparison.InvariantCultureIgnoreCase) ||
+                vehicle.Type.Contains("Евакотягач", StringComparison.InvariantCultureIgnoreCase) ||
+                vehicle.Type.Contains("Майстерня", StringComparison.InvariantCultureIgnoreCase) ||
+                vehicle.Type.Contains("Станція", StringComparison.InvariantCultureIgnoreCase) ||
+                vehicle.Type.Contains("Мультиліфт", StringComparison.InvariantCultureIgnoreCase))
                 return shortVersion ? "сержант                 Ігор СТРУК" :
                                       "сержант                                                                                               Ігор СТРУК";
             return     shortVersion ? "штаб сержант     Олександр ОЛІЙНИК" :
